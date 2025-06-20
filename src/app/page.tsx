@@ -1,103 +1,201 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  GridSection,
+  AnimatedModal,
+  LogoModal,
+  ThemeSwitcher,
+  LangSwitcher,
+} from "../components";
+import { translations } from "../data/translations";
+import { useTheme } from "../lib/theme";
+import { useLocale } from "../lib/i18n";
+
+type Locale = keyof typeof translations;
+
+// Easter egg message in console
+const consoleStyles = [
+  "color: #00ffff",
+  "background-color: #161A20",
+  "font-size: 20px",
+  "padding: 10px",
+  "border-radius: 5px",
+  "border: 2px solid #fd19fc",
+].join(";");
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [modal, setModal] = useState<string | null>(null);
+  const [theme, setTheme] = useTheme();
+  const [locale, setLocale] = useLocale();
+  const t = translations[locale as Locale];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  // Console easter egg
+  useEffect(() => {
+    console.log(
+      "%c👋 Hey there, explorer! Welcome to my portfolio!",
+      consoleStyles
+    );
+  }, []);
+
+  return (
+    <motion.div
+      className="min-h-screen text-white relative transition-colors duration-500"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}>
+      <ThemeSwitcher
+        theme={theme}
+        setTheme={setTheme}
+      />
+      <LangSwitcher
+        locale={locale}
+        setLocale={setLocale}
+      />
+      <GridSection onOpenModal={setModal} />
+      <AnimatedModal
+        isOpen={!!modal}
+        onClose={() => setModal(null)}>
+        {modal === "about" && (
+          <motion.div
+            className="p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}>
+            <h2 className="text-2xl font-bold mb-4 text-[#00ffff]">
+              {t.about}
+            </h2>
+            <p className="text-lg">{t.aboutContent}</p>
+          </motion.div>
+        )}
+        {modal === "skills" && (
+          <motion.div
+            className="p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}>
+            <h2 className="text-2xl font-bold mb-4 text-[#00ffff]">
+              {t.skills}
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
+                  Frontend
+                </h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>React & Next.js</li>
+                  <li>TypeScript</li>
+                  <li>Tailwind CSS</li>
+                  <li>GSAP & Framer Motion</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
+                  Backend
+                </h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Node.js</li>
+                  <li>Express</li>
+                  <li>MongoDB</li>
+                  <li>REST API Design</li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {modal === "projects" && (
+          <motion.div
+            className="p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}>
+            <h2 className="text-2xl font-bold mb-4 text-[#00ffff]">
+              {t.projects}
+            </h2>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="border border-[#2C313A] p-4 rounded-lg">
+                <h3 className="text-xl font-semibold text-[#fd19fc]">
+                  Portfolio Website
+                </h3>
+                <p className="text-sm opacity-70 mb-2">
+                  Next.js, TypeScript, Tailwind CSS
+                </p>
+                <p>
+                  A motion-centric, single-page portfolio with animated modals
+                  and interactive grid layout.
+                </p>
+              </div>
+              <div className="border border-[#2C313A] p-4 rounded-lg">
+                <h3 className="text-xl font-semibold text-[#fd19fc]">
+                  Project Name
+                </h3>
+                <p className="text-sm opacity-70 mb-2">
+                  React, Node.js, MongoDB
+                </p>
+                <p>
+                  Brief project description highlighting key features and
+                  technologies.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {modal === "contact" && (
+          <motion.div
+            className="p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}>
+            <h2 className="text-2xl font-bold mb-4 text-[#00ffff]">
+              {t.contact}
+            </h2>
+            <form className="space-y-4">
+              <div>
+                <label
+                  className="block text-sm mb-1"
+                  htmlFor="name">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full p-2 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none"
+                />
+              </div>
+              <div>
+                <label
+                  className="block text-sm mb-1"
+                  htmlFor="email">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full p-2 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none"
+                />
+              </div>
+              <div>
+                <label
+                  className="block text-sm mb-1"
+                  htmlFor="message">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  className="w-full p-2 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none"></textarea>
+              </div>
+              <button
+                type="button"
+                className="bg-[#00ffff] text-black font-bold py-2 px-4 rounded hover:bg-[#fd19fc] transition-colors">
+                Send Message
+              </button>
+            </form>
+          </motion.div>
+        )}
+        {modal === "logo" && <LogoModal />}
+      </AnimatedModal>
+    </motion.div>
   );
 }
