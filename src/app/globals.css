@@ -35,3 +35,39 @@ body {
     font-family: "Caveat", cursive;
   }
 }
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gradient-rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.animated-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--gradient-angle),
+    var(--dark-gray) 0%,
+    rgba(35, 41, 70, 0.9) 20%,
+    rgba(0, 255, 255, 0.25) 35%,
+    var(--dark-gray) 50%,
+    rgba(58, 63, 88, 0.7) 65%,
+    rgba(253, 25, 252, 0.25) 80%,
+    var(--dark-gray) 100%
+  );
+  background-size: 400% 400%;
+  background-position: center;
+  filter: blur(40px);
+  animation: gradient-rotation 20s linear infinite;
+}

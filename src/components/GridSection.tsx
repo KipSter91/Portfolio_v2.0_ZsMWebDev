@@ -173,7 +173,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         return (
           <button
             key={item.key}
-            className={`flex items-center justify-center transition-all duration-300 text-2xl font-bold select-none group overflow-hidden focus:z-20 cursor-pointer
+            className={`relative flex items-center justify-center transition-all duration-300 text-2xl font-bold select-none group overflow-hidden focus:z-20 cursor-pointer
               ${isHovered ? "z-20" : isOther ? " blur-[3px]" : ""}
             `}
             style={{
@@ -197,6 +197,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
             onMouseLeave={handleMouseLeave}
             onFocus={() => handleMouseEnter(idx)}
             onBlur={handleMouseLeave}>
+            {isHovered && <div className="animated-gradient"></div>}
             <div className="z-10 drop-shadow-lg transition-transform duration-300 relative flex flex-col items-center">
               <span
                 className={`transition-colors ${
