@@ -23,6 +23,11 @@ body {
   background: var(--background);
   color: var(--white);
   font-family: "Outfit", sans-serif;
+  cursor: none;
+}
+
+* {
+  cursor: none !important;
 }
 
 @layer utilities {
