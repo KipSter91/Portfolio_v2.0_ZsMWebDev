@@ -65,7 +65,7 @@ export default function LogoModal() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}>
         <a
-          href="https://github.com/zsoltmarku"
+          href="https://github.com/kipster91"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">

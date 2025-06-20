@@ -6,11 +6,9 @@ import {
   GridSection,
   AnimatedModal,
   LogoModal,
-  ThemeSwitcher,
   LangSwitcher,
 } from "../components";
 import { translations } from "../data/translations";
-import { useTheme } from "../lib/theme";
 import { useLocale } from "../lib/i18n";
 
 type Locale = keyof typeof translations;
@@ -27,7 +25,6 @@ const consoleStyles = [
 
 export default function Home() {
   const [modal, setModal] = useState<string | null>(null);
-  const [theme, setTheme] = useTheme();
   const [locale, setLocale] = useLocale();
   const t = translations[locale as Locale];
 
@@ -41,14 +38,10 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen text-white relative transition-colors duration-500"
+      className="min-h-screen text-white relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}>
-      <ThemeSwitcher
-        theme={theme}
-        setTheme={setTheme}
-      />
       <LangSwitcher
         locale={locale}
         setLocale={setLocale}

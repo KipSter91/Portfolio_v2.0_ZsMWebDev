@@ -15,44 +15,18 @@
   --neon-cyan: #00ffff;
   --neon-pink: #fd19fc;
 
-  /* Theme Variables */
-  --background: var(--white);
-  --foreground: var(--black);
-  --card-bg: var(--medium-gray);
-}
-
-.dark {
-  --background: var(--black);
-  --foreground: var(--white);
-  --card-bg: var(--dark-gray);
+  /* Alapértelmezett beállítások */
+  --background: var(--dark-gray);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--white);
   font-family: "Outfit", sans-serif;
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 @layer utilities {
   .font-handwriting {
     font-family: "Caveat", cursive;
   }
-}
-
-/* Animation Classes */
-.hover-scale {
-  transition: transform 0.3s ease;
-}
-
-.hover-scale:hover {
-  transform: scale(1.1);
-}
-
-.hover-glow {
-  transition: box-shadow 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 15px var(--neon-cyan);
 }
