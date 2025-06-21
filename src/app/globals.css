@@ -71,7 +71,7 @@ body {
     rgba(253, 25, 252, 0.25) 80%,
     var(--dark-gray) 100%
   );
-  background-size: 400% 400%;
+  background-size: 300% 300%;
   background-position: center;
   filter: blur(40px);
   animation: gradient-rotation 20s linear infinite;

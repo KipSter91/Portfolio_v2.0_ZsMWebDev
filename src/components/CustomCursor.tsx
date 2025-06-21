@@ -58,7 +58,6 @@ const CustomCursor: React.FC = () => {
             width: 10,
             height: 10,
             background: "var(--dark-gray)",
-            borderRadius: "25% 5% 25% 5%",
             pointerEvents: "none",
             transform: "translate(-50%, -50%)",
             zIndex: 9999,

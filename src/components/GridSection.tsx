@@ -16,18 +16,18 @@ const gridItems = [
   { key: "contact", label: "Contact", area: "2 / 2 / 3 / 3" },
 ];
 
-// SVG underline path variants
+// SVG underline path variants - szögletes kreatív változatok
 const underlinePaths = [
-  // Wavy
-  "M0,2.5 Q25,5 50,2.5 T100,2.5",
-  // Straight
+  // Straight (marad az eredeti)
   "M0,2.5 L100,2.5",
-  // Curve up
-  "M0,4 Q50,0 100,4",
-  // Curve down
-  "M0,1 Q50,5 100,1",
-  // Twisted (spiral-like)
-  "M0,2.5 Q10,0 20,2.5 Q30,5 40,2.5 Q50,0 60,2.5 Q70,5 80,2.5 Q90,0 100,2.5",
+  // Szögletes lépcsős - végigmegy a teljes szélességen
+  "M0,2.5 L20,2.5 L20,4 L40,4 L40,1 L60,1 L60,3.5 L80,3.5 L80,2 L100,2 L100,2.5",
+  // Szögletes zigzag - biztosan végigér
+  "M0,2.5 L15,2.5 L25,0.5 L35,4.5 L45,1 L55,4 L65,0.5 L75,3.5 L85,1.5 L95,3 L100,2.5",
+  // Szögletes blokkok - végigmennek
+  "M0,2.5 L0,4 L15,4 L15,1 L30,1 L30,4 L45,4 L45,0.5 L60,0.5 L60,3.5 L75,3.5 L75,1.5 L90,1.5 L90,4 L100,4 L100,2.5",
+  // Pixel art stílus - teljes szélesség
+  "M0,2 L10,2 L10,1 L20,1 L20,4 L30,4 L30,0.5 L40,0.5 L40,3.5 L50,3.5 L50,2 L60,2 L60,4.5 L70,4.5 L70,1.5 L80,1.5 L80,3 L90,3 L90,0.8 L100,0.8",
 ];
 
 export default function GridSection({ onOpenModal }: GridSectionProps) {
@@ -138,13 +138,15 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
       window.removeEventListener("resize", checkDevice);
     };
   }, []);
-
   // Animate underline on hover
   useEffect(() => {
     if (visualHovered !== null && underlines.current[visualHovered]) {
+      const pathElement = underlines.current[visualHovered];
+      const pathLength = pathElement.getTotalLength();
+
       gsap.fromTo(
-        underlines.current[visualHovered],
-        { strokeDashoffset: 100, strokeDasharray: 100 },
+        pathElement,
+        { strokeDashoffset: pathLength, strokeDasharray: pathLength },
         { strokeDashoffset: 0, duration: 0.6, ease: "power3.out" }
       );
     }
@@ -284,6 +286,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
                     className="w-full h-5 overflow-visible absolute -bottom-2"
                     viewBox="0 0 100 5"
                     preserveAspectRatio="none">
+                    {" "}
                     <path
                       ref={(el) => {
                         underlines.current[idx] = el;
@@ -294,18 +297,18 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
                       stroke="var(--neon-pink)"
                       strokeWidth="1"
                       className={`transition-opacity opacity-100`}
-                      strokeDasharray="100"
-                      strokeDashoffset="100"
+                      strokeDasharray="0"
+                      strokeDashoffset="0"
                     />
                   </svg>
                 )}
             </div>
           </button>
         );
-      })}{" "}
-      {/* Logo element, follows grid center or hovered cell */}{" "}
+      })}
+      {/* Logo element, follows grid center or hovered cell */}
       <div
-        className="absolute z-30 flex items-center justify-center w-20 h-20 bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto rounded-full"
+        className="absolute z-30 flex items-center justify-center w-20 h-20 bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto "
         style={{
           ...getLogoPosition(),
           transform: "translate(-50%, -50%)",

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GridSection, LoadingScreen } from "../components";
+import { GridSection, SplashScreen } from "../components";
 import { translations } from "../data/translations";
 import { useLocale } from "../lib/i18n";
 import { useSearchParams } from "next/navigation";
@@ -36,7 +36,9 @@ function SearchParamsHandler({
 }
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [showSplash, setShowSplash] = useState(false); // Kezdetben false
+  const [showContent, setShowContent] = useState(false);
+  const [fromPageInitialized, setFromPageInitialized] = useState(false);
   const [locale, setLocale] = useLocale();
   const [fromPage, setFromPage] = useState<string | null>(null);
   const t = translations[locale as Locale];
@@ -49,37 +51,56 @@ export default function Home() {
     );
   }, []);
 
+  // Handle fromPage detection and navigation logic
   useEffect(() => {
-    // Only show loading when first loading the site, not when returning from sections
-    const timer = setTimeout(
-      () => {
-        setIsLoading(false);
-      },
-      fromPage ? 0 : 1800
-    );
+    if (!fromPageInitialized) return;
 
-    return () => clearTimeout(timer);
-  }, [fromPage]);
+    if (fromPage) {
+      // Ha másik oldalról jövünk vissza - azonnal megjelenítjük a tartalmat
+      setShowSplash(false);
+      setShowContent(true);
+    } else {
+      // Ha első betöltés - splash screen jelenik meg
+      setShowSplash(true);
+      setShowContent(false);
+    }
+  }, [fromPage, fromPageInitialized]);
 
+  // Handle fromPage change callback
+  const handleFromPageChange = (newFromPage: string | null) => {
+    setFromPage(newFromPage);
+    setFromPageInitialized(true);
+  };
+
+  // Splash screen befejezése
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    setShowContent(true);
+  };
   return (
     <>
       <Suspense fallback={null}>
-        <SearchParamsHandler onFromPageChange={setFromPage} />
+        <SearchParamsHandler onFromPageChange={handleFromPageChange} />
       </Suspense>
-      {isLoading && !fromPage && (
-        <LoadingScreen
-          isLoading={isLoading}
-          showWelcome={true}
-        />
-      )}
 
       <AnimatePresence mode="wait">
-        {!isLoading && (
+        {showSplash && !fromPage && fromPageInitialized && (
+          <SplashScreen
+            key="splash"
+            onComplete={handleSplashComplete}
+          />
+        )}
+
+        {showContent && fromPageInitialized && (
           <motion.div
+            key="content"
             className="w-full text-white relative"
-            initial={{ opacity: 0, x: fromPage ? -100 : 0 }}
+            initial={{
+              opacity: 0,
+              x: fromPage ? -100 : 0, // Jobbról jön be ha visszanavigálunk
+            }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
+            exit={{ opacity: 0, x: fromPage ? 100 : -100 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}>
             <GridSection />
           </motion.div>
