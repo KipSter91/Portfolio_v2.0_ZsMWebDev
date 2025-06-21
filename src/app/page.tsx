@@ -51,7 +51,7 @@ export default function Home() {
       {isLoading && !fromPage && (
         <LoadingScreen
           isLoading={isLoading}
-          direction="right"
+          showWelcome={true}
         />
       )}
 

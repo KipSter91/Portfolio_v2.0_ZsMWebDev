@@ -75,11 +75,7 @@ export default function SkillsPage() {
   };
   return (
     <>
-      {" "}
-      <LoadingScreen
-        isLoading={isLoading}
-        direction="right"
-      />
+      <LoadingScreen isLoading={isLoading} />
       <AnimatePresence mode="wait">
         {!isLoading && !isExiting && (
           <motion.div

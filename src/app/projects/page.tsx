@@ -83,11 +83,7 @@ export default function ProjectsPage() {
   };
   return (
     <>
-      {" "}
-      <LoadingScreen
-        isLoading={isLoading}
-        direction="right"
-      />
+      <LoadingScreen isLoading={isLoading} />
       <AnimatePresence mode="wait">
         {!isLoading && !isExiting && (
           <motion.div

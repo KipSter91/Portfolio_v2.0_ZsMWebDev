@@ -32,11 +32,7 @@ export default function LogoPage() {
   };
   return (
     <>
-      {" "}
-      <LoadingScreen
-        isLoading={isLoading}
-        direction="left"
-      />
+      <LoadingScreen isLoading={isLoading} />
       <AnimatePresence mode="wait">
         {!isLoading && !isExiting && (
           <motion.div
