@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GridSection, LoadingScreen } from "../components";
 import { translations } from "../data/translations";
@@ -19,12 +19,27 @@ const consoleStyles = [
   "border: 2px solid #fd19fc",
 ].join(";");
 
+// Search params component that needs to be wrapped in suspense
+function SearchParamsHandler({
+  onFromPageChange,
+}: {
+  onFromPageChange: (fromPage: string | null) => void;
+}) {
+  const searchParams = useSearchParams();
+  const fromPage = searchParams.get("from");
+
+  useEffect(() => {
+    onFromPageChange(fromPage);
+  }, [fromPage, onFromPageChange]);
+
+  return null;
+}
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [locale, setLocale] = useLocale();
+  const [fromPage, setFromPage] = useState<string | null>(null);
   const t = translations[locale as Locale];
-  const searchParams = useSearchParams();
-  const fromPage = searchParams.get("from");
 
   // Console easter egg
   useEffect(() => {
@@ -48,6 +63,9 @@ export default function Home() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <SearchParamsHandler onFromPageChange={setFromPage} />
+      </Suspense>
       {isLoading && !fromPage && (
         <LoadingScreen
           isLoading={isLoading}
