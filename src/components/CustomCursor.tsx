@@ -6,8 +6,21 @@ const CustomCursor: React.FC = () => {
   const [visible, setVisible] = useState(true);
   const [lastMove, setLastMove] = useState(Date.now());
   const [hasMoved, setHasMoved] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile or tablet
+    const checkDevice = () => {
+      const mediaQuery = window.matchMedia("(max-width: 1024px)");
+      setIsMobile(mediaQuery.matches);
+    };
+
+    // Check on initial load
+    checkDevice();
+
+    // Add resize listener to detect orientation/device changes
+    window.addEventListener("resize", checkDevice);
+
     const move = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setVisible(true);
@@ -19,13 +32,20 @@ const CustomCursor: React.FC = () => {
     window.addEventListener("mouseout", hide);
     window.addEventListener("mouseleave", hide);
     window.addEventListener("blur", hide);
+
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseout", hide);
       window.removeEventListener("mouseleave", hide);
       window.removeEventListener("blur", hide);
+      window.removeEventListener("resize", checkDevice);
     };
   }, []);
+
+  // Don't render anything on mobile/tablet
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>

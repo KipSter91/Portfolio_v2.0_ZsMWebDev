@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 
 interface GridSectionProps {
-  onOpenModal: (modal: string) => void;
+  onOpenModal?: (modal: string) => void;
 }
 
 // 2x2 grid items
@@ -33,6 +34,9 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
   const [currentUnderlineIdx, setCurrentUnderlineIdx] = useState<number | null>(
     null
   );
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeGridItem, setActiveGridItem] = useState<number | null>(null);
+  const [logoHovered, setLogoHovered] = useState(false);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const underlines = useRef<(SVGPathElement | null)[]>([
     null,
@@ -40,6 +44,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
     null,
     null,
   ]);
+  const router = useRouter();
 
   // Delayed hover effect for smooth transitions
   const handleMouseEnter = (idx: number) => {
@@ -59,23 +64,76 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
       setVisualHovered(null);
       setCurrentUnderlineIdx(null);
     }, 300);
-  };
-
+  }; // Handle logo mouse events
   const handleLogoMouseEnter = () => {
+    if (isMobile) return; // Skip for mobile/tablet
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-  };
-  const handleLogoMouseLeave = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    hoverTimeoutRef.current = setTimeout(() => {
-      setHovered(null);
-      setVisualHovered(null);
-    }, 300);
+    setLogoHovered(true);
   };
 
+  const handleLogoMouseLeave = () => {
+    if (isMobile) return; // Skip for mobile/tablet
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setLogoHovered(false);
+  };
+
+  // Handle click for mobile/tablet (first click activates, second click navigates)
+  const handleGridItemClick = (idx: number) => {
+    if (isMobile) {
+      if (activeGridItem === idx) {
+        // Second click - navigate to the section
+        router.push(`/${gridItems[idx].key}`);
+      } else {
+        // First click - activate the grid item
+        setActiveGridItem(idx);
+        setHovered(idx);
+        setVisualHovered(idx);
+        setCurrentUnderlineIdx(
+          Math.floor(Math.random() * underlinePaths.length)
+        );
+      }
+    } else {
+      // Desktop - navigate directly
+      router.push(`/${gridItems[idx].key}`);
+    }
+  };
+
+  // Reset active grid item when clicking elsewhere (for mobile)
+  const handleOutsideClick = (e: React.MouseEvent) => {
+    if (isMobile && activeGridItem !== null) {
+      // Check if we're clicking on a grid item
+      const isGridItem = (e.target as HTMLElement).closest(
+        "button[data-grid-item]"
+      );
+      if (!isGridItem) {
+        setActiveGridItem(null);
+        setHovered(null);
+        setVisualHovered(null);
+      }
+    }
+  };
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+  }, []);
+
+  // Detect mobile/tablet devices
+  useEffect(() => {
+    const checkDevice = () => {
+      const mediaQuery = window.matchMedia("(max-width: 1024px)");
+      setIsMobile(mediaQuery.matches);
+    };
+
+    // Check on initial load
+    checkDevice();
+
+    // Listen for window resize events
+    window.addEventListener("resize", checkDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkDevice);
     };
   }, []);
 
@@ -153,7 +211,6 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
       gridTemplateRows: "1fr 1fr",
     };
   };
-
   return (
     <div
       className="w-full h-screen grid fixed inset-0 z-10 transition-all duration-300"
@@ -165,24 +222,29 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         borderSpacing: 0,
         width: "100vw",
         height: "100vh",
-      }}>
+      }}
+      onClick={handleOutsideClick}>
       {gridItems.map((item, idx) => {
         const isHovered = hovered === idx;
         const isVisualHovered = visualHovered === idx;
+        const isActive = activeGridItem === idx;
         const isOther = hovered !== null && hovered !== idx;
         return (
           <button
             key={item.key}
+            data-grid-item={true}
             className={`relative flex items-center justify-center transition-all duration-300 text-2xl font-bold select-none group overflow-hidden focus:z-20 cursor-pointer
               ${isHovered ? "z-20" : isOther ? " blur-[3px]" : ""}
+              ${isActive ? "active-grid-item" : ""}
             `}
             style={{
               gridArea: item.area,
               minWidth: 0,
               minHeight: 0,
-              border: !isHovered
-                ? "1px solid var(--medium-gray)"
-                : "2px solid var(--neon-cyan) ",
+              border:
+                !isHovered && !isActive
+                  ? "1px solid var(--medium-gray)"
+                  : "2px solid var(--neon-cyan) ",
               outline: 0,
               padding: 0,
               margin: 0,
@@ -191,66 +253,94 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
               height: "100%",
               backgroundColor: "var(--dark-gray)",
             }}
-            onClick={() => onOpenModal(item.key)}
+            onClick={() => handleGridItemClick(idx)}
             aria-label={item.label}
-            onMouseEnter={() => handleMouseEnter(idx)}
-            onMouseLeave={handleMouseLeave}
-            onFocus={() => handleMouseEnter(idx)}
-            onBlur={handleMouseLeave}>
-            {isHovered && <div className="animated-gradient"></div>}
+            onMouseEnter={!isMobile ? () => handleMouseEnter(idx) : undefined}
+            onMouseLeave={!isMobile ? handleMouseLeave : undefined}
+            onFocus={!isMobile ? () => handleMouseEnter(idx) : undefined}
+            onBlur={!isMobile ? handleMouseLeave : undefined}>
+            {(isHovered || isActive) && (
+              <div className="animated-gradient"></div>
+            )}
             <div className="z-10 drop-shadow-lg transition-transform duration-300 relative flex flex-col items-center">
               <span
                 className={`transition-colors ${
-                  isVisualHovered ? "text-[#00ffff]" : ""
+                  isVisualHovered || isActive ? "text-[#00ffff]" : ""
                 }`}
                 style={{ marginBottom: 8 }}>
                 {item.label}
+                {isMobile && isActive && (
+                  <span className="ml-2 text-[#fd19fc]">▸</span>
+                )}
               </span>
-              {isVisualHovered && currentUnderlineIdx !== null && (
-                <svg
-                  className="w-full h-5 overflow-visible absolute -bottom-2"
-                  viewBox="0 0 100 5"
-                  preserveAspectRatio="none">
-                  <path
-                    ref={(el) => {
-                      underlines.current[idx] = el;
-                      return undefined;
-                    }}
-                    d={underlinePaths[currentUnderlineIdx]}
-                    fill="none"
-                    stroke="var(--neon-pink)"
-                    strokeWidth="1"
-                    className={`transition-opacity opacity-100`}
-                    strokeDasharray="100"
-                    strokeDashoffset="100"
-                  />
-                </svg>
-              )}
+              {(isVisualHovered || isActive) &&
+                currentUnderlineIdx !== null && (
+                  <svg
+                    className="w-full h-5 overflow-visible absolute -bottom-2"
+                    viewBox="0 0 100 5"
+                    preserveAspectRatio="none">
+                    <path
+                      ref={(el) => {
+                        underlines.current[idx] = el;
+                        return undefined;
+                      }}
+                      d={underlinePaths[currentUnderlineIdx]}
+                      fill="none"
+                      stroke="var(--neon-pink)"
+                      strokeWidth="1"
+                      className={`transition-opacity opacity-100`}
+                      strokeDasharray="100"
+                      strokeDashoffset="100"
+                    />
+                  </svg>
+                )}
             </div>
           </button>
         );
-      })}
-      {/* Logo element, follows grid center or hovered cell */}
+      })}{" "}
+      {/* Logo element, follows grid center or hovered cell */}{" "}
       <div
-        className="absolute z-30 flex items-center justify-center w-20 h-20 bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto rounded-full overflow-hidden"
+        className="absolute z-30 flex items-center justify-center w-20 h-20 bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto rounded-full"
         style={{
           ...getLogoPosition(),
           transform: "translate(-50%, -50%)",
         }}
-        onClick={() => onOpenModal("logo")}
+        onClick={() => {
+          if (isMobile && activeGridItem !== null) {
+            setActiveGridItem(null);
+            setHovered(null);
+            setVisualHovered(null);
+          }
+          router.push("/logo");
+        }}
         aria-label="Logo - ZM"
         role="button"
         tabIndex={0}
         onKeyDown={(e) =>
-          (e.key === "Enter" || e.key === " ") && onOpenModal("logo")
+          (e.key === "Enter" || e.key === " ") && router.push("/logo")
         }
         onMouseEnter={handleLogoMouseEnter}
         onMouseLeave={handleLogoMouseLeave}>
         <img
           src="/images/logo.png"
           alt="Zsolt Márku logo"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-full overflow-hidden"
         />
+        {/* Desktop tooltip: always in DOM, only visible on hover */}
+        {!isMobile && (
+          <div
+            className={`absolute top-[80px] w-20 h-7 bg-[#fd19fc] rounded-full flex items-center justify-center shadow-glow z-50 desktop-tooltip${
+              logoHovered ? "" : " tooltip-hide"
+            }`}>
+            <span className="text-white text-xs font-bold">Click on me!</span>
+          </div>
+        )}
+        {/* Mobile tooltip: always visible */}
+        {isMobile && (
+          <div className="absolute top-[80px] w-20 h-7 bg-[#fd19fc] rounded-full flex items-center justify-center shadow-glow z-50 pulse-dot">
+            <span className="text-white text-xs font-bold">Click on me!</span>
+          </div>
+        )}
       </div>
     </div>
   );
