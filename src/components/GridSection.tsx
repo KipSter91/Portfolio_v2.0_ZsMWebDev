@@ -16,18 +16,18 @@ const gridItems = [
   { key: "contact", label: "Contact", area: "2 / 2 / 3 / 3" },
 ];
 
-// SVG underline path variants - szögletes kreatív változatok
+// SVG underline path variants - szögletes és egyszerű változatok
 const underlinePaths = [
   // Straight (marad az eredeti)
   "M0,2.5 L100,2.5",
-  // Szögletes lépcsős - végigmegy a teljes szélességen
-  "M0,2.5 L20,2.5 L20,4 L40,4 L40,1 L60,1 L60,3.5 L80,3.5 L80,2 L100,2 L100,2.5",
-  // Szögletes zigzag - biztosan végigér
-  "M0,2.5 L15,2.5 L25,0.5 L35,4.5 L45,1 L55,4 L65,0.5 L75,3.5 L85,1.5 L95,3 L100,2.5",
-  // Szögletes blokkok - végigmennek
-  "M0,2.5 L0,4 L15,4 L15,1 L30,1 L30,4 L45,4 L45,0.5 L60,0.5 L60,3.5 L75,3.5 L75,1.5 L90,1.5 L90,4 L100,4 L100,2.5",
-  // Pixel art stílus - teljes szélesség
-  "M0,2 L10,2 L10,1 L20,1 L20,4 L30,4 L30,0.5 L40,0.5 L40,3.5 L50,3.5 L50,2 L60,2 L60,4.5 L70,4.5 L70,1.5 L80,1.5 L80,3 L90,3 L90,0.8 L100,0.8",
+  // Egyszerű hullám
+  "M0,2.5 Q25,0.5 50,2.5 T100,2.5",
+  // Dupla hullám
+  "M0,2.5 Q12.5,0.5 25,2.5 Q37.5,4.5 50,2.5 Q62.5,0.5 75,2.5 Q87.5,4.5 100,2.5",
+  // Enyhe ív
+  "M0,2.5 Q50,0.5 100,2.5",
+  // Fordított ív
+  "M0,2.5 Q50,4.5 100,2.5",
 ];
 
 export default function GridSection({ onOpenModal }: GridSectionProps) {
@@ -308,7 +308,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
       })}
       {/* Logo element, follows grid center or hovered cell */}
       <div
-        className="absolute z-30 flex items-center justify-center w-20 h-20 bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto "
+        className="absolute z-30 flex items-center justify-center w-20 h-20 rounded-2xl bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto "
         style={{
           ...getLogoPosition(),
           transform: "translate(-50%, -50%)",
@@ -337,7 +337,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         {/* Desktop tooltip: always in DOM, only visible on hover */}
         {!isMobile && (
           <div
-            className={`absolute top-[80px] w-20 h-7 bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 desktop-tooltip${
+            className={`absolute top-[80px] w-20 h-7 rounded-b-xl bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 desktop-tooltip${
               logoHovered ? "" : " tooltip-hide"
             }`}>
             <span className="text-white text-xs font-bold">Click on me!</span>
@@ -345,7 +345,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         )}
         {/* Mobile tooltip: always visible */}
         {isMobile && (
-          <div className="absolute top-[80px] w-20 h-7 bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 pulse-dot">
+          <div className="absolute top-[80px] w-20 h-7 rounded-b-xl bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 pulse-dot">
             <span className="text-white text-xs font-bold">Click on me!</span>
           </div>
         )}

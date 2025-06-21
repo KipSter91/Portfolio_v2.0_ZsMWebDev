@@ -9,9 +9,9 @@ import { useLocale } from "../lib/i18n";
 type Locale = keyof typeof translations;
 
 const languages = [
-  { code: "en", label: "🇬🇧", name: "English" },
-  { code: "hu", label: "🇭🇺", name: "Magyar" },
-  { code: "nl", label: "🇳🇱", name: "Nederlands" },
+  { code: "en", label: "EN", name: "English" },
+  { code: "hu", label: "HU", name: "Magyar" },
+  { code: "nl", label: "NL", name: "Nederlands" },
 ];
 
 const Header: React.FC = () => {
@@ -48,68 +48,72 @@ const Header: React.FC = () => {
             className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
             <span className="text-xl font-bold">Zsolt Marku</span>
           </Link>
-        </motion.div>{" "}
+        </motion.div>
         <div
           className="relative"
           ref={menuRef}>
           <motion.button
-            className="flex items-center space-x-2 px-3 py-1.5 border border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] bg-opacity-60 backdrop-blur-sm text-[color:var(--white)] transition-all duration-300"
+            className="flex items-center gap-3 px-4 py-2 border-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-full transition-all duration-300 group min-w-[100px] justify-center"
             onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-            whileHover={{ borderColor: "var(--neon-cyan)" }}
+            whileHover={{
+              borderColor: "var(--neon-cyan)",
+              scale: 1.02,
+            }}
             whileTap={{ scale: 0.98 }}>
-            <span className="text-xl mr-2">{currentLanguage.label}</span>
-            <span className="text-sm hidden sm:inline">
-              {currentLanguage.name}
+            <span className="font-bold text-sm tracking-wide uppercase flex items-center justify-center">
+              {currentLanguage.label}
             </span>
-            <svg
+            <motion.svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 transition-transform duration-300 ${
-                isLangMenuOpen ? "rotate-180" : ""
-              }`}
+              className="h-4 w-4 text-[color:var(--neon-cyan)] group-hover:text-[color:var(--neon-pink)] transition-colors duration-300"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor">
+              stroke="currentColor"
+              animate={{ rotate: isLangMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M19 9l-7 7-7-7"
               />
-            </svg>
+            </motion.svg>
           </motion.button>
-
           <AnimatePresence>
             {isLangMenuOpen && (
               <motion.div
-                className="absolute right-0 mt-1 w-40 bg-[color:var(--dark-gray)] bg-opacity-70 backdrop-blur-md border border-[color:var(--medium-gray)] shadow-[0_0_15px_rgba(0,255,255,0.1)] overflow-hidden"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}>
-                <div className="py-1">
-                  {languages.map((lang) => (
-                    <motion.button
+                className="absolute right-0 mt-2 w-44 bg-[color:var(--dark-gray)] border-2 border-[color:var(--medium-gray)] rounded-2xl shadow-lg overflow-hidden"
+                initial={{ opacity: 0, y: -15, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -15, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}>
+                <div>
+                  {languages.map((lang, idx) => (
+                    <button
                       key={lang.code}
-                      className={`block w-full text-left px-4 py-2 text-sm border-l-2 ${
-                        locale === lang.code
-                          ? "border-[color:var(--neon-cyan)] text-[color:var(--neon-cyan)] bg-[color:var(--medium-gray)] bg-opacity-40"
-                          : "border-transparent text-[color:var(--white)] hover:bg-[color:var(--medium-gray)] hover:bg-opacity-40 hover:border-[color:var(--neon-pink)]"
-                      } transition-all duration-200`}
+                      className={`w-full flex items-center gap-3 px-4 text-sm transition-colors duration-200 group relative overflow-hidden py-3
+                        ${
+                          locale === lang.code
+                            ? "bg-[color:var(--neon-cyan)] text-[color:var(--black)] font-bold"
+                            : "text-[color:var(--white)] hover:bg-[color:var(--medium-gray)] hover:text-[color:var(--neon-cyan)]"
+                        }
+                      `}
                       onClick={() => {
                         setLocale(lang.code);
                         setIsLangMenuOpen(false);
-                      }}
-                      whileHover={{
-                        x: 3,
-                        backgroundColor: "rgba(44, 49, 58, 0.4)",
-                        boxShadow: "inset 0 0 8px rgba(0, 255, 255, 0.1)",
-                      }}
-                      whileTap={{ scale: 0.98 }}>
-                      <div className="flex items-center">
-                        <span className="text-xl mr-2">{lang.label}</span>
-                        <span>{lang.name}</span>
-                      </div>
-                    </motion.button>
+                      }}>
+                      <span className="font-bold text-base tracking-wide uppercase flex items-center justify-center w-8 h-8 relative z-10">
+                        {lang.label}
+                      </span>
+                      <span className="relative z-10 font-medium">
+                        {lang.name}
+                      </span>
+                      {locale === lang.code && (
+                        <div className="ml-auto text-[color:var(--black)]">
+                          ✓
+                        </div>
+                      )}
+                    </button>
                   ))}
                 </div>
               </motion.div>

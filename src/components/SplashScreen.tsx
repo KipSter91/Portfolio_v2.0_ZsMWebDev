@@ -60,7 +60,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
               duration: 1.2,
             },
           }}
-          className="relative w-32 h-32 bg-black border-2 border-[#00ffff] overflow-hidden mb-8 z-10">
+          className="relative w-32 h-32 rounded-xl bg-black border-2 border-[#00ffff] overflow-hidden mb-8 z-10">
           <motion.div
             className="absolute inset-0"
             animate={{
@@ -104,7 +104,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             showContent ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }
           }
           transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-          className="mt-8 w-80 h-2 bg-[#2c313a] overflow-hidden relative border border-[#00ffff]/20">
+          className="mt-8 w-80 h-2 bg-[#2c313a] overflow-hidden relative border rounded-xl border-[#00ffff]/20">
           {/* Main progress bar */}
           <motion.div
             className="h-full bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] relative"
@@ -126,7 +126,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
 
           {/* Animated glow effect */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] rounded-full blur-md opacity-60"
+            className="absolute inset-0 bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] rounded-xl blur-md opacity-60"
             initial={{ width: "0%" }}
             animate={
               showContent
