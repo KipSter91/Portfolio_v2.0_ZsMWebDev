@@ -37,10 +37,15 @@ export default function LoadingScreen({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}>
-      <div className="flex flex-col items-center">
+      {/* Animated gradient full background */}
+      <div
+        className="animated-gradient fixed inset-0 z-0"
+        style={{ pointerEvents: "none" }}
+      />
+      <div className="flex flex-col items-center relative z-10">
         {/* Pulsing logo */}
         <motion.div
-          className="relative w-24 h-24 bg-black border-2 border-[#00ffff] rounded-full overflow-hidden mb-5"
+          className="relative w-24 h-24 bg-black border-2 border-[#00ffff] rounded-full overflow-hidden mb-5 z-10"
           animate={{
             scale: [1, 1.15, 1],
             boxShadow: [
@@ -58,15 +63,14 @@ export default function LoadingScreen({
           <img
             src="/images/logo.png"
             alt="Zsolt Márku logo"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover relative z-10"
           />
         </motion.div>
 
         {/* Welcome or loading text */}
         {showWelcome ? (
           <motion.div
-            className="text-[#00ffff] text-xl mt-4 tracking-wider flex items-center"
-            style={{ fontFamily: "Outfit, sans-serif" }}
+            className="text-[#00ffff] text-xl tracking-wider flex items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}>
@@ -84,8 +88,7 @@ export default function LoadingScreen({
           </motion.div>
         ) : (
           <motion.div
-            className="text-[#00ffff] text-xl mt-4 tracking-wider flex items-center"
-            style={{ fontFamily: "Outfit, sans-serif" }}
+            className="text-[#00ffff] text-xl tracking-wider flex items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}>
