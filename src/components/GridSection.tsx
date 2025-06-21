@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
@@ -147,10 +149,13 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
       );
     }
   }, [visualHovered]);
-
   // Calculate logo position based on hovered grid
   const getLogoPosition = () => {
+    // Base position when nothing is hovered
     if (hovered === null) return { left: "50%", top: "50%" };
+
+    // Position adjustments for different hover states
+    // These calculations now need to be adjusted for the new non-fixed layout
     if (hovered === 0) {
       const leftPercent = (1.15 / (1.15 + 0.85)) * 100;
       const topPercent = (1.15 / (1.15 + 0.85)) * 100;
@@ -213,15 +218,15 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
   };
   return (
     <div
-      className="w-full h-screen grid fixed inset-0 z-10 transition-all duration-300"
+      className="w-full grid relative z-10 transition-all duration-300"
       style={{
         ...getGridTemplate(),
         gap: 0,
         padding: 0,
         margin: 0,
         borderSpacing: 0,
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "calc(100vh - 7rem)", // Accounting for header (3.5rem) and footer (3.5rem)
       }}
       onClick={handleOutsideClick}>
       {gridItems.map((item, idx) => {
@@ -329,7 +334,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         {/* Desktop tooltip: always in DOM, only visible on hover */}
         {!isMobile && (
           <div
-            className={`absolute top-[80px] w-20 h-7 bg-[#fd19fc] rounded-full flex items-center justify-center shadow-glow z-50 desktop-tooltip${
+            className={`absolute top-[80px] w-20 h-7 bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 desktop-tooltip${
               logoHovered ? "" : " tooltip-hide"
             }`}>
             <span className="text-white text-xs font-bold">Click on me!</span>
@@ -337,7 +342,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         )}
         {/* Mobile tooltip: always visible */}
         {isMobile && (
-          <div className="absolute top-[80px] w-20 h-7 bg-[#fd19fc] rounded-full flex items-center justify-center shadow-glow z-50 pulse-dot">
+          <div className="absolute top-[80px] w-20 h-7 bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 pulse-dot">
             <span className="text-white text-xs font-bold">Click on me!</span>
           </div>
         )}

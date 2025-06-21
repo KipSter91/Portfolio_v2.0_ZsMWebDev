@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GridSection, LangSwitcher, LoadingScreen } from "../components";
+import { GridSection, LoadingScreen } from "../components";
 import { translations } from "../data/translations";
 import { useLocale } from "../lib/i18n";
 import { useSearchParams } from "next/navigation";
@@ -58,15 +58,11 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {!isLoading && (
           <motion.div
-            className="min-h-screen text-white relative"
+            className="w-full text-white relative"
             initial={{ opacity: 0, x: fromPage ? -100 : 0 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}>
-            <LangSwitcher
-              locale={locale}
-              setLocale={setLocale}
-            />
             <GridSection />
           </motion.div>
         )}
