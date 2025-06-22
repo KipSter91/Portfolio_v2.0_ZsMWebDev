@@ -38,6 +38,7 @@ function SearchParamsHandler({
 export default function Home() {
   const [showSplash, setShowSplash] = useState(false); // Kezdetben false
   const [showContent, setShowContent] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const [fromPageInitialized, setFromPageInitialized] = useState(false);
   const [locale, setLocale] = useLocale();
   const [fromPage, setFromPage] = useState<string | null>(null);
@@ -89,9 +90,8 @@ export default function Home() {
             key="splash"
             onComplete={handleSplashComplete}
           />
-        )}
-
-        {showContent && fromPageInitialized && (
+        )}{" "}
+        {showContent && fromPageInitialized && !isExiting && (
           <motion.div
             key="content"
             className="w-full text-white relative"
@@ -100,9 +100,9 @@ export default function Home() {
               x: fromPage ? -100 : 0, // Jobbról jön be ha visszanavigálunk
             }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: fromPage ? 100 : -100 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}>
-            <GridSection />
+            exit={{ opacity: 0, x: -100 }} // Balról jobbra kilép
+            transition={{ duration: 0.5, ease: "easeInOut" }}>
+            <GridSection onExit={() => setIsExiting(true)} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -3,9 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface GridSectionProps {
   onOpenModal?: (modal: string) => void;
+  onExit?: () => void;
 }
 
 // 2x2 grid items
@@ -30,7 +32,7 @@ const underlinePaths = [
   "M0,2.5 Q50,4.5 100,2.5",
 ];
 
-export default function GridSection({ onOpenModal }: GridSectionProps) {
+export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
   const [hovered, setHovered] = useState<number | null>(null);
   const [visualHovered, setVisualHovered] = useState<number | null>(null);
   const [currentUnderlineIdx, setCurrentUnderlineIdx] = useState<number | null>(
@@ -78,13 +80,15 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     setLogoHovered(false);
   };
-
   // Handle click for mobile/tablet (first click activates, second click navigates)
   const handleGridItemClick = (idx: number) => {
     if (isMobile) {
       if (activeGridItem === idx) {
-        // Second click - navigate to the section
-        router.push(`/${gridItems[idx].key}`);
+        // Second click - navigate with animation
+        onExit?.();
+        setTimeout(() => {
+          router.push(`/${gridItems[idx].key}`);
+        }, 500);
       } else {
         // First click - activate the grid item
         setActiveGridItem(idx);
@@ -95,8 +99,24 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         );
       }
     } else {
-      // Desktop - navigate directly
-      router.push(`/${gridItems[idx].key}`);
+      // Desktop - navigate with animation
+      onExit?.();
+      setTimeout(() => {
+        router.push(`/${gridItems[idx].key}`);
+      }, 500);
+    }
+  };
+
+  const handleLogoClick = () => {
+    if (isMobile && activeGridItem !== null) {
+      setActiveGridItem(null);
+      setHovered(null);
+      setVisualHovered(null);
+    } else {
+      onExit?.();
+      setTimeout(() => {
+        router.push("/logo");
+      }, 500);
     }
   };
 
@@ -219,7 +239,7 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
     };
   };
   return (
-    <div
+    <motion.div
       className="w-full grid relative z-10 transition-all duration-300"
       style={{
         ...getGridTemplate(),
@@ -230,6 +250,10 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
         width: "100%",
         height: "calc(100vh - 7rem)", // Accounting for header (3.5rem) and footer (3.5rem)
       }}
+      initial={{ opacity: 1, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       onClick={handleOutsideClick}>
       {gridItems.map((item, idx) => {
         const isHovered = hovered === idx;
@@ -313,19 +337,12 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
           ...getLogoPosition(),
           transform: "translate(-50%, -50%)",
         }}
-        onClick={() => {
-          if (isMobile && activeGridItem !== null) {
-            setActiveGridItem(null);
-            setHovered(null);
-            setVisualHovered(null);
-          }
-          router.push("/logo");
-        }}
+        onClick={handleLogoClick}
         aria-label="Logo - ZM"
         role="button"
         tabIndex={0}
         onKeyDown={(e) =>
-          (e.key === "Enter" || e.key === " ") && router.push("/logo")
+          (e.key === "Enter" || e.key === " ") && handleLogoClick()
         }
         onMouseEnter={handleLogoMouseEnter}
         onMouseLeave={handleLogoMouseLeave}>
@@ -350,6 +367,6 @@ export default function GridSection({ onOpenModal }: GridSectionProps) {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
