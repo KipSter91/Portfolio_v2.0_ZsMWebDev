@@ -310,7 +310,6 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
                     className="w-full h-5 overflow-visible absolute -bottom-2"
                     viewBox="0 0 100 5"
                     preserveAspectRatio="none">
-                    {" "}
                     <path
                       ref={(el) => {
                         underlines.current[idx] = el;

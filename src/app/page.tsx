@@ -90,7 +90,7 @@ export default function Home() {
             key="splash"
             onComplete={handleSplashComplete}
           />
-        )}{" "}
+        )}
         {showContent && fromPageInitialized && !isExiting && (
           <motion.div
             key="content"
