@@ -19,21 +19,22 @@ const Footer: React.FC = () => {
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
-      <div className="container mx-auto px-4 h-full flex items-center justify-between">        <motion.div
+      <div className="container mx-auto px-4 h-full flex items-center justify-between">
+        {" "}
+        <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex items-center"
-        >
+          className="flex items-center">
           <span className="text-[color:var(--white)] text-sm">
             © 2023 - {currentYear} Zsolt Márku
           </span>
-        </motion.div>        <motion.div
+        </motion.div>{" "}
+        <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex space-x-6"
-        >
+          className="flex space-x-6">
           {socialLinks.map((link, index) => (
             <motion.div
               key={index}

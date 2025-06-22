@@ -5,7 +5,7 @@ export const translations = {
     projects: "Projects",
     contact: "Contact",
     clickMe: "Click me!",
-    close: "Close",
+    back: "Back",
     aboutContent:
       "I'm Zsolt Márku, a frontend developer with a passion for creating beautiful, interactive user experiences. I specialize in modern JavaScript frameworks like React and Next.js, with a focus on animations and responsive design.",
     skillsContent:
