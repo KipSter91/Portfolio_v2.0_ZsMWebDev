@@ -20,8 +20,12 @@
 }
 
 html,
-body,
-* {
+body {
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* Apply default font to all elements except those with specific font classes */
+*:not(.font-handwriting) {
   font-family: "Outfit", sans-serif !important;
 }
 
@@ -153,4 +157,11 @@ html {
 /* IE and Edge */
 body {
   -ms-overflow-style: none;
+}
+
+.modal-open .header-blur {
+  filter: blur(8px);
+  opacity: 0.3;
+  pointer-events: none;
+  transition: filter 0.3s, opacity 0.3s;
 }

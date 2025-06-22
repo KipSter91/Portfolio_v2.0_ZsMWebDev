@@ -106,17 +106,14 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
       }, 500);
     }
   };
-
   const handleLogoClick = () => {
     if (isMobile && activeGridItem !== null) {
       setActiveGridItem(null);
       setHovered(null);
       setVisualHovered(null);
     } else {
-      onExit?.();
-      setTimeout(() => {
-        router.push("/logo");
-      }, 500);
+      // Megnyitjuk a LogoModal-t az onOpenModal callback segítségével
+      onOpenModal?.("logo");
     }
   };
 
@@ -331,7 +328,7 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
       })}
       {/* Logo element, follows grid center or hovered cell */}
       <div
-        className="absolute z-30 flex items-center justify-center w-20 h-20 rounded-2xl bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto "
+        className="absolute z-30 flex items-center justify-center w-20 h-20 rounded-xl bg-black border-2 border-[#00ffff] transition-all duration-300 hover:border-[#fd19fc] hover:shadow-lg hover:shadow-[#00ffff]/50 hover:scale-110 focus:outline-none focus:border-[#fd19fc] pointer-events-auto "
         style={{
           ...getLogoPosition(),
           transform: "translate(-50%, -50%)",

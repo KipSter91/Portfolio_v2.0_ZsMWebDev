@@ -29,14 +29,13 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning>
         <CustomCursor />
-        <Header />
-        <main className="flex-grow pt-14">
-          {/* Padding to account for fixed header */}
-          {children}
-        </main>
+        <div className="fixed top-0 left-0 right-0 z-50 header-blur">
+          <Header />
+        </div>
+        <main className="pt-14 flex-grow overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>

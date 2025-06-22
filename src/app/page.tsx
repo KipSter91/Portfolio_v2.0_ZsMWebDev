@@ -2,7 +2,12 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GridSection, SplashScreen } from "../components";
+import {
+  GridSection,
+  SplashScreen,
+  AnimatedModal,
+  LogoModal,
+} from "../components";
 import { translations } from "../data/translations";
 import { useLocale } from "../lib/i18n";
 import { useSearchParams } from "next/navigation";
@@ -42,6 +47,7 @@ export default function Home() {
   const [fromPageInitialized, setFromPageInitialized] = useState(false);
   const [locale, setLocale] = useLocale();
   const [fromPage, setFromPage] = useState<string | null>(null);
+  const [currentModal, setCurrentModal] = useState<string | null>(null);
   const t = translations[locale as Locale];
 
   // Console easter egg
@@ -72,12 +78,32 @@ export default function Home() {
     setFromPage(newFromPage);
     setFromPageInitialized(true);
   };
-
   // Splash screen befejezése
   const handleSplashComplete = () => {
     setShowSplash(false);
     setShowContent(true);
   };
+
+  // Modal kezelése
+  const handleOpenModal = (modalName: string) => {
+    setCurrentModal(modalName);
+  };
+
+  const handleCloseModal = () => {
+    setCurrentModal(null);
+  };
+
+  // Blur class body-ra, ha modal nyitva
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (currentModal) {
+        document.body.classList.add("modal-open");
+      } else {
+        document.body.classList.remove("modal-open");
+      }
+    }
+  }, [currentModal]);
+
   return (
     <>
       <Suspense fallback={null}>
@@ -92,20 +118,42 @@ export default function Home() {
           />
         )}
         {showContent && fromPageInitialized && !isExiting && (
-          <motion.div
-            key="content"
-            className="w-full text-white relative"
-            initial={{
-              opacity: 0,
-              x: fromPage ? -100 : 0, // Jobbról jön be ha visszanavigálunk
-            }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }} // Balról jobbra kilép
-            transition={{ duration: 0.5, ease: "easeInOut" }}>
-            <GridSection onExit={() => setIsExiting(true)} />
-          </motion.div>
+          <div className="w-full text-white relative overflow-hidden">
+            <motion.div
+              key="content"
+              className="w-full h-full"
+              initial={{
+                opacity: 0,
+                x: fromPage ? -100 : 0,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              exit={{
+                opacity: 0,
+                x: -100,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              style={{
+                position: "relative",
+                zIndex: 1,
+              }}>
+              <GridSection
+                onExit={() => setIsExiting(true)}
+                onOpenModal={handleOpenModal}
+              />
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
+
+      {/* Logo Modal */}
+      <AnimatedModal
+        isOpen={currentModal === "logo"}
+        onClose={handleCloseModal}>
+        <LogoModal />
+      </AnimatedModal>
     </>
   );
 }

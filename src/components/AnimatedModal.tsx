@@ -24,14 +24,14 @@ export default function AnimatedModal({
           exit={{ opacity: 0 }}
           onClick={onClose}>
           <motion.div
-            className="bg-[#161A20] rounded-2xl p-8 shadow-xl min-w-[320px] min-h-[200px] relative"
+            className="bg-[#161A20] rounded-xl p-8 shadow-xl w-[90%] max-w-[600px] min-h-[500px] relative"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             onClick={(e) => e.stopPropagation()}>
             <button
-              className="absolute top-3 right-3 text-white hover:text-cyan-400 text-2xl font-bold"
+              className="absolute top-3 right-3 text-white hover:text-[var(--neon-cyan)] text-2xl font-bold"
               onClick={onClose}
               aria-label="Close modal">
               ×

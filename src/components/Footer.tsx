@@ -3,19 +3,34 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaLinkedinIn,
+  FaGithub,
+  FaFacebookF,
+  FaInstagram,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-
   const socialLinks = [
-    { name: "GitHub", url: "https://github.com/username", icon: "github" },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/username",
+      url: "https://linkedin.com/in/zsoltmarku",
       icon: "linkedin",
     },
-    { name: "Twitter", url: "https://twitter.com/username", icon: "twitter" },
+    { name: "GitHub", url: "https://github.com/kipster91", icon: "github" },
+    {
+      name: "Facebook",
+      url: "https://facebook.com/zsolt.marku",
+      icon: "facebook",
+    },
+    {
+      name: "Instagram",
+      url: "https://instagram.com/zsoltmarku",
+      icon: "instagram",
+    },
+    { name: "X", url: "https://twitter.com/zsoltmarku", icon: "twitter" },
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
@@ -58,12 +73,16 @@ const Footer: React.FC = () => {
 
 const renderIcon = (icon: string) => {
   switch (icon) {
+    case "linkedin":
+      return <FaLinkedinIn className="w-5 h-5" />;
     case "github":
       return <FaGithub className="w-5 h-5" />;
-    case "linkedin":
-      return <FaLinkedin className="w-5 h-5" />;
+    case "facebook":
+      return <FaFacebookF className="w-5 h-5" />;
+    case "instagram":
+      return <FaInstagram className="w-5 h-5" />;
     case "twitter":
-      return <FaTwitter className="w-5 h-5" />;
+      return <FaXTwitter className="w-5 h-5" />;
     default:
       return null;
   }
