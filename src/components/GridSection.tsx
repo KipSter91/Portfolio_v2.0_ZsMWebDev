@@ -18,17 +18,17 @@ const gridItems = [
   { key: "contact", label: "Contact", area: "2 / 2 / 3 / 3" },
 ];
 
-// SVG underline path variants - szögletes és egyszerű változatok
+// SVG underline path variants
 const underlinePaths = [
-  // Straight (marad az eredeti)
+  // Straight
   "M0,2.5 L100,2.5",
-  // Egyszerű hullám
+  // Simple wave
   "M0,2.5 Q25,0.5 50,2.5 T100,2.5",
-  // Dupla hullám
+  // Double wave
   "M0,2.5 Q12.5,0.5 25,2.5 Q37.5,4.5 50,2.5 Q62.5,0.5 75,2.5 Q87.5,4.5 100,2.5",
-  // Enyhe ív
+  // Gentle curve
   "M0,2.5 Q50,0.5 100,2.5",
-  // Fordított ív
+  // Inverted curve
   "M0,2.5 Q50,4.5 100,2.5",
 ];
 
@@ -112,7 +112,6 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
       setHovered(null);
       setVisualHovered(null);
     } else {
-      // Megnyitjuk a LogoModal-t az onOpenModal callback segítségével
       onOpenModal?.("logo");
     }
   };

@@ -41,7 +41,7 @@ function SearchParamsHandler({
 }
 
 export default function Home() {
-  const [showSplash, setShowSplash] = useState(false); // Kezdetben false
+  const [showSplash, setShowSplash] = useState(false); // Initially false
   const [showContent, setShowContent] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [fromPageInitialized, setFromPageInitialized] = useState(false);
@@ -63,11 +63,11 @@ export default function Home() {
     if (!fromPageInitialized) return;
 
     if (fromPage) {
-      // Ha másik oldalról jövünk vissza - azonnal megjelenítjük a tartalmat
+      // If fromPage is set, we show the content directly
       setShowSplash(false);
       setShowContent(true);
     } else {
-      // Ha első betöltés - splash screen jelenik meg
+      // If no fromPage, show splash screen
       setShowSplash(true);
       setShowContent(false);
     }
@@ -78,13 +78,13 @@ export default function Home() {
     setFromPage(newFromPage);
     setFromPageInitialized(true);
   };
-  // Splash screen befejezése
+  // Splash screen complete
   const handleSplashComplete = () => {
     setShowSplash(false);
     setShowContent(true);
   };
 
-  // Modal kezelése
+  // Modal handlers
   const handleOpenModal = (modalName: string) => {
     setCurrentModal(modalName);
   };
@@ -93,7 +93,7 @@ export default function Home() {
     setCurrentModal(null);
   };
 
-  // Blur class body-ra, ha modal nyitva
+  // Blur on body when modal is open
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (currentModal) {

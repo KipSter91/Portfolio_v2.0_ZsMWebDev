@@ -82,7 +82,6 @@ export default function AboutPage() {
                         delay: 0.2,
                         ease: "easeOut",
                       }}>
-                      {/* Pulzáló nyíl a kép bal oldala felé */}
                       <motion.div
                         className="absolute left-[30%] top-[15%] z-10"
                         initial={{ scale: 0, opacity: 0 }}

@@ -87,7 +87,7 @@ export default function ProjectsPage() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}>
-            ← {t.close}
+            ← {t.back}
           </motion.button>
 
           <div className="max-w-6xl mx-auto mt-20">

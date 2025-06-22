@@ -10,17 +10,16 @@ interface SplashScreenProps {
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [showContent, setShowContent] = useState(false);
   useEffect(() => {
-    // Első animáció indítása kis késéssel
+    // First animation starts with a slight delay
     const timer1 = setTimeout(() => {
       setShowContent(true);
-    }, 500); // Splash screen befejezése - megvárjuk hogy a shimmer csík végigmenjen
-    // Logo animáció: 0.5s delay + 1.2s = 1.7s
-    // Shimmer animáció: 1.5s delay + 3.5s = 5.0s
+    }, 500); // Splash screen ending we are waiting for 0.5 seconds
+    // Logo animation: 0.5s delay + 1.2s = 1.7s
+    // Shimmer animation: 1.5s delay + 3.5s = 5.0s
     // Progress bar: 1.5s delay + 3.2s = 4.7s
-    // Plusz egy kicsit hogy láthassuk a befejezett állapotot
     const timer2 = setTimeout(() => {
       onComplete();
-    }, 5500); // 5.5 másodperc - megvárjuk az összes animációt
+    }, 5500); // 5.5 seconds - waiting for all animations to complete
 
     return () => {
       clearTimeout(timer1);

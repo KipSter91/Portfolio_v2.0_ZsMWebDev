@@ -72,7 +72,7 @@ export default function ContactPage() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}>
-            ← {t.close}
+            ← {t.back}
           </motion.button>
 
           <div className="w-full max-w-2xl">

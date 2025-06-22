@@ -21,7 +21,7 @@ export const translations = {
     projects: "Projektek",
     contact: "Kapcsolat",
     clickMe: "Kattints rám!",
-    close: "Bezárás",
+    back: "Bezárás",
     aboutContent:
       "Márku Zsolt vagyok, frontend fejlesztő, aki szenvedélyesen készít gyönyörű, interaktív felhasználói élményeket. A modern JavaScript keretrendszerekre specializálódtam, mint a React és Next.js, különös tekintettel az animációkra és a reszponzív designra.",
     skillsContent:
@@ -37,7 +37,7 @@ export const translations = {
     projects: "Projecten",
     contact: "Contact",
     clickMe: "Klik op mij!",
-    close: "Sluiten",
+    back: "Sluiten",
     aboutContent:
       "Ik ben Zsolt Márku, een frontend developer met een passie voor het creëren van mooie, interactieve gebruikerservaringen. Ik ben gespecialiseerd in moderne JavaScript frameworks zoals React en Next.js, met een focus op animaties en responsive design.",
     skillsContent:

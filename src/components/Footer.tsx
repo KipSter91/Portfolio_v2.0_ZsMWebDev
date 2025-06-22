@@ -35,16 +35,15 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
-        {" "}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="flex items-center">
-          <span className="text-[color:var(--white)] text-sm">
+          <span className="text-xs md:text-sm text-[color:var(--white)]">
             © 2023 - {currentYear} Zsolt Márku
           </span>
-        </motion.div>{" "}
+        </motion.div>
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -72,17 +71,18 @@ const Footer: React.FC = () => {
 };
 
 const renderIcon = (icon: string) => {
+  const iconClass = "w-4 h-4 md:w-5 md:h-5";
   switch (icon) {
     case "linkedin":
-      return <FaLinkedinIn className="w-5 h-5" />;
+      return <FaLinkedinIn className={iconClass} />;
     case "github":
-      return <FaGithub className="w-5 h-5" />;
+      return <FaGithub className={iconClass} />;
     case "facebook":
-      return <FaFacebookF className="w-5 h-5" />;
+      return <FaFacebookF className={iconClass} />;
     case "instagram":
-      return <FaInstagram className="w-5 h-5" />;
+      return <FaInstagram className={iconClass} />;
     case "twitter":
-      return <FaXTwitter className="w-5 h-5" />;
+      return <FaXTwitter className={iconClass} />;
     default:
       return null;
   }
