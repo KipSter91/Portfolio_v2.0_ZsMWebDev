@@ -5,10 +5,15 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { translations } from "../../data/translations";
 import { useLocale } from "../../lib/i18n";
-import { FiRefreshCw, FiExternalLink, FiGithub } from "react-icons/fi";
+import {
+  FiRefreshCw,
+  FiExternalLink,
+  FiGithub,
+  FiDownload,
+  FiChevronDown,
+} from "react-icons/fi";
 import {
   FaReact,
-  FaNodeJs,
   FaAndroid,
   FaHtml5,
   FaCss3Alt,
@@ -18,9 +23,6 @@ import {
   SiNextdotjs,
   SiTypescript,
   SiTailwindcss,
-  SiFirebase,
-  SiVite,
-  SiVercel,
   SiExpo,
   SiFramer,
   SiGreensock,
@@ -39,30 +41,66 @@ interface Project {
   image?: string;
   liveDemo?: string;
   sourceCode?: string;
+  pdfs?: { name: string; filename: string }[];
 }
 
-// CSS 3D Cube Component
+// --- Scroll lock helpers ---
+const scrollLock = {
+  y: 0,
+  locked: false,
+  lock() {
+    if (this.locked) return;
+    this.y = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+    document.body.style.top = `-${this.y}px`;
+    this.locked = true;
+  },
+  unlock() {
+    if (!this.locked) return;
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+    document.body.style.top = "";
+    const y = this.y;
+    this.locked = false;
+    if (y) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: y });
+      });
+    }
+  },
+};
+
+// --- ProjectCube (stateless, receives all state as props) ---
 function ProjectCube({
   projects,
   onProjectSelect,
   selectedProject,
   isTouchDragging,
   setIsTouchDragging,
+  rotationX,
+  rotationY,
+  setRotationX,
+  setRotationY,
 }: {
   projects: Project[];
   onProjectSelect: (project: Project) => void;
   selectedProject: Project | null;
   isTouchDragging: boolean;
   setIsTouchDragging: React.Dispatch<React.SetStateAction<boolean>>;
+  rotationX: number;
+  rotationY: number;
+  setRotationX: React.Dispatch<React.SetStateAction<number>>;
+  setRotationY: React.Dispatch<React.SetStateAction<number>>;
+  isRotating: boolean;
+  setIsRotating: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [rotationX, setRotationX] = useState(-20); // Start slightly tilted down
-  const [rotationY, setRotationY] = useState(-45); // Start slightly rotated to the right
-  const [isRotating, setIsRotating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const cubeContainerRef = useRef<HTMLDivElement>(null);
   const lastMousePos = useRef({ x: 0, y: 0 });
   const lastTouchPos = useRef({ x: 0, y: 0 });
-  const scrollYRef = useRef(0);
 
   // Prevent page scroll during cube rotation on mobile (touch only)
   useEffect(() => {
@@ -98,9 +136,9 @@ function ProjectCube({
   useEffect(() => {
     const updateCubeSize = () => {
       if (window.innerWidth < 640) {
-        setCubeSize(180); // mobile
+        setCubeSize(220); // mobile - increased from 180
       } else if (window.innerWidth < 1024) {
-        setCubeSize(220); // tablet
+        setCubeSize(260); // tablet - increased from 220
       } else {
         setCubeSize(300); // desktop
       }
@@ -173,259 +211,240 @@ function ProjectCube({
     // Unlock scroll for drag only if modal is not open
     if (!selectedProject) scrollLock.unlock();
   };
-
   return (
-    <div className="flex flex-col items-center justify-center h-full relative">
-      {/* Reset Button - Top Right */}
-      <motion.button
-        className="z-20 flex items-center justify-center bg-[#2C313A] text-[#00ffff] border border-[#00ffff]/30 p-2 md:p-3 rounded-lg hover:bg-[#fd19fc] hover:text-white transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30 absolute right-2 top-2 md:top-4 md:right-4"
-        style={{ fontSize: cubeSize < 200 ? 20 : 24 }}
-        onClick={() => {
-          if (isRotating) return;
-          setIsRotating(true);
-          setRotationX(-20); // Reset to initial tilted state
-          setRotationY(-45); // Reset to initial rotated state
-          setTimeout(() => setIsRotating(false), 600);
-        }}
-        disabled={isRotating}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        title="Reset view">
-        <FiRefreshCw />
-      </motion.button>
-      {/* Drag Instructions */}
-      <div
-        className="z-20 text-[#00ffff]/70 text-xs md:text-sm bg-[#2C313A]/80 backdrop-blur-sm px-2 py-1 md:px-3 md:py-2 rounded-lg border border-[#00ffff]/20 absolute left-2 top-2 md:left-4 md:top-4"
-        style={{ maxWidth: cubeSize * 1.2 }}>
-        <div className="hidden md:block">Click & drag to rotate</div>
-        <div className="md:hidden">Swipe to rotate</div>
-      </div>{" "}
-      <div
-        ref={cubeContainerRef}
-        className="relative mb-8 select-none cursor-grab active:cursor-grabbing touch-none overscroll-none"
+    // Instead of flex-col, use a fragment and let parent handle stacking
+    <div
+      ref={cubeContainerRef}
+      className="relative select-none cursor-grab active:cursor-grabbing touch-none overscroll-none flex items-center justify-center"
+      style={{
+        perspective: "1200px",
+        width: cubeSize * 2.2,
+        height: cubeSize * 2.2,
+        touchAction: "none",
+        WebkitOverflowScrolling: "touch",
+        overscrollBehavior: "none",
+      }}
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}>
+      {/* Only the cube here! */}
+      <motion.div
+        className="relative w-full h-full flex items-center justify-center"
         style={{
-          perspective: "1200px",
-          width: cubeSize * 2.2,
-          height: cubeSize * 2.2,
-          touchAction: "none",
-          WebkitOverflowScrolling: "touch",
-          overscrollBehavior: "none",
+          transformStyle: "preserve-3d",
         }}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}>
+        animate={{
+          rotateX: rotationX,
+          rotateY: rotationY,
+        }}
+        transition={{
+          type: isDragging ? "tween" : "spring",
+          damping: isDragging ? 0 : 25,
+          stiffness: isDragging ? 0 : 200,
+          duration: isDragging ? 0 : 0.8,
+        }}>
+        {/* Front Face */}
         <motion.div
-          className="relative w-full h-full flex items-center justify-center"
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
           style={{
-            transformStyle: "preserve-3d",
+            width: cubeSize,
+            height: cubeSize,
+            transform: `translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
           }}
-          animate={{
-            rotateX: rotationX,
-            rotateY: rotationY,
-          }}
-          transition={{
-            type: isDragging ? "tween" : "spring",
-            damping: isDragging ? 0 : 25,
-            stiffness: isDragging ? 0 : 200,
-            duration: isDragging ? 0 : 0.8,
+          onClick={() => handleFaceClick(0)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
           }}>
-          {/* Front Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(0)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/oldportfolio.png"
-                alt="Old Portfolio screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[0]?.title || "Old Portfolio"}
-            </div>
-          </motion.div>
-
-          {/* Back Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `rotateY(180deg) translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(1)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/istoneflexwork.png"
-                alt="IstOne Flexwork screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[1]?.title || "IstOneFlexWork"}
-            </div>
-          </motion.div>
-
-          {/* Right Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(2)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/stepio.png"
-                alt="StepIO screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[2]?.title || "StepIO"}
-            </div>
-          </motion.div>
-
-          {/* Left Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(3)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/guccoaching.png"
-                alt="G.U.C. Coaching screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[3]?.title || "G.U.C. Coaching"}
-            </div>
-          </motion.div>
-
-          {/* Top Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(4)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/dishcovery.png"
-                alt="Dishcovery screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[4]?.title || "Dishcovery"}
-            </div>
-          </motion.div>
-
-          {/* Bottom Face */}
-          <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-            style={{
-              width: cubeSize,
-              height: cubeSize,
-              transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
-              left: "50%",
-              top: "50%",
-              marginLeft: -cubeSize / 2,
-              marginTop: -cubeSize / 2,
-            }}
-            onClick={() => handleFaceClick(5)}
-            whileHover={{
-              borderColor: "#fd19fc",
-              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-            }}>
-            <div className="monitor-frame">
-              <img
-                src="/images/ampcoplatecutting.png"
-                alt="Ampco Plate Calculator screenshot"
-                className="monitor-frame__screen"
-              />
-              <div className="monitor-frame__bezel" />
-              <div className="monitor-frame__stand" />
-            </div>
-            <div className="mt-3 text-base font-semibold text-white text-center">
-              {projects[5]?.title || "Ampco Plate Calculator"}
-            </div>
-          </motion.div>
+          <div className="monitor-frame">
+            <img
+              src="/images/oldportfolio.png"
+              alt="Old Portfolio screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[0]?.title || "Old Portfolio"}
+          </div>
         </motion.div>
-      </div>
+
+        {/* Back Face */}
+        <motion.div
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            transform: `rotateY(180deg) translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
+          }}
+          onClick={() => handleFaceClick(1)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+          }}>
+          <div className="monitor-frame">
+            <img
+              src="/images/istoneflexwork.png"
+              alt="IstOne Flexwork screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[1]?.title || "IstOneFlexWork"}
+          </div>
+        </motion.div>
+
+        {/* Right Face */}
+        <motion.div
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
+          }}
+          onClick={() => handleFaceClick(2)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+          }}>
+          <div className="monitor-frame">
+            <img
+              src="/images/stepio.png"
+              alt="StepIO screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[2]?.title || "StepIO"}
+          </div>
+        </motion.div>
+
+        {/* Left Face */}
+        <motion.div
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
+          }}
+          onClick={() => handleFaceClick(3)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+          }}>
+          <div className="monitor-frame">
+            <img
+              src="/images/guccoaching.png"
+              alt="G.U.C. Coaching screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[3]?.title || "G.U.C. Coaching"}
+          </div>
+        </motion.div>
+
+        {/* Top Face */}
+        <motion.div
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
+          }}
+          onClick={() => handleFaceClick(4)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+          }}>
+          <div className="monitor-frame">
+            <img
+              src="/images/dishcovery.png"
+              alt="Dishcovery screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[4]?.title || "Dishcovery"}
+          </div>
+        </motion.div>
+
+        {/* Bottom Face */}
+        <motion.div
+          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
+            left: "50%",
+            top: "50%",
+            marginLeft: -cubeSize / 2,
+            marginTop: -cubeSize / 2,
+          }}
+          onClick={() => handleFaceClick(5)}
+          whileHover={{
+            borderColor: "#fd19fc",
+            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+          }}>
+          <div className="monitor-frame">
+            <img
+              src="/images/ampcoplatecutting.png"
+              alt="Ampco Plate Calculator screenshot"
+              className="monitor-frame__screen"
+            />
+            <div className="monitor-frame__bezel" />
+            <div className="monitor-frame__stand" />
+          </div>{" "}
+          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+            {projects[5]?.title || "Ampco Plate Calculator"}
+          </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
 
 export default function ProjectsPage() {
+  // --- LIFTED STATE FOR CUBE ---
+  const [rotationX, setRotationX] = useState(-20);
+  const [rotationY, setRotationY] = useState(-45);
+  const [isRotating, setIsRotating] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isTouchDragging, setIsTouchDragging] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedPdf, setSelectedPdf] = useState<string>("");
   const router = useRouter();
   const [locale, setLocale] = useLocale();
   const t = translations[locale as Locale];
@@ -565,15 +584,46 @@ export default function ProjectsPage() {
       liveDemo: "https://ampco-plate-cutting-time-calculator.onrender.com",
       sourceCode:
         "https://github.com/KipSter91/Ampco_Plate_Cutting_Time_Calculator_ZsMWebDev.git",
+      pdfs: [
+        {
+          name: "Test 1",
+          filename: "test.pdf",
+        },
+        {
+          name: "Test 2",
+          filename: "test2.pdf",
+        },
+        {
+          name: "Test 3",
+          filename: "test3.pdf",
+        },
+      ],
     },
   ];
 
   const handleProjectSelect = (project: Project) => {
     setSelectedProject(project);
   };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isDropdownOpen) {
+        const target = event.target as HTMLElement;
+        if (!target.closest(".pdf-dropdown")) {
+          setIsDropdownOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   const closeProjectModal = () => {
     setSelectedProject(null);
+    setIsDropdownOpen(false);
+    setSelectedPdf("");
   };
   return (
     <AnimatePresence mode="wait">
@@ -630,26 +680,52 @@ export default function ProjectsPage() {
                   {t.projects}
                 </motion.h1>
                 <motion.p
-                  className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed"
+                  className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed border-b border-[#00ffff]/20 pb-4 rounded-xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.7, delay: 0.4 }}>
                   {t.projectsContent}
                 </motion.p>
                 <motion.div
-                  className="text-center mb-6"
+                  className="text-center mb-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}>
-                  <p className="text-[#fd19fc] font-semibold mb-2">
-                    Interactive 3D Project Cube
-                  </p>
-                  <p className="text-gray-400 text-sm">
-                    Click on any face to explore the project
-                  </p>
+                  <div className="inline-block border-b border-[#00ffff]/20 pb-4 rounded-xl">
+                    <p className="text-[#fd19fc] font-semibold mb-1">
+                      Interactive 3D Project Cube
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      Click on any face to explore the project
+                    </p>
+                  </div>
                 </motion.div>
+                <div className="flex flex-row items-center justify-between gap-4 mb-4">
+                  <div className="z-20 text-[#00ffff]/70 text-xs md:text-sm bg-[#2C313A]/80 backdrop-blur-sm px-2 py-1 md:px-3 md:py-2 rounded-lg border border-[#00ffff]/20">
+                    <div className="hidden md:block">
+                      Click & drag to rotate
+                    </div>
+                    <div className="md:hidden">Swipe to rotate</div>
+                  </div>
+                  <motion.button
+                    className="z-20 flex items-center justify-center bg-[#2C313A] text-[#00ffff] border border-[#00ffff]/30 p-1.5 md:p-2 rounded-lg hover:bg-[#fd19fc] hover:text-white transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30"
+                    style={{ fontSize: 18 }}
+                    onClick={() => {
+                      if (isRotating) return;
+                      setIsRotating(true);
+                      setRotationX(-20);
+                      setRotationY(-45);
+                      setTimeout(() => setIsRotating(false), 600);
+                    }}
+                    disabled={isRotating}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    title="Reset view">
+                    <FiRefreshCw />
+                  </motion.button>
+                </div>
                 <motion.div
-                  className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-[#161A20] to-[#1E2228] border border-gray-700"
+                  className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-[#161A20] to-[#1E2228] border border-gray-700 flex items-center justify-center"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}>
@@ -659,6 +735,12 @@ export default function ProjectsPage() {
                     selectedProject={selectedProject}
                     isTouchDragging={isTouchDragging}
                     setIsTouchDragging={setIsTouchDragging}
+                    rotationX={rotationX}
+                    rotationY={rotationY}
+                    setRotationX={setRotationX}
+                    setRotationY={setRotationY}
+                    isRotating={isRotating}
+                    setIsRotating={setIsRotating}
                   />
                 </motion.div>
               </div>
@@ -687,7 +769,7 @@ export default function ProjectsPage() {
                       </h2>
                     </div>
                     <motion.button
-                      className="text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] rounded-lg transition-colors"
+                      className="text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] w-8 h-8 flex items-center justify-center rounded-xl transition-colors"
                       onClick={closeProjectModal}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}>
@@ -719,8 +801,7 @@ export default function ProjectsPage() {
                             <div className="monitor-frame__stand" />
                           </div>
                         </div>
-                      </div>
-
+                      </div>{" "}
                       {/* Technologies */}
                       {selectedProject.technologies && (
                         <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
@@ -735,8 +816,10 @@ export default function ProjectsPage() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}>
-                                <div className="text-2xl">{tech.icon}</div>
-                                <span className="text-white font-medium">
+                                <div className="text-xl md:text-2xl">
+                                  {tech.icon}
+                                </div>
+                                <span className="text-xs md:text-sm lg:text-base text-white font-medium">
                                   {tech.name}
                                 </span>
                               </motion.div>
@@ -796,9 +879,104 @@ export default function ProjectsPage() {
                               stiffness: 200,
                             }}>
                             <FiGithub className="w-5 h-5" />
-                            Source
+                            Source{" "}
                           </motion.a>
                         </div>
+
+                        {/* Downloadable PDFs - Only for AMPCO Calculator */}
+                        {selectedProject.title === "AMPCO® Calculator" &&
+                          selectedProject.pdfs && (
+                            <div className="mt-6 pt-6 border-t border-[#00ffff]/20">
+                              <h4 className="text-lg font-semibold text-white mb-4">
+                                Downloadable PDFs
+                              </h4>
+                              <div className="space-y-4">
+                                {/* Dropdown */}
+                                <div className="relative pdf-dropdown">
+                                  <motion.button
+                                    className="w-full bg-[#1E2228] border border-gray-700 rounded-lg px-4 py-3 text-left text-white hover:border-[#00ffff]/50 transition-colors flex items-center justify-between"
+                                    onClick={() =>
+                                      setIsDropdownOpen(!isDropdownOpen)
+                                    }
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}>
+                                    <span className="text-gray-300">
+                                      {selectedPdf
+                                        ? selectedProject.pdfs.find(
+                                            (pdf) =>
+                                              pdf.filename === selectedPdf
+                                          )?.name || "Select a test PDF..."
+                                        : "Select a test PDF..."}
+                                    </span>
+                                    <motion.div
+                                      animate={{
+                                        rotate: isDropdownOpen ? 180 : 0,
+                                      }}
+                                      transition={{ duration: 0.2 }}>
+                                      <FiChevronDown className="w-5 h-5 text-gray-400" />
+                                    </motion.div>
+                                  </motion.button>
+
+                                  <AnimatePresence>
+                                    {isDropdownOpen && (
+                                      <motion.div
+                                        className="absolute top-full left-0 right-0 mt-2 bg-[#1E2228] border border-gray-700 rounded-lg shadow-lg z-10"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.2 }}>
+                                        {selectedProject.pdfs.map(
+                                          (pdf, index) => (
+                                            <motion.button
+                                              key={pdf.filename}
+                                              className="w-full px-4 py-3 text-left hover:bg-[#2C313A] transition-colors border-b border-gray-700 last:border-b-0 first:rounded-t-lg last:rounded-b-lg"
+                                              onClick={() => {
+                                                setSelectedPdf(pdf.filename);
+                                                setIsDropdownOpen(false);
+                                              }}
+                                              initial={{ opacity: 0, x: -10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{
+                                                delay: index * 0.05,
+                                              }}>
+                                              <div className="text-white font-medium">
+                                                {pdf.name}
+                                              </div>
+                                            </motion.button>
+                                          )
+                                        )}
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+
+                                {/* Download Button */}
+                                {selectedPdf && (
+                                  <motion.a
+                                    href={`/plate-cutting-pdfs/${selectedPdf}`}
+                                    download={selectedPdf}
+                                    className="w-full bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{
+                                      duration: 0.4,
+                                      type: "spring",
+                                      stiffness: 200,
+                                    }}>
+                                    <FiDownload className="w-5 h-5" />
+                                    Download{" "}
+                                    {
+                                      selectedProject.pdfs.find(
+                                        (pdf) => pdf.filename === selectedPdf
+                                      )?.name
+                                    }
+                                  </motion.a>
+                                )}
+                              </div>
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>
@@ -811,32 +989,3 @@ export default function ProjectsPage() {
     </AnimatePresence>
   );
 }
-
-// --- Scroll lock helpers ---
-const scrollLock = {
-  y: 0,
-  locked: false,
-  lock() {
-    if (this.locked) return;
-    this.y = window.scrollY;
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-    document.body.style.top = `-${this.y}px`;
-    this.locked = true;
-  },
-  unlock() {
-    if (!this.locked) return;
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.width = "";
-    document.body.style.top = "";
-    const y = this.y;
-    this.locked = false;
-    if (y) {
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: y });
-      });
-    }
-  },
-};

@@ -23,7 +23,6 @@ export default function AnimatedModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}>
-          {" "}
           <motion.div
             className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl relative"
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -32,7 +31,7 @@ export default function AnimatedModal({
             onClick={(e) => e.stopPropagation()}>
             {/* Close Button - Same style as projects modal */}
             <motion.button
-              className="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] rounded-lg transition-colors"
+              className="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] rounded-xl w-8 h-8 flex items-center justify-center transition-colors"
               onClick={onClose}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
