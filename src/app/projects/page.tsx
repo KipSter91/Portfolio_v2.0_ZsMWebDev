@@ -5,7 +5,24 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { translations } from "../../data/translations";
 import { useLocale } from "../../lib/i18n";
-import { FiRefreshCw } from "react-icons/fi";
+import { FiRefreshCw, FiExternalLink, FiGithub } from "react-icons/fi";
+import {
+  FaReact,
+  FaNodeJs,
+  FaAndroid,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+} from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiFirebase,
+  SiVite,
+  SiVercel,
+  SiExpo,
+} from "react-icons/si";
 
 type Locale = keyof typeof translations;
 
@@ -16,6 +33,8 @@ interface Project {
   imageUrl?: string;
   link?: string;
   color: string;
+  technologies?: { name: string; icon: React.ReactNode }[];
+  image?: string;
 }
 
 // CSS 3D Cube Component
@@ -431,44 +450,110 @@ export default function ProjectsPage() {
       router.push("/?from=projects");
     }, 500);
   };
-
   const projects: Project[] = [
     {
       title: "Old Portfolio",
       tech: "React, Next.js, TypeScript, Framer Motion",
       description:
-        "My previous portfolio with older projects, showing my learning curve and early works.",
+        "My previous portfolio showcasing my earlier projects and development journey. Built with modern web technologies, this portfolio demonstrates my growth as a developer and includes various interactive elements and animations. It features responsive design, smooth transitions, and showcases my learning curve through different project implementations.",
       color: "#00ffff",
+      technologies: [
+        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        { name: "Next.js", icon: <SiNextdotjs style={{ color: "#000000" }} /> },
+        {
+          name: "TypeScript",
+          icon: <SiTypescript style={{ color: "#3178C6" }} />,
+        },
+        {
+          name: "Framer Motion",
+          icon: <span style={{ color: "#fd19fc" }}>🎬</span>,
+        },
+      ],
+      image: "/images/oldportfolio.png",
     },
     {
       title: "IstOneFlexWork",
       tech: "React, Tailwind CSS, Vite",
-      description: "Solar Panel Cleaning landing page for IstOneFlexWork.",
+      description:
+        "Professional landing page for IstOneFlexWork, a solar panel cleaning service company. The website features modern design, responsive layout, and clear call-to-action sections. Built with performance in mind using Vite for fast development and optimized build process, ensuring excellent user experience across all devices.",
       color: "#fd19fc",
+      technologies: [
+        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
+        },
+        { name: "Vite", icon: <SiVite style={{ color: "#646CFF" }} /> },
+      ],
+      image: "/images/istoneflexwork.png",
     },
     {
       title: "StepIO",
       tech: "React, Android, Firebase, Tailwind CSS",
-      description: "Activity Tracker landing page and Android app for StepIO.",
+      description:
+        "Comprehensive activity tracking solution featuring both a responsive landing page and a native Android application. StepIO helps users monitor their daily activities, set fitness goals, and track progress. The project includes real-time data synchronization, user authentication, and detailed analytics dashboard.",
       color: "#00ff88",
+      technologies: [
+        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        { name: "Android", icon: <FaAndroid style={{ color: "#3DDC84" }} /> },
+        { name: "Firebase", icon: <SiFirebase style={{ color: "#FFCA28" }} /> },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
+        },
+      ],
+      image: "/images/stepio.png",
     },
     {
       title: "G.U.C. Coaching",
       tech: "React, Tailwind CSS, Vercel",
-      description: "Personal trainer landing page for G.U.C. Coaching.",
+      description:
+        "Professional website for G.U.C. Coaching, a personal training and fitness coaching service. The site features client testimonials, service packages, booking system integration, and responsive design optimized for mobile users. Deployed on Vercel for reliable performance and global accessibility.",
       color: "#ff6b6b",
+      technologies: [
+        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
+        },
+        { name: "Vercel", icon: <SiVercel style={{ color: "#000000" }} /> },
+      ],
+      image: "/images/guccoaching.png",
     },
     {
       title: "Dishcovery",
       tech: "React Native, Expo, Node.js",
-      description: "Recipes app for discovering and sharing dishes.",
+      description:
+        "Mobile application for discovering and sharing culinary experiences. Dishcovery allows users to explore new recipes, share their own cooking creations, and connect with fellow food enthusiasts. Built with React Native and Expo for cross-platform compatibility, featuring real-time updates and social interactions.",
       color: "#ffd93d",
+      technologies: [
+        {
+          name: "React Native",
+          icon: <FaReact style={{ color: "#61DAFB" }} />,
+        },
+        { name: "Expo", icon: <SiExpo style={{ color: "#000020" }} /> },
+        { name: "Node.js", icon: <FaNodeJs style={{ color: "#339933" }} /> },
+      ],
+      image: "/images/dishcovery.png",
     },
     {
-      title: "Ampco  Calculator",
+      title: "Ampco Calculator",
       tech: "React, TypeScript, Tailwind CSS",
-      description: "Plate Cutting Calculator for Ampco.",
+      description:
+        "Specialized plate cutting calculator application developed for Ampco, providing precise calculations for industrial plate cutting operations. Features advanced mathematical algorithms, real-time calculations, material optimization suggestions, and comprehensive reporting capabilities for manufacturing efficiency.",
       color: "#a8e6cf",
+      technologies: [
+        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        {
+          name: "TypeScript",
+          icon: <SiTypescript style={{ color: "#3178C6" }} />,
+        },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
+        },
+      ],
+      image: "/images/ampcoplatecutting.png",
     },
   ];
 
@@ -567,8 +652,7 @@ export default function ProjectsPage() {
                 </motion.div>
               </div>
             </motion.div>
-          </div>
-
+          </div>{" "}
           {/* Project Details Modal */}
           <AnimatePresence>
             {selectedProject && (
@@ -579,22 +663,20 @@ export default function ProjectsPage() {
                 exit={{ opacity: 0 }}
                 onClick={closeProjectModal}>
                 <motion.div
-                  className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border-t border-l border-gray-700 shadow-2xl"
+                  className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl"
                   initial={{ scale: 0.9, opacity: 0, y: 20 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   exit={{ scale: 0.9, opacity: 0, y: 20 }}
                   onClick={(e) => e.stopPropagation()}>
+                  {/* Header */}
                   <div className="flex justify-between items-start mb-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold text-[#00ffff] mb-2">
                         {selectedProject.title}
                       </h2>
-                      <p className="text-[#fd19fc] font-medium">
-                        {selectedProject.tech}
-                      </p>
                     </div>
                     <motion.button
-                      className="text-gray-400 hover:text-white text-2xl"
+                      className="text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] rounded-lg transition-colors"
                       onClick={closeProjectModal}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}>
@@ -602,28 +684,91 @@ export default function ProjectsPage() {
                     </motion.button>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="h-48 bg-gradient-to-r from-[#00ffff]/20 to-[#fd19fc]/20 rounded-lg flex items-center justify-center border border-gray-700">
-                      <div className="text-6xl opacity-30">💻</div>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {/* Left Column - Project Preview */}
+                    <div className="space-y-6">
+                      {/* Monitor Frame with Project Image */}
+                      <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
+                        <h3 className="text-xl font-semibold text-white mb-4 text-center">
+                          Project Preview
+                        </h3>
+                        <div className="flex justify-center">
+                          <div
+                            className="monitor-frame"
+                            style={{ width: "100%", maxWidth: "400px" }}>
+                            <img
+                              src={
+                                selectedProject.image ||
+                                "/images/placeholder.png"
+                              }
+                              alt={`${selectedProject.title} screenshot`}
+                              className="monitor-frame__screen"
+                            />
+                            <div className="monitor-frame__bezel" />
+                            <div className="monitor-frame__stand" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Technologies */}
+                      {selectedProject.technologies && (
+                        <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
+                          <h3 className="text-xl font-semibold text-white mb-4">
+                            Technologies Used
+                          </h3>
+                          <div className="grid grid-cols-2 gap-4">
+                            {selectedProject.technologies.map((tech, index) => (
+                              <motion.div
+                                key={tech.name}
+                                className="flex items-center gap-3 p-3 bg-[#1E2228] rounded-lg border border-gray-700 hover:border-[#fd19fc]/50 transition-colors"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}>
+                                <div className="text-2xl">{tech.icon}</div>
+                                <span className="text-white font-medium">
+                                  {tech.name}
+                                </span>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    <p className="text-gray-200 leading-relaxed text-lg">
-                      {selectedProject.description}
-                    </p>
+                    {/* Right Column - Project Details */}
+                    <div className="space-y-6">
+                      {/* Description */}
+                      <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
+                        <h3 className="text-xl font-semibold text-white mb-4">
+                          About This Project
+                        </h3>
+                        <p className="text-gray-200 leading-relaxed text-base">
+                          {selectedProject.description}
+                        </p>
+                      </div>
 
-                    <div className="flex gap-4 pt-4">
-                      <motion.button
-                        className="bg-[#00ffff] text-black font-bold py-2 px-6 rounded-lg hover:bg-[#fd19fc] transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}>
-                        View Project
-                      </motion.button>
-                      <motion.button
-                        className="bg-[#2C313A] text-white py-2 px-6 rounded-lg hover:bg-[#fd19fc] transition-colors border border-gray-600"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}>
-                        Source Code
-                      </motion.button>
+                      {/* Action Buttons */}
+                      <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
+                        <h3 className="text-xl font-semibold text-white mb-4">
+                          Explore Project
+                        </h3>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <motion.button
+                            className="flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-black font-bold py-3 px-6 rounded-lg hover:from-[#00cccc] hover:to-[#009999] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30"
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            whileTap={{ scale: 0.98 }}>
+                            <FiExternalLink className="w-5 h-5" />
+                            View Live Demo
+                          </motion.button>
+                          <motion.button
+                            className="flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14ca] text-white font-bold py-3 px-6 rounded-lg hover:from-[#cc14ca] hover:to-[#aa1099] transition-all duration-300 flex items-center justify-center gap-2 border border-[#fd19fc]/30 shadow-lg hover:shadow-[#fd19fc]/30"
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            whileTap={{ scale: 0.98 }}>
+                            <FiGithub className="w-5 h-5" />
+                            Source Code
+                          </motion.button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
