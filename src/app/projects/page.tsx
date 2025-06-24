@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { translations } from "../../data/translations";
 import { useLocale } from "../../lib/i18n";
+import { FiRefreshCw } from "react-icons/fi";
 
 type Locale = keyof typeof translations;
 
@@ -31,8 +32,8 @@ function ProjectCube({
   isTouchDragging: boolean;
   setIsTouchDragging: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [rotationX, setRotationX] = useState(0);
-  const [rotationY, setRotationY] = useState(0);
+  const [rotationX, setRotationX] = useState(-20); // Start slightly tilted down
+  const [rotationY, setRotationY] = useState(-45); // Start slightly rotated to the right
   const [isRotating, setIsRotating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const cubeContainerRef = useRef<HTMLDivElement>(null);
@@ -69,7 +70,24 @@ function ProjectCube({
       onProjectSelect(projects[index]);
     }
   };
-  const cubeSize = 250; // Increased size of cube faces  // Mouse drag handlers
+  // Responsive cube size
+  const [cubeSize, setCubeSize] = useState(300);
+  useEffect(() => {
+    const updateCubeSize = () => {
+      if (window.innerWidth < 640) {
+        setCubeSize(180); // mobile
+      } else if (window.innerWidth < 1024) {
+        setCubeSize(220); // tablet
+      } else {
+        setCubeSize(300); // desktop
+      }
+    };
+    updateCubeSize();
+    window.addEventListener("resize", updateCubeSize);
+    return () => window.removeEventListener("resize", updateCubeSize);
+  }, []);
+
+  // Mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(false);
     lastMousePos.current = { x: e.clientX, y: e.clientY };
@@ -137,22 +155,25 @@ function ProjectCube({
     <div className="flex flex-col items-center justify-center h-full relative">
       {/* Reset Button - Top Right */}
       <motion.button
-        className="absolute top-4 right-4 z-20 bg-[#fd19fc] text-white p-3 rounded-full hover:bg-[#00ffff] hover:text-black transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30"
+        className="z-20 flex items-center justify-center bg-[#2C313A] text-[#00ffff] border border-[#00ffff]/30 p-2 md:p-3 rounded-lg hover:bg-[#fd19fc] hover:text-white transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30 absolute right-2 top-2 md:top-4 md:right-4"
+        style={{ fontSize: cubeSize < 200 ? 20 : 24 }}
         onClick={() => {
           if (isRotating) return;
           setIsRotating(true);
-          setRotationX(0);
-          setRotationY(0);
+          setRotationX(-20); // Reset to initial tilted state
+          setRotationY(-45); // Reset to initial rotated state
           setTimeout(() => setIsRotating(false), 600);
         }}
         disabled={isRotating}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         title="Reset view">
-        🏠
+        <FiRefreshCw />
       </motion.button>
       {/* Drag Instructions */}
-      <div className="absolute top-4 left-4 z-20 text-[#00ffff]/70 text-sm bg-[#2C313A]/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-[#00ffff]/20">
+      <div
+        className="z-20 text-[#00ffff]/70 text-xs md:text-sm bg-[#2C313A]/80 backdrop-blur-sm px-2 py-1 md:px-3 md:py-2 rounded-lg border border-[#00ffff]/20 absolute left-2 top-2 md:left-4 md:top-4"
+        style={{ maxWidth: cubeSize * 1.2 }}>
         <div className="hidden md:block">Click & drag to rotate</div>
         <div className="md:hidden">Swipe to rotate</div>
       </div>{" "}
@@ -654,28 +675,6 @@ export default function ProjectsPage() {
                     isTouchDragging={isTouchDragging}
                     setIsTouchDragging={setIsTouchDragging}
                   />
-                </motion.div>
-                <motion.div
-                  className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}>
-                  {projects.map((project, index) => (
-                    <motion.button
-                      key={index}
-                      className="bg-[#2C313A] p-3 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#00ffff]/10 hover:-translate-y-1 transition-all duration-300 text-left"
-                      onClick={() => handleProjectSelect(project)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      style={{ borderLeftColor: project.color }}>
-                      <h3 className="text-sm font-semibold text-white mb-1">
-                        {project.title}
-                      </h3>
-                      <p className="text-xs text-gray-400">
-                        {project.tech.split(",")[0]}...
-                      </p>
-                    </motion.button>
-                  ))}
                 </motion.div>
               </div>
             </motion.div>
