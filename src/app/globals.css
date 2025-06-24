@@ -1,5 +1,5 @@
 /* Google Fonts - Must come first */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra Petch:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap");
 
 @import "tailwindcss";
@@ -20,12 +20,12 @@
 
 html,
 body {
-  font-family: "Outfit", sans-serif !important;
+  font-family: "Chakra Petch", sans-serif !important;
 }
 
 /* Apply default font to all elements except those with specific font classes */
 *:not(.font-handwriting) {
-  font-family: "Outfit", sans-serif !important;
+  font-family: "Chakra Petch", sans-serif !important;
 }
 
 body {
@@ -163,4 +163,109 @@ body {
   opacity: 0.3;
   pointer-events: none;
   transition: filter 0.3s, opacity 0.3s;
+}
+
+/* Monitor frame for project cube faces */
+.monitor-frame {
+  position: relative;
+  width: 90%;
+  aspect-ratio: 16/11; /* Even taller to prevent any cropping */
+  background: linear-gradient(145deg, #2c3338, #1e2328);
+  border: 4px solid #0f1419; /* thinner border */
+  border-radius: 16px 16px 10px 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 255, 255, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px auto;
+}
+
+.monitor-frame::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(145deg, #3a424a, #252d35);
+  border-radius: 18px 18px 12px 12px;
+  z-index: -1;
+}
+
+.monitor-frame__screen {
+  position: absolute;
+  width: 92%;
+  height: 88%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  background: #000;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid #0a0e13;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.8);
+}
+
+.monitor-frame__bezel {
+  position: absolute;
+  top: 6%;
+  left: 4%;
+  right: 4%;
+  bottom: 6%;
+  border-radius: 4px;
+  pointer-events: none;
+  border: 1px solid rgba(60, 70, 80, 0.4);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.04),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.07) 70%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+
+/* Responsive tweaks for monitor frame */
+@media (max-width: 600px) {
+  .monitor-frame {
+    border-width: 3px;
+    border-radius: 12px 12px 8px 8px;
+    margin-bottom: 20px;
+    width: 92%;
+  }
+  .monitor-frame::before {
+    border-radius: 14px 14px 10px 10px;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+  }
+  .monitor-frame__screen {
+    width: 94%;
+    height: 90%;
+    border-radius: 3px;
+  }
+  .monitor-frame__bezel {
+    top: 5%;
+    left: 3%;
+    right: 3%;
+    bottom: 5%;
+    border-radius: 3px;
+  }
+  .monitor-frame__stand {
+    width: 22px;
+    height: 10px;
+    bottom: -12px;
+  }
+  .monitor-frame__stand::before {
+    width: 28px;
+    height: 4px;
+    bottom: -4px;
+  }
 }

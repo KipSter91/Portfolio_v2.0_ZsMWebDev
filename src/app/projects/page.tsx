@@ -209,7 +209,7 @@ function ProjectCube({
           }}>
           {/* Front Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -224,41 +224,23 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">🌐</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[0]?.title || "Web Portfolio"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[0]?.description ||
-                "A modern React portfolio showcasing my development skills"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[0]?.tech
-                ? projects[0].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["React", "Next.js", "TypeScript"].map(
-                    (tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech}
-                      </span>
-                    )
-                  )}
+            <div className="monitor-frame">
+              <img
+                src="/images/oldportfolio.png"
+                alt="Old Portfolio screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[0]?.title || "Old Portfolio"}
             </div>
           </motion.div>
 
           {/* Back Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -273,41 +255,23 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[1]?.title || "Performance App"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[1]?.description ||
-                "High-performance application with advanced optimization"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[1]?.tech
-                ? projects[1].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["Vue.js", "Node.js", "MongoDB"].map(
-                    (tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech}
-                      </span>
-                    )
-                  )}
+            <div className="monitor-frame">
+              <img
+                src="/images/istoneflexwork.png"
+                alt="IstOne Flexwork screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[1]?.title || "IstOneFlexWork"}
             </div>
           </motion.div>
 
           {/* Right Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -322,39 +286,23 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">🌤️</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[2]?.title || "Weather Dashboard"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[2]?.description ||
-                "Real-time weather tracking with beautiful visualizations"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[2]?.tech
-                ? projects[2].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["React", "API", "Charts"].map((tech: string, i: number) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                      {tech}
-                    </span>
-                  ))}
+            <div className="monitor-frame">
+              <img
+                src="/images/stepio.png"
+                alt="StepIO screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[2]?.title || "StepIO"}
             </div>
           </motion.div>
 
           {/* Left Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -369,41 +317,23 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">📋</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[3]?.title || "Task Manager"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[3]?.description ||
-                "Efficient task management with team collaboration features"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[3]?.tech
-                ? projects[3].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["Angular", "Firebase", "PWA"].map(
-                    (tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech}
-                      </span>
-                    )
-                  )}
+            <div className="monitor-frame">
+              <img
+                src="/images/guccoaching.png"
+                alt="G.U.C. Coaching screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[3]?.title || "G.U.C. Coaching"}
             </div>
           </motion.div>
 
           {/* Top Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -418,41 +348,23 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">🤖</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[4]?.title || "AI Assistant"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[4]?.description ||
-                "Intelligent AI-powered assistant with natural language processing"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[4]?.tech
-                ? projects[4].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["Python", "TensorFlow", "NLP"].map(
-                    (tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech}
-                      </span>
-                    )
-                  )}
+            <div className="monitor-frame">
+              <img
+                src="/images/dishcovery.png"
+                alt="Dishcovery screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[4]?.title || "Dishcovery"}
             </div>
           </motion.div>
 
           {/* Bottom Face */}
           <motion.div
-            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
             style={{
               width: cubeSize,
               height: cubeSize,
@@ -467,35 +379,17 @@ function ProjectCube({
               borderColor: "#fd19fc",
               boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
             }}>
-            <div className="text-4xl mb-3">📊</div>
-            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
-              {projects[5]?.title || "Analytics Platform"}
-            </h3>
-            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
-              {projects[5]?.description ||
-                "Comprehensive data analytics with interactive dashboards"}
-            </p>{" "}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {projects[5]?.tech
-                ? projects[5].tech
-                    .split(",")
-                    .slice(0, 3)
-                    .map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech.trim()}
-                      </span>
-                    ))
-                : ["D3.js", "PostgreSQL", "Express"].map(
-                    (tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
-                        {tech}
-                      </span>
-                    )
-                  )}
+            <div className="monitor-frame">
+              <img
+                src="/images/ampcoplatecutting.png"
+                alt="Ampco Plate Calculator screenshot"
+                className="monitor-frame__screen"
+              />
+              <div className="monitor-frame__bezel" />
+              <div className="monitor-frame__stand" />
+            </div>
+            <div className="mt-3 text-base font-semibold text-white text-center">
+              {projects[5]?.title || "Ampco Plate Calculator"}
             </div>
           </motion.div>
         </motion.div>
@@ -540,45 +434,40 @@ export default function ProjectsPage() {
 
   const projects: Project[] = [
     {
-      title: "Portfolio Website",
-      tech: "Next.js, TypeScript, Tailwind CSS, Three.js",
+      title: "Old Portfolio",
+      tech: "React, Next.js, TypeScript, Framer Motion",
       description:
-        "A motion-centric, single-page portfolio with animated modals, interactive grid layout, and 3D elements.",
+        "My previous portfolio with older projects, showing my learning curve and early works.",
       color: "#00ffff",
     },
     {
-      title: "E-commerce Platform",
-      tech: "React, Node.js, MongoDB, Stripe",
-      description:
-        "Full-stack e-commerce solution with payment processing, inventory management, and real-time analytics.",
+      title: "IstOneFlexWork",
+      tech: "React, Tailwind CSS, Vite",
+      description: "Solar Panel Cleaning landing page for IstOneFlexWork.",
       color: "#fd19fc",
     },
     {
-      title: "Weather Dashboard",
-      tech: "React, OpenWeather API, Styled Components",
-      description:
-        "Interactive weather app with location-based forecasts, animated weather visuals, and 7-day predictions.",
+      title: "StepIO",
+      tech: "React, Android, Firebase, Tailwind CSS",
+      description: "Activity Tracker landing page and Android app for StepIO.",
       color: "#00ff88",
     },
     {
-      title: "Task Management App",
-      tech: "Next.js, Firebase, Tailwind CSS",
-      description:
-        "Collaborative task management platform with real-time updates, user authentication, and team workspaces.",
+      title: "G.U.C. Coaching",
+      tech: "React, Tailwind CSS, Vercel",
+      description: "Personal trainer landing page for G.U.C. Coaching.",
       color: "#ff6b6b",
     },
     {
-      title: "AI Chat Application",
-      tech: "React, Node.js, Socket.io, OpenAI API",
-      description:
-        "Real-time chat application with AI integration, file sharing, and intelligent conversation analysis.",
+      title: "Dishcovery",
+      tech: "React Native, Expo, Node.js",
+      description: "Recipes app for discovering and sharing dishes.",
       color: "#ffd93d",
     },
     {
-      title: "Data Visualization Tool",
-      tech: "D3.js, React, Python, FastAPI",
-      description:
-        "Interactive data visualization platform with custom charts, real-time updates, and export capabilities.",
+      title: "Ampco  Calculator",
+      tech: "React, TypeScript, Tailwind CSS",
+      description: "Plate Cutting Calculator for Ampco.",
       color: "#a8e6cf",
     },
   ];
