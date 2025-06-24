@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { translations } from "../../data/translations";
@@ -14,17 +14,504 @@ interface Project {
   description: string;
   imageUrl?: string;
   link?: string;
+  color: string;
+}
+
+// CSS 3D Cube Component
+function ProjectCube({
+  projects,
+  onProjectSelect,
+  selectedProject,
+  isTouchDragging,
+  setIsTouchDragging,
+}: {
+  projects: Project[];
+  onProjectSelect: (project: Project) => void;
+  selectedProject: Project | null;
+  isTouchDragging: boolean;
+  setIsTouchDragging: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const [rotationX, setRotationX] = useState(0);
+  const [rotationY, setRotationY] = useState(0);
+  const [isRotating, setIsRotating] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const cubeContainerRef = useRef<HTMLDivElement>(null);
+  const lastMousePos = useRef({ x: 0, y: 0 });
+  const lastTouchPos = useRef({ x: 0, y: 0 });
+  const scrollYRef = useRef(0);
+
+  // Prevent page scroll during cube rotation on mobile (touch only)
+  useEffect(() => {
+    const preventScroll = (e: TouchEvent) => {
+      if (isTouchDragging) {
+        e.preventDefault();
+      }
+    };
+    const preventGlobalScroll = (e: TouchEvent) => {
+      if (isTouchDragging) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    document.addEventListener("touchstart", preventGlobalScroll, {
+      passive: false,
+    });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => {
+      document.removeEventListener("touchmove", preventScroll);
+      document.removeEventListener("touchstart", preventGlobalScroll);
+      window.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isTouchDragging]);
+
+  const handleFaceClick = (index: number) => {
+    if (projects[index] && !isDragging) {
+      onProjectSelect(projects[index]);
+    }
+  };
+  const cubeSize = 250; // Increased size of cube faces  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(false);
+    lastMousePos.current = { x: e.clientX, y: e.clientY };
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const deltaX = e.clientX - lastMousePos.current.x;
+    const deltaY = e.clientY - lastMousePos.current.y;
+
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+      setIsDragging(true);
+    }
+
+    setRotationY((prev) => prev + deltaX * 0.8);
+    setRotationX((prev) => prev - deltaY * 0.8);
+
+    lastMousePos.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseUp = () => {
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
+    setTimeout(() => setIsDragging(false), 100);
+  };
+
+  // Touch drag handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsTouchDragging(true);
+      setIsDragging(false);
+      const touch = e.touches[0];
+      lastTouchPos.current = { x: touch.clientX, y: touch.clientY };
+      // Lock scroll for drag only if modal is not open
+      if (!selectedProject) scrollLock.lock();
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lastTouchPos.current.x;
+      const deltaY = touch.clientY - lastTouchPos.current.y;
+
+      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+        setIsDragging(true);
+      }
+
+      setRotationY((prev) => prev + deltaX * 0.6);
+      setRotationX((prev) => prev - deltaY * 0.6);
+
+      lastTouchPos.current = { x: touch.clientX, y: touch.clientY };
+    }
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setIsTouchDragging(false);
+    setTimeout(() => setIsDragging(false), 100);
+    // Unlock scroll for drag only if modal is not open
+    if (!selectedProject) scrollLock.unlock();
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full relative">
+      {/* Reset Button - Top Right */}
+      <motion.button
+        className="absolute top-4 right-4 z-20 bg-[#fd19fc] text-white p-3 rounded-full hover:bg-[#00ffff] hover:text-black transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30"
+        onClick={() => {
+          if (isRotating) return;
+          setIsRotating(true);
+          setRotationX(0);
+          setRotationY(0);
+          setTimeout(() => setIsRotating(false), 600);
+        }}
+        disabled={isRotating}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        title="Reset view">
+        🏠
+      </motion.button>
+      {/* Drag Instructions */}
+      <div className="absolute top-4 left-4 z-20 text-[#00ffff]/70 text-sm bg-[#2C313A]/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-[#00ffff]/20">
+        <div className="hidden md:block">Click & drag to rotate</div>
+        <div className="md:hidden">Swipe to rotate</div>
+      </div>{" "}
+      <div
+        ref={cubeContainerRef}
+        className="relative mb-8 select-none cursor-grab active:cursor-grabbing touch-none overscroll-none"
+        style={{
+          perspective: "1200px",
+          width: cubeSize * 2.2,
+          height: cubeSize * 2.2,
+          touchAction: "none",
+          WebkitOverflowScrolling: "touch",
+          overscrollBehavior: "none",
+        }}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}>
+        <motion.div
+          className="relative w-full h-full flex items-center justify-center"
+          style={{
+            transformStyle: "preserve-3d",
+          }}
+          animate={{
+            rotateX: rotationX,
+            rotateY: rotationY,
+          }}
+          transition={{
+            type: isDragging ? "tween" : "spring",
+            damping: isDragging ? 0 : 25,
+            stiffness: isDragging ? 0 : 200,
+            duration: isDragging ? 0 : 0.8,
+          }}>
+          {/* Front Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(0)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">🌐</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[0]?.title || "Web Portfolio"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[0]?.description ||
+                "A modern React portfolio showcasing my development skills"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[0]?.tech
+                ? projects[0].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["React", "Next.js", "TypeScript"].map(
+                    (tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech}
+                      </span>
+                    )
+                  )}
+            </div>
+          </motion.div>
+
+          {/* Back Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `rotateY(180deg) translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(1)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">⚡</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[1]?.title || "Performance App"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[1]?.description ||
+                "High-performance application with advanced optimization"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[1]?.tech
+                ? projects[1].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["Vue.js", "Node.js", "MongoDB"].map(
+                    (tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech}
+                      </span>
+                    )
+                  )}
+            </div>
+          </motion.div>
+
+          {/* Right Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(2)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">🌤️</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[2]?.title || "Weather Dashboard"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[2]?.description ||
+                "Real-time weather tracking with beautiful visualizations"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[2]?.tech
+                ? projects[2].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["React", "API", "Charts"].map((tech: string, i: number) => (
+                    <span
+                      key={i}
+                      className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                      {tech}
+                    </span>
+                  ))}
+            </div>
+          </motion.div>
+
+          {/* Left Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(3)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">📋</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[3]?.title || "Task Manager"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[3]?.description ||
+                "Efficient task management with team collaboration features"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[3]?.tech
+                ? projects[3].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["Angular", "Firebase", "PWA"].map(
+                    (tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech}
+                      </span>
+                    )
+                  )}
+            </div>
+          </motion.div>
+
+          {/* Top Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(4)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">🤖</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[4]?.title || "AI Assistant"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[4]?.description ||
+                "Intelligent AI-powered assistant with natural language processing"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[4]?.tech
+                ? projects[4].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["Python", "TensorFlow", "NLP"].map(
+                    (tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech}
+                      </span>
+                    )
+                  )}
+            </div>
+          </motion.div>
+
+          {/* Bottom Face */}
+          <motion.div
+            className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-6 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
+            style={{
+              width: cubeSize,
+              height: cubeSize,
+              transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cubeSize / 2,
+              marginTop: -cubeSize / 2,
+            }}
+            onClick={() => handleFaceClick(5)}
+            whileHover={{
+              borderColor: "#fd19fc",
+              boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
+            }}>
+            <div className="text-4xl mb-3">📊</div>
+            <h3 className="text-lg font-bold text-[#00ffff] mb-2">
+              {projects[5]?.title || "Analytics Platform"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-3 line-clamp-3">
+              {projects[5]?.description ||
+                "Comprehensive data analytics with interactive dashboards"}
+            </p>{" "}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {projects[5]?.tech
+                ? projects[5].tech
+                    .split(",")
+                    .slice(0, 3)
+                    .map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech.trim()}
+                      </span>
+                    ))
+                : ["D3.js", "PostgreSQL", "Express"].map(
+                    (tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-[#00ffff]/20 text-[#00ffff] text-xs rounded hover:bg-[#fd19fc]/20 hover:text-[#fd19fc] transition-colors duration-300">
+                        {tech}
+                      </span>
+                    )
+                  )}
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
 }
 
 export default function ProjectsPage() {
   const [isExiting, setIsExiting] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isTouchDragging, setIsTouchDragging] = useState(false);
   const router = useRouter();
   const [locale, setLocale] = useLocale();
   const t = translations[locale as Locale];
 
+  // Modal scroll lock effect (must be inside ProjectsPage)
+  useEffect(() => {
+    if (selectedProject && !isTouchDragging) {
+      scrollLock.lock();
+      return () => scrollLock.unlock();
+    }
+    if (!selectedProject && !isTouchDragging) {
+      scrollLock.unlock();
+    }
+  }, [selectedProject, isTouchDragging]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleGoHome = () => {
     setIsExiting(true);
-    // Wait for exit animation to complete before navigating
     setTimeout(() => {
       router.push("/?from=projects");
     }, 500);
@@ -33,123 +520,259 @@ export default function ProjectsPage() {
   const projects: Project[] = [
     {
       title: "Portfolio Website",
-      tech: "Next.js, TypeScript, Tailwind CSS",
+      tech: "Next.js, TypeScript, Tailwind CSS, Three.js",
       description:
-        "A motion-centric, single-page portfolio with animated modals and interactive grid layout.",
+        "A motion-centric, single-page portfolio with animated modals, interactive grid layout, and 3D elements.",
+      color: "#00ffff",
     },
     {
       title: "E-commerce Platform",
-      tech: "React, Node.js, MongoDB",
+      tech: "React, Node.js, MongoDB, Stripe",
       description:
-        "Full-stack e-commerce solution with payment processing and inventory management.",
+        "Full-stack e-commerce solution with payment processing, inventory management, and real-time analytics.",
+      color: "#fd19fc",
     },
     {
       title: "Weather Dashboard",
       tech: "React, OpenWeather API, Styled Components",
       description:
-        "Interactive weather app with location-based forecasts and animated weather visuals.",
+        "Interactive weather app with location-based forecasts, animated weather visuals, and 7-day predictions.",
+      color: "#00ff88",
     },
     {
       title: "Task Management App",
       tech: "Next.js, Firebase, Tailwind CSS",
       description:
-        "Collaborative task management platform with real-time updates and user authentication.",
+        "Collaborative task management platform with real-time updates, user authentication, and team workspaces.",
+      color: "#ff6b6b",
+    },
+    {
+      title: "AI Chat Application",
+      tech: "React, Node.js, Socket.io, OpenAI API",
+      description:
+        "Real-time chat application with AI integration, file sharing, and intelligent conversation analysis.",
+      color: "#ffd93d",
+    },
+    {
+      title: "Data Visualization Tool",
+      tech: "D3.js, React, Python, FastAPI",
+      description:
+        "Interactive data visualization platform with custom charts, real-time updates, and export capabilities.",
+      color: "#a8e6cf",
     },
   ];
 
-  // Animation variants for staggered animations
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+  const handleProjectSelect = (project: Project) => {
+    setSelectedProject(project);
   };
 
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.6 } },
+  const closeProjectModal = () => {
+    setSelectedProject(null);
   };
   return (
     <AnimatePresence mode="wait">
-      {!isExiting && (
+      {!isExiting && isLoaded && (
         <motion.div
-          className="min-h-screen bg-[#161A20] p-8"
+          className="min-h-[calc(100vh-3.5rem-4rem)] w-full bg-[#161A20] py-8 px-4 md:px-8 flex flex-col items-center"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}>
-          <motion.button
-            className="absolute top-6 left-6 bg-[#2C313A] text-white py-2 px-4 rounded hover:bg-[#fd19fc] transition-colors"
-            onClick={handleGoHome}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}>
-            ← {t.back}
-          </motion.button>
-
-          <div className="max-w-6xl mx-auto mt-20">
-            <motion.h1
-              className="text-4xl font-bold mb-6 text-[#00ffff] text-center"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}>
-              {t.projects}
-            </motion.h1>
-
-            <motion.p
-              className="text-xl text-gray-200 text-center mb-12 max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.5 }}>
-              {t.projectsContent}
-            </motion.p>
+          <div className="w-full max-w-6xl relative">
+            <motion.button
+              className="absolute top-0 left-0 mb-6 bg-[#2C313A] text-white py-2 px-4 rounded-xl hover:bg-[#fd19fc] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#fd19fc]/20 hover:-translate-y-1"
+              onClick={handleGoHome}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.2,
+                type: "spring",
+                stiffness: 200,
+              }}>
+              <motion.span
+                initial={{ x: 0 }}
+                animate={{ x: [-3, 0, -3] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.5,
+                  repeatDelay: 1,
+                }}>
+                ←
+              </motion.span>
+              {t.back}
+            </motion.button>
 
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8"
-              variants={container}
-              initial="hidden"
-              animate="show">
-              {projects.map((project, index) => (
+              className="w-full mt-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}>
+              <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
+                <motion.h1
+                  className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
+                    delay: 0.3,
+                  }}>
+                  {t.projects}
+                </motion.h1>
+                <motion.p
+                  className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.4 }}>
+                  {t.projectsContent}
+                </motion.p>
                 <motion.div
-                  key={index}
-                  className="bg-[#2C313A] rounded-lg overflow-hidden shadow-lg border-t border-l border-gray-700 transition-transform hover:scale-[1.02] hover:shadow-cyan-900/20"
-                  variants={item}>
-                  <div className="h-48 bg-gradient-to-r from-[#00ffff]/20 to-[#fd19fc]/20 flex items-center justify-center">
-                    {project.imageUrl ? (
-                      <img
-                        src={project.imageUrl}
-                        alt={project.title}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <div className="text-5xl opacity-30">💻</div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-[#fd19fc]">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm opacity-70 mb-3">{project.tech}</p>
-                    <p className="text-gray-300 mb-4">{project.description}</p>
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-[#00ffff] text-black font-bold py-2 px-4 rounded hover:bg-[#fd19fc] transition-colors">
-                        View Project
-                      </a>
-                    )}
-                  </div>
+                  className="text-center mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}>
+                  <p className="text-[#fd19fc] font-semibold mb-2">
+                    Interactive 3D Project Cube
+                  </p>
+                  <p className="text-gray-400 text-sm">
+                    Click on any face to explore the project
+                  </p>
                 </motion.div>
-              ))}
+                <motion.div
+                  className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-[#161A20] to-[#1E2228] border border-gray-700"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}>
+                  <ProjectCube
+                    projects={projects}
+                    onProjectSelect={handleProjectSelect}
+                    selectedProject={selectedProject}
+                    isTouchDragging={isTouchDragging}
+                    setIsTouchDragging={setIsTouchDragging}
+                  />
+                </motion.div>
+                <motion.div
+                  className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}>
+                  {projects.map((project, index) => (
+                    <motion.button
+                      key={index}
+                      className="bg-[#2C313A] p-3 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#00ffff]/10 hover:-translate-y-1 transition-all duration-300 text-left"
+                      onClick={() => handleProjectSelect(project)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{ borderLeftColor: project.color }}>
+                      <h3 className="text-sm font-semibold text-white mb-1">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs text-gray-400">
+                        {project.tech.split(",")[0]}...
+                      </p>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              </div>
             </motion.div>
           </div>
+
+          {/* Project Details Modal */}
+          <AnimatePresence>
+            {selectedProject && (
+              <motion.div
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={closeProjectModal}>
+                <motion.div
+                  className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border-t border-l border-gray-700 shadow-2xl"
+                  initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                  onClick={(e) => e.stopPropagation()}>
+                  <div className="flex justify-between items-start mb-6">
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-bold text-[#00ffff] mb-2">
+                        {selectedProject.title}
+                      </h2>
+                      <p className="text-[#fd19fc] font-medium">
+                        {selectedProject.tech}
+                      </p>
+                    </div>
+                    <motion.button
+                      className="text-gray-400 hover:text-white text-2xl"
+                      onClick={closeProjectModal}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}>
+                      ×
+                    </motion.button>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="h-48 bg-gradient-to-r from-[#00ffff]/20 to-[#fd19fc]/20 rounded-lg flex items-center justify-center border border-gray-700">
+                      <div className="text-6xl opacity-30">💻</div>
+                    </div>
+
+                    <p className="text-gray-200 leading-relaxed text-lg">
+                      {selectedProject.description}
+                    </p>
+
+                    <div className="flex gap-4 pt-4">
+                      <motion.button
+                        className="bg-[#00ffff] text-black font-bold py-2 px-6 rounded-lg hover:bg-[#fd19fc] transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}>
+                        View Project
+                      </motion.button>
+                      <motion.button
+                        className="bg-[#2C313A] text-white py-2 px-6 rounded-lg hover:bg-[#fd19fc] transition-colors border border-gray-600"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}>
+                        Source Code
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
+
+// --- Scroll lock helpers ---
+const scrollLock = {
+  y: 0,
+  locked: false,
+  lock() {
+    if (this.locked) return;
+    this.y = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+    document.body.style.top = `-${this.y}px`;
+    this.locked = true;
+  },
+  unlock() {
+    if (!this.locked) return;
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+    document.body.style.top = "";
+    const y = this.y;
+    this.locked = false;
+    if (y) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: y });
+      });
+    }
+  },
+};
