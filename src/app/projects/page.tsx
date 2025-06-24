@@ -12,13 +12,7 @@ import {
   FiDownload,
   FiChevronDown,
 } from "react-icons/fi";
-import {
-  FaReact,
-  FaAndroid,
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-} from "react-icons/fa";
+import { FaReact, FaAndroid, FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiTypescript,
@@ -331,7 +325,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[2]?.title || "StepIO"}
           </div>
@@ -591,11 +585,11 @@ export default function ProjectsPage() {
         },
         {
           name: "Test 2",
-          filename: "test2.pdf",
+          filename: "test-1.pdf",
         },
         {
           name: "Test 3",
-          filename: "test3.pdf",
+          filename: "test-2.pdf",
         },
       ],
     },
@@ -789,14 +783,71 @@ export default function ProjectsPage() {
                           <div
                             className="monitor-frame"
                             style={{ width: "100%", maxWidth: "400px" }}>
-                            <img
-                              src={
-                                selectedProject.image ||
-                                "/images/placeholder.png"
-                              }
-                              alt={`${selectedProject.title} screenshot`}
-                              className="monitor-frame__screen"
-                            />
+                            {selectedProject.title === "Old Portfolio" ? (
+                              <video
+                                src="/videos/oldportfolio.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : selectedProject.title === "Dishcovery" ? (
+                              <video
+                                src="/videos/dishcovery.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : selectedProject.title ===
+                              "AMPCO® Calculator" ? (
+                              <video
+                                src="/videos/ampcoplatecutting.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : selectedProject.title === "G.U.C. Coaching" ? (
+                              <video
+                                src="/videos/guccoaching.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : selectedProject.title === "IstOneFlexWork" ? (
+                              <video
+                                src="/videos/istoneflexwork.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : selectedProject.title === "StepIO" ? (
+                              <video
+                                src="/videos/stepio.webm"
+                                className="monitor-frame__screen"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            ) : (
+                              <img
+                                src={
+                                  selectedProject.image ||
+                                  "/images/placeholder.png"
+                                }
+                                alt={`${selectedProject.title} screenshot`}
+                                className="monitor-frame__screen"
+                              />
+                            )}
                             <div className="monitor-frame__bezel" />
                             <div className="monitor-frame__stand" />
                           </div>
