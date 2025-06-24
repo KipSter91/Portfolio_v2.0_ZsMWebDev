@@ -22,19 +22,23 @@ import {
   SiVite,
   SiVercel,
   SiExpo,
+  SiFramer,
+  SiGreensock,
+  SiPython,
+  SiFlask,
 } from "react-icons/si";
 
 type Locale = keyof typeof translations;
 
 interface Project {
   title: string;
-  tech: string;
   description: string;
   imageUrl?: string;
   link?: string;
-  color: string;
   technologies?: { name: string; icon: React.ReactNode }[];
   image?: string;
+  liveDemo?: string;
+  sourceCode?: string;
 }
 
 // CSS 3D Cube Component
@@ -453,97 +457,48 @@ export default function ProjectsPage() {
   const projects: Project[] = [
     {
       title: "Old Portfolio",
-      tech: "React, Next.js, TypeScript, Framer Motion",
       description:
-        "My previous portfolio showcasing my earlier projects and development journey. Built with modern web technologies, this portfolio demonstrates my growth as a developer and includes various interactive elements and animations. It features responsive design, smooth transitions, and showcases my learning curve through different project implementations.",
-      color: "#00ffff",
+        "My previous portfolio showcasing my earlier projects and development journey. This portfolio demonstrates my growth as a developer. It features responsive design, smooth transitions, and showcases my learning curve through different projects.",
       technologies: [
-        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
+        { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
+        { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
+      ],
+      image: "/images/oldportfolio.png",
+      liveDemo: "https://zsoltmarku.com/",
+      sourceCode: "https://github.com/KipSter91/Portfolio_ZsMWebDev.git",
+    },
+    {
+      title: "IstOneFlexWork",
+      description:
+        "Responsive, SEO-optimized landing page for IstOneFlexWork (István Máté), a solar panel cleaning service. Built with Next.js for fast performance, featuring modern design and clear call-to-action sections for maximum user engagement.",
+      technologies: [
         { name: "Next.js", icon: <SiNextdotjs style={{ color: "#000000" }} /> },
         {
           name: "TypeScript",
           icon: <SiTypescript style={{ color: "#3178C6" }} />,
         },
         {
-          name: "Framer Motion",
-          icon: <span style={{ color: "#fd19fc" }}>🎬</span>,
-        },
-      ],
-      image: "/images/oldportfolio.png",
-    },
-    {
-      title: "IstOneFlexWork",
-      tech: "React, Tailwind CSS, Vite",
-      description:
-        "Professional landing page for IstOneFlexWork, a solar panel cleaning service company. The website features modern design, responsive layout, and clear call-to-action sections. Built with performance in mind using Vite for fast development and optimized build process, ensuring excellent user experience across all devices.",
-      color: "#fd19fc",
-      technologies: [
-        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
-        {
           name: "Tailwind CSS",
           icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
         },
-        { name: "Vite", icon: <SiVite style={{ color: "#646CFF" }} /> },
+        {
+          name: "Framer Motion",
+          icon: <SiFramer style={{ color: "#0055FF" }} />,
+        },
+        { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
       ],
       image: "/images/istoneflexwork.png",
+      liveDemo: "https://solarcleanflexwork.com/",
+      sourceCode:
+        "https://github.com/KipSter91/IstOneFlexWork_Landing_Page_ZsMWebDev.git",
     },
     {
       title: "StepIO",
-      tech: "React, Android, Firebase, Tailwind CSS",
       description:
-        "Comprehensive activity tracking solution featuring both a responsive landing page and a native Android application. StepIO helps users monitor their daily activities, set fitness goals, and track progress. The project includes real-time data synchronization, user authentication, and detailed analytics dashboard.",
-      color: "#00ff88",
+        "Comprehensive activity tracking solution featuring a responsive landing page and a native Android app. StepIO is a privacy-first step counter and GPS tracker built with React Native (Expo Bare Workflow) and custom Kotlin services. It offers onboarding, real-time step tracking, route logging, visual statistics, goal setting, and complete on-device data privacy—no external servers or data collection.",
       technologies: [
-        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
-        { name: "Android", icon: <FaAndroid style={{ color: "#3DDC84" }} /> },
-        { name: "Firebase", icon: <SiFirebase style={{ color: "#FFCA28" }} /> },
-        {
-          name: "Tailwind CSS",
-          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
-        },
-      ],
-      image: "/images/stepio.png",
-    },
-    {
-      title: "G.U.C. Coaching",
-      tech: "React, Tailwind CSS, Vercel",
-      description:
-        "Professional website for G.U.C. Coaching, a personal training and fitness coaching service. The site features client testimonials, service packages, booking system integration, and responsive design optimized for mobile users. Deployed on Vercel for reliable performance and global accessibility.",
-      color: "#ff6b6b",
-      technologies: [
-        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
-        {
-          name: "Tailwind CSS",
-          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
-        },
-        { name: "Vercel", icon: <SiVercel style={{ color: "#000000" }} /> },
-      ],
-      image: "/images/guccoaching.png",
-    },
-    {
-      title: "Dishcovery",
-      tech: "React Native, Expo, Node.js",
-      description:
-        "Mobile application for discovering and sharing culinary experiences. Dishcovery allows users to explore new recipes, share their own cooking creations, and connect with fellow food enthusiasts. Built with React Native and Expo for cross-platform compatibility, featuring real-time updates and social interactions.",
-      color: "#ffd93d",
-      technologies: [
-        {
-          name: "React Native",
-          icon: <FaReact style={{ color: "#61DAFB" }} />,
-        },
-        { name: "Expo", icon: <SiExpo style={{ color: "#000020" }} /> },
-        { name: "Node.js", icon: <FaNodeJs style={{ color: "#339933" }} /> },
-      ],
-      image: "/images/dishcovery.png",
-    },
-    {
-      title: "Ampco Calculator",
-      tech: "React, TypeScript, Tailwind CSS",
-      description:
-        "Specialized plate cutting calculator application developed for Ampco, providing precise calculations for industrial plate cutting operations. Features advanced mathematical algorithms, real-time calculations, material optimization suggestions, and comprehensive reporting capabilities for manufacturing efficiency.",
-      color: "#a8e6cf",
-      technologies: [
-        { name: "React", icon: <FaReact style={{ color: "#61DAFB" }} /> },
+        { name: "Next.js", icon: <SiNextdotjs style={{ color: "#000000" }} /> },
         {
           name: "TypeScript",
           icon: <SiTypescript style={{ color: "#3178C6" }} />,
@@ -552,8 +507,64 @@ export default function ProjectsPage() {
           name: "Tailwind CSS",
           icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
         },
+        {
+          name: "React Native",
+          icon: <FaReact style={{ color: "#61DAFB" }} />,
+        },
+        { name: "Expo", icon: <SiExpo style={{ color: "#000020" }} /> },
+        { name: "Android", icon: <FaAndroid style={{ color: "#3DDC84" }} /> },
+      ],
+      image: "/images/stepio.png",
+      liveDemo: "https://stepio.zsoltmarku.com/",
+      sourceCode:
+        "https://github.com/KipSter91/StepIO_Landing_Page_ZsMWebDev.git",
+    },
+    {
+      title: "G.U.C. Coaching",
+      description:
+        "Multilingual, animated landing page for G.U.C. Coaching (Dávid Vágusz), built with HTML, Tailwind CSS, and GSAP. The site highlights services, achievements, and offers contact options in three languages (EN, HU, NL). Features include smooth section transitions, animated logo using Delaunay triangulation, responsive design, and FormSubmit integration.",
+      technologies: [
+        { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
+        { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss style={{ color: "#06B6D4" }} />,
+        },
+        { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
+        { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
+      ],
+      image: "/images/guccoaching.png",
+      liveDemo: "https://www.zsoltmarku.com/projects/guccoaching/",
+      sourceCode: "https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git",
+    },
+    {
+      title: "Dishcovery",
+      description:
+        "Dishcovery is a responsive JavaScript web application for browsing and bookmarking recipes. Built with a custom MVC architecture, it features real-time ingredient adjustment, interactive UI, persistent bookmarks, and animated user experience. Recipes are fetched from the Forkify API, and the project is bundled with Parcel for optimized performance.",
+      technologies: [
+        { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
+        { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
+        { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
+      ],
+      image: "/images/dishcovery.png",
+      liveDemo: "https://www.zsoltmarku.com/projects/dishcovery/",
+      sourceCode: "https://github.com/KipSter91/Dishcovery_ZsMWebDev.git",
+    },
+    {
+      title: "AMPCO® Calculator",
+      description:
+        "Cutting time estimation tool for AMPCO METAL. Extracts X, Y, Z values from Act/Cube® PDF drawings or manual input, then calculates sequential plate cutting durations. Built with Python, Flask, and vanilla JS for clean UI and accurate industrial workflows.",
+      technologies: [
+        { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
+        { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
+        { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
+        { name: "Python", icon: <SiPython style={{ color: "#3776AB" }} /> },
+        { name: "Flask", icon: <SiFlask style={{ color: "#FFFFFF" }} /> },
       ],
       image: "/images/ampcoplatecutting.png",
+      liveDemo: "https://ampco-plate-cutting-time-calculator.onrender.com",
+      sourceCode:
+        "https://github.com/KipSter91/Ampco_Plate_Cutting_Time_Calculator_ZsMWebDev.git",
     },
   ];
 
@@ -746,27 +757,47 @@ export default function ProjectsPage() {
                           {selectedProject.description}
                         </p>
                       </div>
-
                       {/* Action Buttons */}
                       <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
                         <h3 className="text-xl font-semibold text-white mb-4">
                           Explore Project
                         </h3>
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <motion.button
-                            className="flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-black font-bold py-3 px-6 rounded-lg hover:from-[#00cccc] hover:to-[#009999] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30"
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}>
+                          <motion.a
+                            href={selectedProject.liveDemo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{
+                              duration: 0.4,
+                              type: "spring",
+                              stiffness: 200,
+                            }}>
                             <FiExternalLink className="w-5 h-5" />
-                            View Live Demo
-                          </motion.button>
-                          <motion.button
-                            className="flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14ca] text-white font-bold py-3 px-6 rounded-lg hover:from-[#cc14ca] hover:to-[#aa1099] transition-all duration-300 flex items-center justify-center gap-2 border border-[#fd19fc]/30 shadow-lg hover:shadow-[#fd19fc]/30"
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}>
+                            View Live
+                          </motion.a>
+                          <motion.a
+                            href={selectedProject.sourceCode}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14cc] text-white font-semibold py-3 px-6 rounded-xl hover:from-[#cc14cc] hover:to-[#fd19fc] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#fd19fc]/30 hover:-translate-y-1 border-2 border-[#fd19fc]/50"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{
+                              duration: 0.4,
+                              delay: 0.1,
+                              type: "spring",
+                              stiffness: 200,
+                            }}>
                             <FiGithub className="w-5 h-5" />
-                            Source Code
-                          </motion.button>
+                            Source
+                          </motion.a>
                         </div>
                       </div>
                     </div>
