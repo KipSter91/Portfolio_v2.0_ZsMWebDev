@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLocaleContext } from "../contexts/LocaleContext";
 import {
   FaLinkedinIn,
   FaGithub,
@@ -12,6 +13,7 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
+  const { t } = useLocaleContext();
   const currentYear = new Date().getFullYear();
   const socialLinks = [
     {
@@ -41,7 +43,7 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="flex items-center">
           <span className="text-xs md:text-sm text-[color:var(--white)]">
-            © 2023 - {currentYear} Zsolt Márku
+            © 2023 - {currentYear} {t.myName}
           </span>
         </motion.div>
         <motion.div

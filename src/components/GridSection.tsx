@@ -4,35 +4,38 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { useLocaleContext } from "../contexts/LocaleContext";
 
 interface GridSectionProps {
   onOpenModal?: (modal: string) => void;
   onExit?: () => void;
 }
 
-// 2x2 grid items
-const gridItems = [
-  { key: "about", label: "About Me", area: "1 / 1 / 2 / 2" },
-  { key: "skills", label: "Skills", area: "1 / 2 / 2 / 3" },
-  { key: "projects", label: "Projects", area: "2 / 1 / 3 / 2" },
-  { key: "contact", label: "Contact", area: "2 / 2 / 3 / 3" },
-];
-
-// SVG underline path variants
-const underlinePaths = [
-  // Straight
-  "M0,2.5 L100,2.5",
-  // Simple wave
-  "M0,2.5 Q25,0.5 50,2.5 T100,2.5",
-  // Double wave
-  "M0,2.5 Q12.5,0.5 25,2.5 Q37.5,4.5 50,2.5 Q62.5,0.5 75,2.5 Q87.5,4.5 100,2.5",
-  // Gentle curve
-  "M0,2.5 Q50,0.5 100,2.5",
-  // Inverted curve
-  "M0,2.5 Q50,4.5 100,2.5",
-];
-
 export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
+  const { t } = useLocaleContext();
+
+  // 2x2 grid items
+  const gridItems = [
+    { key: "about", label: t.about, area: "1 / 1 / 2 / 2" },
+    { key: "skills", label: t.skills, area: "1 / 2 / 2 / 3" },
+    { key: "projects", label: t.projects, area: "2 / 1 / 3 / 2" },
+    { key: "contact", label: t.contact, area: "2 / 2 / 3 / 3" },
+  ];
+
+  // SVG underline path variants
+  const underlinePaths = [
+    // Straight
+    "M0,2.5 L100,2.5",
+    // Simple wave
+    "M0,2.5 Q25,0.5 50,2.5 T100,2.5",
+    // Double wave
+    "M0,2.5 Q12.5,0.5 25,2.5 Q37.5,4.5 50,2.5 Q62.5,0.5 75,2.5 Q87.5,4.5 100,2.5",
+    // Gentle curve
+    "M0,2.5 Q50,0.5 100,2.5",
+    // Inverted curve
+    "M0,2.5 Q50,4.5 100,2.5",
+  ];
+
   const [hovered, setHovered] = useState<number | null>(null);
   const [visualHovered, setVisualHovered] = useState<number | null>(null);
   const [currentUnderlineIdx, setCurrentUnderlineIdx] = useState<number | null>(
@@ -352,13 +355,13 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
             className={`absolute top-[80px] w-20 h-7 rounded-b-xl bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 desktop-tooltip${
               logoHovered ? "" : " tooltip-hide"
             }`}>
-            <span className="text-white text-xs font-bold">Click on me!</span>
+            <span className="text-white text-xs font-bold">{t.clickMe}</span>
           </div>
         )}
         {/* Mobile tooltip: always visible */}
         {isMobile && (
-          <div className="absolute top-[80px] w-20 h-7 rounded-b-xl bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 pulse-dot">
-            <span className="text-white text-xs font-bold">Click on me!</span>
+          <div className="absolute top-[80px] w-20 h-7 rounded-b-xl bg-[#fd19fc] flex items-center justify-center shadow-glow z-50 pulse-effect">
+            <span className="text-white text-xs font-bold">{t.clickMe}</span>
           </div>
         )}
       </div>

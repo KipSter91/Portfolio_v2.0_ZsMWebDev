@@ -10,8 +10,10 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useLocaleContext } from "../contexts/LocaleContext";
 
 export default function LogoModal() {
+  const { t } = useLocaleContext();
   const el = useRef<HTMLSpanElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = ["/images/profile.webp", "/images/profile-1.webp"];
@@ -28,14 +30,14 @@ export default function LogoModal() {
     if (el.current) {
       const typed = new Typed(el.current, {
         strings: [
-          "I'm Zsolt Márku",
-          "Warehouse Manager",
-          "Frontend Developer",
-          "Creative Coder",
-          "Husband to Barbara",
-          "Proud Dad of 2 Cats",
-          "Traveller",
-          "Video Game Fanatic",
+          t.imZsolt,
+          t.warehouseManager,
+          t.frontendDeveloper,
+          t.creativeCoder,
+          t.husbandTo,
+          t.proudDadOfCats,
+          t.traveller,
+          t.videoGameFanatic,
         ],
         typeSpeed: 50,
         backSpeed: 30,
@@ -47,7 +49,7 @@ export default function LogoModal() {
       });
       return () => typed.destroy();
     }
-  }, []);
+  }, [t]);
   return (
     <motion.div
       className="flex flex-col items-center justify-center gap-10 p-10 h-full"
@@ -86,9 +88,9 @@ export default function LogoModal() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}>
-          "Creativity is intelligence having fun."
+          "{t.creativityQuote}"
           <span className="block font-handwriting text-lg text-[var(--neon-cyan)] mt-1 text-right mr-8">
-            — Albert Einstein
+            {t.einsteinCredit}
           </span>
         </motion.p>
       </motion.div>

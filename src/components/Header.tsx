@@ -3,19 +3,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { translations } from "../data/translations";
-import { useLocale } from "../lib/i18n";
-
-type Locale = keyof typeof translations;
+import { useLocaleContext, type Locale } from "../contexts/LocaleContext";
 
 const languages = [
-  { code: "en", label: "EN", name: "English" },
-  { code: "hu", label: "HU", name: "Magyar" },
-  { code: "nl", label: "NL", name: "Nederlands" },
+  { code: "en" as Locale, label: "EN", name: "English" },
+  { code: "hu" as Locale, label: "HU", name: "Magyar" },
+  { code: "nl" as Locale, label: "NL", name: "Nederlands" },
 ];
 
 const Header: React.FC = () => {
-  const [locale, setLocale] = useLocale();
+  const { locale, setLocale, t } = useLocaleContext();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +43,7 @@ const Header: React.FC = () => {
           <Link
             href="/"
             className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
-            <span className="text-xl font-bold">Portfolio</span>
+            <span className="text-xl font-bold">{t.portfolio}</span>
           </Link>
         </motion.div>
         <motion.div

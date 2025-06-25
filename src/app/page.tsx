@@ -8,11 +8,7 @@ import {
   AnimatedModal,
   LogoModal,
 } from "../components";
-import { translations } from "../data/translations";
-import { useLocale } from "../lib/i18n";
 import { useSearchParams } from "next/navigation";
-
-type Locale = keyof typeof translations;
 
 // Easter egg message in console
 const consoleStyles = [
@@ -45,10 +41,8 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [fromPageInitialized, setFromPageInitialized] = useState(false);
-  const [locale, setLocale] = useLocale();
   const [fromPage, setFromPage] = useState<string | null>(null);
   const [currentModal, setCurrentModal] = useState<string | null>(null);
-  const t = translations[locale as Locale];
 
   // Console easter egg
   useEffect(() => {

@@ -1,4 +1,4 @@
-// Központi helyen a komponensek számára
+// Centralized export file for components
 export { default as GridSection } from "./GridSection";
 export { default as AnimatedModal } from "./AnimatedModal";
 export { default as LogoModal } from "./LogoModal";

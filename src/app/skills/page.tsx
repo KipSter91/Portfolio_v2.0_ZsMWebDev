@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { translations } from "../../data/translations";
-import { useLocale } from "../../lib/i18n";
+import { useLocaleContext } from "../../contexts/LocaleContext";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -26,8 +25,6 @@ import {
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 
-type Locale = keyof typeof translations;
-
 // Personal skill item
 const PersonalSkillItem = ({
   skill,
@@ -37,12 +34,14 @@ const PersonalSkillItem = ({
   delay: number;
 }) => (
   <motion.div
-    className="bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
+    className="bg-[#2C313A] p-4 md:p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 min-h-[80px] sm:min-h-[90px] md:min-h-0 flex items-center justify-center"
     initial={{ y: 20, opacity: 0, scale: 0.9 }}
     animate={{ y: 0, opacity: 1, scale: 1 }}
     transition={{ duration: 0.5, delay }}>
     <div className="text-center">
-      <span className="text-gray-200 font-medium">{skill}</span>
+      <span className="text-gray-200 font-medium text-sm md:text-base leading-tight">
+        {skill}
+      </span>
     </div>
   </motion.div>
 );
@@ -73,8 +72,7 @@ export default function SkillsPage() {
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
-  const [locale, setLocale] = useLocale();
-  const t = translations[locale as Locale];
+  const { t } = useLocaleContext();
 
   useEffect(() => {
     // Add a small delay before showing content to ensure smooth animations
@@ -93,18 +91,18 @@ export default function SkillsPage() {
     }, 500);
   };
   const personalSkills = [
-    { skill: "Problem solving" },
-    { skill: "Critical thinking" },
-    { skill: "Communication" },
-    { skill: "Responsibility" },
-    { skill: "Leadership" },
-    { skill: "Teamwork" },
-    { skill: "Motivation" },
-    { skill: "Conflict management" },
-    { skill: "Adaptability" },
-    { skill: "Time management" },
-    { skill: "Attention to detail" },
-    { skill: "Creativity" },
+    { key: "problemSolving", skill: t.problemSolving },
+    { key: "criticalThinking", skill: t.criticalThinking },
+    { key: "communication", skill: t.communication },
+    { key: "responsibility", skill: t.responsibility },
+    { key: "leadership", skill: t.leadership },
+    { key: "teamwork", skill: t.teamwork },
+    { key: "motivation", skill: t.motivation },
+    { key: "conflictManagement", skill: t.conflictManagement },
+    { key: "adaptability", skill: t.adaptability },
+    { key: "timeManagement", skill: t.timeManagement },
+    { key: "attentionToDetail", skill: t.attentionToDetail },
+    { key: "creativity", skill: t.creativity },
   ];
   const frontendSkills = [
     { name: "HTML", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
@@ -171,7 +169,7 @@ export default function SkillsPage() {
                 }}>
                 ◀
               </motion.span>
-              Back
+              {t.back}
             </motion.button>
             <motion.div
               className="w-full mt-16"
@@ -188,7 +186,7 @@ export default function SkillsPage() {
                   damping: 15,
                   delay: 0.3,
                 }}>
-                {t.skills}
+                {t.skillsTitle}
               </motion.h1>
               <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
                 {/* Personal Skills Section */}
@@ -198,12 +196,12 @@ export default function SkillsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}>
                   <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center">
-                    Personal Skills
+                    {t.personalSkills}
                   </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                     {personalSkills.map((item, index) => (
                       <PersonalSkillItem
-                        key={item.skill}
+                        key={item.key}
                         skill={item.skill}
                         delay={0.7 + index * 0.1}
                       />
@@ -217,7 +215,7 @@ export default function SkillsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1.2 }}>
                   <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#00ffff] text-center">
-                    Coding Skills
+                    {t.codingSkills}
                   </h2>
                   {/* Frontend Skills */}
                   <motion.div
@@ -226,7 +224,7 @@ export default function SkillsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 1.4 }}>
                     <h3 className="text-xl font-semibold mb-4 text-[#fd19fc] text-center">
-                      Frontend
+                      {t.frontendSkills}
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {frontendSkills.map((tech, index) => (
@@ -246,7 +244,7 @@ export default function SkillsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 2.2 }}>
                     <h3 className="text-xl font-semibold mb-4 text-[#fd19fc] text-center">
-                      Backend
+                      {t.backendSkills}
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {backendSkills.map((tech, index) => (
@@ -267,7 +265,7 @@ export default function SkillsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 2.8 }}>
                   <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center">
-                    Tools & Technologies
+                    {t.toolsTechnologies}
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {tools.map((tool, index) => (
@@ -288,14 +286,9 @@ export default function SkillsPage() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 3.5 }}>
                 <h3 className="text-2xl font-semibold mb-4 text-[#fd19fc]">
-                  Always Learning
+                  {t.alwaysLearning}
                 </h3>
-                <p className="text-gray-200">
-                  I'm constantly expanding my skillset and staying up-to-date
-                  with the latest technologies and best practices in web
-                  development. Currently focusing on exploring new frameworks
-                  and tools to enhance my development capabilities.
-                </p>
+                <p className="text-gray-200">{t.alwaysLearningText}</p>
               </motion.div>
             </motion.div>
           </div>

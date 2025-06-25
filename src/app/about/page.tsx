@@ -4,17 +4,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { translations } from "../../data/translations";
-import { useLocale } from "../../lib/i18n";
-
-type Locale = keyof typeof translations;
+import { useLocaleContext } from "../../contexts/LocaleContext";
 
 export default function AboutPage() {
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
-  const [locale, setLocale] = useLocale();
-  const t = translations[locale as Locale];
+  const { t } = useLocaleContext();
   useEffect(() => {
     // Add a small delay before showing content to ensure smooth animations
     const timer = setTimeout(() => {
@@ -63,7 +59,7 @@ export default function AboutPage() {
                 }}>
                 ◀
               </motion.span>
-              Back
+              {t.back}
             </motion.button>
             <motion.div
               className="w-full mt-16"
@@ -102,7 +98,7 @@ export default function AboutPage() {
                             repeatDelay: 0.5,
                           }}>
                           <div className="bg-[#00ffff] text-[var(--neon-pink)] text-xs font-bold px-2 py-1 rounded shadow-lg">
-                            It's Me!
+                            {t.itsMe}
                           </div>
                         </motion.div>
                       </motion.div>
@@ -127,7 +123,7 @@ export default function AboutPage() {
                         damping: 15,
                         delay: 0.3,
                       }}>
-                      {t.about}
+                      {t.aboutTitle}
                     </motion.h1>
                     <motion.div
                       className="text-gray-200 space-y-4"
@@ -139,51 +135,27 @@ export default function AboutPage() {
                         ease: "easeOut",
                       }}>
                       <h2 className="text-2xl font-semibold text-[#fd19fc] mb-3">
-                        My journey and professional experiences (so far)
+                        {t.journeyTitle}
                       </h2>
 
                       <p className="text-lg leading-relaxed">
-                        I studied at the Faculty of Informatics at the
-                        University of Miskolc for two years, where I gained
-                        thorough knowledge in the field of computer science.
-                        During my studies, I discovered my passion for web
-                        development and programming, which has since defined my
-                        professional interests.
+                        {t.journeyPara1}
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        My journey led me to the Netherlands, where I began my
-                        career at AMPCO Metal as a sawing machine operator.
-                        Within a short period, I was promoted to leadership
-                        positions, first as a Team Leader and then as a
-                        Warehouse Supervisor. In these roles, I learned how to
-                        lead teams, optimize processes, and ensure efficiency in
-                        a fast-paced industrial environment.
+                        {t.journeyPara2}
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Currently, I work at Arvato as a Warehouse Manager,
-                        where I oversee a larger team and supervise complex
-                        logistical operations. This role provides me with
-                        opportunities to further develop my strategic thinking
-                        and leadership skills.
+                        {t.journeyPara3}
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Meanwhile, my passion for IT and technology remains
-                        unchanged. I continuously expand my knowledge in web
-                        development, programming languages, as well as
-                        artificial intelligence and AI tools. This expertise
-                        enables me to combine technological innovations with my
-                        leadership experience to offer effective solutions to
-                        modern business challenges.
+                        {t.journeyPara4}
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        I am ready to apply my knowledge and experience in new
-                        projects. Join me on this journey, and let's explore the
-                        endless possibilities of web development, artificial
-                        intelligence, and technological advancement together!
+                        {t.journeyPara5}
                       </p>
                     </motion.div>
                   </div>
@@ -195,23 +167,15 @@ export default function AboutPage() {
                   transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}>
                   <div className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
                     <h2 className="text-xl font-semibold mb-2 text-[#fd19fc]">
-                      Experience
+                      {t.experienceTitle}
                     </h2>
-                    <p className="text-gray-300">
-                      Team leadership and warehouse operations, while
-                      concurrently developing expertise in building websites,
-                      landing pages, and modern web applications.
-                    </p>
+                    <p className="text-gray-300">{t.experienceDescription}</p>
                   </div>
                   <div className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
                     <h2 className="text-xl font-semibold mb-2 text-[#fd19fc]">
-                      Education
+                      {t.educationTitle}
                     </h2>
-                    <p className="text-gray-300">
-                      Computer Science studies at the University of Miskolc with
-                      continuous self-development in modern web technologies and
-                      AI.
-                    </p>
+                    <p className="text-gray-300">{t.educationDescription}</p>
                   </div>
                 </motion.div>
               </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import { Header, Footer } from "../components";
+import { LocaleProvider } from "../contexts/LocaleContext";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -20,12 +21,14 @@ export default function RootLayout({
       <body
         className={`antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning>
-        <CustomCursor />
-        <div className="fixed top-0 left-0 right-0 z-50 header-blur">
-          <Header />
-        </div>
-        <main className="pt-14 flex-grow overflow-x-hidden">{children}</main>
-        <Footer />
+        <LocaleProvider>
+          <CustomCursor />
+          <div className="fixed top-0 left-0 right-0 z-50 header-blur">
+            <Header />
+          </div>
+          <main className="pt-14 flex-grow overflow-x-hidden">{children}</main>
+          <Footer />
+        </LocaleProvider>
       </body>
     </html>
   );

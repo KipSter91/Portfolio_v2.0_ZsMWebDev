@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { translations } from "../../data/translations";
-import { useLocale } from "../../lib/i18n";
+import { useLocaleContext } from "../../contexts/LocaleContext";
 import {
   FiRefreshCw,
   FiExternalLink,
@@ -23,8 +22,6 @@ import {
   SiPython,
   SiFlask,
 } from "react-icons/si";
-
-type Locale = keyof typeof translations;
 
 interface Project {
   title: string;
@@ -440,8 +437,7 @@ export default function ProjectsPage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState<string>("");
   const router = useRouter();
-  const [locale, setLocale] = useLocale();
-  const t = translations[locale as Locale];
+  const { t } = useLocaleContext();
 
   // Modal scroll lock effect (must be inside ProjectsPage)
   useEffect(() => {
@@ -469,8 +465,9 @@ export default function ProjectsPage() {
   };
   const projects: Project[] = [
     {
-      title: "Old Portfolio",
+      title: t.oldPortfolioTitle || "Old Portfolio",
       description:
+        t.oldPortfolioDescription ||
         "My previous portfolio showcasing my earlier projects and development journey. This portfolio demonstrates my growth as a developer. It features responsive design, smooth transitions, and showcases my learning curve through different projects.",
       technologies: [
         { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
@@ -482,8 +479,9 @@ export default function ProjectsPage() {
       sourceCode: "https://github.com/KipSter91/Portfolio_ZsMWebDev.git",
     },
     {
-      title: "IstOneFlexWork",
+      title: t.istOneFlexWorkTitle || "IstOneFlexWork",
       description:
+        t.istOneFlexWorkDescription ||
         "Responsive, SEO-optimized landing page for IstOneFlexWork (István Máté), a solar panel cleaning service. Built with Next.js for fast performance, featuring modern design and clear call-to-action sections for maximum user engagement.",
       technologies: [
         { name: "Next.js", icon: <SiNextdotjs style={{ color: "#000000" }} /> },
@@ -507,8 +505,9 @@ export default function ProjectsPage() {
         "https://github.com/KipSter91/IstOneFlexWork_Landing_Page_ZsMWebDev.git",
     },
     {
-      title: "StepIO",
+      title: t.stepIOTitle || "StepIO",
       description:
+        t.stepIODescription ||
         "Comprehensive activity tracking solution featuring a responsive landing page and a native Android app. StepIO is a privacy-first step counter and GPS tracker built with React Native (Expo Bare Workflow) and custom Kotlin services. It offers onboarding, real-time step tracking, route logging, visual statistics, goal setting, and complete on-device data privacy—no external servers or data collection.",
       technologies: [
         { name: "Next.js", icon: <SiNextdotjs style={{ color: "#000000" }} /> },
@@ -533,8 +532,9 @@ export default function ProjectsPage() {
         "https://github.com/KipSter91/StepIO_Landing_Page_ZsMWebDev.git",
     },
     {
-      title: "G.U.C. Coaching",
+      title: t.gucCoachingTitle || "G.U.C. Coaching",
       description:
+        t.gucCoachingDescription ||
         "Multilingual, animated landing page for G.U.C. Coaching (Dávid Vágusz), built with HTML, Tailwind CSS, and GSAP. The site highlights services, achievements, and offers contact options in three languages (EN, HU, NL). Features include smooth section transitions, animated logo using Delaunay triangulation, responsive design, and FormSubmit integration.",
       technologies: [
         { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
@@ -551,8 +551,9 @@ export default function ProjectsPage() {
       sourceCode: "https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git",
     },
     {
-      title: "Dishcovery",
+      title: t.dishcoveryTitle || "Dishcovery",
       description:
+        t.dishcoveryDescription ||
         "Dishcovery is a responsive JavaScript web application for browsing and bookmarking recipes. Built with a custom MVC architecture, it features real-time ingredient adjustment, interactive UI, persistent bookmarks, and animated user experience. Recipes are fetched from the Forkify API, and the project is bundled with Parcel for optimized performance.",
       technologies: [
         { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
@@ -564,8 +565,9 @@ export default function ProjectsPage() {
       sourceCode: "https://github.com/KipSter91/Dishcovery_ZsMWebDev.git",
     },
     {
-      title: "AMPCO® Calculator",
+      title: t.ampcoCalculatorTitle || "AMPCO® Calculator",
       description:
+        t.ampcoCalculatorDescription ||
         "Cutting time estimation tool for AMPCO METAL. Extracts X, Y, Z values from Act/Cube® PDF drawings or manual input, then calculates sequential plate cutting durations. Built with Python, Flask, and vanilla JS for clean UI and accurate industrial workflows.",
       technologies: [
         { name: "HTML5", icon: <FaHtml5 style={{ color: "#E34F26" }} /> },
@@ -671,7 +673,7 @@ export default function ProjectsPage() {
                     damping: 15,
                     delay: 0.3,
                   }}>
-                  {t.projects}
+                  {t.projectsTitle}
                 </motion.h1>
                 <motion.p
                   className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed border-b border-[#00ffff]/20 pb-4 rounded-xl"
@@ -687,19 +689,22 @@ export default function ProjectsPage() {
                   transition={{ duration: 0.6, delay: 0.5 }}>
                   <div className="inline-block border-b border-[#00ffff]/20 pb-4 rounded-xl">
                     <p className="text-[#fd19fc] font-semibold mb-1">
-                      Interactive 3D Project Cube
+                      {t.projectCubeTitle || "Interactive 3D Project Cube"}
                     </p>
                     <p className="text-gray-400 text-sm">
-                      Click on any face to explore the project
+                      {t.projectCubeDescription ||
+                        "Click on any face to explore the project"}
                     </p>
                   </div>
                 </motion.div>
                 <div className="flex flex-row items-center justify-between gap-4 mb-4">
                   <div className="z-20 text-[#00ffff]/70 text-xs md:text-sm bg-[#2C313A]/80 backdrop-blur-sm px-2 py-1 md:px-3 md:py-2 rounded-lg border border-[#00ffff]/20">
                     <div className="hidden md:block">
-                      Click & drag to rotate
+                      {t.dragToRotate || "Click & drag to rotate"}
                     </div>
-                    <div className="md:hidden">Swipe to rotate</div>
+                    <div className="md:hidden">
+                      {t.swipeToRotate || "Swipe to rotate"}
+                    </div>
                   </div>
                   <motion.button
                     className="z-20 flex items-center justify-center bg-[#2C313A] text-[#00ffff] border border-[#00ffff]/30 p-1.5 md:p-2 rounded-lg hover:bg-[#fd19fc] hover:text-white transition-all duration-300 shadow-lg hover:shadow-[#fd19fc]/30"
@@ -714,7 +719,7 @@ export default function ProjectsPage() {
                     disabled={isRotating}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    title="Reset view">
+                    title={t.resetView || "Reset view"}>
                     <FiRefreshCw />
                   </motion.button>
                 </div>
@@ -777,13 +782,14 @@ export default function ProjectsPage() {
                       {/* Monitor Frame with Project Image */}
                       <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
                         <h3 className="text-xl font-semibold text-white mb-4 text-center">
-                          Project Preview
+                          {t.projectPreview || "Project Preview"}
                         </h3>
                         <div className="flex justify-center">
                           <div
                             className="monitor-frame"
                             style={{ width: "100%", maxWidth: "400px" }}>
-                            {selectedProject.title === "Old Portfolio" ? (
+                            {selectedProject.title === t.oldPortfolioTitle ||
+                            selectedProject.title === "Old Portfolio" ? (
                               <video
                                 src="/videos/oldportfolio.webm"
                                 className="monitor-frame__screen"
@@ -792,7 +798,8 @@ export default function ProjectsPage() {
                                 muted
                                 playsInline
                               />
-                            ) : selectedProject.title === "Dishcovery" ? (
+                            ) : selectedProject.title === t.dishcoveryTitle ||
+                              selectedProject.title === "Dishcovery" ? (
                               <video
                                 src="/videos/dishcovery.webm"
                                 className="monitor-frame__screen"
@@ -802,7 +809,8 @@ export default function ProjectsPage() {
                                 playsInline
                               />
                             ) : selectedProject.title ===
-                              "AMPCO® Calculator" ? (
+                                t.ampcoCalculatorTitle ||
+                              selectedProject.title === "AMPCO® Calculator" ? (
                               <video
                                 src="/videos/ampcoplatecutting.webm"
                                 className="monitor-frame__screen"
@@ -811,7 +819,8 @@ export default function ProjectsPage() {
                                 muted
                                 playsInline
                               />
-                            ) : selectedProject.title === "G.U.C. Coaching" ? (
+                            ) : selectedProject.title === t.gucCoachingTitle ||
+                              selectedProject.title === "G.U.C. Coaching" ? (
                               <video
                                 src="/videos/guccoaching.webm"
                                 className="monitor-frame__screen"
@@ -820,7 +829,9 @@ export default function ProjectsPage() {
                                 muted
                                 playsInline
                               />
-                            ) : selectedProject.title === "IstOneFlexWork" ? (
+                            ) : selectedProject.title ===
+                                t.istOneFlexWorkTitle ||
+                              selectedProject.title === "IstOneFlexWork" ? (
                               <video
                                 src="/videos/istoneflexwork.webm"
                                 className="monitor-frame__screen"
@@ -829,7 +840,8 @@ export default function ProjectsPage() {
                                 muted
                                 playsInline
                               />
-                            ) : selectedProject.title === "StepIO" ? (
+                            ) : selectedProject.title === t.stepIOTitle ||
+                              selectedProject.title === "StepIO" ? (
                               <video
                                 src="/videos/stepio.webm"
                                 className="monitor-frame__screen"
@@ -857,7 +869,7 @@ export default function ProjectsPage() {
                       {selectedProject.technologies && (
                         <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
                           <h3 className="text-xl font-semibold text-white mb-4">
-                            Technologies Used
+                            {t.technologiesUsed}
                           </h3>
                           <div className="grid grid-cols-2 gap-4">
                             {selectedProject.technologies.map((tech, index) => (
@@ -885,7 +897,7 @@ export default function ProjectsPage() {
                       {/* Description */}
                       <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
                         <h3 className="text-xl font-semibold text-white mb-4">
-                          About This Project
+                          {t.aboutProject || "About This Project"}
                         </h3>
                         <p className="text-gray-200 leading-relaxed text-base">
                           {selectedProject.description}
@@ -894,7 +906,7 @@ export default function ProjectsPage() {
                       {/* Action Buttons */}
                       <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
                         <h3 className="text-xl font-semibold text-white mb-4">
-                          Explore Project
+                          {t.exploreProject || "Explore Project"}
                         </h3>
                         <div className="flex flex-col sm:flex-row gap-4">
                           <motion.a
@@ -912,7 +924,7 @@ export default function ProjectsPage() {
                               stiffness: 200,
                             }}>
                             <FiExternalLink className="w-5 h-5" />
-                            View Live
+                            {t.viewLive || "View Live"}
                           </motion.a>
                           <motion.a
                             href={selectedProject.sourceCode}
@@ -930,16 +942,17 @@ export default function ProjectsPage() {
                               stiffness: 200,
                             }}>
                             <FiGithub className="w-5 h-5" />
-                            Source
+                            {t.source || "Source"}
                           </motion.a>
                         </div>
 
                         {/* Downloadable PDFs - Only for AMPCO Calculator */}
-                        {selectedProject.title === "AMPCO® Calculator" &&
+                        {(selectedProject.title === t.ampcoCalculatorTitle ||
+                          selectedProject.title === "AMPCO® Calculator") &&
                           selectedProject.pdfs && (
                             <div className="mt-6 pt-6 border-t border-[#00ffff]/20">
                               <h4 className="text-lg font-semibold text-white mb-4">
-                                Downloadable PDFs
+                                {t.downloadablePDFs || "Downloadable PDFs"}
                               </h4>
                               <div className="space-y-4">
                                 {/* Dropdown */}
@@ -956,8 +969,11 @@ export default function ProjectsPage() {
                                         ? selectedProject.pdfs.find(
                                             (pdf) =>
                                               pdf.filename === selectedPdf
-                                          )?.name || "Select a test PDF..."
-                                        : "Select a test PDF..."}
+                                          )?.name ||
+                                          t.selectTestPDF ||
+                                          "Select a test PDF..."
+                                        : t.selectTestPDF ||
+                                          "Select a test PDF..."}
                                     </span>
                                     <motion.div
                                       animate={{
@@ -1017,7 +1033,7 @@ export default function ProjectsPage() {
                                       stiffness: 200,
                                     }}>
                                     <FiDownload className="w-5 h-5" />
-                                    Download
+                                    {t.download || "Download"}{" "}
                                     {
                                       selectedProject.pdfs.find(
                                         (pdf) => pdf.filename === selectedPdf

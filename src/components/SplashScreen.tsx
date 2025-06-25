@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLocaleContext } from "../contexts/LocaleContext";
 
 interface SplashScreenProps {
   onComplete: () => void;
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
+  const { t } = useLocaleContext();
   const [showContent, setShowContent] = useState(false);
   useEffect(() => {
     // First animation starts with a slight delay
@@ -88,12 +90,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="text-center mb-6">
+          className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-[#00ffff] mb-2 tracking-wide">
-            Welcome
+            {t.splashWelcome}
           </h1>
           <p className="text-xl md:text-2xl text-white font-light">
-            to my <span className="text-[#fd19fc] font-medium">Portfolio</span>
+            {t.welcome}
           </p>
         </motion.div>
         {/* Progress bar with realistic loading animation */}

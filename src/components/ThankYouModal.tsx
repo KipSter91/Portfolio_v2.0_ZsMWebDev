@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedModal from "./AnimatedModal";
+import { useLocaleContext } from "../contexts/LocaleContext";
 
 interface ThankYouModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ThankYouModalProps {
 }
 
 export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
+  const { t } = useLocaleContext();
   return (
     <AnimatedModal
       isOpen={isOpen}
@@ -48,7 +50,7 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}>
-          Message Sent Successfully
+          {t.thankYouTitle}
         </motion.h2>
         {/* Description */}
         <motion.p
@@ -56,8 +58,7 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}>
-          Thank you for reaching out. I will get back to you as soon as
-          possible.
+          {t.thankYouMessage}
         </motion.p>
       </div>
     </AnimatedModal>

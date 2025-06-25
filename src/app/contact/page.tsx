@@ -3,13 +3,10 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { translations } from "../../data/translations";
-import { useLocale } from "../../lib/i18n";
+import { useLocaleContext } from "../../contexts/LocaleContext";
 import { ThankYouModal } from "../../components";
 import { MdEmail } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
-
-type Locale = keyof typeof translations;
 
 function ContactPageContent() {
   const [isExiting, setIsExiting] = useState(false);
@@ -20,11 +17,11 @@ function ContactPageContent() {
     message: "",
   });
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [locale, setLocale] = useLocale();
-  const t = translations[locale as Locale];
+  const { t } = useLocaleContext();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -113,7 +110,7 @@ function ContactPageContent() {
                       damping: 15,
                       delay: 0.3,
                     }}>
-                    {t.contact}
+                    {t.contactTitle}
                   </motion.h1>
                   <motion.p
                     className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed border-b border-[#00ffff]/20 pb-4 rounded-xl"
@@ -164,7 +161,7 @@ function ContactPageContent() {
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="name">
-                          Name
+                          {t.yourName}
                         </label>
                         <input
                           type="text"
@@ -174,13 +171,14 @@ function ContactPageContent() {
                           onChange={handleInputChange}
                           required
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
+                          placeholder={t.namePlaceholder}
                         />
                       </div>
                       <div>
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="email">
-                          Email
+                          {t.yourEmail}
                         </label>
                         <input
                           type="email"
@@ -190,13 +188,14 @@ function ContactPageContent() {
                           onChange={handleInputChange}
                           required
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
+                          placeholder={t.emailPlaceholder}
                         />
                       </div>
                       <div>
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="message">
-                          Message
+                          {t.yourMessage}
                         </label>
                         <textarea
                           id="message"
@@ -205,6 +204,7 @@ function ContactPageContent() {
                           value={formState.message}
                           onChange={handleInputChange}
                           required
+                          placeholder={t.messagePlaceholder}
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"></textarea>
                       </div>
                       <motion.button
@@ -214,12 +214,13 @@ function ContactPageContent() {
                         animate={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsSubmitting(true)}
                         transition={{
                           duration: 0.4,
                           type: "spring",
                           stiffness: 200,
                         }}>
-                        Send Message
+                        {t.sendMessage}
                       </motion.button>
                     </form>
                   </motion.div>
@@ -234,7 +235,7 @@ function ContactPageContent() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 1 }}>
-                      Let's Connect
+                      {t.letsConnect}
                     </motion.h2>
 
                     <motion.div
@@ -276,8 +277,9 @@ function ContactPageContent() {
                             <MdEmail className="w-5 h-5 text-black" />
                           </div>
                           <div>
+                            {" "}
                             <h3 className="text-white font-semibold group-hover:text-[#00ffff] transition-colors">
-                              Email
+                              {t.email}
                             </h3>
                             <p className="text-gray-300">
                               portfolio@zsoltmarku.com
@@ -292,13 +294,10 @@ function ContactPageContent() {
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 1.5 }}>
                         <h3 className="text-xl font-bold text-[#00ffff] mb-3">
-                          Let's Collaborate!
+                          {t.letsCollaborate}
                         </h3>
                         <p className="text-gray-300 leading-relaxed">
-                          I'm always interested in new opportunities,
-                          challenging projects, and connecting with fellow
-                          developers. Whether you have a project in mind or just
-                          want to chat about tech, feel free to reach out!
+                          {t.collaborationText}
                         </p>
                       </motion.div>
                     </motion.div>
@@ -320,19 +319,5 @@ function ContactPageContent() {
 }
 
 export default function ContactPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-[calc(100vh-3.5rem-4rem)] w-full bg-[#161A20] flex items-center justify-center">
-          <motion.div
-            className="text-[#00ffff] text-2xl"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}>
-            Loading...
-          </motion.div>
-        </div>
-      }>
-      <ContactPageContent />
-    </Suspense>
-  );
+  return <ContactPageContent />;
 }
