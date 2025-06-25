@@ -169,7 +169,7 @@ export default function SkillsPage() {
                   duration: 1.5,
                   repeatDelay: 1,
                 }}>
-                ←
+                ◀
               </motion.span>
               Back
             </motion.button>

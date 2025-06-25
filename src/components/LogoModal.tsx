@@ -98,7 +98,7 @@ export default function LogoModal() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}>
         <a
-          href="https://linkedin.com/in/zsoltmarku"
+          href="https://linkedin.com/in/zsolt-márku-931a49298"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
@@ -112,21 +112,21 @@ export default function LogoModal() {
           <FaGithub size={20} />
         </a>
         <a
-          href="https://facebook.com/zsolt.marku"
+          href="https://www.facebook.com/marku.zsolt"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
           <FaFacebookF size={20} />
         </a>
         <a
-          href="https://instagram.com/zsoltmarku"
+          href="https://www.instagram.com/markuzsolt/"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
           <FaInstagram size={20} />
         </a>
         <a
-          href="https://twitter.com/zsoltmarku"
+          href="https://x.com/MarkuZsolt"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">

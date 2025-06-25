@@ -40,7 +40,6 @@ export default function AboutPage() {
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}>
           <div className="w-full max-w-5xl relative">
-            {" "}
             <motion.button
               className="absolute top-0 left-0 mb-6 bg-[#2C313A] text-white py-2 px-4 rounded-xl hover:bg-[#fd19fc] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#fd19fc]/20 hover:-translate-y-1"
               onClick={handleGoHome}
@@ -62,7 +61,7 @@ export default function AboutPage() {
                   duration: 1.5,
                   repeatDelay: 1,
                 }}>
-                ←
+                ◀
               </motion.span>
               Back
             </motion.button>

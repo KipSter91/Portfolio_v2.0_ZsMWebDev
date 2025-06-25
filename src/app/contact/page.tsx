@@ -1,25 +1,47 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { translations } from "../../data/translations";
 import { useLocale } from "../../lib/i18n";
+import { ThankYouModal } from "../../components";
+import { MdEmail } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
 
 type Locale = keyof typeof translations;
 
-export default function ContactPage() {
+function ContactPageContent() {
   const [isExiting, setIsExiting] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [locale, setLocale] = useLocale();
   const t = translations[locale as Locale];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    // Check if form was successfully submitted via FormSubmit
+    if (searchParams.get("success") === "true") {
+      setShowThankYouModal(true);
+      // Clear the URL parameter after showing modal
+      const url = new URL(window.location.href);
+      url.searchParams.delete("success");
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    return () => clearTimeout(timer);
+  }, [searchParams]);
 
   const handleGoHome = () => {
     setIsExiting(true);
@@ -28,195 +50,289 @@ export default function ContactPage() {
       router.push("/?from=contact");
     }, 500);
   };
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { id, value } = e.target;
+    const { name, value } = e.target;
     setFormState((prev) => ({
       ...prev,
-      [id]: value,
+      [name]: value,
     }));
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would normally handle the form submission to your backend
-    console.log("Form submitted:", formState);
-
-    // Show success message
-    setSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormState({
-        name: "",
-        email: "",
-        message: "",
-      });
-      setSubmitted(false);
-    }, 3000);
-  };
   return (
-    <AnimatePresence mode="wait">
-      {!isExiting && (
-        <motion.div
-          className="min-h-screen bg-[#161A20] p-8 flex items-center justify-center"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}>
-          <motion.button
-            className="absolute top-6 left-6 bg-[#2C313A] text-white py-2 px-4 rounded hover:bg-[#fd19fc] transition-colors"
-            onClick={handleGoHome}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}>
-            ← {t.back}
-          </motion.button>
-
-          <div className="w-full max-w-2xl">
-            <motion.h1
-              className="text-4xl font-bold mb-6 text-[#00ffff] text-center"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}>
-              {t.contact}
-            </motion.h1>
-
-            <motion.p
-              className="text-xl text-gray-200 text-center mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.5 }}>
-              {t.contactContent}
-            </motion.p>
-
-            <motion.div
-              className="bg-[#1E2228] p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}>
-              {submitted ? (
-                <motion.div
-                  className="text-center py-12"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
+    <>
+      <AnimatePresence mode="wait">
+        {!isExiting && isLoaded && (
+          <motion.div
+            key="contact-page"
+            className="min-h-[calc(100vh-3.5rem-4rem)] w-full bg-[#161A20] py-8 px-4 md:px-8 flex flex-col items-center"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}>
+            <div className="w-full max-w-6xl relative">
+              <motion.button
+                className="absolute top-0 left-0 mb-6 bg-[#2C313A] text-white py-2 px-4 rounded-xl hover:bg-[#fd19fc] transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-[#fd19fc]/20 hover:-translate-y-1"
+                onClick={handleGoHome}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.2,
+                  type: "spring",
+                  stiffness: 200,
+                }}>
+                <motion.span
+                  initial={{ x: 0 }}
+                  animate={{ x: [-3, 0, -3] }}
                   transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 25,
+                    repeat: Infinity,
+                    duration: 1.5,
+                    repeatDelay: 1,
                   }}>
-                  <div className="text-5xl mb-4">✓</div>
-                  <h3 className="text-2xl font-bold text-[#00ffff] mb-2">
-                    Message Sent!
-                  </h3>
-                  <p className="text-gray-300">
-                    Thank you for reaching out. I'll get back to you soon.
-                  </p>
-                </motion.div>
-              ) : (
-                <form
-                  className="space-y-6"
-                  onSubmit={handleSubmit}>
-                  <div>
-                    <label
-                      className="block text-sm mb-2 text-gray-300"
-                      htmlFor="name">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      value={formState.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
-                    />
-                  </div>
+                  ◀
+                </motion.span>
+                {t.back}
+              </motion.button>
 
-                  <div>
-                    <label
-                      className="block text-sm mb-2 text-gray-300"
-                      htmlFor="email">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={formState.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
-                    />
-                  </div>
+              <motion.div
+                className="w-full mt-16"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}>
+                <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
+                  <motion.h1
+                    className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                      delay: 0.3,
+                    }}>
+                    {t.contact}
+                  </motion.h1>
+                  <motion.p
+                    className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed border-b border-[#00ffff]/20 pb-4 rounded-xl"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}>
+                    {t.contactContent}
+                  </motion.p>
+                </div>
+                {/* Two-column layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Contact Form */}
+                  <motion.div
+                    className="bg-[#1E2228] p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}>
+                    <form
+                      method="POST"
+                      action="https://formsubmit.co/zsoltmarku910221@gmail.com"
+                      className="space-y-6">
+                      {/* FormSubmit configuration fields */}
+                      <input
+                        type="hidden"
+                        name="_subject"
+                        value="New contact form submission from portfolio"
+                      />
+                      <input
+                        type="hidden"
+                        name="_next"
+                        value={`${
+                          typeof window !== "undefined"
+                            ? window.location.origin
+                            : ""
+                        }/contact?success=true`}
+                      />
+                      <input
+                        type="hidden"
+                        name="_captcha"
+                        value="false"
+                      />
+                      <input
+                        type="hidden"
+                        name="_template"
+                        value="table"
+                      />
+                      <div>
+                        <label
+                          className="block text-sm mb-2 text-gray-300"
+                          htmlFor="name">
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formState.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          className="block text-sm mb-2 text-gray-300"
+                          htmlFor="email">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formState.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          className="block text-sm mb-2 text-gray-300"
+                          htmlFor="message">
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows={5}
+                          value={formState.message}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"></textarea>
+                      </div>
+                      <motion.button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{
+                          duration: 0.4,
+                          type: "spring",
+                          stiffness: 200,
+                        }}>
+                        Send Message
+                      </motion.button>
+                    </form>
+                  </motion.div>
+                  {/* Contact Info */}
+                  <motion.div
+                    className="bg-[#1E2228] p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}>
+                    <motion.h2
+                      className="text-2xl font-bold text-[#00ffff] mb-6"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 1 }}>
+                      Let's Connect
+                    </motion.h2>
 
-                  <div>
-                    <label
-                      className="block text-sm mb-2 text-gray-300"
-                      htmlFor="message">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      value={formState.message}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"></textarea>
-                  </div>
+                    <motion.div
+                      className="space-y-6"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.7, delay: 1.2 }}>
+                      {/* WhatsApp */}
+                      <motion.a
+                        href="https://wa.me/31686351440"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 group"
+                        initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.3 }}>
+                        <div className="flex items-center gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center">
+                            <FaWhatsapp className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-semibold group-hover:text-[#00ffff] transition-colors">
+                              WhatsApp
+                            </h3>
+                            <p className="text-gray-300">+31686351440</p>
+                          </div>
+                        </div>
+                      </motion.a>
 
-                  <motion.button
-                    type="submit"
-                    className="w-full bg-[#00ffff] text-black font-bold py-3 px-4 rounded hover:bg-[#fd19fc] transition-colors"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}>
-                    Send Message
-                  </motion.button>
-                </form>
-              )}
-            </motion.div>
+                      {/* Email */}
+                      <motion.a
+                        href="mailto:portfolio@zsoltmarku.com"
+                        className="block bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+                        initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.4 }}>
+                        <div className="flex items-center gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 bg-[#00ffff] rounded-full flex items-center justify-center">
+                            <MdEmail className="w-5 h-5 text-black" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-semibold group-hover:text-[#00ffff] transition-colors">
+                              Email
+                            </h3>
+                            <p className="text-gray-300">
+                              portfolio@zsoltmarku.com
+                            </p>
+                          </div>
+                        </div>
+                      </motion.a>
+                      {/* Let's Collaborate */}
+                      <motion.div
+                        className="bg-[#2C313A] p-6 rounded-lg border border-[#00ffff]/30 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
+                        initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.5 }}>
+                        <h3 className="text-xl font-bold text-[#00ffff] mb-3">
+                          Let's Collaborate!
+                        </h3>
+                        <p className="text-gray-300 leading-relaxed">
+                          I'm always interested in new opportunities,
+                          challenging projects, and connecting with fellow
+                          developers. Whether you have a project in mind or just
+                          want to chat about tech, feel free to reach out!
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            <motion.div
-              className="mt-8 flex justify-center space-x-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.8 }}>
-              {/* Social media icons - replace # with your actual links */}
-              <a
-                href="#"
-                className="text-gray-400 hover:text-[#00ffff] transition-colors">
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-[#00ffff] transition-colors">
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-[#00ffff] transition-colors">
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" />
-                </svg>
-              </a>
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      {/* Thank You Modal */}
+      <ThankYouModal
+        isOpen={showThankYouModal}
+        onClose={() => setShowThankYouModal(false)}
+      />
+    </>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[calc(100vh-3.5rem-4rem)] w-full bg-[#161A20] flex items-center justify-center">
+          <motion.div
+            className="text-[#00ffff] text-2xl"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}>
+            Loading...
+          </motion.div>
+        </div>
+      }>
+      <ContactPageContent />
+    </Suspense>
   );
 }

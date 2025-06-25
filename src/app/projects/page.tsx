@@ -263,7 +263,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[0]?.title || "Old Portfolio"}
           </div>
@@ -294,7 +294,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[1]?.title || "IstOneFlexWork"}
           </div>
@@ -356,7 +356,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[3]?.title || "G.U.C. Coaching"}
           </div>
@@ -387,7 +387,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[4]?.title || "Dishcovery"}
           </div>
@@ -418,7 +418,7 @@ function ProjectCube({
             />
             <div className="monitor-frame__bezel" />
             <div className="monitor-frame__stand" />
-          </div>{" "}
+          </div>
           <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
             {projects[5]?.title || "Ampco Plate Calculator"}
           </div>
@@ -650,7 +650,7 @@ export default function ProjectsPage() {
                   duration: 1.5,
                   repeatDelay: 1,
                 }}>
-                ←
+                ◀
               </motion.span>
               {t.back}
             </motion.button>
@@ -739,7 +739,7 @@ export default function ProjectsPage() {
                 </motion.div>
               </div>
             </motion.div>
-          </div>{" "}
+          </div>
           {/* Project Details Modal */}
           <AnimatePresence>
             {selectedProject && (
@@ -852,7 +852,7 @@ export default function ProjectsPage() {
                             <div className="monitor-frame__stand" />
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       {/* Technologies */}
                       {selectedProject.technologies && (
                         <div className="bg-[#2C313A] p-6 rounded-xl border border-[#00ffff]/20">
@@ -930,7 +930,7 @@ export default function ProjectsPage() {
                               stiffness: 200,
                             }}>
                             <FiGithub className="w-5 h-5" />
-                            Source{" "}
+                            Source
                           </motion.a>
                         </div>
 
@@ -1017,7 +1017,7 @@ export default function ProjectsPage() {
                                       stiffness: 200,
                                     }}>
                                     <FiDownload className="w-5 h-5" />
-                                    Download{" "}
+                                    Download
                                     {
                                       selectedProject.pdfs.find(
                                         (pdf) => pdf.filename === selectedPdf

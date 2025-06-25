@@ -16,21 +16,21 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/zsoltmarku",
+      url: "https://linkedin.com/in/zsolt-márku-931a49298",
       icon: "linkedin",
     },
     { name: "GitHub", url: "https://github.com/kipster91", icon: "github" },
     {
       name: "Facebook",
-      url: "https://facebook.com/zsolt.marku",
+      url: "https://www.facebook.com/marku.zsolt",
       icon: "facebook",
     },
     {
       name: "Instagram",
-      url: "https://instagram.com/zsoltmarku",
+      url: "https://www.instagram.com/markuzsolt/",
       icon: "instagram",
     },
-    { name: "X", url: "https://twitter.com/zsoltmarku", icon: "twitter" },
+    { name: "X", url: "https://x.com/MarkuZsolt", icon: "twitter" },
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
