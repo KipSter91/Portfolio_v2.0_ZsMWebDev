@@ -68,29 +68,102 @@ const Footer: React.FC = () => {
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
-      <div className="container mx-auto px-4 h-full flex items-center justify-between">
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={
-            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
-          }
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex items-center">
-          <span className="text-xs md:text-sm text-[color:var(--white)]">
-            © 2023 - {currentYear} {t.myName}
-          </span>
-        </motion.div>
+      {/* Mobile Layout */}
+      <div className="md:hidden h-full px-2">
+        <div className="flex items-center justify-between h-full">
+          {/* Copyright */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex-shrink-0">
+            <span className="text-xs text-[color:var(--white)]">
+              © {currentYear} {t.myName}
+            </span>
+          </motion.div>
 
-        {/* Privacy Policy and Cookie Settings */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={
-            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
-          }
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          className="flex items-center space-x-2 text-xs text-[color:var(--white)]">
-          {/* Desktop - Text links */}
-          <div className="hidden md:flex items-center space-x-2">
+          {/* Privacy/Cookie Icons */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            className="flex items-center space-x-2">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                aria-label={t.privacyPolicy}>
+                <FaShieldAlt className="w-4 h-4" />
+              </button>
+            </motion.div>
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsCookieModalOpen(true)}
+                className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                aria-label={t.cookieSettings}>
+                <FaCookie className="w-4 h-4" />
+              </button>
+            </motion.div>
+          </motion.div>
+
+          {/* Social Icons */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex space-x-2 flex-shrink-0">
+            {socialLinks.map((link, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -3 }}
+                transition={{ type: "spring", stiffness: 300 }}>
+                <Link
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                  aria-label={link.name}>
+                  {renderIcon(link.icon)}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden md:block">
+        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex items-center">
+            <span className="text-sm text-[color:var(--white)]">
+              © 2023 - {currentYear} {t.myName}
+            </span>
+          </motion.div>
+
+          {/* Privacy Policy and Cookie Settings */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            className="flex items-center space-x-2 text-xs text-[color:var(--white)]">
             <motion.div
               whileHover={{ y: -3 }}
               transition={{ type: "spring", stiffness: 300 }}>
@@ -110,56 +183,32 @@ const Footer: React.FC = () => {
                 {t.cookieSettings}
               </button>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Mobile/Tablet - Icon buttons */}
-          <div className="flex md:hidden items-center space-x-4">
-            <motion.div
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 300 }}>
-              <button
-                onClick={() => setIsPrivacyModalOpen(true)}
-                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
-                aria-label={t.privacyPolicy}>
-                <FaShieldAlt className="w-4 h-4" />
-              </button>
-            </motion.div>
-            <motion.div
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 300 }}>
-              <button
-                onClick={() => setIsCookieModalOpen(true)}
-                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
-                aria-label={t.cookieSettings}>
-                <FaCookie className="w-4 h-4" />
-              </button>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={
-            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
-          }
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex space-x-6">
-          {socialLinks.map((link, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 300 }}>
-              <Link
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
-                aria-label={link.name}>
-                {renderIcon(link.icon)}
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={
+              splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex space-x-6">
+            {socialLinks.map((link, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -3 }}
+                transition={{ type: "spring", stiffness: 300 }}>
+                <Link
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                  aria-label={link.name}>
+                  {renderIcon(link.icon)}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       {/* Modals */}

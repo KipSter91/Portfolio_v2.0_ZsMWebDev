@@ -24,6 +24,7 @@ Welcome to my professional portfolio website! This is a modern, multilingual web
 I'm a passionate **Frontend Developer** and **Warehouse Manager** based in the Netherlands. My unique background combines leadership experience in industrial environments with modern web development skills. I specialize in creating beautiful, performant landing pages, webapps using Javascript, React, Next.js, and TypeScript.
 
 **Professional Identity:**
+
 - 🏢 **GitHub:** [KipSter91](https://github.com/KipSter91)
 - 🌐 **Brand:** ZsMWebDev
 - 💼 **Current Role:** Warehouse Manager at Arvato
@@ -35,29 +36,34 @@ I'm a passionate **Frontend Developer** and **Warehouse Manager** based in the N
 ## ✨ **Key Features**
 
 ### 🌍 **Multilingual Support**
+
 - **3 Languages:** English, Hungarian, Dutch
 - Dynamic language switching with persistent preferences
 - Localized content for all sections
 
 ### 🎮 **Interactive 3D Project Cube**
+
 - Fully interactive 3D cube showcasing 6 projects
 - Smooth drag-to-rotate functionality
 - Click on any face to explore project details
 - Responsive design with touch support
 
 ### 🎨 **Modern Animated UI**
+
 - **GSAP** powered animations and transitions
 - **Framer Motion** for smooth page transitions
 - Custom splash screen with loading animation
 - Animated header and footer synchronization
 
 ### 🔒 **Privacy-First Design**
+
 - GDPR-compliant cookie consent system
 - Detailed privacy policy modal
 - Cookie settings management
 - Google Analytics integration with user consent
 
 ### 📱 **Responsive & Accessible**
+
 - Mobile-first design approach
 - Cross-browser compatibility
 - Optimized for all screen sizes
@@ -68,21 +74,25 @@ I'm a passionate **Frontend Developer** and **Warehouse Manager** based in the N
 ## 🛠️ **Tech Stack**
 
 ### **Core Technologies**
+
 - **[Next.js 15.3.4](https://nextjs.org/)** - React framework with App Router
 - **[React 19.0.0](https://reactjs.org/)** - Latest React with concurrent features
 - **[TypeScript 5.0](https://www.typescriptlang.org/)** - Type-safe development
 - **[Tailwind CSS 4.0](https://tailwindcss.com/)** - Utility-first CSS framework
 
 ### **Animation & Interactions**
+
 - **[Framer Motion 12.18.1](https://www.framer.com/motion/)** - Production-ready motion library
 - **[GSAP 3.13.0](https://greensock.com/gsap/)** - Professional-grade animations
 - **[Typed.js 2.1.0](https://mattboldt.com/demos/typed-js/)** - Typewriter effect animations
 
 ### **UI Components & Icons**
+
 - **[Heroicons 2.2.0](https://heroicons.com/)** - Beautiful SVG icons
 - **[React Icons 5.5.0](https://react-icons.github.io/react-icons/)** - Popular icon libraries
 
 ### **Performance & Build Tools**
+
 - **Static Export Support** - Optimized for static hosting
 - **Turbopack** - Next.js's Rust-powered bundler
 - **Lighthouse Integration** - Performance monitoring
@@ -94,16 +104,17 @@ I'm a passionate **Frontend Developer** and **Warehouse Manager** based in the N
 
 ### 🏆 Portfolio Highlights
 
-| Project | Live Demo | Source Code |
-|---------|-----------|-------------|
-| **Old Portfolio** | [oldportfolio.zsoltmarku.com](https://oldportfolio.zsoltmarku.com/) | [GitHub](https://github.com/KipSter91/Portfolio_ZsMWebDev.git) |
-| **IstOneFlexWork** | [solarcleanflexwork.com](https://solarcleanflexwork.com/) | [GitHub](https://github.com/KipSter91/IstOneFlexWork_Landing_Page_ZsMWebDev.git) |
-| **StepIO** | [stepio.zsoltmarku.com](https://stepio.zsoltmarku.com/) | [GitHub](https://github.com/KipSter91/StepIO_Landing_Page_ZsMWebDev.git) |
-| **G.U.C. Coaching** | [Demo](https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html) | [GitHub](https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git) |
-| **Dishcovery** | [Demo](https://oldportfolio.zsoltmarku.com/projects/dishcovery/index.html) | [GitHub](https://github.com/KipSter91/Dishcovery_ZsMWebDev.git) |
+| Project               | Live Demo                                                                                                    | Source Code                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **Old Portfolio**     | [oldportfolio.zsoltmarku.com](https://oldportfolio.zsoltmarku.com/)                                          | [GitHub](https://github.com/KipSter91/Portfolio_ZsMWebDev.git)                           |
+| **IstOneFlexWork**    | [solarcleanflexwork.com](https://solarcleanflexwork.com/)                                                    | [GitHub](https://github.com/KipSter91/IstOneFlexWork_Landing_Page_ZsMWebDev.git)         |
+| **StepIO**            | [stepio.zsoltmarku.com](https://stepio.zsoltmarku.com/)                                                      | [GitHub](https://github.com/KipSter91/StepIO_Landing_Page_ZsMWebDev.git)                 |
+| **G.U.C. Coaching**   | [Demo](https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html)                                  | [GitHub](https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git)                     |
+| **Dishcovery**        | [Demo](https://oldportfolio.zsoltmarku.com/projects/dishcovery/index.html)                                   | [GitHub](https://github.com/KipSter91/Dishcovery_ZsMWebDev.git)                          |
 | **AMPCO® Calculator** | [ampco-plate-cutting-time-calculator.onrender.com](https://ampco-plate-cutting-time-calculator.onrender.com) | [GitHub](https://github.com/KipSter91/Ampco_Plate_Cutting_Time_Calculator_ZsMWebDev.git) |
 
 Each project features:
+
 - 📸 **Live previews** with embedded videos
 - 🔗 **Live demo links** and source code
 - 🛠️ **Technology stack** breakdown
@@ -114,7 +125,8 @@ Each project features:
 ## 🚀 **Getting Started**
 
 ### **Prerequisites**
-- Node.js 18+ 
+
+- Node.js 18+
 - npm/yarn/pnpm
 
 ### **Installation**
@@ -205,23 +217,29 @@ portfolio-v2.0/
 ## 🎯 **Special Features**
 
 ### **🔄 Animation Synchronization**
+
 The footer animation waits for the splash screen to complete, creating a seamless user experience using event-driven animation timing.
 
 ### **📊 3D Project Visualization**
+
 Custom-built 3D cube using CSS transforms and JavaScript, featuring:
+
 - Smooth rotation with momentum
 - Touch/mouse interaction support
 - Project preview on each face
 - Responsive scaling
 
 ### **🍪 Advanced Cookie Management**
+
 - Granular cookie consent (Essential vs Analytics)
 - GDPR-compliant implementation
 - Persistent user preferences
 - Privacy policy integration
 
 ### **🌐 Static Export Optimization**
+
 Fully optimized for static hosting with:
+
 - Dynamic robots.txt and sitemap generation
 - Static-friendly routing
 - Optimized image loading
@@ -262,6 +280,7 @@ Fully optimized for static hosting with:
 This portfolio is a personal project showcasing my development skills and professional journey. The code demonstrates modern web development practices and serves as a testament to my expertise in frontend technologies.
 
 **⚠️ Usage Rights:**
+
 - This portfolio and its code are **exclusively owned** by Zsolt Márku
 - **Educational use only** - Code may be referenced for learning purposes
 - **No commercial use** - May not be used for commercial projects or profit
