@@ -257,7 +257,7 @@ Fully optimized for static hosting with:
 
 ## 📄 **License & Credits**
 
-**© 2024 Zsolt Márku (KipSter91, ZsMWebDev). All rights reserved.**
+**© 2025 Zsolt Márku (KipSter91, ZsMWebDev). All rights reserved.**
 
 This portfolio is a personal project showcasing my development skills and professional journey. The code demonstrates modern web development practices and serves as a testament to my expertise in frontend technologies.
 
