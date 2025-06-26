@@ -475,7 +475,7 @@ export default function ProjectsPage() {
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       ],
       image: "/images/oldportfolio.webp",
-      liveDemo: "https://zsoltmarku.com/",
+      liveDemo: "https://oldportfolio.zsoltmarku.com/",
       sourceCode: "https://github.com/KipSter91/Portfolio_ZsMWebDev.git",
     },
     {
@@ -547,7 +547,7 @@ export default function ProjectsPage() {
         { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
       ],
       image: "/images/guccoaching.png",
-      liveDemo: "https://www.zsoltmarku.com/projects/guccoaching/",
+      liveDemo: "https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html",
       sourceCode: "https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git",
     },
     {
@@ -561,7 +561,7 @@ export default function ProjectsPage() {
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       ],
       image: "/images/dishcovery.webp",
-      liveDemo: "https://www.zsoltmarku.com/projects/dishcovery/",
+      liveDemo: "https://oldportfolio.zsoltmarku.com/projects/dishcovery/index.html",
       sourceCode: "https://github.com/KipSter91/Dishcovery_ZsMWebDev.git",
     },
     {

@@ -130,7 +130,7 @@ function ContactPageContent() {
                     transition={{ duration: 0.6, delay: 0.6 }}>
                     <form
                       method="POST"
-                      action="https://formsubmit.co/portfolio.zsoltmarku.com"
+                      action="https://formsubmit.co/portfolio@zsoltmarku.com"
                       className="space-y-6">
                       {/* FormSubmit configuration fields */}
                       <input
