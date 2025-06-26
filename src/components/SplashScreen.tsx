@@ -21,6 +21,8 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     // Progress bar: 1.5s delay + 3.2s = 4.7s
     const timer2 = setTimeout(() => {
       onComplete();
+      // Dispatch custom event when splash completes
+      window.dispatchEvent(new CustomEvent("splashComplete"));
     }, 5500); // 5.5 seconds - waiting for all animations to complete
 
     return () => {
@@ -32,6 +34,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <motion.div
       className="fixed inset-0 z-50 bg-[#161A20] flex items-center justify-center"
+      data-splash-screen
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}>
@@ -79,7 +82,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             }}
           />
           <img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Zsolt Márku logo"
             className="w-full h-full object-cover relative z-10"
           />

@@ -10,6 +10,7 @@ export const translations = {
     // Common actions
     clickMe: "Click me!",
     back: "Back",
+    close: "Close",
 
     // LogoModal strings
     imZsolt: "I'm Zsolt Márku",
@@ -139,9 +140,9 @@ export const translations = {
 
     // Contact info
     email: "Email",
+    name: "Name",
 
     // Footer
-    footerText: "Built with passion using Next.js and Tailwind CSS",
     allRightsReserved: "All rights reserved",
     myName: "Zsolt Márku",
 
@@ -153,6 +154,45 @@ export const translations = {
     // Splash screen
     splashWelcome: "Welcome!",
     welcome: "Please wait while my portfolio is loading...",
+
+    // Cookie Consent
+    cookieConsentTitle: "I Use Cookies",
+    cookieConsentText:
+      "I use cookies and analytics to improve your browsing experience and analyze site traffic. Your privacy is important to me.",
+    acceptCookies: "Accept All",
+    declineCookies: "Decline",
+    privacyPolicy: "Privacy Policy",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Privacy Policy",
+    privacyPolicyContent:
+      "This privacy policy explains how I collect, use, and protect your personal information when you visit this website or contact me through the provided forms. I am committed to protecting your privacy and handling your data responsibly. This website complies with the European Union's General Data Protection Regulation (GDPR – EU 2016/679). If you have any questions about this policy, please contact me using the information provided below.",
+    lastUpdated: "Last updated:",
+    dataCollection: "Data Collection",
+    dataCollectionText:
+      "I collect personal data (name, email address, phone number) only when you voluntarily submit it through the contact form on this website. This information is used solely for responding to your inquiries and maintaining communication with you. I do not share your data with third parties, use it for marketing purposes, or store it longer than necessary for our correspondence. I may also collect anonymous usage statistics through Google Analytics to understand how visitors interact with my website - this data cannot be used to identify you personally.",
+    cookies: "Cookies",
+    cookiesText:
+      "I use cookies to enhance your browsing experience and analyze website traffic. Essential cookies are required for the site to function properly and cannot be disabled. With your consent, I may also use analytics cookies (such as Google Analytics) to understand how visitors navigate and use this site. These analytics tools collect only anonymized information like pages visited, time spent, device type, and approximate location based on IP address. You can manage your cookie preferences at any time through the cookie settings.",
+    yourRights: "Your Rights",
+    yourRightsText:
+      "You have the right to access, modify, or delete your personal data that I have collected. You also have the right to withdraw your consent for data processing and analytics cookies at any time. You can manage cookie settings directly in your browser or through the cookie settings on this website. For any data-related requests or questions about your privacy rights, please contact me using the information provided below.",
+    contactPrivacy: "Contact Information",
+    contactPrivacyText:
+      "If you have questions about this privacy policy or want to exercise your data protection rights, please contact me using the information below:",
+
+    // Cookie Settings Modal
+    cookieSettings: "Cookie Settings",
+    cookieSettingsDescription:
+      "I use cookies to enhance your browsing experience and analyze website traffic. You can choose which types of cookies you want to allow.",
+    essentialCookies: "Essential Cookies",
+    essentialCookiesDescription:
+      "These cookies are necessary for the website to function properly and cannot be disabled.",
+    analyticsCookies: "Analytics Cookies",
+    analyticsCookiesDescription:
+      "These cookies help me understand how visitors interact with this website by collecting anonymous information.",
+    saveSettings: "Save Settings",
+    manageCookieSettings: "Manage Cookie Settings",
   },
   hu: {
     // Navigation
@@ -165,6 +205,7 @@ export const translations = {
     // Common actions
     clickMe: "Kattints rám!",
     back: "Vissza",
+    close: "Bezárás",
 
     // LogoModal strings
     imZsolt: "Márku Zsolt vagyok",
@@ -295,9 +336,9 @@ export const translations = {
 
     // Contact info
     email: "Email",
+    name: "Név",
 
     // Footer
-    footerText: "Szenvedéllyel készítve Next.js és Tailwind CSS használatával",
     allRightsReserved: "Minden jog fenntartva",
     myName: "Márku Zsolt",
 
@@ -308,6 +349,45 @@ export const translations = {
     // Splash screen
     splashWelcome: "Üdvözöllek!",
     welcome: "Kérlek várj, amíg betöltődik a portfólióm...",
+
+    // Cookie Consent
+    cookieConsentTitle: "Sütiket használok",
+    cookieConsentText:
+      "Sütiket és analitikát használok a böngészési élmény javítására és az oldal forgalmának elemzésére. Fontos számomra az adatvédelem.",
+    acceptCookies: "Összes elfogadása",
+    declineCookies: "Elutasítás",
+    privacyPolicy: "Adatvédelmi szabályzat",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Adatvédelmi szabályzat",
+    privacyPolicyContent:
+      "Ez az adatvédelmi szabályzat elmagyarázza, hogyan gyűjtöm, használom és védem személyes adatait, amikor meglátogatja ezt a weboldalt vagy kapcsolatba lép velem az elérhető űrlapokon keresztül. Elkötelezett vagyok az Ön adatvédelmének biztosítása és adatainak felelős kezelése iránt. Ez a weboldal megfelel az Európai Unió Általános Adatvédelmi Rendeletének (GDPR – EU 2016/679). Ha bármilyen kérdése van ezzel a szabályzattal kapcsolatban, kérem, vegye fel velem a kapcsolatot az alább megadott elérhetőségeken.",
+    lastUpdated: "Utoljára frissítve:",
+    dataCollection: "Adatgyűjtés",
+    dataCollectionText:
+      "Személyes adatokat (név, e-mail cím) csak akkor gyűjtök, amikor Ön önkéntesen megadja azokat a weboldalon található kapcsolati űrlapon keresztül. Ezeket az információkat kizárólag megkeresésére való válaszadásra és Önnel való kommunikáció fenntartására használom. Nem osztom meg adatait harmadik felekkel, nem használom marketing célokra, és nem tárolom tovább a szükségesnél levelezésünkhöz. Google Analytics segítségével anonim használati statisztikákat is gyűjthetek annak megértésére, hogy a látogatók hogyan használják a weboldalamat - ezek az adatok nem használhatók fel az Ön személyes azonosítására.",
+    cookies: "Sütik",
+    cookiesText:
+      "Sütiket használok a böngészési élmény javítására és a weboldal forgalmának elemzésére. Az alapvető sütik szükségesek a webhely megfelelő működéséhez és nem tilthatók le. Az Ön beleegyezésével analitikai sütiket is használhatok (például Google Analytics) annak megértésére, hogy a látogatók hogyan navigálnak és használják ezt az oldalt. Ezek az analitikai eszközök csak anonimizált információkat gyűjtenek, mint például a meglátogatott oldalak, az eltöltött idő, az eszköz típusa és az IP-cím alapján megközelítő hely. A süti beállításokat bármikor kezelheti a süti beállításokon keresztül.",
+    yourRights: "Az Ön jogai",
+    yourRightsText:
+      "Jogában áll hozzáférni, módosítani vagy törölni a személyes adatait, amelyeket gyűjtöttem. Szintén jogában áll bármikor visszavonni beleegyezését az adatfeldolgozáshoz és az analitikai sütikhez. A süti beállításokat közvetlenül a böngészőjében vagy ezen a weboldalon a süti beállításokon keresztül kezelheti. Bármilyen adatkezeléssel kapcsolatos kérés vagy adatvédelmi jogaival kapcsolatos kérdés esetén kérem, vegye fel velem a kapcsolatot az alább megadott elérhetőségeken.",
+    contactPrivacy: "Kapcsolattartási információk",
+    contactPrivacyText:
+      "Ha kérdései vannak ezzel az adatvédelmi szabályzattal kapcsolatban, vagy szeretné gyakorolni adatvédelmi jogait, kérem, vegye fel velem a kapcsolatot az alábbi elérhetőségeken:",
+
+    // Cookie Settings Modal
+    cookieSettings: "Süti beállítások",
+    cookieSettingsDescription:
+      "Sütiket használok a böngészési élmény javítására és a weboldal forgalmának elemzésére. Kiválaszthatja, mely típusú sütiket szeretné engedélyezni.",
+    essentialCookies: "Elengedhetetlen sütik",
+    essentialCookiesDescription:
+      "Ezek a sütik szükségesek a weboldal megfelelő működéséhez és nem tilthatók le.",
+    analyticsCookies: "Analitikai sütik",
+    analyticsCookiesDescription:
+      "Ezek a sütik segítenek megérteni, hogy a látogatók hogyan használják ezt a weboldalt anonim információk gyűjtésével.",
+    saveSettings: "Beállítások mentése",
+    manageCookieSettings: "Süti beállítások kezelése",
   },
   nl: {
     // Navigation
@@ -320,6 +400,7 @@ export const translations = {
     // Common actions
     clickMe: "Klik op mij!",
     back: "Terug",
+    close: "Sluiten",
 
     // LogoModal strings
     imZsolt: "Ik ben Zsolt Márku",
@@ -449,9 +530,9 @@ export const translations = {
 
     // Contact info
     email: "Email",
+    name: "Naam",
 
     // Footer
-    footerText: "Gebouwd met passie met Next.js en Tailwind CSS",
     allRightsReserved: "Alle rechten voorbehouden",
     myName: "Zsolt Márku",
 
@@ -463,5 +544,44 @@ export const translations = {
     // Splash screen
     splashWelcome: "Welkom!",
     welcome: "Even geduld terwijl mijn portfolio wordt geladen...",
+
+    // Cookie Consent
+    cookieConsentTitle: "Ik gebruik cookies",
+    cookieConsentText:
+      "Ik gebruik cookies en analytics om uw browse-ervaring te verbeteren en siteverkeer te analyseren. Uw privacy is belangrijk voor mij.",
+    acceptCookies: "Alles accepteren",
+    declineCookies: "Weigeren",
+    privacyPolicy: "Privacybeleid",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Privacybeleid",
+    privacyPolicyContent:
+      "Dit privacybeleid legt uit hoe ik uw persoonlijke gegevens verzamel, gebruik en bescherm wanneer u deze website bezoekt of contact met mij opneemt via de beschikbare formulieren. Ik ben toegewijd aan het beschermen van uw privacy en het verantwoordelijk omgaan met uw gegevens. Deze website voldoet aan de Algemene Verordening Gegevensbescherming van de Europese Unie (AVG – EU 2016/679). Als u vragen heeft over dit beleid, neem dan contact met mij op via de onderstaande informatie.",
+    lastUpdated: "Laatst bijgewerkt:",
+    dataCollection: "Gegevensverzameling",
+    dataCollectionText:
+      "Ik verzamel persoonlijke gegevens (naam, e-mailadres, telefoonnummer) alleen wanneer u deze vrijwillig verstrekt via het contactformulier op deze website. Deze informatie wordt uitsluitend gebruikt om te reageren op uw vragen en communicatie met u te onderhouden. Ik deel uw gegevens niet met derden, gebruik ze niet voor marketingdoeleinden en bewaar ze niet langer dan nodig voor onze correspondentie. Ik kan ook anonieme gebruiksstatistieken verzamelen via Google Analytics om te begrijpen hoe bezoekers omgaan met mijn website - deze gegevens kunnen niet worden gebruikt om u persoonlijk te identificeren.",
+    cookies: "Cookies",
+    cookiesText:
+      "Ik gebruik cookies om uw browse-ervaring te verbeteren en websiteverkeer te analyseren. Essentiële cookies zijn vereist voor de goede werking van de site en kunnen niet worden uitgeschakeld. Met uw toestemming kan ik ook analytische cookies gebruiken (zoals Google Analytics) om te begrijpen hoe bezoekers navigeren en deze site gebruiken. Deze analytische tools verzamelen alleen geanonimiseerde informatie zoals bezochte pagina's, bestede tijd, apparaattype en geschatte locatie op basis van IP-adres. U kunt uw cookievoorkeuren op elk moment beheren via de cookie-instellingen.",
+    yourRights: "Uw rechten",
+    yourRightsText:
+      "U heeft het recht om toegang te krijgen tot, te wijzigen of uw persoonlijke gegevens te verwijderen die ik heb verzameld. U heeft ook het recht om uw toestemming voor gegevensverwerking en analytische cookies op elk moment in te trekken. U kunt cookie-instellingen direct in uw browser beheren of via de cookie-instellingen op deze website. Voor alle gegevensgerelateerde verzoeken of vragen over uw privacyrechten, neem contact met mij op via de onderstaande informatie.",
+    contactPrivacy: "Contactgegevens",
+    contactPrivacyText:
+      "Als u vragen heeft over dit privacybeleid of uw gegevensbeschermingsrechten wilt uitoefenen, neem dan contact met mij op via de onderstaande informatie:",
+
+    // Cookie Settings Modal
+    cookieSettings: "Cookie-instellingen",
+    cookieSettingsDescription:
+      "Ik gebruik cookies om uw browse-ervaring te verbeteren en websiteverkeer te analyseren. U kunt kiezen welke soorten cookies u wilt toestaan.",
+    essentialCookies: "Essentiële cookies",
+    essentialCookiesDescription:
+      "Deze cookies zijn noodzakelijk voor de goede werking van de website en kunnen niet worden uitgeschakeld.",
+    analyticsCookies: "Analytics cookies",
+    analyticsCookiesDescription:
+      "Deze cookies helpen mij begrijpen hoe bezoekers deze website gebruiken door anonieme informatie te verzamelen.",
+    saveSettings: "Instellingen opslaan",
+    manageCookieSettings: "Cookie-instellingen beheren",
   },
 };

@@ -29,7 +29,7 @@ export default function AboutPage() {
   return (
     <AnimatePresence mode="wait">
       {!isExiting && isLoaded && (
-        <motion.div
+        <motion.article
           className="min-h-[calc(100vh-3.5rem-4rem)] w-full bg-[#161A20] py-8 px-4 md:px-8 flex flex-col items-center"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -61,15 +61,15 @@ export default function AboutPage() {
               </motion.span>
               {t.back}
             </motion.button>
-            <motion.div
+            <motion.section
               className="w-full mt-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}>
               <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                  <div className="md:w-1/3 flex justify-center md:justify-start">
-                    <motion.div
+                  <aside className="md:w-1/3 flex justify-center md:justify-start">
+                    <motion.figure
                       className="relative w-64 h-64 md:w-full md:h-auto aspect-square rounded-xl overflow-hidden border-2 border-[#00ffff] shadow-lg max-w-xs"
                       initial={{ opacity: 0, scale: 0.95, rotateY: -5 }}
                       animate={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -104,15 +104,15 @@ export default function AboutPage() {
                       </motion.div>
                       <Image
                         src="/images/profile-2.webp"
-                        alt="Zsolt Márku"
+                        alt="Zsolt Márku - Frontend Developer and Warehouse Manager"
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 16rem, (max-width: 1200px) 25vw, 33vw"
                         priority
                       />
-                    </motion.div>
-                  </div>
-                  <div className="md:w-2/3">
+                    </motion.figure>
+                  </aside>
+                  <main className="md:w-2/3">
                     <motion.h1
                       className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center md:text-left"
                       initial={{ opacity: 0, y: -20 }}
@@ -158,30 +158,30 @@ export default function AboutPage() {
                         {t.journeyPara5}
                       </p>
                     </motion.div>
-                  </div>
+                  </main>
                 </div>
-                <motion.div
+                <motion.section
                   className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}>
-                  <div className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
-                    <h2 className="text-xl font-semibold mb-2 text-[#fd19fc]">
+                  <article className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
+                    <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.experienceTitle}
-                    </h2>
+                    </h3>
                     <p className="text-gray-300">{t.experienceDescription}</p>
-                  </div>
-                  <div className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
-                    <h2 className="text-xl font-semibold mb-2 text-[#fd19fc]">
+                  </article>
+                  <article className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
+                    <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.educationTitle}
-                    </h2>
+                    </h3>
                     <p className="text-gray-300">{t.educationDescription}</p>
-                  </div>
-                </motion.div>
+                  </article>
+                </motion.section>
               </div>
-            </motion.div>
+            </motion.section>
           </div>
-        </motion.div>
+        </motion.article>
       )}
     </AnimatePresence>
   );

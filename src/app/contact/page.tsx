@@ -130,7 +130,7 @@ function ContactPageContent() {
                     transition={{ duration: 0.6, delay: 0.6 }}>
                     <form
                       method="POST"
-                      action="https://formsubmit.co/zsoltmarku910221@gmail.com"
+                      action="https://formsubmit.co/portfolio.zsoltmarku.com"
                       className="space-y-6">
                       {/* FormSubmit configuration fields */}
                       <input
@@ -277,7 +277,6 @@ function ContactPageContent() {
                             <MdEmail className="w-5 h-5 text-black" />
                           </div>
                           <div>
-                            {" "}
                             <h3 className="text-white font-semibold group-hover:text-[#00ffff] transition-colors">
                               {t.email}
                             </h3>
@@ -319,5 +318,9 @@ function ContactPageContent() {
 }
 
 export default function ContactPage() {
-  return <ContactPageContent />;
+  return (
+    <Suspense>
+      <ContactPageContent />
+    </Suspense>
+  );
 }

@@ -61,7 +61,7 @@ const CustomCursor: React.FC = () => {
             background: "var(--dark-gray)",
             pointerEvents: "none",
             transform: "translate(-50%, -50%)",
-            zIndex: 9999,
+            zIndex: 10001,
             border: "2px solid var(--neon-cyan)",
             boxShadow: "0 0 12px var(--neon-pink), 0 0 2px var(--neon-cyan)",
             transition: "background 0.2s, border 0.2s, box-shadow 0.2s",

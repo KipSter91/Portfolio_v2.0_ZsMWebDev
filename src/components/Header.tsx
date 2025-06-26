@@ -14,7 +14,32 @@ const languages = [
 const Header: React.FC = () => {
   const { locale, setLocale, t } = useLocaleContext();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [splashComplete, setSplashComplete] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Listen for splash screen completion
+  useEffect(() => {
+    const handleSplashComplete = () => {
+      setSplashComplete(true);
+    };
+
+    // Check if splash is already complete (in case event was missed)
+    const checkSplashComplete = () => {
+      const splashElement = document.querySelector("[data-splash-screen]");
+      if (!splashElement) {
+        setSplashComplete(true);
+      }
+    };
+
+    window.addEventListener("splashComplete", handleSplashComplete);
+
+    // Small delay to check splash status
+    setTimeout(checkSplashComplete, 100);
+
+    return () => {
+      window.removeEventListener("splashComplete", handleSplashComplete);
+    };
+  }, []);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -38,8 +63,14 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 h-full flex justify-between items-center">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
+          animate={
+            splashComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: splashComplete ? 0.3 : 0,
+          }}>
           <Link
             href="/"
             className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
@@ -50,8 +81,14 @@ const Header: React.FC = () => {
           className="relative"
           ref={menuRef}
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
+          animate={
+            splashComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: splashComplete ? 0.5 : 0,
+          }}>
           <motion.button
             className="flex items-center gap-3 px-4 py-2 border-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-xl transition-all duration-300 group min-w-[100px] justify-center"
             onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}

@@ -345,7 +345,7 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
         onMouseEnter={handleLogoMouseEnter}
         onMouseLeave={handleLogoMouseLeave}>
         <img
-          src="/images/logo.png"
+          src="/images/logo.webp"
           alt="Zsolt Márku logo"
           className="w-full h-full object-cover rounded-full overflow-hidden"
         />

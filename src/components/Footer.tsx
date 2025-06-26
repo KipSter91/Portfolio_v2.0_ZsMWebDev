@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLocaleContext } from "../contexts/LocaleContext";
@@ -9,12 +9,44 @@ import {
   FaGithub,
   FaFacebookF,
   FaInstagram,
+  FaShieldAlt,
+  FaCookie,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
+import { CookieSettingsModal } from "./CookieSettingsModal";
 
 const Footer: React.FC = () => {
   const { t } = useLocaleContext();
   const currentYear = new Date().getFullYear();
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
+  const [splashComplete, setSplashComplete] = useState(false);
+
+  // Listen for splash screen completion
+  useEffect(() => {
+    const handleSplashComplete = () => {
+      setSplashComplete(true);
+    };
+
+    // Check if splash is already complete (in case event was missed)
+    const checkSplashComplete = () => {
+      const splashElement = document.querySelector("[data-splash-screen]");
+      if (!splashElement) {
+        setSplashComplete(true);
+      }
+    };
+
+    window.addEventListener("splashComplete", handleSplashComplete);
+
+    // Small delay to check splash status
+    setTimeout(checkSplashComplete, 100);
+
+    return () => {
+      window.removeEventListener("splashComplete", handleSplashComplete);
+    };
+  }, []);
+
   const socialLinks = [
     {
       name: "LinkedIn",
@@ -39,16 +71,77 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={
+            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+          }
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="flex items-center">
           <span className="text-xs md:text-sm text-[color:var(--white)]">
             © 2023 - {currentYear} {t.myName}
           </span>
         </motion.div>
+
+        {/* Privacy Policy and Cookie Settings */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={
+            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+          }
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          className="flex items-center space-x-2 text-xs text-[color:var(--white)]">
+          {/* Desktop - Text links */}
+          <div className="hidden md:flex items-center space-x-2">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
+                {t.privacyPolicy}
+              </button>
+            </motion.div>
+            <span>|</span>
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsCookieModalOpen(true)}
+                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
+                {t.cookieSettings}
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Mobile/Tablet - Icon buttons */}
+          <div className="flex md:hidden items-center space-x-4">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                aria-label={t.privacyPolicy}>
+                <FaShieldAlt className="w-4 h-4" />
+              </button>
+            </motion.div>
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsCookieModalOpen(true)}
+                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                aria-label={t.cookieSettings}>
+                <FaCookie className="w-4 h-4" />
+              </button>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={
+            splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
+          }
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="flex space-x-6">
           {socialLinks.map((link, index) => (
@@ -68,6 +161,16 @@ const Footer: React.FC = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* Modals */}
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <CookieSettingsModal
+        isOpen={isCookieModalOpen}
+        onClose={() => setIsCookieModalOpen(false)}
+      />
     </footer>
   );
 };

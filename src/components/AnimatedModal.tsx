@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AnimatedModalProps {
@@ -14,6 +14,24 @@ export default function AnimatedModal({
   onClose,
   children,
 }: AnimatedModalProps) {
+  // Scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${scrollY}px`;
+      return () => {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        window.scrollTo({ top: scrollY });
+      };
+    }
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (

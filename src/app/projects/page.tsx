@@ -254,8 +254,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/oldportfolio.png"
-              alt="Old Portfolio screenshot"
+              src="/images/oldportfolio.webp"
+              alt="Previous portfolio website showcasing early web development projects and design skills"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -285,8 +285,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/istoneflexwork.png"
-              alt="IstOne Flexwork screenshot"
+              src="/images/istoneflexwork.webp"
+              alt="IstOneFlexWork solar panel cleaning service website with modern responsive design"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -316,8 +316,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/stepio.png"
-              alt="StepIO screenshot"
+              src="/images/stepio.webp"
+              alt="StepIO fitness tracking app with React Native Android application and landing page"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -347,8 +347,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/guccoaching.png"
-              alt="G.U.C. Coaching screenshot"
+              src="/images/guccoaching.webp"
+              alt="G.U.C. Coaching multilingual website with animated design and GSAP animations"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -378,8 +378,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/dishcovery.png"
-              alt="Dishcovery screenshot"
+              src="/images/dishcovery.webp"
+              alt="Dishcovery recipe browsing web application with JavaScript MVC architecture"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -409,8 +409,8 @@ function ProjectCube({
           }}>
           <div className="monitor-frame">
             <img
-              src="/images/ampcoplatecutting.png"
-              alt="Ampco Plate Calculator screenshot"
+              src="/images/ampcoplatecutting.webp"
+              alt="AMPCO Metal plate cutting calculator tool for industrial manufacturing processes"
               className="monitor-frame__screen"
             />
             <div className="monitor-frame__bezel" />
@@ -474,7 +474,7 @@ export default function ProjectsPage() {
         { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       ],
-      image: "/images/oldportfolio.png",
+      image: "/images/oldportfolio.webp",
       liveDemo: "https://zsoltmarku.com/",
       sourceCode: "https://github.com/KipSter91/Portfolio_ZsMWebDev.git",
     },
@@ -499,7 +499,7 @@ export default function ProjectsPage() {
         },
         { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
       ],
-      image: "/images/istoneflexwork.png",
+      image: "/images/istoneflexwork.webp",
       liveDemo: "https://solarcleanflexwork.com/",
       sourceCode:
         "https://github.com/KipSter91/IstOneFlexWork_Landing_Page_ZsMWebDev.git",
@@ -526,7 +526,7 @@ export default function ProjectsPage() {
         { name: "Expo", icon: <SiExpo style={{ color: "#000020" }} /> },
         { name: "Android", icon: <FaAndroid style={{ color: "#3DDC84" }} /> },
       ],
-      image: "/images/stepio.png",
+      image: "/images/stepio.webp",
       liveDemo: "https://stepio.zsoltmarku.com/",
       sourceCode:
         "https://github.com/KipSter91/StepIO_Landing_Page_ZsMWebDev.git",
@@ -560,7 +560,7 @@ export default function ProjectsPage() {
         { name: "CSS3", icon: <FaCss3Alt style={{ color: "#1572B6" }} /> },
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       ],
-      image: "/images/dishcovery.png",
+      image: "/images/dishcovery.webp",
       liveDemo: "https://www.zsoltmarku.com/projects/dishcovery/",
       sourceCode: "https://github.com/KipSter91/Dishcovery_ZsMWebDev.git",
     },
@@ -576,7 +576,7 @@ export default function ProjectsPage() {
         { name: "Python", icon: <SiPython style={{ color: "#3776AB" }} /> },
         { name: "Flask", icon: <SiFlask style={{ color: "#FFFFFF" }} /> },
       ],
-      image: "/images/ampcoplatecutting.png",
+      image: "/images/ampcoplatecutting.webp",
       liveDemo: "https://ampco-plate-cutting-time-calculator.onrender.com",
       sourceCode:
         "https://github.com/KipSter91/Ampco_Plate_Cutting_Time_Calculator_ZsMWebDev.git",
@@ -850,16 +850,7 @@ export default function ProjectsPage() {
                                 muted
                                 playsInline
                               />
-                            ) : (
-                              <img
-                                src={
-                                  selectedProject.image ||
-                                  "/images/placeholder.png"
-                                }
-                                alt={`${selectedProject.title} screenshot`}
-                                className="monitor-frame__screen"
-                              />
-                            )}
+                            ) : null}
                             <div className="monitor-frame__bezel" />
                             <div className="monitor-frame__stand" />
                           </div>
@@ -1033,12 +1024,7 @@ export default function ProjectsPage() {
                                       stiffness: 200,
                                     }}>
                                     <FiDownload className="w-5 h-5" />
-                                    {t.download || "Download"}{" "}
-                                    {
-                                      selectedProject.pdfs.find(
-                                        (pdf) => pdf.filename === selectedPdf
-                                      )?.name
-                                    }
+                                    {t.download || "Download"}
                                   </motion.a>
                                 )}
                               </div>
