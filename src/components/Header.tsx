@@ -4,6 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext, type Locale } from "../contexts/LocaleContext";
+import MobileMenu from "./MobileMenu";
+import { MdMiscellaneousServices } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa";
 
 const languages = [
   { code: "en" as Locale, label: "EN", name: "English" },
@@ -12,6 +15,7 @@ const languages = [
 ];
 
 const Header: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, setLocale, t } = useLocaleContext();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [splashComplete, setSplashComplete] = useState(false);
@@ -59,8 +63,12 @@ const Header: React.FC = () => {
     languages.find((lang) => lang.code === locale) || languages[0];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[color:var(--dark-gray)] bg-opacity-70 backdrop-blur-md border-b border-[color:var(--medium-gray)] h-14">
+    <header 
+      className="fixed top-0 left-0 w-full bg-[color:var(--dark-gray)] bg-opacity-70 backdrop-blur-md border-b border-[color:var(--medium-gray)] h-14"
+      style={{ zIndex: 999997 }}
+    >
       <div className="container mx-auto px-4 h-full flex justify-between items-center">
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={
@@ -77,8 +85,109 @@ const Header: React.FC = () => {
             <span className="text-xl font-bold">{t.portfolio}</span>
           </Link>
         </motion.div>
+
+        {/* Desktop business links - CTA elements */}
         <motion.div
-          className="relative"
+          className="flex-1 justify-center gap-6 hidden md:flex"
+          initial={{ opacity: 0, y: -20 }}
+          animate={
+            splashComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: splashComplete ? 0.6 : 0,
+          }}
+        >
+          <motion.div
+            animate={{ 
+              borderColor: [
+                "rgba(0, 255, 255, 0.2)", 
+                "rgba(0, 255, 255, 0.9)", 
+                "rgba(0, 255, 255, 0.2)"
+              ] 
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 2.5, 
+              ease: "easeInOut" 
+            }}
+            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl"
+          >
+            <Link
+              href="/services"
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 py-2 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300"
+            >
+              <MdMiscellaneousServices className="text-lg" />
+              {t.services || "Services"}
+            </Link>
+          </motion.div>
+          <motion.div
+            animate={{ 
+              borderColor: [
+                "rgba(253, 25, 252, 0.2)", 
+                "rgba(253, 25, 252, 0.9)", 
+                "rgba(253, 25, 252, 0.2)"
+              ] 
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 2.5, 
+              ease: "easeInOut",
+              delay: 0.3
+            }}
+            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl"
+          >
+            <Link
+              href="/pricing"
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 py-2 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300"
+            >
+              <FaDollarSign className="text-lg" />
+              {t.pricing || "Pricing"}
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Hamburger menu button for mobile - now fully right, lang button will be in MobileMenu */}
+        <motion.div 
+          className="md:hidden flex items-center justify-end w-full"
+          initial={{ opacity: 0, y: -50 }}
+          animate={
+            splashComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: splashComplete ? 0.4 : 0,
+          }}
+        >
+          <motion.button
+            aria-label="Open menu"
+            className="flex items-center gap-2 px-3 py-2 border-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-xl transition-all duration-300 group"
+            onClick={() => setIsMobileMenuOpen(true)}
+            whileHover={{
+              borderColor: "var(--neon-cyan)",
+              scale: 1.02,
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--white)] group-hover:text-[color:var(--neon-pink)] transition-colors duration-300">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </motion.button>
+        </motion.div>
+
+        {/* Mobile Menu Component */}
+        <MobileMenu 
+          isOpen={isMobileMenuOpen} 
+          onClose={() => setIsMobileMenuOpen(false)} 
+        />
+
+        {/* Language Menu - only visible on desktop, hidden on mobile */}
+        <motion.div
+          className="relative hidden md:block"
           ref={menuRef}
           initial={{ opacity: 0, y: -50 }}
           animate={
@@ -90,7 +199,7 @@ const Header: React.FC = () => {
             delay: splashComplete ? 0.5 : 0,
           }}>
           <motion.button
-            className="flex items-center gap-3 px-4 py-2 border-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-xl transition-all duration-300 group min-w-[100px] justify-center"
+            className="flex items-center border-2 gap-1 px-3 py-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-xl transition-all duration-300 group min-w-[50px] justify-center"
             onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
             whileHover={{
               borderColor: "var(--neon-cyan)",

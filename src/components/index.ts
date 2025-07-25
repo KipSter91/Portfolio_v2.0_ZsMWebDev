@@ -7,6 +7,7 @@ export { default as SplashScreen } from "./SplashScreen";
 export { default as CustomCursor } from "./CustomCursor";
 export { default as Header } from "./Header";
 export { default as Footer } from "./Footer";
+export { default as MobileMenu } from "./MobileMenu";
 export { GoogleAnalytics } from "./GoogleAnalytics";
 export { CookieConsent } from "./CookieConsent";
 export { PrivacyPolicyModal } from "./PrivacyPolicyModal";

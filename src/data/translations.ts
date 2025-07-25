@@ -1,5 +1,7 @@
 export const translations = {
   en: {
+    services: "Services",
+    pricing: "Pricing",
     // Navigation
     about: "About Me",
     skills: "Skills",
@@ -195,6 +197,8 @@ export const translations = {
     manageCookieSettings: "Manage Cookie Settings",
   },
   hu: {
+    services: "Szolgáltatások",
+    pricing: "Árak",
     // Navigation
     about: "Rólam",
     skills: "Készségek",
@@ -390,6 +394,8 @@ export const translations = {
     manageCookieSettings: "Süti beállítások kezelése",
   },
   nl: {
+    services: "Diensten",
+    pricing: "Prijzen",
     // Navigation
     about: "Over Mij",
     skills: "Vaardigheden",
