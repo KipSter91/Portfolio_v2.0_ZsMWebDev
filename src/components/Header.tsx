@@ -63,10 +63,9 @@ const Header: React.FC = () => {
     languages.find((lang) => lang.code === locale) || languages[0];
 
   return (
-    <header 
+    <header
       className="fixed top-0 left-0 w-full bg-[color:var(--dark-gray)] bg-opacity-70 backdrop-blur-md border-b border-[color:var(--medium-gray)] h-14"
-      style={{ zIndex: 999997 }}
-    >
+      style={{ zIndex: 999997 }}>
       <div className="container mx-auto px-4 h-full flex justify-between items-center">
         {/* Logo */}
         <motion.div
@@ -97,51 +96,46 @@ const Header: React.FC = () => {
             duration: 0.8,
             ease: "easeOut",
             delay: splashComplete ? 0.6 : 0,
-          }}
-        >
+          }}>
           <motion.div
-            animate={{ 
+            animate={{
               borderColor: [
-                "rgba(0, 255, 255, 0.2)", 
-                "rgba(0, 255, 255, 0.9)", 
-                "rgba(0, 255, 255, 0.2)"
-              ] 
+                "rgba(0, 255, 255, 0.2)",
+                "rgba(0, 255, 255, 0.9)",
+                "rgba(0, 255, 255, 0.2)",
+              ],
             }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 2.5, 
-              ease: "easeInOut" 
+            transition={{
+              repeat: Infinity,
+              duration: 2.5,
+              ease: "easeInOut",
             }}
-            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl"
-          >
+            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl">
             <Link
               href="/services"
-              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 py-2 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300"
-            >
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 py-2 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300">
               <MdMiscellaneousServices className="text-lg" />
               {t.services || "Services"}
             </Link>
           </motion.div>
           <motion.div
-            animate={{ 
+            animate={{
               borderColor: [
-                "rgba(253, 25, 252, 0.2)", 
-                "rgba(253, 25, 252, 0.9)", 
-                "rgba(253, 25, 252, 0.2)"
-              ] 
+                "rgba(253, 25, 252, 0.2)",
+                "rgba(253, 25, 252, 0.9)",
+                "rgba(253, 25, 252, 0.2)",
+              ],
             }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 2.5, 
+            transition={{
+              repeat: Infinity,
+              duration: 2.5,
               ease: "easeInOut",
-              delay: 0.3
+              delay: 0.3,
             }}
-            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl"
-          >
+            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl">
             <Link
               href="/pricing"
-              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 py-2 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300"
-            >
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 py-2 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300">
               <FaDollarSign className="text-lg" />
               {t.pricing || "Pricing"}
             </Link>
@@ -149,7 +143,7 @@ const Header: React.FC = () => {
         </motion.div>
 
         {/* Hamburger menu button for mobile - now fully right, lang button will be in MobileMenu */}
-        <motion.div 
+        <motion.div
           className="md:hidden flex items-center justify-end w-full"
           initial={{ opacity: 0, y: -50 }}
           animate={
@@ -159,8 +153,7 @@ const Header: React.FC = () => {
             duration: 0.8,
             ease: "easeOut",
             delay: splashComplete ? 0.4 : 0,
-          }}
-        >
+          }}>
           <motion.button
             aria-label="Open menu"
             className="flex items-center gap-2 px-3 py-2 border-2 border-[color:var(--medium-gray)] hover:border-[color:var(--neon-cyan)] bg-[color:var(--dark-gray)] text-[color:var(--white)] rounded-xl transition-all duration-300 group"
@@ -169,20 +162,43 @@ const Header: React.FC = () => {
               borderColor: "var(--neon-cyan)",
               scale: 1.02,
             }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--white)] group-hover:text-[color:var(--neon-pink)] transition-colors duration-300">
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
+            whileTap={{ scale: 0.98 }}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[color:var(--white)] group-hover:text-[color:var(--neon-pink)] transition-colors duration-300">
+              <line
+                x1="3"
+                y1="12"
+                x2="21"
+                y2="12"
+              />
+              <line
+                x1="3"
+                y1="6"
+                x2="21"
+                y2="6"
+              />
+              <line
+                x1="3"
+                y1="18"
+                x2="21"
+                y2="18"
+              />
             </svg>
           </motion.button>
         </motion.div>
 
         {/* Mobile Menu Component */}
-        <MobileMenu 
-          isOpen={isMobileMenuOpen} 
-          onClose={() => setIsMobileMenuOpen(false)} 
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
         />
 
         {/* Language Menu - only visible on desktop, hidden on mobile */}

@@ -51,9 +51,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           style={{ zIndex: 999999999 }}
-          onClick={onClose}
-        >
-          
+          onClick={onClose}>
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -61,18 +59,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[#1E2228] rounded-xl border border-[#00ffff]/20 shadow-2xl relative max-w-md w-full overflow-hidden"
             style={{
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 255, 255, 0.1)"
+              boxShadow:
+                "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 255, 255, 0.1)",
             }}
-            onClick={(e) => e.stopPropagation()}
-          >
+            onClick={(e) => e.stopPropagation()}>
             {/* Close Button - Same style as AnimatedModal */}
             <motion.button
               className="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] rounded-xl w-8 h-8 flex items-center justify-center transition-colors"
               onClick={onClose}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              aria-label="Close modal"
-            >
+              aria-label="Close modal">
               ×
             </motion.button>
 
@@ -82,13 +79,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 20, opacity: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-              >
+                transition={{ delay: 0.2, duration: 0.4 }}>
                 <Link
                   href="/services"
                   onClick={onClose}
-                  className="flex items-center gap-4 w-full p-4 rounded-xl border border-[#00ffff]/20 hover:border-[#00ffff]/50 bg-[#2C313A]/30 hover:bg-[#2C313A]/50 text-[#00ffff] hover:text-[#fd19fc] transition-all duration-300 group"
-                >
+                  className="flex items-center gap-4 w-full p-4 rounded-xl border border-[#00ffff]/20 hover:border-[#00ffff]/50 bg-[#2C313A]/30 hover:bg-[#2C313A]/50 text-[#00ffff] hover:text-[#fd19fc] transition-all duration-300 group">
                   <MdMiscellaneousServices className="flex-shrink-0 text-2xl" />
                   <span className="text-lg font-medium">{t.services}</span>
                   <IoChevronForward className="ml-auto group-hover:translate-x-1 transition-transform text-lg" />
@@ -99,13 +94,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 20, opacity: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
-              >
+                transition={{ delay: 0.3, duration: 0.4 }}>
                 <Link
                   href="/pricing"
                   onClick={onClose}
-                  className="flex items-center gap-4 w-full p-4 rounded-xl border border-[#fd19fc]/20 hover:border-[#fd19fc]/50 bg-[#2C313A]/30 hover:bg-[#2C313A]/50 text-[#fd19fc] hover:text-[#00ffff] transition-all duration-300 group"
-                >
+                  className="flex items-center gap-4 w-full p-4 rounded-xl border border-[#fd19fc]/20 hover:border-[#fd19fc]/50 bg-[#2C313A]/30 hover:bg-[#2C313A]/50 text-[#fd19fc] hover:text-[#00ffff] transition-all duration-300 group">
                   <FaDollarSign className="flex-shrink-0 text-2xl" />
                   <span className="text-lg font-medium">{t.pricing}</span>
                   <IoChevronForward className="ml-auto group-hover:translate-x-1 transition-transform text-lg" />
@@ -114,13 +107,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Language selector */}
-            <motion.div 
+            <motion.div
               className="p-6 border-t border-[#00ffff]/20"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-            >
+              transition={{ delay: 0.4, duration: 0.4 }}>
               <div className="flex justify-center items-center">
                 <div className="inline-flex bg-[#2C313A] p-1 rounded-xl border border-[#00ffff]/20">
                   {languages.map((lang) => (
@@ -135,8 +127,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                       `}
                       onClick={() => {
                         setLocale(lang.code);
-                      }}
-                    >
+                      }}>
                       {lang.label}
                     </button>
                   ))}

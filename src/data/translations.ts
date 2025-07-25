@@ -9,6 +9,48 @@ export const translations = {
     contact: "Contact",
     portfolio: "Portfolio",
 
+    // Services page
+    servicesTitle: "Custom, Modern Websites",
+    servicesHero:
+      "At ZsMWebDev, I build every website from scratch, completely from the ground up. I don't use templates, WordPress themes, or pre-made design elements, every project is uniquely designed and fully tailored to the specific client's needs, with modern technologies.",
+
+    // Service categories
+    landingPageTitle: "Landing Page Design",
+    landingPageDescription:
+      "Single-page websites optimized for conversion, featuring clean UX/UI design and powerful call-to-action sections.",
+
+    onePageTitle: "One Page Websites",
+    onePageDescription:
+      "A modern one-page solution with a clean, section-based layout and intuitive scroll navigation. Designed to showcase your services and introduce your brand in a clear and engaging way.",
+
+    conversionTitle: "Conversion-Optimized Solutions",
+    conversionDescription:
+      "Modern design with animations and micro-interactions. Google Analytics integration, SEO optimization.",
+
+    technicalTitle: "Technical Setup",
+    technicalDescription:
+      "Domain + hosting setup, business email creation, FormSubmit integration, multi-language support, dark/light mode, cookie management, PageSpeed optimization.",
+
+    // Technologies section
+    technologiesTitle: "Technologies I Use",
+
+    // Target audience
+    targetAudienceTitle: "Who Is This For?",
+    targetAudience1:
+      "Individual entrepreneurs seeking a strong online presence",
+    targetAudience2:
+      "Small and medium-sized businesses aiming for a modern brand identity",
+    targetAudience3:
+      "Service providers (trainers, coaches, beauticians) looking to grow their client base",
+    targetAudience4:
+      "Startups wanting to validate their ideas through high-converting landing pages",
+
+    // Call to action
+    ctaTitle: "Let’s Build Something Great!",
+    pricingCtaDescription: "Want to explore pricing or get your custom site started?",
+    ctaContact: "Get in Touch",
+    ctaPricing: "View Pricing",
+
     // Common actions
     clickMe: "Click me!",
     back: "Back",
@@ -74,7 +116,6 @@ export const translations = {
 
     // Projects page
     projectsTitle: "My Projects",
-    projectsSubtitle: "A showcase of my recent work",
     projectsContent:
       "A collection of my past projects showcasing my skills in web development.",
 
@@ -205,6 +246,49 @@ export const translations = {
     projects: "Projektek",
     contact: "Kapcsolat",
     portfolio: "Portfólió",
+
+    // Services page
+    servicesTitle: "Egyedi, modern weboldalak",
+    servicesHero:
+      "A ZsMWebDev-nél minden weboldalt az alapoktól, teljesen scratchből építek fel. Nem használok sablonokat, WordPress-témákat vagy kész dizájnelemeket, minden projekt egyedi tervezésű és teljes mértékben az adott ügyfél igényei szerint készül el, modern technológiákkal.",
+
+    // Service categories
+    landingPageTitle: "Landing Page Design",
+    landingPageDescription:
+      "Egyoldalas weboldalak konverzióra optimalizálva, letisztult UX/UI dizájnnal és hatékony cselekvésre ösztönző (CTA) szekciókkal.",
+
+    onePageTitle: "One Page Weboldalak",
+    onePageDescription:
+      "Egy modern, egyoldalas megoldás letisztult, szekciókra bontott elrendezéssel és intuitív görgethető navigációval. Ideális választás szolgáltatásaid bemutatására és márkád világos, figyelemfelkeltő megjelenítésére.",
+
+    conversionTitle: "Konverzió-optimalizált megoldások",
+    conversionDescription:
+      "Modern design animációkkal és micro-interakciókkal. Google Analytics  integráció, SEO optimalizálás.",
+
+    technicalTitle: "Technikai beállítások",
+    technicalDescription:
+      "Domain + hosting setup, céges email létrehozás, FormSubmit integráció, többnyelvűség, dark/light mode, cookie kezelés, PageSpeed optimalizálás.",
+
+    // Technologies section
+    technologiesTitle: "Használt technológiák",
+
+    // Target audience
+    targetAudienceTitle: "Kinek szól?",
+    targetAudience1:
+      "Egyéni vállalkozók, akik professzionális online jelenlétet szeretnének",
+    targetAudience2:
+      "Kis- és középvállalkozások, akik modern arculatra vágynak",
+    targetAudience3:
+      "Szolgáltatók (edzők, coachok, kozmetikusok), akik bővítenék ügyfélkörüket",
+    targetAudience4:
+      "Startupok, akik landing oldallal szeretnék validálni az ötletüket",
+
+    // Call to action
+    ctaTitle: "Kezdjünk bele valami nagyszerűbe!",
+    pricingCtaDescription:
+      "Szeretnéd megnézni az árakat vagy elindítani a saját weboldalad?",
+    ctaContact: "Lépj kapcsolatba",
+    ctaPricing: "Tekintsd meg az árakat",
 
     // Common actions
     clickMe: "Kattints rám!",
@@ -403,6 +487,48 @@ export const translations = {
     contact: "Contact",
     portfolio: "Portfolio",
 
+    // Services page
+    servicesTitle: " Moderne, op maat gemaakte websites",
+    servicesHero:
+      "Bij ZsMWebDev bouw ik elke website vanaf nul, volledig vanaf de basis. Ik gebruik geen templates, WordPress-thema's of kant-en-klare design-elementen, elk project is uniek ontworpen en volledig op maat gemaakt voor de specifieke behoeften van de klant, met moderne technologieën.",
+
+    // Service categories
+    landingPageTitle: "Landing Page Design",
+    landingPageDescription:
+      "One-page websites geoptimaliseerd voor conversie, met een strak UX/UI-ontwerp en krachtige call-to-action secties.",
+
+    onePageTitle: "One Page Websites",
+    onePageDescription:
+      "Een moderne one-page oplossing met een overzichtelijke, sectie-gebaseerde lay-out en intuïtieve scroll-navigatie. Ontworpen om jouw diensten te presenteren en je merk op een duidelijke en boeiende manier te introduceren.",
+
+    conversionTitle: "Conversie-geoptimaliseerde oplossingen",
+    conversionDescription:
+      "Modern ontwerp met animaties en micro-interacties. Google Analytics integratie, SEO optimalisatie.",
+
+    technicalTitle: "Technische setup",
+    technicalDescription:
+      "Domein + hosting setup, zakelijke e-mail creatie, FormSubmit integratie, meertalige ondersteuning, dark/light mode, cookie beheer, PageSpeed optimalisatie.",
+
+    // Technologies section
+    technologiesTitle: "Technologieën die ik gebruik",
+
+    // Target audience
+    targetAudienceTitle: "Voor wie is dit?",
+    targetAudience1:
+      "Zelfstandige ondernemers die een sterke online aanwezigheid willen",
+    targetAudience2:
+      "Kleine en middelgrote bedrijven die streven naar een moderne merkidentiteit",
+    targetAudience3:
+      "Dienstverleners (trainers, coaches, schoonheidsspecialisten) die hun klantenbestand willen uitbreiden",
+    targetAudience4:
+      "Start-ups die hun idee willen valideren met een conversiegerichte landingspagina",
+
+    // Call to action
+    ctaTitle: "Laten we iets geweldigs bouwen!",
+    pricingCtaDescription: "Wil je de prijzen bekijken of jouw project meteen starten?",
+    ctaContact: "Neem contact op",
+    ctaPricing: "Bekijk prijzen",
+
     // Common actions
     clickMe: "Klik op mij!",
     back: "Terug",
@@ -468,7 +594,6 @@ export const translations = {
 
     // Projects page
     projectsTitle: "Mijn projecten",
-    projectsSubtitle: "Een showcase van mijn recente werk",
     projectsContent:
       "Een verzameling van mijn eerdere projecten die mijn vaardigheden in webontwikkeling laten zien.",
 
