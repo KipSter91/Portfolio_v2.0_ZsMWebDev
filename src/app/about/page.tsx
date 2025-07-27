@@ -72,22 +72,24 @@ export default function AboutPage() {
                     <motion.figure
                       className="relative w-64 h-64 md:w-full md:h-auto aspect-square rounded-xl overflow-hidden border-2 border-[#00ffff] shadow-lg max-w-xs"
                       initial={{ opacity: 0, scale: 0.95, rotateY: -5 }}
-                      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                      whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                       transition={{
                         duration: 0.7,
-                        delay: 0.2,
+                        delay: 0.1,
                         ease: "easeOut",
-                      }}>
+                      }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       <motion.div
                         className="absolute left-[30%] top-[15%] z-10"
                         initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
                         transition={{
                           type: "spring",
                           stiffness: 300,
                           damping: 15,
-                          delay: 0.9,
+                          delay: 0.3,
                         }}
+                        viewport={{ once: true, margin: "-50px" }}
                         whileHover={{ y: -3, scale: 1.05 }}>
                         <motion.div
                           animate={{ scale: [1, 1.1, 1] }}
@@ -116,67 +118,110 @@ export default function AboutPage() {
                     <motion.h1
                       className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center md:text-left"
                       initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       transition={{
                         type: "spring",
                         stiffness: 300,
                         damping: 15,
-                        delay: 0.3,
-                      }}>
+                        delay: 0.1,
+                      }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       {t.aboutTitle}
                     </motion.h1>
                     <motion.div
                       className="text-gray-200 space-y-4"
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: 0.7,
-                        delay: 0.4,
+                        duration: 0.6,
+                        delay: 0.1,
                         ease: "easeOut",
-                      }}>
-                      <h2 className="text-2xl font-semibold text-[#fd19fc] mb-3">
+                      }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <motion.h2
+                        className="text-2xl font-semibold text-[#fd19fc] mb-3"
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyTitle}
-                      </h2>
+                      </motion.h2>
 
-                      <p className="text-lg leading-relaxed">
+                      <motion.p
+                        className="text-lg leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyPara1}
-                      </p>
+                      </motion.p>
 
-                      <p className="text-lg leading-relaxed">
+                      <motion.p
+                        className="text-lg leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyPara2}
-                      </p>
+                      </motion.p>
 
-                      <p className="text-lg leading-relaxed">
+                      <motion.p
+                        className="text-lg leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyPara3}
-                      </p>
+                      </motion.p>
 
-                      <p className="text-lg leading-relaxed">
+                      <motion.p
+                        className="text-lg leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyPara4}
-                      </p>
+                      </motion.p>
 
-                      <p className="text-lg leading-relaxed">
+                      <motion.p
+                        className="text-lg leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.journeyPara5}
-                      </p>
+                      </motion.p>
                     </motion.div>
                   </main>
                 </div>
                 <motion.section
                   className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}>
-                  <article className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}>
+                  <motion.article
+                    className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.experienceTitle}
                     </h3>
                     <p className="text-gray-300">{t.experienceDescription}</p>
-                  </article>
-                  <article className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300">
+                  </motion.article>
+                  <motion.article
+                    className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.educationTitle}
                     </h3>
                     <p className="text-gray-300">{t.educationDescription}</p>
-                  </article>
+                  </motion.article>
                 </motion.section>
               </div>
             </motion.section>

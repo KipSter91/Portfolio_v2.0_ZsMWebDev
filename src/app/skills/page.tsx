@@ -36,8 +36,9 @@ const PersonalSkillItem = ({
   <motion.div
     className="bg-[#2C313A] p-4 md:p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 min-h-[80px] sm:min-h-[90px] md:min-h-0 flex items-center justify-center"
     initial={{ y: 20, opacity: 0, scale: 0.9 }}
-    animate={{ y: 0, opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5, delay }}>
+    whileInView={{ y: 0, opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay }}
+    viewport={{ once: true, margin: "-50px" }}>
     <div className="text-center">
       <span className="text-gray-200 font-medium text-sm md:text-base leading-tight">
         {skill}
@@ -59,8 +60,9 @@ const TechSkillItem = ({
   <motion.div
     className="bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
     initial={{ y: 20, opacity: 0, scale: 0.9 }}
-    animate={{ y: 0, opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5, delay }}>
+    whileInView={{ y: 0, opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay }}
+    viewport={{ once: true, margin: "-50px" }}>
     <div className="flex flex-col items-center text-center">
       <div className="text-4xl mb-3 text-[#00ffff]">{icon}</div>
       <h4 className="text-white font-semibold">{name}</h4>
@@ -179,13 +181,14 @@ export default function SkillsPage() {
               <motion.h1
                 className="text-3xl md:text-4xl font-bold mb-6 text-[#00ffff] text-center"
                 initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                   type: "spring",
                   stiffness: 300,
                   damping: 15,
-                  delay: 0.3,
-                }}>
+                  delay: 0.1,
+                }}
+                viewport={{ once: true, margin: "-50px" }}>
                 {t.skillsTitle}
               </motion.h1>
               <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
@@ -193,17 +196,23 @@ export default function SkillsPage() {
                 <motion.div
                   className="mb-12"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center">
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}>
+                  <motion.h2
+                    className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     {t.personalSkills}
-                  </h2>
+                  </motion.h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                     {personalSkills.map((item, index) => (
                       <PersonalSkillItem
                         key={item.key}
                         skill={item.skill}
-                        delay={0.7 + index * 0.1}
+                        delay={index * 0.05}
                       />
                     ))}
                   </div>
@@ -212,27 +221,39 @@ export default function SkillsPage() {
                 <motion.div
                   className="mb-12"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 }}>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#00ffff] text-center">
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}>
+                  <motion.h2
+                    className="text-2xl md:text-3xl font-bold mb-6 text-[#00ffff] text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     {t.codingSkills}
-                  </h2>
+                  </motion.h2>
                   {/* Frontend Skills */}
                   <motion.div
                     className="mb-8"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}>
-                    <h3 className="text-xl font-semibold mb-4 text-[#fd19fc] text-center">
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}>
+                    <motion.h3
+                      className="text-xl font-semibold mb-4 text-[#fd19fc] text-center"
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       {t.frontendSkills}
-                    </h3>
+                    </motion.h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {frontendSkills.map((tech, index) => (
                         <TechSkillItem
                           key={tech.name}
                           name={tech.name}
                           icon={tech.icon}
-                          delay={1.5 + index * 0.1}
+                          delay={index * 0.1}
                         />
                       ))}
                     </div>
@@ -241,18 +262,24 @@ export default function SkillsPage() {
                   <motion.div
                     className="mb-8"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 2.2 }}>
-                    <h3 className="text-xl font-semibold mb-4 text-[#fd19fc] text-center">
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}>
+                    <motion.h3
+                      className="text-xl font-semibold mb-4 text-[#fd19fc] text-center"
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       {t.backendSkills}
-                    </h3>
+                    </motion.h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {backendSkills.map((tech, index) => (
                         <TechSkillItem
                           key={tech.name}
                           name={tech.name}
                           icon={tech.icon}
-                          delay={2.3 + index * 0.1}
+                          delay={index * 0.1}
                         />
                       ))}
                     </div>
@@ -262,18 +289,24 @@ export default function SkillsPage() {
                 <motion.div
                   className="mb-8"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 2.8 }}>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center">
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}>
+                  <motion.h2
+                    className="text-2xl md:text-3xl font-bold mb-6 text-[#fd19fc] text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     {t.toolsTechnologies}
-                  </h2>
+                  </motion.h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {tools.map((tool, index) => (
                       <TechSkillItem
                         key={tool.name}
                         name={tool.name}
                         icon={tool.icon}
-                        delay={2.9 + index * 0.1}
+                        delay={index * 0.1}
                       />
                     ))}
                   </div>
@@ -283,12 +316,25 @@ export default function SkillsPage() {
               <motion.div
                 className="bg-[#2C313A] p-8 rounded-lg text-center border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
                 initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 3.5 }}>
-                <h3 className="text-2xl font-semibold mb-4 text-[#fd19fc]">
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}>
+                <motion.h3
+                  className="text-2xl font-semibold mb-4 text-[#fd19fc]"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-50px" }}>
                   {t.alwaysLearning}
-                </h3>
-                <p className="text-gray-200">{t.alwaysLearningText}</p>
+                </motion.h3>
+                <motion.p
+                  className="text-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true, margin: "-50px" }}>
+                  {t.alwaysLearningText}
+                </motion.p>
               </motion.div>
             </motion.div>
           </div>

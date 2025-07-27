@@ -103,20 +103,22 @@ function ContactPageContent() {
                   <motion.h1
                     className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center"
                     initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                       type: "spring",
                       stiffness: 300,
                       damping: 15,
-                      delay: 0.3,
-                    }}>
+                      delay: 0.1,
+                    }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     {t.contactTitle}
                   </motion.h1>
                   <motion.p
                     className="text-lg md:text-xl text-gray-200 text-center mb-8 max-w-3xl mx-auto leading-relaxed border-b border-[#00ffff]/20 pb-4 rounded-xl"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 0.4 }}>
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    viewport={{ once: true, margin: "-50px" }}>
                     {t.contactContent}
                   </motion.p>
                 </div>
@@ -126,8 +128,9 @@ function ContactPageContent() {
                   <motion.div
                     className="bg-[#1E2228] p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
                     initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}>
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}>
                     <form
                       method="POST"
                       action="https://formsubmit.co/portfolio@zsoltmarku.com"
@@ -157,7 +160,11 @@ function ContactPageContent() {
                         name="_template"
                         value="table"
                       />
-                      <div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="name">
@@ -173,8 +180,12 @@ function ContactPageContent() {
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
                           placeholder={t.namePlaceholder}
                         />
-                      </div>
-                      <div>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="email">
@@ -190,8 +201,12 @@ function ContactPageContent() {
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
                           placeholder={t.emailPlaceholder}
                         />
-                      </div>
-                      <div>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         <label
                           className="block text-sm mb-2 text-gray-300"
                           htmlFor="message">
@@ -206,20 +221,22 @@ function ContactPageContent() {
                           required
                           placeholder={t.messagePlaceholder}
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"></textarea>
-                      </div>
+                      </motion.div>
                       <motion.button
                         type="submit"
                         className="w-full bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setIsSubmitting(true)}
                         transition={{
                           duration: 0.4,
+                          delay: 0.4,
                           type: "spring",
                           stiffness: 200,
-                        }}>
+                        }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         {t.sendMessage}
                       </motion.button>
                     </form>
@@ -228,21 +245,24 @@ function ContactPageContent() {
                   <motion.div
                     className="bg-[#1E2228] p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
                     initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}>
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}>
                     <motion.h2
                       className="text-2xl font-bold text-[#00ffff] mb-6"
                       initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1 }}>
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       {t.letsConnect}
                     </motion.h2>
 
                     <motion.div
                       className="space-y-6"
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.7, delay: 1.2 }}>
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.7, delay: 0.2 }}
+                      viewport={{ once: true, margin: "-50px" }}>
                       {/* WhatsApp */}
                       <motion.a
                         href="https://wa.me/31686351440"
@@ -250,8 +270,9 @@ function ContactPageContent() {
                         rel="noopener noreferrer"
                         className="block bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 group"
                         initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                        animate={{ y: 0, opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 1.3 }}>
+                        whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         <div className="flex items-center gap-4">
                           <div className="flex-shrink-0 w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center">
                             <FaWhatsapp className="w-5 h-5 text-white" />
@@ -270,8 +291,9 @@ function ContactPageContent() {
                         href="mailto:portfolio@zsoltmarku.com"
                         className="block bg-[#2C313A] p-4 rounded-lg border-t border-l border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
                         initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                        animate={{ y: 0, opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 1.4 }}>
+                        whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        viewport={{ once: true, margin: "-50px" }}>
                         <div className="flex items-center gap-4">
                           <div className="flex-shrink-0 w-10 h-10 bg-[#00ffff] rounded-full flex items-center justify-center">
                             <MdEmail className="w-5 h-5 text-black" />
@@ -290,14 +312,25 @@ function ContactPageContent() {
                       <motion.div
                         className="bg-[#2C313A] p-6 rounded-lg border border-[#00ffff]/30 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
                         initial={{ y: 20, opacity: 0, scale: 0.9 }}
-                        animate={{ y: 0, opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 1.5 }}>
-                        <h3 className="text-xl font-bold text-[#00ffff] mb-3">
+                        whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        viewport={{ once: true, margin: "-50px" }}>
+                        <motion.h3
+                          className="text-xl font-bold text-[#00ffff] mb-3"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.6 }}
+                          viewport={{ once: true, margin: "-50px" }}>
                           {t.letsCollaborate}
-                        </h3>
-                        <p className="text-gray-300 leading-relaxed">
+                        </motion.h3>
+                        <motion.p
+                          className="text-gray-300 leading-relaxed"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.7 }}
+                          viewport={{ once: true, margin: "-50px" }}>
                           {t.collaborationText}
-                        </p>
+                        </motion.p>
                       </motion.div>
                     </motion.div>
                   </motion.div>
