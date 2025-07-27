@@ -44,10 +44,35 @@ export const translations = {
       "Service providers (trainers, coaches, beauticians) looking to grow their client base",
     targetAudience4:
       "Startups wanting to validate their ideas through high-converting landing pages",
+    targetAudience5:
+      "Businesses with outdated websites looking to modernize and refresh their online presence",
+
+    // Timeline section
+    timelineTitle: "How Quickly Is Your Website Ready?",
+    timelineDay1Title: "Day 1 – Lightning-fast Quote",
+    timelineDay1Description:
+      "Once you send your inquiry, you'll receive a personalized quote within 24 hours. It includes package details, timeline, and pricing – everything transparent, no hidden costs. If you accept, we can start immediately.",
+
+    timelineDay2Title: "Day 2 – Online Consultation",
+    timelineDay2Description:
+      "We discuss via Zoom or email: what you want, your website goals, and expectations. We'll go through style, colors, content sections, and functionality. Based on this, we create the site structure.",
+
+    timelineDay35Title: "Days 3-5 – Design & Development",
+    timelineDay35Description:
+      "Real development begins from scratch. First UX/UI design, then responsive development with Next.js and Tailwind. Continuous consultation with feedback opportunities. Before you know it, the framework is ready!",
+
+    timelineDay67Title: "Days 6-7 – Testing & Fine-tuning",
+    timelineDay67Description:
+      "We review the site together on all devices. Mobile, tablet, laptop – we optimize, refine, and perfect animations, CTAs, and PageSpeed. It won't go live until it's perfect!",
+
+    timelineDay8Title: "Day 8 – Launch & Handover",
+    timelineDay8Description:
+      "Your website will be published on your own domain, optimized for SEO and loading speed. Business email works too. I'll send maintenance tips, and if needed, I'm available for long-term support.",
 
     // Call to action
     ctaTitle: "Let’s Build Something Great!",
-    pricingCtaDescription: "Want to explore pricing or get your custom site started?",
+    pricingCtaDescription:
+      "Want to explore pricing or get your custom site started?",
     ctaContact: "Get in Touch",
     ctaPricing: "View Pricing",
 
@@ -282,6 +307,30 @@ export const translations = {
       "Szolgáltatók (edzők, coachok, kozmetikusok), akik bővítenék ügyfélkörüket",
     targetAudience4:
       "Startupok, akik landing oldallal szeretnék validálni az ötletüket",
+    targetAudience5:
+      "Vállalkozások elavult weboldalakkal, akik szeretnék megújítani és felfrissíteni online jelenlétüket",
+
+    // Timeline section
+    timelineTitle: "Milyen gyorsan készül el a weboldalad?",
+    timelineDay1Title: "1. nap – Villámgyors ajánlat",
+    timelineDay1Description:
+      "Amint elküldöd az érdeklődést, 24 órán belül személyre szabott ajánlatot kapsz. Tartalmazza a csomag részleteit, az idővonalat és az árat – minden átláthatóan, rejtett költségek nélkül. Ha elfogadod, kezdhetjük is.",
+
+    timelineDay2Title: "2. nap – Online konzultáció",
+    timelineDay2Description:
+      "Zoom-on vagy e-mailen egyeztetünk: mit szeretnél, mi a célod a weboldallal, mik az elvárásaid? Átbeszéljük a stílust, színeket, tartalmi részeket, funkciókat. Ez alapján készül az oldal vázlata.",
+
+    timelineDay35Title: "3–5. nap – Tervezés és fejlesztés",
+    timelineDay35Description:
+      "Elkezdődik az éles fejlesztés scratchből. Először UX/UI design, majd reszponzív fejlesztés Next.js és Tailwind alapon. Folyamatos egyeztetéssel, visszajelzési lehetőséggel. Mire észbe kapsz, már kész is a váz!",
+
+    timelineDay67Title: "6–7. nap – Tesztelés és finomhangolás",
+    timelineDay67Description:
+      "Átnézzük együtt az oldalt minden eszközön. Mobil, tablet, laptop – optimalizálunk, finomítunk, pontosítjuk az animációkat, CTA-kat, PageSpeed-et. Amíg nem tökéletes, nem megy ki!",
+
+    timelineDay8Title: "8. nap – Élesítés és átadás",
+    timelineDay8Description:
+      "A weboldalad publikálva lesz saját domainen, optimalizálva SEO-ra, betöltési sebességre. A céges email is működik. Elküldöm a karbantartási tippeket, és ha kéred, elérhető vagyok hosszabb távú supporthoz is.",
 
     // Call to action
     ctaTitle: "Kezdjünk bele valami nagyszerűbe!",
@@ -522,10 +571,35 @@ export const translations = {
       "Dienstverleners (trainers, coaches, schoonheidsspecialisten) die hun klantenbestand willen uitbreiden",
     targetAudience4:
       "Start-ups die hun idee willen valideren met een conversiegerichte landingspagina",
+    targetAudience5:
+      "Bedrijven met verouderde websites die hun online aanwezigheid willen moderniseren en vernieuwen",
+
+    // Timeline section
+    timelineTitle: "Hoe snel is jouw website klaar?",
+    timelineDay1Title: "Dag 1 – Bliksemsnelle offerte",
+    timelineDay1Description:
+      "Zodra je je interesse verzendt, ontvang je binnen 24 uur een gepersonaliseerde offerte. Het bevat pakketdetails, tijdlijn en prijs – alles transparant, geen verborgen kosten. Als je akkoord gaat, kunnen we meteen beginnen.",
+
+    timelineDay2Title: "Dag 2 – Online consultatie",
+    timelineDay2Description:
+      "We bespreken via Zoom of e-mail: wat wil je, wat is je doel met de website, wat zijn je verwachtingen? We bespreken stijl, kleuren, content secties en functionaliteit. Hierop gebaseerd maken we de site structuur.",
+
+    timelineDay35Title: "Dag 3-5 – Ontwerp & Ontwikkeling",
+    timelineDay35Description:
+      "Echte ontwikkeling begint vanaf nul. Eerst UX/UI design, dan responsive ontwikkeling met Next.js en Tailwind. Continue overleg met feedback mogelijkheden. Voor je het weet is het framework klaar!",
+
+    timelineDay67Title: "Dag 6-7 – Testen & Fine-tuning",
+    timelineDay67Description:
+      "We bekijken de site samen op alle apparaten. Mobiel, tablet, laptop – we optimaliseren, verfijnen en perfectioneren animaties, CTA's en PageSpeed. Het gaat niet live totdat het perfect is!",
+
+    timelineDay8Title: "Dag 8 – Launch & Overdracht",
+    timelineDay8Description:
+      "Jouw website wordt gepubliceerd op je eigen domein, geoptimaliseerd voor SEO en laadsnelheid. Zakelijke e-mail werkt ook. Ik stuur onderhoudstips, en indien gewenst ben ik beschikbaar voor langetermijn support.",
 
     // Call to action
     ctaTitle: "Laten we iets geweldigs bouwen!",
-    pricingCtaDescription: "Wil je de prijzen bekijken of jouw project meteen starten?",
+    pricingCtaDescription:
+      "Wil je de prijzen bekijken of jouw project meteen starten?",
     ctaContact: "Neem contact op",
     ctaPricing: "Bekijk prijzen",
 
