@@ -11,5 +11,6 @@ export { default as MobileMenu } from "./MobileMenu";
 export { GoogleAnalytics } from "./GoogleAnalytics";
 export { CookieConsent } from "./CookieConsent";
 export { PrivacyPolicyModal } from "./PrivacyPolicyModal";
+export { TermsOfServiceModal } from "./TermsOfServiceModal";
 export { CookieConsentHandler } from "./CookieConsentHandler";
 export { DynamicMetadata } from "./DynamicMetadata";

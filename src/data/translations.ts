@@ -163,6 +163,88 @@ export const translations = {
       "Ideal for more complex projects",
     ],
 
+    // Terms of Service
+    termsOfService: "Terms of Service",
+    termsTitle: "Terms of Service – ZsMWebDev",
+    termsLastUpdate: "Last update: July 28, 2025",
+
+    // Definitions
+    termsDefinitions: "1. Definitions",
+    termsZsmwebdev:
+      "ZsMWebDev: the contractor, based at [location], registered with the Chamber of Commerce under number [KvK number], VAT number [VAT number].",
+    termsClient:
+      "Client: any natural or legal person who enters into an agreement with ZsMWebDev.",
+    termsAgreement:
+      "Agreement: the arrangement between ZsMWebDev and the client for the provision of services.",
+
+    // Applicability
+    termsApplicability: "2. Applicability",
+    termsApplicabilityText:
+      "These terms apply to all quotations, work, agreements and deliveries of services or products by or on behalf of ZsMWebDev.",
+
+    // Services
+    termsServices: "3. Services",
+    termsServicesText:
+      "ZsMWebDev provides services in the field of web development, including:",
+    termsServicesList: [
+      "Design and construction of static (single and multi-page) websites",
+      "Hosting advice and domain registration",
+      "Email configuration",
+      "Search engine optimization (SEO)",
+      "Integration of analytics tools and forms",
+    ],
+
+    // Quotes and rates
+    termsQuotes: "4. Quotes and rates",
+    termsQuotesText: [
+      "All prices are in euros, excluding VAT, unless otherwise stated.",
+      "Quotes are non-binding and valid for 30 days.",
+      "Changes or extensions outside the agreed project fall under additional work and are invoiced at an hourly rate of €50 per hour.",
+    ],
+
+    // Payment
+    termsPayment: "5. Payment",
+    termsPaymentText: [
+      "Invoices must be paid within 14 days of the invoice date.",
+      "In case of non-payment, ZsMWebDev reserves the right to temporarily suspend the project.",
+    ],
+
+    // Cancellation
+    termsCancellation: "6. Cancellation and termination",
+    termsCancellationText: [
+      "In case of cancellation by the client after written order confirmation, the hours already worked will be charged with a minimum of 25% of the agreed total amount.",
+      "In case of cancellation within 7 days before the planned start date, 50% of the total amount will be invoiced.",
+      "ZsMWebDev reserves the right to terminate the agreement in case of non-payment, unreasonable demands or cooperation that harms the project goal.",
+    ],
+
+    // Intellectual property
+    termsIntellectual: "7. Intellectual property",
+    termsIntellectualText: [
+      "All designs and code developed by ZsMWebDev remain the intellectual property of ZsMWebDev until full payment has been made.",
+      "After payment, the client obtains the right to use the delivered website.",
+    ],
+
+    // Maintenance
+    termsMaintenance: "8. Maintenance and support",
+    termsMaintenanceText: [
+      "Support after delivery is included according to the duration of the chosen package (e.g. 3, 6 or 12 months).",
+      "Adjustments or content updates after delivery do not fall under the standard service and are charged per hour.",
+    ],
+
+    // Liability
+    termsLiability: "9. Liability",
+    termsLiabilityText: [
+      "ZsMWebDev is not liable for indirect damage, such as loss of data, lost profits or consequential damage.",
+      "ZsMWebDev does its utmost to deliver safe, fast and functional websites, but offers no guarantees for permanent error-free operation or uptime.",
+    ],
+
+    // Applicable law
+    termsLaw: "10. Applicable law",
+    termsLawText: [
+      "Dutch law applies to all agreements with ZsMWebDev. Disputes will be submitted to the competent court in Rotterdam.",
+      "For questions about these terms, you can contact me via portfolio@zsoltmarku.com or the contact form on the website.",
+    ],
+
     // Common actions
     clickMe: "Click me!",
     back: "Back",
@@ -515,6 +597,88 @@ export const translations = {
       "Egyedi igényekhez igazodó árazás",
       "Speciális integrációk vagy architektúra",
       "Komplexebb projektekhez is ideális",
+    ],
+
+    // Terms of Service (Hungarian)
+    termsOfService: "Általános Szerződési Feltételek",
+    termsTitle: "Általános Szerződési Feltételek – ZsMWebDev",
+    termsLastUpdate: "Utolsó frissítés: 2025. július 28.",
+
+    // Definitions
+    termsDefinitions: "1. Fogalmak meghatározása",
+    termsZsmwebdev:
+      "ZsMWebDev: a vállalkozó, székhely: [helyszín], bejegyezve a Kereskedelmi és Iparkamara alatt [KvK szám], ÁFA szám [ÁFA szám].",
+    termsClient:
+      "Megbízó: minden természetes vagy jogi személy, aki szerződést köt a ZsMWebDev-vel.",
+    termsAgreement:
+      "Szerződés: a ZsMWebDev és a megbízó közötti megállapodás a szolgáltatások nyújtására.",
+
+    // Applicability
+    termsApplicability: "2. Alkalmazhatóság",
+    termsApplicabilityText:
+      "Ezek a feltételek vonatkoznak minden ajánlatra, munkára, szerződésre és szolgáltatás vagy termék szállítására a ZsMWebDev által vagy nevében.",
+
+    // Services
+    termsServices: "3. Szolgáltatások",
+    termsServicesText:
+      "A ZsMWebDev webfejlesztési területen nyújt szolgáltatásokat, beleértve:",
+    termsServicesList: [
+      "Statikus (egy- és többoldalas) weboldalak tervezése és építése",
+      "Hosting tanácsadás és domain regisztráció",
+      "Email konfigurálás",
+      "Keresőoptimalizálás (SEO)",
+      "Analitikai eszközök és űrlapok integrálása",
+    ],
+
+    // Quotes and rates
+    termsQuotes: "4. Ajánlatok és tarifák",
+    termsQuotesText: [
+      "Minden ár forintban értendő, ÁFA nélkül, hacsak másként nincs feltüntetve.",
+      "Az ajánlatok nem kötelező érvényűek és 30 napig érvényesek.",
+      "A megállapodott projekten kívüli módosítások vagy bővítések többletmunkának minősülnek és óradíjban kerülnek számlázásra 19 000 forint/óra áron.",
+    ],
+
+    // Payment
+    termsPayment: "5. Fizetés",
+    termsPaymentText: [
+      "A számlákat a számla dátumától számított 14 napon belül kell kifizetni.",
+      "Fizetés elmaradása esetén a ZsMWebDev fenntartja a jogot a projekt ideiglenes felfüggesztésére.",
+    ],
+
+    // Cancellation
+    termsCancellation: "6. Lemondás és megszüntetés",
+    termsCancellationText: [
+      "A megbízó által írásos megrendelés megerősítése után történő lemondás esetén a már elvégzett órák kerülnek számlázásra, minimum a megállapodott teljes összeg 25%-ával.",
+      "A tervezett kezdési dátum előtt 7 napon belüli lemondás esetén a teljes összeg 50%-a kerül számlázásra.",
+      "A ZsMWebDev fenntartja a jogot a szerződés megszüntetésére nem fizetés, ésszerűtlen követelések vagy a projekt célját károsító együttműködés esetén.",
+    ],
+
+    // Intellectual property
+    termsIntellectual: "7. Szellemi tulajdon",
+    termsIntellectualText: [
+      "A ZsMWebDev által kifejlesztett összes design és kód a ZsMWebDev szellemi tulajdona marad a teljes kifizetésig.",
+      "Fizetés után a megbízó megkapja a szállított weboldal használati jogát.",
+    ],
+
+    // Maintenance
+    termsMaintenance: "8. Karbantartás és támogatás",
+    termsMaintenanceText: [
+      "A szállítás utáni támogatás a választott csomag időtartama szerint van megadva (pl. 3, 6 vagy 12 hónap).",
+      "A szállítás utáni módosítások vagy tartalomfrissítések nem tartoznak a standard szolgáltatás alá és óránként kerülnek elszámolásra.",
+    ],
+
+    // Liability
+    termsLiability: "9. Felelősség",
+    termsLiabilityText: [
+      "A ZsMWebDev nem felelős közvetett károkért, mint például adatvesztés, elmaradt haszon vagy következményes károk.",
+      "A ZsMWebDev mindent megtesz a biztonságos, gyors és funkcionális weboldalak szállítása érdekében, de nem vállal garanciát az állandó hibamentes működésre vagy üzemidőre.",
+    ],
+
+    // Applicable law
+    termsLaw: "10. Alkalmazandó jog",
+    termsLawText: [
+      "A ZsMWebDev-vel kötött összes szerződésre a holland jog az irányadó. A vitákat a rotterdami illetékes bíróság elé terjesztik.",
+      "A feltételekkel kapcsolatos kérdésekkel a portfolio@zsoltmarku.com címen vagy a weboldal kapcsolati űrlapján keresztül fordulhat hozzám.",
     ],
 
     // Common actions
@@ -871,6 +1035,88 @@ export const translations = {
       "Prijsstelling afgestemd op individuele behoeften",
       "Speciale integraties of architectuur",
       "Ideaal voor complexere projecten",
+    ],
+
+    // Terms of Service (Dutch)
+    termsOfService: "Algemene Voorwaarden",
+    termsTitle: "Algemene Voorwaarden – ZsMWebDev",
+    termsLastUpdate: "Laatst bijgewerkt: 28 juli 2025",
+
+    // Definitions
+    termsDefinitions: "1. Begripsbepalingen",
+    termsZsmwebdev:
+      "ZsMWebDev: de ondernemer, gevestigd te [locatie], ingeschreven bij de Kamer van Koophandel onder [KvK-nummer], BTW-nummer [BTW-nummer].",
+    termsClient:
+      "Opdrachtgever: iedere natuurlijke of rechtspersoon die een overeenkomst aangaat met ZsMWebDev.",
+    termsAgreement:
+      "Overeenkomst: de tussen ZsMWebDev en opdrachtgever gesloten overeenkomst tot het verlenen van diensten.",
+
+    // Applicability
+    termsApplicability: "2. Toepasselijkheid",
+    termsApplicabilityText:
+      "Deze voorwaarden zijn van toepassing op alle offertes, werkzaamheden, overeenkomsten en leveringen van diensten of producten door of namens ZsMWebDev.",
+
+    // Services
+    termsServices: "3. Dienstverlening",
+    termsServicesText:
+      "ZsMWebDev biedt diensten op het gebied van webdevelopment, waaronder:",
+    termsServicesList: [
+      "Ontwerp en bouw van statische (één- en meerpagina) websites",
+      "Hosting advies en domeinregistratie",
+      "E-mail configuratie",
+      "Zoekmachine optimalisatie (SEO)",
+      "Integratie van analytics tools en formulieren",
+    ],
+
+    // Quotes and rates
+    termsQuotes: "4. Offertes en tarieven",
+    termsQuotesText: [
+      "Alle prijzen zijn in euro's, exclusief BTW, tenzij anders vermeld.",
+      "Offertes zijn vrijblijvend en geldig voor 30 dagen.",
+      "Wijzigingen of uitbreidingen buiten het overeengekomen project worden beschouwd als meerwerk en gefactureerd tegen het uurtarief van €50 per uur.",
+    ],
+
+    // Payment
+    termsPayment: "5. Betaling",
+    termsPaymentText: [
+      "Facturen dienen binnen 14 dagen na factuurdatum te worden voldaan.",
+      "Bij wanbetaling behoudt ZsMWebDev zich het recht voor het project tijdelijk op te schorten.",
+    ],
+
+    // Cancellation
+    termsCancellation: "6. Annulering en ontbinding",
+    termsCancellationText: [
+      "Bij annulering door opdrachtgever na schriftelijke bevestiging van de opdracht worden reeds gewerkte uren gefactureerd, met een minimum van 25% van het overeengekomen totaalbedrag.",
+      "Annulering binnen 7 dagen voor de geplande startdatum resulteert in facturering van 50% van het totaalbedrag.",
+      "ZsMWebDev behoudt zich het recht voor de overeenkomst te ontbinden bij wanbetaling, onredelijke eisen of samenwerking die de projectdoelstellingen schaadt.",
+    ],
+
+    // Intellectual property
+    termsIntellectual: "7. Intellectueel eigendom",
+    termsIntellectualText: [
+      "Alle door ZsMWebDev ontwikkelde designs en code blijven intellectueel eigendom van ZsMWebDev tot volledige betaling.",
+      "Na betaling verkrijgt opdrachtgever gebruiksrechten voor de geleverde website.",
+    ],
+
+    // Maintenance
+    termsMaintenance: "8. Onderhoud en support",
+    termsMaintenanceText: [
+      "Support na oplevering wordt gegeven voor de duur volgens het gekozen pakket (bijv. 3, 6 of 12 maanden).",
+      "Wijzigingen of content updates na oplevering vallen niet onder standaard service en worden per uur berekend.",
+    ],
+
+    // Liability
+    termsLiability: "9. Aansprakelijkheid",
+    termsLiabilityText: [
+      "ZsMWebDev is niet aansprakelijk voor indirecte schade zoals dataverlies, gederfde winst of gevolgschade.",
+      "ZsMWebDev doet er alles aan om veilige, snelle en functionele websites op te leveren, maar geeft geen garantie op constante foutloze werking of uptime.",
+    ],
+
+    // Applicable law
+    termsLaw: "10. Toepasselijk recht",
+    termsLawText: [
+      "Op alle overeenkomsten met ZsMWebDev is Nederlands recht van toepassing. Geschillen worden voorgelegd aan de bevoegde rechter te Rotterdam.",
+      "Voor vragen over deze voorwaarden kunt u contact opnemen via portfolio@zsoltmarku.com of het contactformulier op de website.",
     ],
 
     // Common actions

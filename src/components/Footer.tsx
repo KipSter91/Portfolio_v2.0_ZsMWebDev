@@ -11,15 +11,18 @@ import {
   FaInstagram,
   FaShieldAlt,
   FaCookie,
+  FaFileContract,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
+import { TermsOfServiceModal } from "./TermsOfServiceModal";
 import { CookieSettingsModal } from "./CookieSettingsModal";
 
 const Footer: React.FC = () => {
   const { t } = useLocaleContext();
   const currentYear = new Date().getFullYear();
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
   const [splashComplete, setSplashComplete] = useState(false);
 
@@ -68,8 +71,8 @@ const Footer: React.FC = () => {
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
-      {/* Mobile Layout */}
-      <div className="md:hidden h-full px-2">
+      {/* Mobile & Tablet Layout */}
+      <div className="lg:hidden h-full px-2">
         <div className="flex items-center justify-between h-full">
           {/* Copyright */}
           <motion.div
@@ -79,19 +82,19 @@ const Footer: React.FC = () => {
             }
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex-shrink-0">
-            <span className="text-xs text-[color:var(--white)]">
+            <span className="text-xs md:text-sm text-[color:var(--white)]">
               © {currentYear} {t.myName}
             </span>
           </motion.div>
 
-          {/* Privacy/Cookie Icons */}
+          {/* Privacy/Terms/Cookie Icons */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={
               splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
             }
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="flex items-center space-x-2">
+            className="flex items-center space-x-2 md:space-x-3">
             <motion.div
               whileHover={{ y: -3 }}
               transition={{ type: "spring", stiffness: 300 }}>
@@ -99,7 +102,17 @@ const Footer: React.FC = () => {
                 onClick={() => setIsPrivacyModalOpen(true)}
                 className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
                 aria-label={t.privacyPolicy}>
-                <FaShieldAlt className="w-4 h-4" />
+                <FaShieldAlt className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+            </motion.div>
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsTermsModalOpen(true)}
+                className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
+                aria-label={t.termsOfService}>
+                <FaFileContract className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </motion.div>
             <motion.div
@@ -109,7 +122,7 @@ const Footer: React.FC = () => {
                 onClick={() => setIsCookieModalOpen(true)}
                 className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300"
                 aria-label={t.cookieSettings}>
-                <FaCookie className="w-4 h-4" />
+                <FaCookie className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </motion.div>
           </motion.div>
@@ -121,7 +134,7 @@ const Footer: React.FC = () => {
               splashComplete ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
             }
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex space-x-2 flex-shrink-0">
+            className="flex space-x-2 md:space-x-3 flex-shrink-0">
             {socialLinks.map((link, index) => (
               <motion.div
                 key={index}
@@ -142,7 +155,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -156,7 +169,7 @@ const Footer: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Privacy Policy and Cookie Settings */}
+          {/* Privacy Policy, Terms of Service and Cookie Settings */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={
@@ -171,6 +184,16 @@ const Footer: React.FC = () => {
                 onClick={() => setIsPrivacyModalOpen(true)}
                 className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
                 {t.privacyPolicy}
+              </button>
+            </motion.div>
+            <span>|</span>
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300 }}>
+              <button
+                onClick={() => setIsTermsModalOpen(true)}
+                className="hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
+                {t.termsOfService}
               </button>
             </motion.div>
             <span>|</span>
@@ -215,6 +238,10 @@ const Footer: React.FC = () => {
       <PrivacyPolicyModal
         isOpen={isPrivacyModalOpen}
         onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <TermsOfServiceModal
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
       />
       <CookieSettingsModal
         isOpen={isCookieModalOpen}
