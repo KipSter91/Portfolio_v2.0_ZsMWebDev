@@ -680,7 +680,11 @@ export default function ServicesPage() {
                       type: "spring",
                       stiffness: 200,
                     }}
-                    viewport={{ once: true, margin: "-50px" }}>
+                    viewport={{ once: true, margin: "-50px" }}
+                    onClick={() => {
+                      router.push("/pricing");
+                      window.scrollTo(0, 0);
+                    }}>
                     {t.ctaPricing}
                   </motion.button>
                 </div>

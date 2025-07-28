@@ -76,6 +76,87 @@ export const translations = {
     ctaContact: "Get in Touch",
     ctaPricing: "View Pricing",
 
+    // Pricing page
+    pricingTitle: "ZsMWebDev – Packages & Pricing",
+    pricingSubtitle: "Prices ex. VAT",
+    budgetPackage: "Budget",
+    standardPackage: "Standard",
+    proPackage: "Pro",
+    customPackage: "Custom",
+    customPrice: "Custom",
+    recommended: "Recommended",
+    budgetSubtitle: "Clean, cost-effective solution for unique web presence",
+    standardSubtitle: "Extended functionality for serious business purposes",
+    proSubtitle:
+      "Professional, multi-page solution for brands and scalable projects",
+    customSubtitle: "Based on individual needs",
+    customDescription: "For custom functionality or complex projects",
+    choosePackage: "Choose",
+    requestQuote: "Request Quote",
+    questionsTitle: "Questions? Custom needs?",
+    questionsDescription:
+      "Get in touch with me, and let's discuss how I can help develop your web presence!",
+    contactCta: "Contact",
+
+    // Content update policy (English)
+    contentUpdatePolicyTitle: "Content Updates",
+    contentUpdatePolicyDescription:
+      "Since the websites are built using static systems, subsequent content updates (such as text, image, video replacement or adding new sections to existing content) cannot be automatically edited by the client.",
+    contentUpdateRate: "Content update rate: €50 / hour (ex. VAT)",
+    contentUpdateIncludes:
+      "The price includes analysis, implementation, testing and republishing.",
+
+    // Package features (English)
+    budgetFeatures: [
+      "Custom designed static 1-page landing page",
+      "Maximum 4 sections",
+      "1 CTA block",
+      "Mobile optimized, responsive design",
+      "Basic SEO settings",
+      "Basic animations",
+      "Contact form",
+      "Favicon + basic site structure",
+      "1 year domain + hosting (then at client's cost)",
+      "1 year business email (then at client's cost)",
+      "3 months technical support",
+    ],
+    standardFeatures: [
+      "Everything from the Budget package",
+      "Maximum 9 sections",
+      "Multiple CTA blocks",
+      "Enhanced SEO settings",
+      "Scroll navigation",
+      "Complex animations, interactive elements",
+      "Image carousel",
+      "FAQ section",
+      "Social media integration (icons, OpenGraph)",
+      "Cookie and privacy page",
+      "PageSpeed optimization",
+      "2 years domain + hosting (then at client's cost)",
+      "2 years business email (then at client's cost)",
+      "6 months technical support",
+    ],
+    proFeatures: [
+      "Everything from the Standard package",
+      "Multiple pages (not just one-page)",
+      'Separate "Services & Prices" page (after detailed consultation)',
+      "Multi-language",
+      "Video integration, even carousel format",
+      "Testimonial section (static feedback)",
+      "Technical SEO (structured data, robots.txt, sitemap.xml)",
+      "Google Analytics",
+      "Very detailed UI/UX elements, animation effects",
+      "12 months technical support",
+    ],
+    customFeatures: [
+      "Quote on request, consultation based",
+      "Fully customized solution",
+      "Complex functionalities",
+      "Custom design requirements",
+      "Special integrations",
+      "Scalable architecture",
+    ],
+
     // Common actions
     clickMe: "Click me!",
     back: "Back",
@@ -304,7 +385,7 @@ export const translations = {
     targetAudience2:
       "Kis- és középvállalkozások, akik modern arculatra vágynak",
     targetAudience3:
-      "Szolgáltatók (edzők, coachok, kozmetikusok), akik bővítenék ügyfélkörüket",
+      "Szolgáltatók (edzők, coachok, kozmetikusok, fodrászok stb.), akik bővítenék ügyfélkörüket",
     targetAudience4:
       "Startupok, akik landing oldallal szeretnék validálni az ötletüket",
     targetAudience5:
@@ -314,19 +395,19 @@ export const translations = {
     timelineTitle: "Milyen gyorsan készül el a weboldalad?",
     timelineDay1Title: "1. nap – Villámgyors ajánlat",
     timelineDay1Description:
-      "Amint elküldöd az érdeklődést, 24 órán belül személyre szabott ajánlatot kapsz. Tartalmazza a csomag részleteit, az idővonalat és az árat – minden átláthatóan, rejtett költségek nélkül. Ha elfogadod, kezdhetjük is.",
+      "Amint elküldöd az érdeklődést, 24 órán belül személyre szabott ajánlatot kapsz. Tartalmazza a csomag részleteit, az idővonalat és az árat, minden átláthatóan, rejtett költségek nélkül. Ha elfogadod, kezdhetjük is.",
 
     timelineDay2Title: "2. nap – Online konzultáció",
     timelineDay2Description:
-      "Zoom-on vagy e-mailen egyeztetünk: mit szeretnél, mi a célod a weboldallal, mik az elvárásaid? Átbeszéljük a stílust, színeket, tartalmi részeket, funkciókat. Ez alapján készül az oldal vázlata.",
+      "Videohívás vagy e-mail formájában egyeztetünk (ha szükséges, akár személyesen): mit szeretnél, mi a célod a weboldallal, mik az elvárásaid? Átbeszéljük a stílust, színeket, tartalmi részeket, funkciókat. Ez alapján készül az oldal vázlata.",
 
     timelineDay35Title: "3–5. nap – Tervezés és fejlesztés",
     timelineDay35Description:
-      "Elkezdődik az éles fejlesztés scratchből. Először UX/UI design, majd reszponzív fejlesztés Next.js és Tailwind alapon. Folyamatos egyeztetéssel, visszajelzési lehetőséggel. Mire észbe kapsz, már kész is a váz!",
+      "Elkezdődik az éles fejlesztés scratchből. Először UX/UI design, majd reszponzív fejlesztés Next.js (React) és Tailwind alapon. Folyamatos egyeztetéssel, visszajelzési lehetőséggel. Mire észbe kapsz, már kész is az alap!",
 
     timelineDay67Title: "6–7. nap – Tesztelés és finomhangolás",
     timelineDay67Description:
-      "Átnézzük együtt az oldalt minden eszközön. Mobil, tablet, laptop – optimalizálunk, finomítunk, pontosítjuk az animációkat, CTA-kat, PageSpeed-et. Amíg nem tökéletes, nem megy ki!",
+      "Átnézzük együtt az oldalt minden eszközön. Mobil, tablet, laptop – optimalizálunk, finomítunk, pontosítjuk az animációkat, CTA-kat, minden részletet. Amíg nem tökéletes, nem megy ki!",
 
     timelineDay8Title: "8. nap – Élesítés és átadás",
     timelineDay8Description:
@@ -338,6 +419,88 @@ export const translations = {
       "Szeretnéd megnézni az árakat vagy elindítani a saját weboldalad?",
     ctaContact: "Lépj kapcsolatba",
     ctaPricing: "Tekintsd meg az árakat",
+
+    // Pricing page
+    pricingTitle: "ZsMWebDev – Csomagok és árak",
+    pricingSubtitle: "Az árak az ÁFA-t nem tartalmazzák",
+    budgetPackage: "Budget",
+    standardPackage: "Standard",
+    proPackage: "Pro",
+    customPackage: "Custom",
+    customPrice: "Egyedi",
+    recommended: "Ajánlott",
+    budgetSubtitle:
+      "Letisztult, költséghatékony megoldás egyedi webes jelenléthez",
+    standardSubtitle: "Bővített funkcionalitás, komolyabb üzleti célokra",
+    proSubtitle:
+      "Professzionális, több aloldalas megoldás márkáknak és bővíthető projektekhez",
+    customSubtitle: "Egyedi igény alapján",
+    customDescription: "Egyedi funkcionalitás vagy komplex projektek esetén",
+    choosePackage: "Ezt választom",
+    requestQuote: "Ajánlat kérés",
+    questionsTitle: "Kérdések? Egyedi igények?",
+    questionsDescription:
+      "Vedd fel velem a kapcsolatot, és beszéljük meg, hogyan segíthetek a webes jelenléted fejlesztésében!",
+    contactCta: "Kapcsolatfelvétel",
+
+    // Content update policy (Hungarian)
+    contentUpdatePolicyTitle: "Tartalomfrissítés",
+    contentUpdatePolicyDescription:
+      "Mivel az oldalak statikus rendszerben készülnek, az utólagos tartalomfrissítések (például szöveg, kép, videó cseréje vagy új szekciók hozzáadása a meglévő tartalomhoz) nem automatikusan szerkeszthetők az ügyfél által.",
+    contentUpdateRate: "Tartalomfrissítés díja: 19000 Ft / óra (+ ÁFA)",
+    contentUpdateIncludes:
+      "Az ár tartalmazza az elemzést, implementációt, tesztelést és újrapublikálást.",
+
+    // Package features (Hungarian)
+    budgetFeatures: [
+      "Egyedi tervezésű, statikus 1 oldalas landing page",
+      "Maximum 4 szekció",
+      "1 CTA blokk",
+      "Mobilra optimalizált, reszponzív kialakítás",
+      "Alap SEO beállítások",
+      "Alap animációk",
+      "Kapcsolat űrlap",
+      "Favicon + alap site-struktúra",
+      "1 év domain + hosting (utána az ügyfél költségén)",
+      "1 év céges emailcím (utána az ügyfél költségén)",
+      "3 hónap technikai support",
+    ],
+    standardFeatures: [
+      "Minden, amit a Budget csomag tartalmaz",
+      "Maximum 9 szekció",
+      "Több CTA blokk",
+      "Bővített SEO beállítások",
+      "Scroll navigáció",
+      "Összetett animációk, interaktív elemek",
+      "Kép carousel",
+      "GYIK szekció",
+      "Közösségi média integráció (ikonok, OpenGraph)",
+      "Cookie és adatvédelmi oldal",
+      "PageSpeed optimalizálás",
+      "2 év domain + hosting (utána az ügyfél költségén)",
+      "2 év céges emailcím (utána az ügyfél költségén)",
+      "6 hónap technikai support",
+    ],
+    proFeatures: [
+      "Minden, amit a Standard csomag tartalmaz",
+      "Több aloldal (nem csak one-page)",
+      'Külön "Services & Prices" aloldal (részletes konzultációt követően)',
+      "Többnyelvűség",
+      "Videó integráció, akár carousel formában",
+      "Testimonial szekció (statikus visszajelzések)",
+      "Technikai SEO (strukturált adatok, robots.txt, sitemap.xml)",
+      "Google Analytics",
+      "Nagyon részletes UI/UX elemek, animációs effektek",
+      "12 hónap technikai support",
+    ],
+    customFeatures: [
+      "Ajánlat kérésre, konzultáció alapján",
+      "Teljes mértékben testreszabott megoldás",
+      "Komplex funkcionalitások",
+      "Egyedi design követelmények",
+      "Speciális integrációk",
+      "Skálázható architektúra",
+    ],
 
     // Common actions
     clickMe: "Kattints rám!",
@@ -602,6 +765,89 @@ export const translations = {
       "Wil je de prijzen bekijken of jouw project meteen starten?",
     ctaContact: "Neem contact op",
     ctaPricing: "Bekijk prijzen",
+
+    // Pricing page
+    pricingTitle: "ZsMWebDev – Pakketten & Prijzen",
+    pricingSubtitle: "Prijzen ex. BTW",
+    budgetPackage: "Budget",
+    standardPackage: "Standard",
+    proPackage: "Pro",
+    customPackage: "Custom",
+    customPrice: "Aangepast",
+    recommended: "Aanbevolen",
+    budgetSubtitle:
+      "Schone, kosteneffectieve oplossing voor unieke webpresentatie",
+    standardSubtitle:
+      "Uitgebreide functionaliteit voor serieuze zakelijke doeleinden",
+    proSubtitle:
+      "Professionele, multi-page oplossing voor merken en schaalbare projecten",
+    customSubtitle: "Op basis van individuele behoeften",
+    customDescription: "Voor aangepaste functionaliteit of complexe projecten",
+    choosePackage: "Kiezen",
+    requestQuote: "Offerte aanvragen",
+    questionsTitle: "Vragen? Aangepaste behoeften?",
+    questionsDescription:
+      "Neem contact met me op, en laten we bespreken hoe ik kan helpen bij het ontwikkelen van jouw webpresentatie!",
+    contactCta: "Contact opnemen",
+
+    // Content update policy (Dutch)
+    contentUpdatePolicyTitle: "Content Updates",
+    contentUpdatePolicyDescription:
+      "Omdat de websites worden gebouwd met statische systemen, kunnen latere content-updates (zoals tekst-, afbeelding-, video-vervanging of het toevoegen van nieuwe secties aan bestaande content) niet automatisch door de klant worden bewerkt.",
+    contentUpdateRate: "Tarief voor content-updates: €50 / uur (ex. BTW)",
+    contentUpdateIncludes:
+      "De prijs omvat analyse, implementatie, testen en heruitgave.",
+
+    // Package features
+    budgetFeatures: [
+      "Aangepaste ontworpen statische 1-pagina landingspagina",
+      "Maximum 4 secties",
+      "1 CTA blok",
+      "Mobiel geoptimaliseerd, responsief ontwerp",
+      "Basis SEO-instellingen",
+      "Basis animaties",
+      "Contactformulier",
+      "Favicon + basis site-structuur",
+      "1 jaar domein + hosting (daarna op klantkosten)",
+      "1 jaar zakelijke e-mail (daarna op klantkosten)",
+      "3 maanden technische ondersteuning",
+    ],
+    standardFeatures: [
+      "Alles uit het Budget pakket",
+      "Maximum 9 secties",
+      "Meerdere CTA blokken",
+      "Uitgebreide SEO-instellingen",
+      "Scroll navigatie",
+      "Complexe animaties, interactieve elementen",
+      "Afbeelding carousel",
+      "FAQ sectie",
+      "Social media integratie (iconen, OpenGraph)",
+      "Cookie en privacy pagina",
+      "PageSpeed optimalisatie",
+      "2 jaar domein + hosting (daarna op klantkosten)",
+      "2 jaar zakelijke e-mail (daarna op klantkosten)",
+      "6 maanden technische ondersteuning",
+    ],
+    proFeatures: [
+      "Alles uit het Standard pakket",
+      "Meerdere pagina's (niet alleen one-page)",
+      'Aparte "Services & Prijzen" pagina (na gedetailleerde consultatie)',
+      "Meertalig",
+      "Video-integratie, zelfs carousel formaat",
+      "Testimonial sectie (statische feedback)",
+      "Technische SEO (gestructureerde data, robots.txt, sitemap.xml)",
+      "Google Analytics",
+      "Zeer gedetailleerde UI/UX elementen, animatie-effecten",
+      "12 maanden technische ondersteuning",
+    ],
+    customFeatures: [
+      "Offerte op aanvraag, consultatie gebaseerd",
+      "Volledig aangepaste oplossing",
+      "Complexe functionaliteiten",
+      "Aangepaste ontwerpvereisten",
+      "Speciale integraties",
+      "Schaalbare architectuur",
+    ],
 
     // Common actions
     clickMe: "Klik op mij!",
