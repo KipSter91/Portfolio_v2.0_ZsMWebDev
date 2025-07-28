@@ -342,13 +342,13 @@ export default function ServicesPage() {
 
                 {/* Target Audience Section */}
                 <motion.div
-                  className="mb-8"
+                  className="mb-12"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true, margin: "-100px" }}>
                   <motion.h2
-                    className="text-2xl font-semibold text-[#fd19fc] mb-3 text-center"
+                    className="text-2xl font-semibold text-[#fd19fc] mb-6 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -407,12 +407,12 @@ export default function ServicesPage() {
                 {/* Timeline Section - SIMPLE AND WORKING! */}
                 <motion.div
                   ref={timelineRef}
-                  className="mb-12"
+                  className="mb-4 md:mb-12"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}>
                   <motion.h2
-                    className="text-2xl font-semibold text-[#fd19fc] mb-16 text-center"
+                    className="text-2xl font-semibold text-[#fd19fc] mb-8 md:mb-16 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}>
@@ -459,7 +459,7 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Timeline Items */}
-                    <div className="space-y-12">
+                    <div className="space-y-4 md:space-y-12">
                       {/* Day 1 */}
                       <motion.div
                         className="flex flex-col md:flex-row items-center md:space-x-8"
@@ -478,7 +478,7 @@ export default function ServicesPage() {
                               </div>
                             </div>
                             <div className="flex items-center justify-center md:justify-end mb-3">
-                              <h3 className="text-lg font-semibold text-white">
+                              <h3 className="text-lg font-semibold text-white text-center md:text-right">
                                 {t.timelineDay1Title}
                               </h3>
                             </div>
@@ -511,7 +511,7 @@ export default function ServicesPage() {
                               </div>
                             </div>
                             <div className="flex items-center justify-center md:justify-start mb-3">
-                              <h3 className="text-lg font-semibold text-white">
+                              <h3 className="text-lg font-semibold text-white text-center md:text-left">
                                 {t.timelineDay2Title}
                               </h3>
                             </div>
@@ -540,7 +540,7 @@ export default function ServicesPage() {
                               </div>
                             </div>
                             <div className="flex items-center justify-center md:justify-end mb-3">
-                              <h3 className="text-lg font-semibold text-white">
+                              <h3 className="text-lg font-semibold text-white text-center md:text-right">
                                 {t.timelineDay35Title}
                               </h3>
                             </div>
@@ -573,7 +573,7 @@ export default function ServicesPage() {
                               </div>
                             </div>
                             <div className="flex items-center justify-center md:justify-start mb-3">
-                              <h3 className="text-lg font-semibold text-white">
+                              <h3 className="text-lg font-semibold text-white text-center md:text-left">
                                 {t.timelineDay67Title}
                               </h3>
                             </div>
@@ -602,7 +602,7 @@ export default function ServicesPage() {
                               </div>
                             </div>
                             <div className="flex items-center justify-center md:justify-end mb-3">
-                              <h3 className="text-lg font-semibold text-white">
+                              <h3 className="text-lg font-semibold text-white text-center md:text-right">
                                 {t.timelineDay8Title}
                               </h3>
                             </div>

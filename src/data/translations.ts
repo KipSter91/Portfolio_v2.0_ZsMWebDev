@@ -37,15 +37,15 @@ export const translations = {
     // Target audience
     targetAudienceTitle: "Who Is This For?",
     targetAudience1:
-      "Individual entrepreneurs seeking a strong online presence",
+      "Individual entrepreneurs who want a professional online presence",
     targetAudience2:
-      "Small and medium-sized businesses aiming for a modern brand identity",
+      "Small and medium-sized businesses who desire a modern brand identity",
     targetAudience3:
-      "Service providers (trainers, coaches, beauticians) looking to grow their client base",
+      "Service providers (trainers, coaches, beauticians, hairdressers, etc.) who want to expand their client base",
     targetAudience4:
-      "Startups wanting to validate their ideas through high-converting landing pages",
+      "Startups who want to validate their ideas with a landing page",
     targetAudience5:
-      "Businesses with outdated websites looking to modernize and refresh their online presence",
+      "Businesses with outdated websites who want to renew and refresh their online presence",
 
     // Timeline section
     timelineTitle: "How Quickly Is Your Website Ready?",
@@ -55,19 +55,19 @@ export const translations = {
 
     timelineDay2Title: "Day 2 – Online Consultation",
     timelineDay2Description:
-      "We discuss via Zoom or email: what you want, your website goals, and expectations. We'll go through style, colors, content sections, and functionality. Based on this, we create the site structure.",
+      "We discuss via video call or email (if needed, even in person): what you want, your website goals, and expectations. We'll go through style, colors, content sections, and functionality. Based on this, we create the site structure.",
 
     timelineDay35Title: "Days 3-5 – Design & Development",
     timelineDay35Description:
-      "Real development begins from scratch. First UX/UI design, then responsive development with Next.js and Tailwind. Continuous consultation with feedback opportunities. Before you know it, the framework is ready!",
+      "Real development begins from scratch. First UX/UI design, then responsive development with Next.js (React) and Tailwind. Continuous consultation with feedback opportunities. Before you know it, the foundation is ready!",
 
     timelineDay67Title: "Days 6-7 – Testing & Fine-tuning",
     timelineDay67Description:
-      "We review the site together on all devices. Mobile, tablet, laptop – we optimize, refine, and perfect animations, CTAs, and PageSpeed. It won't go live until it's perfect!",
+      "We review the site together on all devices. Mobile, tablet, laptop – based on your feedback, I optimize, refine, and adjust/modify animations, CTAs, and every detail. It won't go live until it's perfect!",
 
     timelineDay8Title: "Day 8 – Launch & Handover",
     timelineDay8Description:
-      "Your website will be published on your own domain, optimized for SEO and loading speed. Business email works too. I'll send maintenance tips, and if needed, I'm available for long-term support.",
+      "Your website will be published on your own domain, optimized for SEO and loading speed. Business email works too. I'll send maintenance tips, and if you request, I'm available for long-term support (beyond the duration included in your chosen package).",
 
     // Call to action
     ctaTitle: "Let’s Build Something Great!",
@@ -78,25 +78,31 @@ export const translations = {
 
     // Pricing page
     pricingTitle: "ZsMWebDev – Packages & Pricing",
-    pricingSubtitle: "Prices ex. VAT",
+    pricingSubtitle: "Prices ex. Dutch VAT (21%)",
     budgetPackage: "Budget",
     standardPackage: "Standard",
     proPackage: "Pro",
     customPackage: "Custom",
-    customPrice: "Custom",
+    customPrice: "Quote on request",
     recommended: "Recommended",
     budgetSubtitle: "Clean, cost-effective solution for unique web presence",
     standardSubtitle: "Extended functionality for serious business purposes",
     proSubtitle:
       "Professional, multi-page solution for brands and scalable projects",
-    customSubtitle: "Based on individual needs",
-    customDescription: "For custom functionality or complex projects",
-    choosePackage: "Choose",
+    customSubtitle: "Flexible package composition according to your needs",
+    customDescription:
+      "Didn't find exactly what you're looking for? No problem – flexibility is my foundation!\nFeel free to combine features from individual packages or request a completely custom solution. You'll receive a personalized quote based on your requirements.",
+    choosePackage: "Let’s Build This",
     requestQuote: "Request Quote",
     questionsTitle: "Questions? Custom needs?",
     questionsDescription:
       "Get in touch with me, and let's discuss how I can help develop your web presence!",
     contactCta: "Contact",
+
+    // VAT Information (English)
+    vatInfoTitle: "VAT Information",
+    vatInfoDescription:
+      "All prices are listed in EUR excluding Dutch VAT (21%). For EU businesses with valid VAT numbers, reverse charge mechanism applies according to Articles 44 and 196 of EU VAT Directive 2006/112/EC.",
 
     // Content update policy (English)
     contentUpdatePolicyTitle: "Content Updates",
@@ -131,6 +137,7 @@ export const translations = {
       "FAQ section",
       "Social media integration (icons, OpenGraph)",
       "Cookie and privacy page",
+      "QR code with your website URL (scan to open website)",
       "PageSpeed optimization",
       "2 years domain + hosting (then at client's cost)",
       "2 years business email (then at client's cost)",
@@ -149,12 +156,11 @@ export const translations = {
       "12 months technical support",
     ],
     customFeatures: [
-      "Quote on request, consultation based",
-      "Fully customized solution",
-      "Complex functionalities",
-      "Custom design requirements",
-      "Special integrations",
-      "Scalable architecture",
+      "Based on detailed consultation",
+      "Customized functionality and design",
+      "Pricing tailored to individual needs",
+      "Special integrations or architecture",
+      "Ideal for more complex projects",
     ],
 
     // Common actions
@@ -271,21 +277,24 @@ export const translations = {
     download: "Download",
 
     // Contact page
-    contactTitle: "Get In Touch",
+    contactTitle: "Start Your Project",
     contactSubtitle: "Let's work together",
     contactContent:
-      "Get in touch with me for collaboration opportunities or to discuss your project ideas.",
+      "Ready to take your business online? Contact me for a personalized consultation and quote. I'll discuss your specific needs and create the perfect web solution for your business.",
     yourName: "Your Name",
     yourEmail: "Your Email",
+    interestedPackage: "Interested Package",
+    selectPackage: "Select a package...",
     yourMessage: "Your Message",
     sendMessage: "Send Message",
     namePlaceholder: "Enter your full name",
-    emailPlaceholder: "Enter your email address",
-    messagePlaceholder: "Tell me about your project or idea...",
+    emailPlaceholder: "Enter your business email address",
+    messagePlaceholder:
+      "Tell me about your business, goals, and specific requirements...",
     letsConnect: "Let's Connect",
-    letsCollaborate: "Let's Collaborate!",
+    letsCollaborate: "Ready to Grow Your Business?",
     collaborationText:
-      "I'm always interested in new opportunities, challenging projects, and connecting with fellow developers. Whether you have a project in mind or just want to chat about tech, feel free to reach out!",
+      "I specialize in creating custom websites that help businesses establish a strong online presence and drive growth. From concept to launch, I handle every aspect of your web development journey.",
 
     // Contact info
     email: "Email",
@@ -293,7 +302,7 @@ export const translations = {
 
     // Footer
     allRightsReserved: "All rights reserved",
-    myName: "Zsolt Márku",
+    myName: "Zsolt Márku | ZsMWebDev",
 
     // Thank you modal
     thankYouTitle: "Thank You!",
@@ -407,11 +416,11 @@ export const translations = {
 
     timelineDay67Title: "6–7. nap – Tesztelés és finomhangolás",
     timelineDay67Description:
-      "Átnézzük együtt az oldalt minden eszközön. Mobil, tablet, laptop – optimalizálunk, finomítunk, pontosítjuk az animációkat, CTA-kat, minden részletet. Amíg nem tökéletes, nem megy ki!",
+      "Átnézzük együtt az oldalt minden eszközön. Mobil, tablet, laptop – a visszajelzésed alapján optimalizálok, finomítok, pontosítom/módosítom az animációkat, CTA-kat, minden részletet. Amíg nem tökéletes, nem megy ki!",
 
     timelineDay8Title: "8. nap – Élesítés és átadás",
     timelineDay8Description:
-      "A weboldalad publikálva lesz saját domainen, optimalizálva SEO-ra, betöltési sebességre. A céges email is működik. Elküldöm a karbantartási tippeket, és ha kéred, elérhető vagyok hosszabb távú supporthoz is.",
+      "A weboldalad publikálva lesz saját domainen, optimalizálva SEO-ra, betöltési sebességre. A céges email is működik. Elküldöm a karbantartási tippeket, és ha kéred, elérhető vagyok hosszabb távú supporthoz is (a választott csomaghoz tartozó időtartamon túl).",
 
     // Call to action
     ctaTitle: "Kezdjünk bele valami nagyszerűbe!",
@@ -422,26 +431,32 @@ export const translations = {
 
     // Pricing page
     pricingTitle: "ZsMWebDev – Csomagok és árak",
-    pricingSubtitle: "Az árak az ÁFA-t nem tartalmazzák",
+    pricingSubtitle: "Az árak forintban, holland 21% ÁFA nélkül",
     budgetPackage: "Budget",
     standardPackage: "Standard",
     proPackage: "Pro",
-    customPackage: "Custom",
-    customPrice: "Egyedi",
+    customPackage: "Egyedi",
+    customPrice: "Konzultáció alapján",
     recommended: "Ajánlott",
     budgetSubtitle:
       "Letisztult, költséghatékony megoldás egyedi webes jelenléthez",
     standardSubtitle: "Bővített funkcionalitás, komolyabb üzleti célokra",
     proSubtitle:
       "Professzionális, több aloldalas megoldás márkáknak és bővíthető projektekhez",
-    customSubtitle: "Egyedi igény alapján",
-    customDescription: "Egyedi funkcionalitás vagy komplex projektek esetén",
+    customSubtitle: "Rugalmas csomag-összeállítás az igényeid szerint",
+    customDescription:
+      "Nem találtad meg pontosan, amit keresel? Semmi gond – nálam a rugalmasság az alap!\nKombináld bátran az egyes csomagok funkcióit vagy kérj teljesen egyedi megoldást. Az igényeid alapján személyre szabott árajánlatot kapsz.",
     choosePackage: "Ezt választom",
     requestQuote: "Ajánlat kérés",
     questionsTitle: "Kérdések? Egyedi igények?",
     questionsDescription:
       "Vedd fel velem a kapcsolatot, és beszéljük meg, hogyan segíthetek a webes jelenléted fejlesztésében!",
     contactCta: "Kapcsolatfelvétel",
+
+    // VAT Information (Hungarian)
+    vatInfoTitle: "ÁFA tájékoztató",
+    vatInfoDescription:
+      "Az árak forintban értendők, a holland 21% ÁFA nélkül. Magyar vagy más EU-s cégek esetén a fordított adózás szabályai érvényesek az EU ÁFA irányelv 2006/112/EK 44. és 196. cikkei alapján. Magánszemélyek esetén a holland ÁFA felszámításra kerül.",
 
     // Content update policy (Hungarian)
     contentUpdatePolicyTitle: "Tartalomfrissítés",
@@ -476,6 +491,7 @@ export const translations = {
       "GYIK szekció",
       "Közösségi média integráció (ikonok, OpenGraph)",
       "Cookie és adatvédelmi oldal",
+      "QR kód a webcímeddel (szkennelve megnyílik a weblap)",
       "PageSpeed optimalizálás",
       "2 év domain + hosting (utána az ügyfél költségén)",
       "2 év céges emailcím (utána az ügyfél költségén)",
@@ -494,12 +510,11 @@ export const translations = {
       "12 hónap technikai support",
     ],
     customFeatures: [
-      "Ajánlat kérésre, konzultáció alapján",
-      "Teljes mértékben testreszabott megoldás",
-      "Komplex funkcionalitások",
-      "Egyedi design követelmények",
-      "Speciális integrációk",
-      "Skálázható architektúra",
+      "Részletes konzultáció alapján",
+      "Testreszabott funkcionalitás és design",
+      "Egyedi igényekhez igazodó árazás",
+      "Speciális integrációk vagy architektúra",
+      "Komplexebb projektekhez is ideális",
     ],
 
     // Common actions
@@ -618,21 +633,24 @@ export const translations = {
     download: "Letöltés",
 
     // Contact page
-    contactTitle: "Kapcsolatfelvétel",
+    contactTitle: "Kezdd el a projekted",
     contactSubtitle: "Dolgozzunk együtt",
     contactContent:
-      "Vedd fel velem a kapcsolatot együttműködési lehetőségekért vagy projekt ötleteid megbeszéléséhez.",
+      "Készen állsz arra, hogy vállalkozásod online jelenlétét erősítsd? Lépj kapcsolatba velem személyre szabott konzultációért és árajánlatért. Megbeszéljük egyedi igényeidet és elkészítem a tökéletes webes megoldást a vállalkozásod számára.",
     yourName: "Neved",
     yourEmail: "Email címed",
+    interestedPackage: "Érdeklődés iránya",
+    selectPackage: "Válassz egy csomagot...",
     yourMessage: "Üzeneted",
     sendMessage: "Üzenet küldése",
     namePlaceholder: "Add meg a teljes neved",
-    emailPlaceholder: "Add meg az email címed",
-    messagePlaceholder: "Mesélj a projektedről vagy ötletedről...",
+    emailPlaceholder: "Add meg a céges email címed",
+    messagePlaceholder:
+      "Mesélj a vállalkozásodról, céljaidról és konkrét igényeidről...",
     letsConnect: "Kapcsolódjunk",
-    letsCollaborate: "Dolgozzunk együtt!",
+    letsCollaborate: "Készen állsz a növekedésre?",
     collaborationText:
-      "Mindig érdekelnek az új lehetőségek, kihívást jelentő projektek és a kapcsolatfelvétel más fejlesztőkkel. Ha van egy projekted vagy csak beszélgetnél a technológiáról, nyugodtan keress meg!",
+      "Egyedi weboldalak készítésére specializálódom, amelyek segítik a vállalkozásokat erős online jelenlét kialakításában és a növekedés elősegítésében. A koncepciótól az indításig minden lépését kezelem a webfejlesztési utadnak.",
 
     // Contact info
     email: "Email",
@@ -640,7 +658,7 @@ export const translations = {
 
     // Footer
     allRightsReserved: "Minden jog fenntartva",
-    myName: "Márku Zsolt",
+    myName: "Márku Zsolt | ZsMWebDev",
 
     // Thank you modal
     thankYouTitle: "Köszönöm!",
@@ -727,15 +745,15 @@ export const translations = {
     // Target audience
     targetAudienceTitle: "Voor wie is dit?",
     targetAudience1:
-      "Zelfstandige ondernemers die een sterke online aanwezigheid willen",
+      "Individuele ondernemers die een professionele online aanwezigheid willen",
     targetAudience2:
-      "Kleine en middelgrote bedrijven die streven naar een moderne merkidentiteit",
+      "Kleine en middelgrote bedrijven die een moderne merkidentiteit wensen",
     targetAudience3:
-      "Dienstverleners (trainers, coaches, schoonheidsspecialisten) die hun klantenbestand willen uitbreiden",
+      "Dienstverleners (trainers, coaches, schoonheidsspecialisten, kappers, enz.) die hun klantenbestand willen uitbreiden",
     targetAudience4:
-      "Start-ups die hun idee willen valideren met een conversiegerichte landingspagina",
+      "Start-ups die hun ideeën willen valideren met een landingspagina",
     targetAudience5:
-      "Bedrijven met verouderde websites die hun online aanwezigheid willen moderniseren en vernieuwen",
+      "Bedrijven met verouderde websites die hun online aanwezigheid willen vernieuwen en opfrissen",
 
     // Timeline section
     timelineTitle: "Hoe snel is jouw website klaar?",
@@ -745,19 +763,19 @@ export const translations = {
 
     timelineDay2Title: "Dag 2 – Online consultatie",
     timelineDay2Description:
-      "We bespreken via Zoom of e-mail: wat wil je, wat is je doel met de website, wat zijn je verwachtingen? We bespreken stijl, kleuren, content secties en functionaliteit. Hierop gebaseerd maken we de site structuur.",
+      "We bespreken via videogesprek of e-mail (indien nodig, zelfs persoonlijk): wat wil je, wat is je doel met de website, wat zijn je verwachtingen? We bespreken stijl, kleuren, content secties en functionaliteit. Hierop gebaseerd maken we de site structuur.",
 
     timelineDay35Title: "Dag 3-5 – Ontwerp & Ontwikkeling",
     timelineDay35Description:
-      "Echte ontwikkeling begint vanaf nul. Eerst UX/UI design, dan responsive ontwikkeling met Next.js en Tailwind. Continue overleg met feedback mogelijkheden. Voor je het weet is het framework klaar!",
+      "Echte ontwikkeling begint vanaf nul. Eerst UX/UI design, dan responsive ontwikkeling met Next.js (React) en Tailwind. Continue overleg met feedback mogelijkheden. Voor je het weet is de basis klaar!",
 
     timelineDay67Title: "Dag 6-7 – Testen & Fine-tuning",
     timelineDay67Description:
-      "We bekijken de site samen op alle apparaten. Mobiel, tablet, laptop – we optimaliseren, verfijnen en perfectioneren animaties, CTA's en PageSpeed. Het gaat niet live totdat het perfect is!",
+      "We bekijken de site samen op alle apparaten. Mobiel, tablet, laptop – op basis van jouw feedback optimaliseer, verfijn en pas/wijzig ik animaties, CTA's en elk detail aan. Het gaat niet live totdat het perfect is!",
 
     timelineDay8Title: "Dag 8 – Launch & Overdracht",
     timelineDay8Description:
-      "Jouw website wordt gepubliceerd op je eigen domein, geoptimaliseerd voor SEO en laadsnelheid. Zakelijke e-mail werkt ook. Ik stuur onderhoudstips, en indien gewenst ben ik beschikbaar voor langetermijn support.",
+      "Jouw website wordt gepubliceerd op je eigen domein, geoptimaliseerd voor SEO en laadsnelheid. Zakelijke e-mail werkt ook. Ik stuur onderhoudstips, en indien gewenst ben ik beschikbaar voor langetermijn support (voorbij de duur die bij je gekozen pakket hoort).",
 
     // Call to action
     ctaTitle: "Laten we iets geweldigs bouwen!",
@@ -768,12 +786,12 @@ export const translations = {
 
     // Pricing page
     pricingTitle: "ZsMWebDev – Pakketten & Prijzen",
-    pricingSubtitle: "Prijzen ex. BTW",
+    pricingSubtitle: "Prijzen ex. Nederlandse BTW (21%)",
     budgetPackage: "Budget",
     standardPackage: "Standard",
     proPackage: "Pro",
     customPackage: "Custom",
-    customPrice: "Aangepast",
+    customPrice: "Op aanvraag",
     recommended: "Aanbevolen",
     budgetSubtitle:
       "Schone, kosteneffectieve oplossing voor unieke webpresentatie",
@@ -781,14 +799,20 @@ export const translations = {
       "Uitgebreide functionaliteit voor serieuze zakelijke doeleinden",
     proSubtitle:
       "Professionele, multi-page oplossing voor merken en schaalbare projecten",
-    customSubtitle: "Op basis van individuele behoeften",
-    customDescription: "Voor aangepaste functionaliteit of complexe projecten",
-    choosePackage: "Kiezen",
+    customSubtitle: "Flexibele pakketsamenstelling volgens jouw behoeften",
+    customDescription:
+      "Vond je niet precies wat je zocht? Geen probleem – flexibiliteit is mijn basis!\nCombineer gerust functies uit individuele pakketten of vraag een volledig aangepaste oplossing. Je ontvangt een gepersonaliseerde offerte op basis van jouw vereisten.",
+    choosePackage: "Ja, dit wil ik",
     requestQuote: "Offerte aanvragen",
     questionsTitle: "Vragen? Aangepaste behoeften?",
     questionsDescription:
       "Neem contact met me op, en laten we bespreken hoe ik kan helpen bij het ontwikkelen van jouw webpresentatie!",
     contactCta: "Contact opnemen",
+
+    // VAT Information (Dutch)
+    vatInfoTitle: "BTW Informatie",
+    vatInfoDescription:
+      "Alle prijzen zijn in EUR exclusief Nederlandse BTW (21%). Voor EU-bedrijven met geldige BTW-nummers geldt het omgekeerde heffingsmechanisme volgens artikelen 44 en 196 van EU BTW-richtlijn 2006/112/EG.",
 
     // Content update policy (Dutch)
     contentUpdatePolicyTitle: "Content Updates",
@@ -823,6 +847,7 @@ export const translations = {
       "FAQ sectie",
       "Social media integratie (iconen, OpenGraph)",
       "Cookie en privacy pagina",
+      "QR-code met jouw website URL (scannen opent website)",
       "PageSpeed optimalisatie",
       "2 jaar domein + hosting (daarna op klantkosten)",
       "2 jaar zakelijke e-mail (daarna op klantkosten)",
@@ -841,12 +866,11 @@ export const translations = {
       "12 maanden technische ondersteuning",
     ],
     customFeatures: [
-      "Offerte op aanvraag, consultatie gebaseerd",
-      "Volledig aangepaste oplossing",
-      "Complexe functionaliteiten",
-      "Aangepaste ontwerpvereisten",
-      "Speciale integraties",
-      "Schaalbare architectuur",
+      "Op basis van gedetailleerde consultatie",
+      "Aangepaste functionaliteit en design",
+      "Prijsstelling afgestemd op individuele behoeften",
+      "Speciale integraties of architectuur",
+      "Ideaal voor complexere projecten",
     ],
 
     // Common actions
@@ -963,21 +987,24 @@ export const translations = {
     download: "Download",
 
     // Contact page
-    contactTitle: "Neem contact op",
+    contactTitle: "Start je project",
     contactSubtitle: "Laten we samenwerken",
     contactContent:
-      "Neem contact met mij op voor samenwerkingsmogelijkheden of om je projectideeën te bespreken.",
+      "Klaar om je bedrijf online te brengen? Neem contact met mij op voor een gepersonaliseerde consultatie en offerte. Ik bespreek je specifieke behoeften en creëer de perfecte weboplossing voor je bedrijf.",
     yourName: "Je naam",
     yourEmail: "Je email",
+    interestedPackage: "Interessant pakket",
+    selectPackage: "Selecteer een pakket...",
     yourMessage: "Je bericht",
     sendMessage: "Bericht versturen",
     namePlaceholder: "Voer je volledige naam in",
-    emailPlaceholder: "Voer je emailadres in",
-    messagePlaceholder: "Vertel me over je project of idee...",
+    emailPlaceholder: "Voer je zakelijke emailadres in",
+    messagePlaceholder:
+      "Vertel me over je bedrijf, doelen en specifieke vereisten...",
     letsConnect: "Laten we verbinden",
-    letsCollaborate: "Laten we samenwerken!",
+    letsCollaborate: "Klaar om je bedrijf te laten groeien?",
     collaborationText:
-      "Ik ben altijd geïnteresseerd in nieuwe mogelijkheden, uitdagende projecten en het verbinden met andere ontwikkelaars. Of je nu een project in gedachten hebt of gewoon wilt praten over technologie, neem gerust contact op!",
+      "Ik specialiseer me in het creëren van aangepaste websites die bedrijven helpen een sterke online aanwezigheid te vestigen en groei te stimuleren. Van concept tot lancering behandel ik elk aspect van je webontwikkelingsreis.",
 
     // Contact info
     email: "Email",
@@ -985,7 +1012,7 @@ export const translations = {
 
     // Footer
     allRightsReserved: "Alle rechten voorbehouden",
-    myName: "Zsolt Márku",
+    myName: "Zsolt Márku | ZsMWebDev",
 
     // Thank you modal
     thankYouTitle: "Dank je wel!",

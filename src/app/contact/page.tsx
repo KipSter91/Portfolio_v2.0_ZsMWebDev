@@ -14,6 +14,7 @@ function ContactPageContent() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    package: "",
     message: "",
   });
   const [showThankYouModal, setShowThankYouModal] = useState(false);
@@ -21,7 +22,17 @@ function ContactPageContent() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { t } = useLocaleContext();
+  const { t, locale } = useLocaleContext();
+
+  // Package options based on translations
+  const getPackageOptions = () => {
+    return [
+      { value: "budget", label: t.budgetPackage },
+      { value: "standard", label: t.standardPackage },
+      { value: "pro", label: t.proPackage },
+      { value: "custom", label: t.customPackage },
+    ];
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,6 +48,18 @@ function ContactPageContent() {
       window.history.replaceState({}, "", url.toString());
     }
 
+    // Check for package parameter from pricing page
+    const packageParam = searchParams.get("package");
+    if (
+      packageParam &&
+      ["budget", "standard", "pro", "custom"].includes(packageParam)
+    ) {
+      setFormState((prev) => ({
+        ...prev,
+        package: packageParam,
+      }));
+    }
+
     return () => clearTimeout(timer);
   }, [searchParams]);
 
@@ -48,7 +71,9 @@ function ContactPageContent() {
     }, 500);
   };
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormState((prev) => ({
@@ -139,7 +164,20 @@ function ContactPageContent() {
                       <input
                         type="hidden"
                         name="_subject"
-                        value="New contact form submission from portfolio"
+                        value={`New contact form submission from portfolio${
+                          formState.package
+                            ? ` - ${
+                                getPackageOptions().find(
+                                  (p) => p.value === formState.package
+                                )?.label || formState.package
+                              } package`
+                            : ""
+                        }`}
+                      />
+                      <input
+                        type="hidden"
+                        name="package"
+                        value={formState.package}
                       />
                       <input
                         type="hidden"
@@ -201,6 +239,37 @@ function ContactPageContent() {
                           className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors"
                           placeholder={t.emailPlaceholder}
                         />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.25 }}
+                        viewport={{ once: true, margin: "-50px" }}>
+                        <label
+                          className="block text-sm mb-2 text-gray-300"
+                          htmlFor="package">
+                          {t.interestedPackage}
+                        </label>
+                        <select
+                          id="package"
+                          name="package"
+                          value={formState.package}
+                          onChange={handleInputChange}
+                          className="w-full p-3 bg-[#2C313A] rounded border border-gray-700 focus:border-[#00ffff] focus:outline-none transition-colors text-white">
+                          <option
+                            value=""
+                            className="bg-[#2C313A] text-gray-400">
+                            {t.selectPackage}
+                          </option>
+                          {getPackageOptions().map((option) => (
+                            <option
+                              key={option.value}
+                              value={option.value}
+                              className="bg-[#2C313A] text-white">
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
                       </motion.div>
                       <motion.div
                         initial={{ opacity: 0, y: 30 }}

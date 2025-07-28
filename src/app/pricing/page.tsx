@@ -28,9 +28,10 @@ export default function PricingPage() {
 
   const packages = [
     {
+      id: "budget",
       name: t.budgetPackage,
-      priceEuro: "849",
-      priceHuf: "349 000 Ft",
+      priceEuro: "€749",
+      priceHuf: "299 000 Ft",
       color: "from-blue-500 to-blue-600",
       borderColor: "border-blue-400",
       shadowColor: "shadow-blue-500/20",
@@ -39,6 +40,7 @@ export default function PricingPage() {
       features: t.budgetFeatures,
     },
     {
+      id: "standard",
       name: t.standardPackage,
       priceEuro: "€999",
       priceHuf: "399 000 Ft",
@@ -51,9 +53,10 @@ export default function PricingPage() {
       features: t.standardFeatures,
     },
     {
+      id: "pro",
       name: t.proPackage,
-      priceEuro: "€1399",
-      priceHuf: "549 000 Ft",
+      priceEuro: "€1349",
+      priceHuf: "539 000 Ft",
       color: "from-yellow-500 to-yellow-600",
       borderColor: "border-yellow-400",
       shadowColor: "shadow-yellow-500/20",
@@ -62,6 +65,7 @@ export default function PricingPage() {
       features: t.proFeatures,
     },
     {
+      id: "custom",
       name: t.customPackage,
       priceEuro: t.customPrice,
       priceHuf: t.customPrice,
@@ -158,7 +162,7 @@ export default function PricingPage() {
                   viewport={{ once: true, margin: "-100px" }}>
                   {packages.map((pkg, index) => (
                     <motion.article
-                      key={pkg.name}
+                      key={pkg.id}
                       className="bg-[#2C313A] p-6 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300 relative"
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -221,10 +225,10 @@ export default function PricingPage() {
                           viewport={{ once: true }}>
                           {/* Show HUF for Hungarian, EUR for others */}
                           {locale === "hu" ? pkg.priceHuf : pkg.priceEuro}
-                          {pkg.priceEuro !== "Egyedi" &&
-                            pkg.priceHuf !== "Egyedi" &&
-                            pkg.priceEuro !== "Custom" &&
-                            pkg.priceEuro !== "Aangepast" &&
+                          {pkg.priceEuro !== "Konzultáció alapján" &&
+                            pkg.priceHuf !== "Konzultáció alapján" &&
+                            pkg.priceEuro !== "Quote on request" &&
+                            pkg.priceEuro !== "Op aanvraag" &&
                             t.customPrice !== pkg.priceEuro && (
                               <span className="text-sm font-normal text-gray-400">
                                 {locale === "hu"
@@ -306,13 +310,43 @@ export default function PricingPage() {
                           stiffness: 200,
                         }}
                         viewport={{ once: true, margin: "-50px" }}
-                        onClick={() => router.push("/contact")}>
-                        {pkg.name === t.customPackage
-                          ? t.requestQuote
-                          : t.choosePackage}
+                        onClick={() => {
+                          router.push(`/contact?package=${pkg.id}`);
+                        }}>
+                        {pkg.id === "custom" ? t.requestQuote : t.choosePackage}
                       </motion.button>
                     </motion.article>
                   ))}
+                </motion.div>
+
+                {/* VAT Information */}
+                <motion.div
+                  className="w-full max-w-5xl mx-auto bg-[#2C313A] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 1.0 }}
+                  viewport={{ once: true, margin: "-100px" }}>
+                  <motion.h2
+                    className="text-xl md:text-2xl font-bold mb-4 text-[#00ffff]"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 200,
+                      delay: 1.1,
+                    }}
+                    viewport={{ once: true, margin: "-50px" }}>
+                    {t.vatInfoTitle}
+                  </motion.h2>
+
+                  <motion.p
+                    className="text-base text-gray-200 leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                    viewport={{ once: true, margin: "-50px" }}>
+                    {t.vatInfoDescription}
+                  </motion.p>
                 </motion.div>
               </div>
             </motion.section>
