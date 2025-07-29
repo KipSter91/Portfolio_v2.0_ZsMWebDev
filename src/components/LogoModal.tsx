@@ -31,9 +31,9 @@ export default function LogoModal() {
       const typed = new Typed(el.current, {
         strings: [
           t.imZsolt,
-          t.warehouseManager,
           t.frontendDeveloper,
           t.creativeCoder,
+          t.landingPage,
           t.husbandTo,
           t.proudDadOfCats,
           t.traveller,

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title:
       "About ZsMWebDev - Professional Web Development Services | Zsolt Márku",
     description:
-      "Meet the founder of ZsMWebDev - professional web developer with nearly 10 years of experience, specializing in custom websites that transform businesses.",
+      "Meet the founder of ZsMWebDev - professional web developer, specializing in custom websites that transform businesses.",
     url: "https://zsoltmarku.com/about",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title:
       "About ZsMWebDev - Professional Web Development Services | Zsolt Márku",
     description:
-      "Meet the founder of ZsMWebDev - professional web developer with nearly 10 years of experience, specializing in custom websites that transform businesses.",
+      "Meet the founder of ZsMWebDev - professional web developer, specializing in custom websites that transform businesses.",
     images: ["https://zsoltmarku.com/images/og-about.webp"],
   },
   alternates: {

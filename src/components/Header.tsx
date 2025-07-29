@@ -71,7 +71,7 @@ const Header: React.FC = () => {
       animate: {
         opacity: [1, 0.7, 1, 0.4, 1],
         scale: [1, 1.02, 0.98, 1.03, 1],
-        background: [
+        backgroundImage: [
           "linear-gradient(90deg, transparent 0%, transparent 100%)",
           "linear-gradient(90deg, rgba(0,255,255,0.1) 0%, transparent 50%, rgba(0,255,255,0.1) 100%)",
           "linear-gradient(90deg, transparent 0%, rgba(0,255,255,0.2) 50%, transparent 100%)",
@@ -210,7 +210,7 @@ const Header: React.FC = () => {
                         scale: 1,
                         opacity: 1,
                         textShadow: "0 0 0px rgba(0, 0, 0, 0)",
-                        background: "transparent",
+                        backgroundImage: "none",
                       }
                 }
                 transition={{
@@ -244,7 +244,7 @@ const Header: React.FC = () => {
                         scale: 1,
                         opacity: 1,
                         textShadow: "0 0 0px rgba(0, 0, 0, 0)",
-                        background: "transparent",
+                        backgroundImage: "none",
                       }
                 }
                 transition={{
@@ -278,7 +278,7 @@ const Header: React.FC = () => {
                         scale: 1,
                         opacity: 1,
                         textShadow: "0 0 0px rgba(0, 0, 0, 0)",
-                        background: "transparent",
+                        backgroundImage: "none",
                       }
                 }
                 transition={{

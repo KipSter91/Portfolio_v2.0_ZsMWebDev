@@ -251,8 +251,8 @@ export const translations = {
 
     // LogoModal strings
     imZsolt: "I'm Zsolt Márku",
-    warehouseManager: "Warehouse Manager",
     frontendDeveloper: "Frontend Developer",
+    landingPage: "Landing Page Specialist",
     creativeCoder: "Creative Coder",
     husbandTo: "Husband to Barbara",
     proudDadOfCats: "Proud Dad of 2 Cats",
@@ -690,8 +690,8 @@ export const translations = {
 
     // LogoModal strings
     imZsolt: "Márku Zsolt vagyok",
-    warehouseManager: "Warehouse manager",
     frontendDeveloper: "Frontend fejlesztő",
+    landingPage: "Landing Page szakértő",
     creativeCoder: "Kreatív programozó",
     husbandTo: "Barbara férje",
     proudDadOfCats: "2 cica büszke apukája",
@@ -1131,8 +1131,8 @@ export const translations = {
 
     // LogoModal strings
     imZsolt: "Ik ben Zsolt Márku",
-    warehouseManager: "Warehouse manager",
     frontendDeveloper: "Frontend developer",
+    landingPage: "Landing page specialist",
     creativeCoder: "Creatieve programmeur",
     husbandTo: "Echtgenoot van Barbara",
     proudDadOfCats: "Trotse vader van 2 katten",

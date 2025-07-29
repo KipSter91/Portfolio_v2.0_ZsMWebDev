@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | ZsMWebDev - Custom Web Development Solutions",
+  title:
+    "Services | ZsMWebDev by Zsolt Márku - Custom Web Development Solutions",
   description:
-    "Professional web development services for entrepreneurs and small businesses. Modern, responsive websites, landing pages, and custom web solutions tailored to your needs.",
+    "Professional web development services by Zsolt Márku for entrepreneurs and small businesses in Rotterdam. Modern, responsive websites, landing pages, and custom web solutions tailored to your needs.",
   keywords:
-    "web development services, custom website development, landing page design, responsive web design, frontend development, React development, Next.js websites, professional web solutions, ZsMWebDev services",
+    "ZsMWebDev services, Zsolt Márku web development, custom website development Rotterdam, landing page design Netherlands, responsive web design, frontend development, React development, Next.js websites, professional web solutions",
   openGraph: {
-    title: "Services | ZsMWebDev - Custom Web Development Solutions",
+    title:
+      "Services | ZsMWebDev by Zsolt Márku - Custom Web Development Solutions",
     description:
-      "Professional web development services for entrepreneurs and small businesses. Modern, responsive websites, landing pages, and custom web solutions.",
+      "Professional web development services by Zsolt Márku for entrepreneurs and small businesses. Modern, responsive websites, landing pages, and custom web solutions.",
     url: "https://zsoltmarku.com/services",
     images: [
       {
         url: "https://zsoltmarku.com/images/og-services.webp",
         width: 1200,
         height: 630,
-        alt: "ZsMWebDev Services - Web Development Solutions",
+        alt: "ZsMWebDev by Zsolt Márku - Web Development Services",
       },
     ],
   },
   twitter: {
-    title: "Services | ZsMWebDev - Custom Web Development Solutions",
+    title:
+      "Services | ZsMWebDev by Zsolt Márku - Custom Web Development Solutions",
     description:
-      "Professional web development services for entrepreneurs and small businesses. Modern, responsive websites and custom web solutions.",
+      "Professional web development services by Zsolt Márku for entrepreneurs and small businesses. Modern, responsive websites and custom web solutions.",
     images: ["https://zsoltmarku.com/images/og-services.webp"],
   },
   alternates: {

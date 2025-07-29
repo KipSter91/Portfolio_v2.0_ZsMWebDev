@@ -71,6 +71,7 @@ export default function ServicesPage() {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Add a small delay before showing content to ensure smooth animations
     const timer = setTimeout(() => {
       setIsLoaded(true);
