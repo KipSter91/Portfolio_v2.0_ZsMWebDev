@@ -663,7 +663,6 @@ export default function ServicesPage() {
                     viewport={{ once: true, margin: "-50px" }}
                     onClick={() => {
                       router.push("/contact");
-                      window.scrollTo(0, 0);
                     }}>
                     {t.ctaContact}
                   </motion.button>
@@ -683,7 +682,6 @@ export default function ServicesPage() {
                     viewport={{ once: true, margin: "-50px" }}
                     onClick={() => {
                       router.push("/pricing");
-                      window.scrollTo(0, 0);
                     }}>
                     {t.ctaPricing}
                   </motion.button>

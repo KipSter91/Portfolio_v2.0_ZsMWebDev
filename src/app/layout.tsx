@@ -41,7 +41,7 @@ export default function RootLayout({
     url: "https://zsoltmarku.com",
     image: "https://zsoltmarku.com/images/profile.webp",
     description:
-      "Frontend Developer and Warehouse Manager, from Rotterdam, in Netherlands. Experienced in frontend development with Javascript, React, Next.js, TypeScript, and team leadership.",
+      "Frontend Developer from Rotterdam, in Netherlands. Experienced in frontend development with Javascript, React, Next.js, TypeScript, and team leadership.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Rotterdam",

@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Me - Zsolt Márku | Frontend Developer & Professional Journey",
+  title:
+    "About ZsMWebDev - Professional Web Development Services | Zsolt Márku",
   description:
-    "Learn about my journey from Computer Science studies to becoming a Frontend Developer and Warehouse Manager in Rotterdam, Netherlands. My experience, education, and passion for technology.",
+    "Meet the founder of ZsMWebDev - Zsolt Márku, professional web developer in Rotterdam, Netherlands. Nearly 10 years of experience at AMPCO Metal, Computer Science background, and passion for creating custom websites that transform businesses online.",
   keywords:
-    "Zsolt Márku about, professional journey, Computer Science Miskolc University, Frontend Developer experience, Warehouse Manager Rotterdam, AMPCO Metal, Arvato, web development passion",
+    "ZsMWebDev about, Zsolt Márku web developer, professional web development Rotterdam, custom website development, Computer Science Miskolc University, AMPCO Metal experience, business transformation, React Next.js specialist",
   openGraph: {
-    title: "About Me - Zsolt Márku | Frontend Developer & Professional Journey",
+    title:
+      "About ZsMWebDev - Professional Web Development Services | Zsolt Márku",
     description:
-      "Learn about my journey from Computer Science studies to becoming a Frontend Developer and Warehouse Manager in Rotterdam, Netherlands.",
+      "Meet the founder of ZsMWebDev - professional web developer with nearly 10 years of experience, specializing in custom websites that transform businesses.",
     url: "https://zsoltmarku.com/about",
     images: [
       {
         url: "https://zsoltmarku.com/images/og-about.webp",
         width: 1200,
         height: 630,
-        alt: "Zsolt Márku - About Me",
+        alt: "ZsMWebDev - About Professional Web Development Services",
       },
     ],
   },
   twitter: {
-    title: "About Me - Zsolt Márku | Frontend Developer & Professional Journey",
+    title:
+      "About ZsMWebDev - Professional Web Development Services | Zsolt Márku",
     description:
-      "Learn about my journey from Computer Science studies to becoming a Frontend Developer and Warehouse Manager in Rotterdam, Netherlands.",
+      "Meet the founder of ZsMWebDev - professional web developer with nearly 10 years of experience, specializing in custom websites that transform businesses.",
     images: ["https://zsoltmarku.com/images/og-about.webp"],
   },
   alternates: {

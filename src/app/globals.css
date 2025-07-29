@@ -102,7 +102,8 @@ body {
   }
   /* Modern pulse effect for logo only on mobile */
   .pulse-effect {
-    animation: pulse-effect 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation: pulse-effect 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+      infinite;
     z-index: 100;
     pointer-events: none;
   }
@@ -268,4 +269,21 @@ body {
     height: 4px;
     bottom: -4px;
   }
+}
+
+/* ZsMWebDev brand text gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.zsmwebdev-animated {
+  animation: gradientMove 4s ease-in-out infinite;
 }

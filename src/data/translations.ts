@@ -7,7 +7,6 @@ export const translations = {
     skills: "Skills",
     projects: "Projects",
     contact: "Contact",
-    portfolio: "Portfolio",
 
     // Services page
     servicesTitle: "Custom, Modern Websites",
@@ -265,23 +264,23 @@ export const translations = {
     // About page
     aboutTitle: "About Me",
     itsMe: "It's Me!",
-    journeyTitle: "My journey and professional experiences",
+    journeyTitle: "My journey and professional experience",
     journeyPara1:
-      "I studied at the Faculty of Informatics at the University of Miskolc for two years, where I gained thorough knowledge in the field of computer science. During my studies, I discovered my passion for web development and programming, which has since defined my professional interests.",
+      "In Hungary, I studied at the Faculty of Informatics at the University of Miskolc for two years, where I established my foundation in computer science. During my studies, I discovered my passion for web development and programming, which continues to define my professional interests to this day.",
     journeyPara2:
-      "My journey led me to the Netherlands, where I began my career at AMPCO Metal as a sawing machine operator. Within a short period, I was promoted to leadership positions, first as a Team Leader and then as a Warehouse Supervisor. In these roles, I learned how to lead teams, optimize processes, and ensure efficiency in a fast-paced industrial environment.",
+      "My journey led me to the Netherlands, where I began my career at AMPCO Metal as a sawing machine operator. During the nearly 10 years I spent there, I was promoted to leadership positions, first as a Team Leader and then as a Supervisor. In these roles, I learned how to lead teams, optimize processes, and ensure efficiency in a fast-paced industrial environment.",
     journeyPara3:
-      "Currently, I work at Arvato as a Warehouse Manager, where I oversee a larger team and supervise complex logistical operations. This role provides me with opportunities to further develop my strategic thinking and leadership skills.",
+      "Subsequently, I worked at Arvato for nearly a year as a Warehouse Manager, where I led a larger team and supervised complex logistical operations. This role provided me with opportunities to further develop my strategic thinking and leadership skills.",
     journeyPara4:
-      "Meanwhile, my passion for IT and technology remains unchanged. I continuously expand my knowledge in web development, programming languages, as well as artificial intelligence and AI tools. This expertise enables me to combine technological innovations with my leadership experience to offer effective solutions to modern business challenges.",
+      "The idea of becoming independent and truly focusing on what's close to my heart had been on my mind for a long time. After more than 10 years of industrial, production, and logistics experience, I reached the point where I decided to change careers and finally pursue what I truly love. Since early 2023, I have continuously educated myself in the latest web development technologies alongside my work. As a result, I created my own business under the name ZsMWebDev in August 2025.",
     journeyPara5:
-      "I am ready to apply my knowledge and experience in new projects. Join me on this journey, and let's explore the endless possibilities of web development, artificial intelligence, and technological advancement together!",
-    experienceTitle: "Experience",
+      "Through ZsMWebDev, I create clean, static websites and landing pages for individuals, sole proprietors, and small businesses. The sites are fast-loading, with SEO-optimized structure and thoughtful UX/UI design to support my clients' online presence. My goal is to create personalized, technically stable, and visually appealing websites that generate real business value.",
+    experienceTitle: "Professional Experience",
     experienceDescription:
-      "Team leadership and warehouse operations, while concurrently developing expertise in building websites, landing pages, and modern web applications.",
-    educationTitle: "Education",
+      "10+ years of industrial and logistics leadership experience (AMPCO Metal, Arvato), followed by founding ZsMWebDev web development company in 2025. Combining team leadership, strategic planning, and modern web technology expertise.",
+    educationTitle: "Education & Development",
     educationDescription:
-      "Computer Science studies at the University of Miskolc with continuous self-development in modern web technologies and AI.",
+      "Computer Science studies at the University of Miskolc. Continuous self-education in React, Next.js, TypeScript, and web development technologies since 2023. Actively following the latest industry trends and constantly expanding my knowledge to stay current. Developing entrepreneurial and business skills for successfully operating ZsMWebDev.",
 
     // Skills page
     skillsTitle: "Skills & Technologies",
@@ -370,7 +369,7 @@ export const translations = {
     yourMessage: "Your Message",
     sendMessage: "Send Message",
     namePlaceholder: "Enter your full name",
-    emailPlaceholder: "Enter your business email address",
+    emailPlaceholder: "Enter your email address",
     messagePlaceholder:
       "Tell me about your business, goals, and specific requirements...",
     letsConnect: "Let's Connect",
@@ -393,7 +392,7 @@ export const translations = {
 
     // Splash screen
     splashWelcome: "Welcome!",
-    welcome: "Please wait while my portfolio is loading...",
+    welcome: "Please wait while the website is loading...",
 
     // Cookie Consent
     cookieConsentTitle: "I Use Cookies",
@@ -420,6 +419,10 @@ export const translations = {
     contactPrivacy: "Contact Information",
     contactPrivacyText:
       "If you have questions about this privacy policy or want to exercise your data protection rights, please contact me using the information below:",
+    contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
+    contactPrivacyBusiness: "Business Registration:",
+    contactPrivacyKvK: "KvK number: [Add KvK number here]",
+    contactPrivacyBTW: "BTW number: [Add BTW number here]",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie Settings",
@@ -442,7 +445,6 @@ export const translations = {
     skills: "Készségek",
     projects: "Projektek",
     contact: "Kapcsolat",
-    portfolio: "Portfólió",
 
     // Services page
     servicesTitle: "Egyedi, modern weboldalak",
@@ -702,23 +704,23 @@ export const translations = {
     // About page
     aboutTitle: "Rólam",
     itsMe: "Jómagam!",
-    journeyTitle: "Utam és szakmai tapasztalataim",
+    journeyTitle: "Utam és szakmai tapasztalatom",
     journeyPara1:
-      "Két éven át tanultam a Miskolci Egyetem Informatikai Karán, ahol alapos ismereteket szereztem a számítástechnika területén. Tanulmányaim során fedeztem fel a webfejlesztés és programozás iránti szenvedélyemet, ami azóta meghatározza szakmai érdeklődésemet.",
+      "Magyarországon két éven át tanultam a Miskolci Egyetem Informatikai Karán, ahol megalapoztam ismereteim a számítástechnika területén. Tanulmányaim során fedeztem fel a webfejlesztés és programozás iránti szenvedélyemet, ami azóta is meghatározza szakmai érdeklődésemet.",
     journeyPara2:
-      "Utam Hollandiába vezetett, ahol az AMPCO Metal cégnél kezdtem a karrieremet fűrészgép-kezelőként. Rövid időn belül vezetői pozíciókba kerültem, először csapatvezetőként, majd raktárfelügyelőként. Ezekben a szerepekben megtanultam, hogyan vezessek csapatokat, optimalizáljam folyamatokat és biztosítsam a hatékonyságot egy gyors tempójú ipari környezetben.",
+      "Utam Hollandiába vezetett, ahol az AMPCO Metal cégnél kezdtem a karrieremet fűrészgép-kezelőként. Az itt eltöltött majdnem 10 évem alatt vezetői pozíciókba kerültem, először csapatvezetőként, majd supervisor pozícióban. Ezekben a szerepekben megtanultam, hogyan vezessek csapatokat, optimalizáljam a folyamatokat és biztosítsam a hatékonyságot egy gyors tempójú ipari környezetben.",
     journeyPara3:
-      "Jelenleg az Arvato-nál dolgozom raktárvezetőként, ahol nagyobb csapatot irányítok és összetett logisztikai műveleteket felügyelek. Ez a szerep lehetőséget biztosít számomra a stratégiai gondolkodás és vezetői készségek további fejlesztésére.",
+      "Ezt követően közel egy évig dolgoztam az Arvato-nál raktári managerként, ahol nagyobb csapatot irányítottam és összetett logisztikai műveleteket felügyeltem. Ez a szerep lehetőséget biztosított számomra a stratégiai gondolkodás és vezetői készségek további fejlesztésére.",
     journeyPara4:
-      "Közben az IT és technológia iránti szenvedélyem változatlan maradt. Folyamatosan bővítem tudásomat a webfejlesztésben, programozási nyelvekben, valamint a mesterséges intelligencia és AI eszközök területén. Ez a szakértelem lehetővé teszi számomra, hogy a technológiai innovációkat vezetői tapasztalatommal kombináljam, hogy hatékony megoldásokat kínáljak a modern üzleti kihívásokra.",
+      "Már régóta motoszkált a fejemben a gondolat, hogy szeretnék függetlenedni, és tényleg azzal foglalkozni, ami igazán közel áll hozzám. Több mint 10 év ipari, produkciós és logisztikai tapasztalat után elérkeztem arra a pontra, hogy karriert váltsak, és végre azzal foglalkozzak, amit igazán szeretek. 2023 elejétől munka mellett folyamatosan képeztem magam a legmodernebb webfejlesztési technológiák területén. Ennek eredményeként 2025 augusztusában hoztam létre saját vállalkozásomat, ZsMWebDev néven.",
     journeyPara5:
-      "Készen állok arra, hogy tudásomat és tapasztalatomat új projektekben alkalmazzam. Csatlakozz hozzám ezen az úton, és fedezzük fel együtt a webfejlesztés, mesterséges intelligencia és technológiai fejlődés végtelen lehetőségeit!",
-    experienceTitle: "Tapasztalat",
+      "A ZsMWebDev keretében magánszemélyek, egyéni vállalkozók és kisvállalatok számára készítek letisztult, statikus weboldalakat, landing page-eket. Az oldalak gyors betöltésűek, keresőoptimalizált felépítéssel és átgondolt UX/UI dizájnnal támogatják ügyfeleim online jelenlétét. A célom, hogy személyre szabott, technikailag stabil és vizuálisan megnyerő weboldalakat készítsek, amelyek valódi üzleti értéket teremtenek.",
+    experienceTitle: "Szakmai tapasztalat",
     experienceDescription:
-      "Csapatvezetés és raktárműveletek, miközben párhuzamosan fejlesztem szakértelmemet weboldalak, landing oldalak és modern webalkalmazások készítésében.",
-    educationTitle: "Oktatás",
+      "10+ év ipari és logisztikai vezetői tapasztalat (AMPCO Metal, Arvato), majd 2025-ben a ZsMWebDev webfejlesztő vállalkozás alapítása. Csapatvezetés, stratégiai tervezés és modern webtechnológiai szakértelem kombinációja.",
+    educationTitle: "Oktatás és fejlődés",
     educationDescription:
-      "Számítástechnikai tanulmányok a Miskolci Egyetemen, folyamatos önfejlesztéssel a modern webes technológiák és AI területén.",
+      "Informatikai tanulmányok a Miskolci Egyetemen. 2023 óta folyamatos önképzés React, Next.js, TypeScript és webfejlesztési technológiákban. Aktívan követem a legújabb iparági trendeket és folyamatosan bővítem tudásom, hogy naprakész maradjak. Vállalkozói és üzleti ismeretek fejlesztése a ZsMWebDev sikeres működtetéséhez.",
 
     // Skills page
     skillsTitle: "Készségek és technológiák",
@@ -808,7 +810,7 @@ export const translations = {
     yourMessage: "Üzeneted",
     sendMessage: "Üzenet küldése",
     namePlaceholder: "Add meg a teljes neved",
-    emailPlaceholder: "Add meg a céges email címed",
+    emailPlaceholder: "Add meg az email címed",
     messagePlaceholder:
       "Mesélj a vállalkozásodról, céljaidról és konkrét igényeidről...",
     letsConnect: "Kapcsolódjunk",
@@ -830,7 +832,7 @@ export const translations = {
 
     // Splash screen
     splashWelcome: "Üdvözöllek!",
-    welcome: "Kérlek várj, amíg betöltődik a portfólióm...",
+    welcome: "Kérlek várj, amíg betöltődik a weboldal...",
 
     // Cookie Consent
     cookieConsentTitle: "Sütiket használok",
@@ -857,6 +859,10 @@ export const translations = {
     contactPrivacy: "Kapcsolattartási információk",
     contactPrivacyText:
       "Ha kérdései vannak ezzel az adatvédelmi szabályzattal kapcsolatban, vagy szeretné gyakorolni adatvédelmi jogait, kérem, vegye fel velem a kapcsolatot az alábbi elérhetőségeken:",
+    contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
+    contactPrivacyBusiness: "Céges regisztráció:",
+    contactPrivacyKvK: "KvK szám: [KvK számot ide]",
+    contactPrivacyBTW: "BTW szám: [BTW számot ide]",
 
     // Cookie Settings Modal
     cookieSettings: "Süti beállítások",
@@ -879,7 +885,6 @@ export const translations = {
     skills: "Vaardigheden",
     projects: "Projecten",
     contact: "Contact",
-    portfolio: "Portfolio",
 
     // Services page
     servicesTitle: " Moderne, op maat gemaakte websites",
@@ -1139,23 +1144,23 @@ export const translations = {
     // About page
     aboutTitle: "Over Mij",
     itsMe: "Dat ben ik!",
-    journeyTitle: "Mijn reis en professionele ervaringen",
+    journeyTitle: "Mijn reis en professionele ervaring",
     journeyPara1:
-      "Ik heb twee jaar gestudeerd aan de Faculteit Informatica van de Universiteit van Miskolc, waar ik grondige kennis opdeed op het gebied van informatica. Tijdens mijn studie ontdekte ik mijn passie voor webontwikkeling en programmeren, wat sindsdien mijn professionele interesses heeft bepaald.",
+      "In Hongarije heb ik twee jaar gestudeerd aan de Faculteit Informatica van de Universiteit van Miskolc, waar ik mijn basis legde in de informatica. Tijdens mijn studie ontdekte ik mijn passie voor webontwikkeling en programmeren, wat tot op de dag van vandaag mijn professionele interesses blijft bepalen.",
     journeyPara2:
-      "Mijn reis leidde me naar Nederland, waar ik mijn carrière begon bij AMPCO Metal als zaagmachine operator. Binnen korte tijd werd ik gepromoveerd tot leidinggevende posities, eerst als teamleider en vervolgens als magazijnopzichter. In deze rollen leerde ik hoe ik teams kon leiden, processen kon optimaliseren en efficiëntie kon waarborgen in een snelle industriële omgeving.",
+      "Mijn reis leidde me naar Nederland, waar ik mijn carrière begon bij AMPCO Metal als zaagmachine-operator. Tijdens de bijna 10 jaar die ik daar doorbracht, werd ik gepromoveerd naar leidinggevende posities, eerst als teamleider en vervolgens als supervisor. In deze rollen leerde ik hoe ik teams kon leiden, processen kon optimaliseren en efficiëntie kon waarborgen in een snelle industriële omgeving.",
     journeyPara3:
-      "Momenteel werk ik bij Arvato als magazijnmanager, waar ik een groter team leid en complexe logistieke operaties begeleid. Deze rol biedt me de mogelijkheid om mijn strategisch denken en leiderschapsvaardigheden verder te ontwikkelen.",
+      "Vervolgens werkte ik bijna een jaar bij Arvato als magazijnmanager, waar ik een groter team leidde en complexe logistieke operaties superviseerde. Deze rol bood me de mogelijkheid om mijn strategisch denken en leiderschapsvaardigheden verder te ontwikkelen.",
     journeyPara4:
-      "Ondertussen blijft mijn passie voor IT en technologie onveranderd. Ik breid voortdurend mijn kennis uit in webontwikkeling, programmeertalen, evenals kunstmatige intelligentie en AI-tools. Deze expertise stelt me in staat om technologische innovaties te combineren met mijn leiderschapservaring om effectieve oplossingen te bieden voor moderne zakelijke uitdagingen.",
+      "Het idee om onafhankelijk te worden en me echt te richten op wat dicht bij mijn hart ligt, speelde al lang door mijn hoofd. Na meer dan 10 jaar ervaring in de industrie, productie en logistiek, bereikte ik het punt waarop ik besloot van carrière te veranderen en eindelijk te doen wat ik echt liefheb. Sinds begin 2023 heb ik mezelf voortdurend geschoold in de nieuwste webontwikkelingstechnologieën naast mijn werk. Als resultaat daarvan heb ik in augustus 2025 mijn eigen bedrijf opgericht onder de naam ZsMWebDev.",
     journeyPara5:
-      "Ik ben klaar om mijn kennis en ervaring toe te passen in nieuwe projecten. Ga met me mee op deze reis en laten we samen de eindeloze mogelijkheden van webontwikkeling, kunstmatige intelligentie en technologische vooruitgang verkennen!",
-    experienceTitle: "Ervaring",
+      "Via ZsMWebDev maak ik strakke, statische websites en landingspagina's voor particulieren, eenmanszaken en kleine bedrijven. De sites zijn snel ladend, met SEO-geoptimaliseerde structuur en doordachte UX/UI-ontwerp om de online aanwezigheid van mijn klanten te ondersteunen. Mijn doel is om gepersonaliseerde, technisch stabiele en visueel aantrekkelijke websites te maken die echte bedrijfswaarde genereren.",
+    experienceTitle: "Professionele Ervaring",
     experienceDescription:
-      "Teamleiderschap en magazijnoperaties, terwijl ik gelijktijdig expertise ontwikkel in het bouwen van websites, landingspagina's en moderne webapplicaties.",
-    educationTitle: "Onderwijs",
+      "10+ jaar industriële en logistieke leiderschapservaring (AMPCO Metal, Arvato), gevolgd door het oprichten van webontwikkelingsbedrijf ZsMWebDev in 2025. Combinatie van teamleiderschap, strategische planning en moderne webtechnologie-expertise.",
+    educationTitle: "Onderwijs & Ontwikkeling",
     educationDescription:
-      "Informatica studies aan de Universiteit van Miskolc met continue zelfontwikkeling in moderne webtechnologieën en AI.",
+      "Informatica studies aan de Universiteit van Miskolc. Voortdurende zelfeducatie in React, Next.js, TypeScript en webontwikkelingstechnologieën sinds 2023. Actief volgen van de nieuwste branchetrends en constant uitbreiden van mijn kennis om up-to-date te blijven. Ontwikkeling van ondernemers- en bedrijfsvaardigheden voor het succesvol runnen van ZsMWebDev.",
 
     // Skills page
     skillsTitle: "Vaardigheden & technologieën",
@@ -1244,7 +1249,7 @@ export const translations = {
     yourMessage: "Je bericht",
     sendMessage: "Bericht versturen",
     namePlaceholder: "Voer je volledige naam in",
-    emailPlaceholder: "Voer je zakelijke emailadres in",
+    emailPlaceholder: "Voer je emailadres in",
     messagePlaceholder:
       "Vertel me over je bedrijf, doelen en specifieke vereisten...",
     letsConnect: "Laten we verbinden",
@@ -1267,7 +1272,7 @@ export const translations = {
 
     // Splash screen
     splashWelcome: "Welkom!",
-    welcome: "Even geduld terwijl mijn portfolio wordt geladen...",
+    welcome: "Even geduld terwijl de website wordt geladen...",
 
     // Cookie Consent
     cookieConsentTitle: "Ik gebruik cookies",
@@ -1294,6 +1299,10 @@ export const translations = {
     contactPrivacy: "Contactgegevens",
     contactPrivacyText:
       "Als u vragen heeft over dit privacybeleid of uw gegevensbeschermingsrechten wilt uitoefenen, neem dan contact met mij op via de onderstaande informatie:",
+    contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
+    contactPrivacyBusiness: "Bedrijfsregistratie:",
+    contactPrivacyKvK: "KvK nummer: [KvK nummer hier toevoegen]",
+    contactPrivacyBTW: "BTW nummer: [BTW nummer hier toevoegen]",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie-instellingen",

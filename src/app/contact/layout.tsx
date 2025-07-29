@@ -1,32 +1,30 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Me - Zsolt Márku | Get in Touch for Projects & Collaboration",
+  title: "Contact ZsMWebDev - Custom Website Development | Get Your Quote",
   description:
-    "Ready to work together? Contact me for web development projects, collaboration opportunities, or to discuss your ideas. Based in Rotterdam, Netherlands, available for frontend development work.",
+    "Ready to transform your business online? Contact ZsMWebDev for custom website development, modern web solutions, and professional digital presence. Based in Rotterdam, Netherlands, specializing in React, Next.js, and conversion-optimized websites.",
   keywords:
-    "contact Zsolt Márku, hire frontend developer Rotterdam, React developer contact, web development collaboration, freelance frontend developer Netherlands, project inquiry",
+    "contact ZsMWebDev, custom website development Rotterdam, hire web developer Netherlands, React Next.js developer, business website creation, modern web development, professional website design, conversion optimization",
   openGraph: {
-    title:
-      "Contact Me - Zsolt Márku | Get in Touch for Projects & Collaboration",
+    title: "Contact ZsMWebDev - Custom Website Development | Get Your Quote",
     description:
-      "Ready to work together? Contact me for web development projects, collaboration opportunities, or to discuss your ideas.",
+      "Ready to transform your business online? Contact ZsMWebDev for custom website development, modern web solutions, and professional digital presence.",
     url: "https://zsoltmarku.com/contact",
     images: [
       {
         url: "https://zsoltmarku.com/images/og-contact.webp",
         width: 1200,
         height: 630,
-        alt: "Contact Zsolt Márku - Frontend Developer",
+        alt: "Contact ZsMWebDev - Professional Website Development",
       },
     ],
   },
   twitter: {
-    title:
-      "Contact Me - Zsolt Márku | Get in Touch for Projects & Collaboration",
+    title: "Contact ZsMWebDev - Custom Website Development | Get Your Quote",
     description:
-      "Ready to work together? Contact me for web development projects, collaboration opportunities, or to discuss your ideas.",
-    images: ["https://zsoltmarku.com/images/og-contact.webp",],
+      "Ready to transform your business online? Contact ZsMWebDev for custom website development, modern web solutions, and professional digital presence.",
+    images: ["https://zsoltmarku.com/images/og-contact.webp"],
   },
   alternates: {
     canonical: "https://zsoltmarku.com/contact",

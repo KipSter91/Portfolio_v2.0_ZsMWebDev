@@ -10,21 +10,21 @@ export function DynamicMetadata() {
   useEffect(() => {
     // Update document title based on current locale
     const titles = {
-      en: "Zsolt Márku - Portfolio | Frontend Developer | Warehouse Manager",
-      hu: "Márku Zsolt - Portfólió | Frontend Fejlesztő | Warehouse Manager",
-      nl: "Zsolt Márku - Portfolio | Frontend Developer | Warehouse Manager",
+      en: "ZsMWebDev - Zsolt Márku | Custom Website Development | Professional Web Solutions",
+      hu: "ZsMWebDev - Márku Zsolt | Egyedi Weboldal Fejlesztés | Professzionális Web Megoldások",
+      nl: "ZsMWebDev - Zsolt Márku | Maatwerk Website Ontwikkeling | Professionele Web Oplossingen",
     };
 
     const descriptions = {
-      en: "Frontend Developer & Warehouse Manager from Rotterdam, Netherlands. Specialized in JavaScript, React, Next.js, TypeScript, and modern web technologies. Explore my multilingual portfolio, innovative projects, and professional journey in the heart of Europe.",
-      hu: "Frontend fejlesztő és Warehouse Manager, Rotterdamból, Hollandiában. Modern webes technológiák (React, Next.js, TypeScript), többnyelvű portfólió, innovatív projektek és szakmai tapasztalat egy helyen. Fedezd fel munkáimat és karrierutamat!",
-      nl: "Frontend Developer en Warehouse Manager uit Rotterdam, Nederland. Gespecialiseerd in Javascript, React, Next.js, TypeScript en moderne webtechnologieën. Ontdek mijn meertalige portfolio, innovatieve projecten en professionele reis in het hart van Europa.",
+      en: "ZsMWebDev by Zsolt Márku creates custom websites from scratch for businesses in Rotterdam, Netherlands. Specialized in React, Next.js, TypeScript, and modern web technologies. Transform your business online with professional, conversion-optimized websites.",
+      hu: "A ZsMWebDev - Márku Zsolt egyedi weboldalakat készít a semmiből vállalkozások számára Rotterdamban, Hollandiában. React, Next.js, TypeScript és modern webes technológiák specialistája. Alakítsd át vállalkozásod online professzionális, konverzióra optimalizált weboldalakkal.",
+      nl: "ZsMWebDev door Zsolt Márku creëert maatwerk websites vanaf nul voor bedrijven in Rotterdam, Nederland. Gespecialiseerd in React, Next.js, TypeScript en moderne webtechnologieën. Transformeer uw bedrijf online met professionele, conversie-geoptimaliseerde websites.",
     };
 
     const keywords = {
-      en: "Zsolt Márku, Frontend Developer, React, Next.js, TypeScript, JavaScript, Rotterdam, Netherlands, Multilingual Portfolio, Web Development, UI/UX, Modern Web, Innovative Projects, Warehouse Manager, Europe",
-      hu: "Márku Zsolt, Frontend Fejlesztő, React, Next.js, TypeScript, JavaScript, Rotterdam, Hollandia, Többnyelvű Portfólió, Webfejlesztés, UI/UX, Modern Web, Innovatív Projektek, Warehouse Manager, Európa",
-      nl: "Zsolt Márku, Frontend Developer, React, Next.js, TypeScript, JavaScript, Rotterdam, Nederland, Meertalig Portfolio, Webontwikkeling, UI/UX, Moderne Web, Innovatieve Projecten, Warehouse Manager, Europa",
+      en: "ZsMWebDev, Zsolt Márku, custom website development, React Next.js developer Rotterdam, professional web design Netherlands, business website creation, modern web development, conversion optimization, TypeScript specialist",
+      hu: "ZsMWebDev, Márku Zsolt, egyedi weboldal fejlesztés, React Next.js fejlesztő Rotterdam, professzionális webdesign Hollandia, üzleti weboldal készítés, modern webfejlesztés, konverzió optimalizálás, TypeScript specialista",
+      nl: "ZsMWebDev, Zsolt Márku, maatwerk website ontwikkeling, React Next.js ontwikkelaar Rotterdam, professioneel webdesign Nederland, bedrijfswebsite creatie, moderne webontwikkeling, conversie optimalisatie, TypeScript specialist",
     };
 
     const currentTitle = titles[locale as keyof typeof titles] || titles.en;
@@ -77,14 +77,21 @@ export function DynamicMetadata() {
     const ogProperties = [
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://zsoltmarku.com" },
-      { property: "og:site_name", content: "Zsolt Márku Portfolio" },
+      {
+        property: "og:site_name",
+        content: "ZsMWebDev - Professional Website Development",
+      },
       {
         property: "og:image",
         content: "https://zsoltmarku.com/images/og-home.webp",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Zsolt Márku - Frontend Developer" },
+      {
+        property: "og:image:alt",
+        content:
+          "ZsMWebDev by Zsolt Márku - Professional Website Development Services",
+      },
     ];
 
     ogProperties.forEach(({ property, content }) => {

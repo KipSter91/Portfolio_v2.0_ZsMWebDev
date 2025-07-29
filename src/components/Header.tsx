@@ -19,7 +19,120 @@ const Header: React.FC = () => {
   const { locale, setLocale, t } = useLocaleContext();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [splashComplete, setSplashComplete] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState<"rest" | "animate">(
+    "rest"
+  );
+  const [currentAnimations, setCurrentAnimations] = useState<string[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Available animations - Modern and dynamic
+  const animations = {
+    glitch: {
+      animate: {
+        x: [0, -2, 2, -1, 1, 0],
+        textShadow: [
+          "0 0 0px rgba(0, 255, 255, 0)",
+          "2px 0 0px rgba(255, 0, 255, 0.8), -2px 0 0px rgba(0, 255, 255, 0.8)",
+          "1px 0 0px rgba(255, 0, 255, 0.6), -1px 0 0px rgba(0, 255, 255, 0.6)",
+          "3px 0 0px rgba(255, 0, 255, 0.9), -3px 0 0px rgba(0, 255, 255, 0.9)",
+          "0 0 0px rgba(0, 255, 255, 0)",
+        ],
+      },
+      duration: 1.5,
+    },
+    neon: {
+      animate: {
+        textShadow: [
+          "0 0 5px rgba(0, 255, 255, 0.5)",
+          "0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 1)",
+          "0 0 10px rgba(253, 25, 252, 0.8), 0 0 40px rgba(253, 25, 252, 0.8)",
+          "0 0 25px rgba(0, 255, 255, 1), 0 0 50px rgba(0, 255, 255, 0.6)",
+          "0 0 5px rgba(0, 255, 255, 0.5)",
+        ],
+        scale: [1, 1.05, 1.02, 1.08, 1],
+      },
+      duration: 2.0,
+    },
+    cyberpunk: {
+      animate: {
+        rotateZ: [0, -2, 2, -1, 0],
+        scale: [1, 1.1, 0.95, 1.05, 1],
+        textShadow: [
+          "0 0 0px rgba(255, 20, 147, 0)",
+          "2px 2px 0px rgba(255, 20, 147, 0.7), -2px -2px 0px rgba(0, 255, 255, 0.7)",
+          "1px 1px 0px rgba(255, 20, 147, 0.5), -1px -1px 0px rgba(0, 255, 255, 0.5)",
+          "3px 3px 0px rgba(255, 20, 147, 0.8), -3px -3px 0px rgba(0, 255, 255, 0.8)",
+          "0 0 0px rgba(255, 20, 147, 0)",
+        ],
+      },
+      duration: 1.8,
+    },
+    hologram: {
+      animate: {
+        opacity: [1, 0.7, 1, 0.4, 1],
+        scale: [1, 1.02, 0.98, 1.03, 1],
+        background: [
+          "linear-gradient(90deg, transparent 0%, transparent 100%)",
+          "linear-gradient(90deg, rgba(0,255,255,0.1) 0%, transparent 50%, rgba(0,255,255,0.1) 100%)",
+          "linear-gradient(90deg, transparent 0%, rgba(0,255,255,0.2) 50%, transparent 100%)",
+          "linear-gradient(90deg, rgba(0,255,255,0.1) 0%, transparent 50%, rgba(0,255,255,0.1) 100%)",
+          "linear-gradient(90deg, transparent 0%, transparent 100%)",
+        ],
+      },
+      duration: 2.0,
+    },
+    quantum: {
+      animate: {
+        x: [0, -1, 1, -2, 2, -1, 1, 0],
+        y: [0, -1, 1, -1, 0],
+        rotateZ: [0, -1, 1, -0.5, 0.5, 0],
+        textShadow: [
+          "0 0 0px rgba(138, 43, 226, 0)",
+          "1px 1px 3px rgba(138, 43, 226, 0.6), -1px -1px 3px rgba(0, 255, 255, 0.6)",
+          "2px 2px 5px rgba(138, 43, 226, 0.8), -2px -2px 5px rgba(0, 255, 255, 0.8)",
+          "1px 1px 3px rgba(138, 43, 226, 0.6), -1px -1px 3px rgba(0, 255, 255, 0.6)",
+          "0 0 0px rgba(138, 43, 226, 0)",
+        ],
+      },
+      duration: 2.0,
+    },
+  };
+
+  // Shuffle and pick 3 random animations
+  const getRandomAnimations = () => {
+    const animationKeys = Object.keys(animations);
+    const shuffled = [...animationKeys].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 3);
+  };
+
+  // Synchronized animation system
+  useEffect(() => {
+    if (!splashComplete) return;
+
+    const startAnimationCycle = () => {
+      // Rest phase - all elements stay still
+      setAnimationPhase("rest");
+
+      const restDuration = Math.random() * 4000 + 3000; // 3-7 seconds rest
+
+      setTimeout(() => {
+        // Pick new random animations for each cycle
+        setCurrentAnimations(getRandomAnimations());
+
+        // Animation phase - all elements animate together
+        setAnimationPhase("animate");
+
+        const animateDuration = Math.random() * 3000 + 2000; // 2-5 seconds animation
+
+        setTimeout(() => {
+          startAnimationCycle(); // Start next cycle
+        }, animateDuration);
+      }, restDuration);
+    };
+
+    // Start first cycle after splash completes
+    setTimeout(startAnimationCycle, 1000);
+  }, [splashComplete]);
 
   // Listen for splash screen completion
   useEffect(() => {
@@ -81,7 +194,109 @@ const Header: React.FC = () => {
           <Link
             href="/"
             className="text-[color:var(--white)] hover:text-[color:var(--neon-cyan)] transition-colors duration-300">
-            <span className="text-xl font-bold">{t.portfolio}</span>
+            <div className="text-xl font-bold flex items-center">
+              {/* Zs - random animation */}
+              <motion.span
+                animate={
+                  animationPhase === "animate" && currentAnimations[0]
+                    ? animations[
+                        currentAnimations[0] as keyof typeof animations
+                      ].animate
+                    : {
+                        // Reset all properties to default
+                        x: 0,
+                        y: 0,
+                        rotateZ: 0,
+                        scale: 1,
+                        opacity: 1,
+                        textShadow: "0 0 0px rgba(0, 0, 0, 0)",
+                        background: "transparent",
+                      }
+                }
+                transition={{
+                  duration: currentAnimations[0]
+                    ? animations[
+                        currentAnimations[0] as keyof typeof animations
+                      ].duration
+                    : 0.5,
+                  ease: "easeInOut",
+                }}
+                className="inline-block"
+                style={{
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                }}>
+                Zs
+              </motion.span>
+
+              {/* M - random animation */}
+              <motion.span
+                animate={
+                  animationPhase === "animate" && currentAnimations[1]
+                    ? animations[
+                        currentAnimations[1] as keyof typeof animations
+                      ].animate
+                    : {
+                        // Reset all properties to default
+                        x: 0,
+                        y: 0,
+                        rotateZ: 0,
+                        scale: 1,
+                        opacity: 1,
+                        textShadow: "0 0 0px rgba(0, 0, 0, 0)",
+                        background: "transparent",
+                      }
+                }
+                transition={{
+                  duration: currentAnimations[1]
+                    ? animations[
+                        currentAnimations[1] as keyof typeof animations
+                      ].duration
+                    : 0.5,
+                  ease: "easeInOut",
+                }}
+                className="inline-block"
+                style={{
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                }}>
+                M
+              </motion.span>
+
+              {/* WebDev - random animation */}
+              <motion.span
+                animate={
+                  animationPhase === "animate" && currentAnimations[2]
+                    ? animations[
+                        currentAnimations[2] as keyof typeof animations
+                      ].animate
+                    : {
+                        // Reset all properties to default
+                        x: 0,
+                        y: 0,
+                        rotateZ: 0,
+                        scale: 1,
+                        opacity: 1,
+                        textShadow: "0 0 0px rgba(0, 0, 0, 0)",
+                        background: "transparent",
+                      }
+                }
+                transition={{
+                  duration: currentAnimations[2]
+                    ? animations[
+                        currentAnimations[2] as keyof typeof animations
+                      ].duration
+                    : 0.5,
+                  ease: "easeInOut",
+                }}
+                className="inline-block"
+                style={{
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                }}>
+                WebDev
+              </motion.span>
+            </div>
           </Link>
         </motion.div>
 

@@ -6,6 +6,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useLocaleContext } from "../../contexts/LocaleContext";
 
+// Helper function to highlight ZsMWebDev in text
+const highlightZsMWebDev = (text: string) => {
+  const parts = text.split(/(ZsMWebDev)/g);
+  return parts.map((part, index) => {
+    if (part === "ZsMWebDev") {
+      return (
+        <span
+          key={index}
+          className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00ffff] via-[#fd19fc] to-[#00ffff] bg-[length:200%_100%]"
+          style={{
+            animation: "gradientMove 4s ease-in-out infinite",
+          }}>
+          {part}
+        </span>
+      );
+    }
+    return part;
+  });
+};
+
 export default function AboutPage() {
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -180,7 +200,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                         viewport={{ once: true, margin: "-50px" }}>
-                        {t.journeyPara4}
+                        {highlightZsMWebDev(t.journeyPara4)}
                       </motion.p>
 
                       <motion.p
@@ -189,7 +209,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
                         viewport={{ once: true, margin: "-50px" }}>
-                        {t.journeyPara5}
+                        {highlightZsMWebDev(t.journeyPara5)}
                       </motion.p>
                     </motion.div>
                   </main>
@@ -209,7 +229,9 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.experienceTitle}
                     </h3>
-                    <p className="text-gray-300">{t.experienceDescription}</p>
+                    <p className="text-gray-300">
+                      {highlightZsMWebDev(t.experienceDescription)}
+                    </p>
                   </motion.article>
                   <motion.article
                     className="bg-[#2C313A] p-5 rounded-lg border-l border-t border-gray-700 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 transition-all duration-300"
@@ -220,7 +242,9 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold mb-2 text-[#fd19fc]">
                       {t.educationTitle}
                     </h3>
-                    <p className="text-gray-300">{t.educationDescription}</p>
+                    <p className="text-gray-300">
+                      {highlightZsMWebDev(t.educationDescription)}
+                    </p>
                   </motion.article>
                 </motion.section>
               </div>

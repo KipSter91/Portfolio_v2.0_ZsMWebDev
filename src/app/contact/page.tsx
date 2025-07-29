@@ -35,6 +35,9 @@ function ContactPageContent() {
   };
 
   useEffect(() => {
+    // Scroll to top when page loads (from any CTA button)
+    window.scrollTo(0, 0);
+
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 100);

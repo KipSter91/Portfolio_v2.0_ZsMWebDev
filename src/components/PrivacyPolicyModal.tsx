@@ -123,21 +123,31 @@ export function PrivacyPolicyModal({
                   {t.contactPrivacy}
                 </h3>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  {t.contactPrivacyText
-                    .replace("{name}", t.name)
-                    .replace("{myName}", t.myName)
-                    .replace("{email}", t.email)}
+                  {t.contactPrivacyText}
                 </p>
-                <div className="bg-[#161A20] p-4 rounded-lg">
+                <div className="bg-[#161A20] p-4 rounded-lg space-y-3">
                   <p className="text-gray-300">
                     <strong className="text-white">{t.name}:</strong> {t.myName}
                   </p>
-                  <p className="text-gray-300 mt-2">
+                  <p className="text-gray-300">
                     <strong className="text-white">{t.email}:</strong>
                     <span className="text-[#00ffff] ml-2">
                       portfolio@zsoltmarku.com
                     </span>
                   </p>
+                  <div className="pt-2 border-t border-gray-600">
+                    <p className="text-gray-300 mb-2">
+                      <strong className="text-white">
+                        {t.contactPrivacyBusiness}
+                      </strong>
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      {t.contactPrivacyKvK}
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      {t.contactPrivacyBTW}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
