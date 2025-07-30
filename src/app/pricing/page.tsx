@@ -250,6 +250,8 @@ export default function PricingPage() {
                                   ? " + ÁFA"
                                   : locale === "nl"
                                   ? " ex. BTW"
+                                  : locale === "de"
+                                  ? " zzgl. MwSt"
                                   : " ex. VAT"}
                               </span>
                             )}
