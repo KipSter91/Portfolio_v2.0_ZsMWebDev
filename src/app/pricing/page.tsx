@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
@@ -270,10 +270,14 @@ export default function PricingPage() {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                         viewport={{ once: true, margin: "-50px" }}>
-                        {pkg.features.map((feature, featureIndex) => (
+                        {/* Show regular features - for Pro package, exclude CMS related features */}
+                        {(pkg.id === "pro"
+                          ? pkg.features.slice(0, 10) // First 10 features before CMS section
+                          : pkg.features
+                        ).map((feature, featureIndex) => (
                           <motion.li
                             key={featureIndex}
-                            className="flex items-start gap-3 text-sm text-gray-200"
+                            className="flex items-start gap-3"
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{
@@ -282,21 +286,77 @@ export default function PricingPage() {
                             }}
                             viewport={{ once: true, margin: "-50px" }}>
                             <motion.span
-                              className="text-[#00ffff] mt-0.5 text-xs"
+                              className="text-[#00ffff] text-sm mt-1.5 select-none"
                               initial={{ scale: 0 }}
                               whileInView={{ scale: 1 }}
                               transition={{
                                 type: "spring",
-                                stiffness: 400,
+                                stiffness: 300,
                                 delay: 0.8 + index * 0.1 + featureIndex * 0.05,
                               }}
-                              viewport={{ once: true }}>
+                              viewport={{ once: true, margin: "-50px" }}>
                               ✓
                             </motion.span>
                             <span className="leading-relaxed">{feature}</span>
                           </motion.li>
                         ))}
                       </motion.ul>
+
+                      {/* CMS Section - Only for Pro package */}
+                      {pkg.id === "pro" && (
+                        <motion.div
+                          className="mt-6 mb-6 border border-[#00ffff]/30 rounded-lg p-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 0.8 + index * 0.1,
+                          }}
+                          viewport={{ once: true, margin: "-50px" }}>
+                          {/* CMS Header */}
+                          <div className="text-center mb-4">
+                            <motion.span
+                              className="text-sm font-bold text-[#fd19fc] inline-block"
+                              animate={{ scale: [1, 1.04, 1] }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}>
+                              {pkg.features[10]}{" "}
+                              {/* "OPTIONAL: Sanity CMS Integration (+€250)" */}
+                            </motion.span>
+                          </div>
+
+                          {/* CMS Features */}
+                          <ul className="space-y-2">
+                            {pkg.features.slice(11).map(
+                              (
+                                feature,
+                                subIndex // Features from index 11 onwards
+                              ) => (
+                                <motion.li
+                                  key={subIndex}
+                                  className="flex items-start gap-3 text-sm text-gray-300"
+                                  initial={{ opacity: 0, x: -15 }}
+                                  whileInView={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    duration: 0.3,
+                                    delay: 0.9 + index * 0.1 + subIndex * 0.1,
+                                  }}
+                                  viewport={{ once: true, margin: "-50px" }}>
+                                  <span className="text-gray-400 text-xs mt-1">
+                                    •
+                                  </span>
+                                  <span className="leading-relaxed">
+                                    {feature}
+                                  </span>
+                                </motion.li>
+                              )
+                            )}
+                          </ul>
+                        </motion.div>
+                      )}
 
                       {/* CTA Button */}
                       <motion.button

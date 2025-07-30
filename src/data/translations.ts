@@ -106,10 +106,10 @@ export const translations = {
     // Content update policy (English)
     contentUpdatePolicyTitle: "Content Updates",
     contentUpdatePolicyDescription:
-      "Since the websites are built using static systems, subsequent content updates (such as text, image, video replacement or adding new sections to existing content) cannot be automatically edited by the client.",
-    contentUpdateRate: "Content update rate: €50 / hour (ex. VAT)",
+      "If your chosen package does not include CMS integration, the website will be completely static. This means that subsequent content updates (such as text, image, video replacement or adding new sections) cannot be automatically edited by the client, and all content changes must be done through me as the developer.",
+    contentUpdateRate: "Content update rate: €49 / hour (ex. VAT)",
     contentUpdateIncludes:
-      "The price includes analysis, implementation, testing and republishing.",
+      "The price includes analysis, implementation, testing and republishing. In 1 hour, I can typically modify or update 10–15 content elements (text, images, videos, links, buttons, sections) across multiple blocks or page sections.",
 
     // Package features (English)
     budgetFeatures: [
@@ -119,10 +119,10 @@ export const translations = {
       "Mobile optimized, responsive design",
       "Basic SEO settings",
       "Basic animations",
-      "Contact form",
+      "Contact form (FormSubmit integration)",
       "Favicon + basic site structure",
-      "1 year domain + hosting (then at client's cost)",
-      "1 year business email (then at client's cost)",
+      "1 year Hostinger domain + hosting (then at client's cost)",
+      "1 year Hostinger business email (then at client's cost)",
       "3 months technical support",
     ],
     standardFeatures: [
@@ -135,11 +135,11 @@ export const translations = {
       "Image carousel",
       "FAQ section",
       "Social media integration (icons, OpenGraph)",
-      "Cookie and privacy page",
+      "Legal pages (Terms, Privacy Policy, Cookie Settings)",
       "QR code with your website URL (scan to open website)",
       "PageSpeed optimization",
-      "2 years domain + hosting (then at client's cost)",
-      "2 years business email (then at client's cost)",
+      "2 years Hostinger domain + hosting (then at client's cost)",
+      "2 years Hostinger business email (then at client's cost)",
       "6 months technical support",
     ],
     proFeatures: [
@@ -153,6 +153,14 @@ export const translations = {
       "Google Analytics",
       "Very detailed UI/UX elements, animation effects",
       "12 months technical support",
+      "OPTIONAL: Sanity CMS Integration (+€349 ex. VAT)",
+      "If you want to update content yourself",
+      "Domain stays with Hostinger",
+      "DNS record setup → redirect to Vercel",
+      "Website on Next.js with CI/CD hosting on Vercel",
+      "Content (text, images, blog, pricing, etc.) editable via Sanity interface",
+      "Website automatically updates after changes (build + deploy happens automatically)",
+      "Client training included in the price",
     ],
     customFeatures: [
       "Based on detailed consultation",
@@ -198,7 +206,7 @@ export const translations = {
     termsQuotesText: [
       "All prices are in euros, excluding VAT, unless otherwise stated.",
       "Quotes are non-binding and valid for 30 days.",
-      "Changes or extensions outside the agreed project fall under additional work and are invoiced at an hourly rate of €50 per hour.",
+      "Changes or extensions outside the agreed project fall under additional work and are invoiced at an hourly rate of €49 per hour.",
     ],
 
     // Payment
@@ -545,10 +553,10 @@ export const translations = {
     // Content update policy (Hungarian)
     contentUpdatePolicyTitle: "Tartalomfrissítés",
     contentUpdatePolicyDescription:
-      "Mivel az oldalak statikus rendszerben készülnek, az utólagos tartalomfrissítések (például szöveg, kép, videó cseréje vagy új szekciók hozzáadása a meglévő tartalomhoz) nem automatikusan szerkeszthetők az ügyfél által.",
+      "Ha a választott csomagod nem tartalmaz CMS integrációt, akkor a weboldal teljesen statikus lesz. Ez azt jelenti, hogy az utólagos tartalomfrissítések (például szöveg, kép, videó cseréje vagy új szekciók hozzáadása) nem automatikusan szerkeszthetők az ügyfél által, és minden tartalmi változtatást rajtam keresztül, fejlesztőként kell elvégezni.",
     contentUpdateRate: "Tartalomfrissítés díja: 19000 Ft / óra (+ ÁFA)",
     contentUpdateIncludes:
-      "Az ár tartalmazza az elemzést, implementációt, tesztelést és újrapublikálást.",
+      "Az ár tartalmazza az elemzést, implementációt, tesztelést és újrapublikálást. 1 óra alatt átlagosan 10–15 tartalmi elemet tudok módosítani vagy frissíteni (szöveg, kép, videó, link, gomb, szekciók), akár több blokkon vagy oldalrészen.",
 
     // Package features (Hungarian)
     budgetFeatures: [
@@ -558,10 +566,10 @@ export const translations = {
       "Mobilra optimalizált, reszponzív kialakítás",
       "Alap SEO beállítások",
       "Alap animációk",
-      "Kapcsolat űrlap",
+      "Kapcsolat űrlap (FormSubmit integráció)",
       "Favicon + alap site-struktúra",
-      "1 év domain + hosting (utána az ügyfél költségén)",
-      "1 év céges emailcím (utána az ügyfél költségén)",
+      "1 év Hostinger domain + hosting (utána az ügyfél költségén)",
+      "1 év Hostinger céges emailcím (utána az ügyfél költségén)",
       "3 hónap technikai support",
     ],
     standardFeatures: [
@@ -574,11 +582,11 @@ export const translations = {
       "Kép carousel",
       "GYIK szekció",
       "Közösségi média integráció (ikonok, OpenGraph)",
-      "Cookie és adatvédelmi oldal",
+      "Jogi oldalak (ÁSZF, Adatvédelmi Irányelvek, Cookie Beállítások)",
       "QR kód a webcímeddel (szkennelve megnyílik a weblap)",
       "PageSpeed optimalizálás",
-      "2 év domain + hosting (utána az ügyfél költségén)",
-      "2 év céges emailcím (utána az ügyfél költségén)",
+      "2 év Hostinger domain + hosting (utána az ügyfél költségén)",
+      "2 év Hostinger céges emailcím (utána az ügyfél költségén)",
       "6 hónap technikai support",
     ],
     proFeatures: [
@@ -592,6 +600,14 @@ export const translations = {
       "Google Analytics",
       "Nagyon részletes UI/UX elemek, animációs effektek",
       "12 hónap technikai support",
+      "OPCIONÁLIS: Sanity CMS Integráció (+139 000 Ft + ÁFA)",
+      "Hogyha magad szeretnéd a tartalmakat frissíteni",
+      "A domain marad a Hostingernél",
+      "DNS rekord beállítás → átirányítás a Vercel-re",
+      "Weboldal Next.js alapon, CI/CD hostinggal Vercelen",
+      "A tartalmak (szöveg, kép, blog, árlista stb.) a Sanity felületen szerkeszthetők",
+      "A módosítások után a weboldal automatikusan frissül (build + deploy automatikusan történik)",
+      "Ügyfél oktatás benne van az árban",
     ],
     customFeatures: [
       "Részletes konzultáció alapján",
@@ -986,10 +1002,10 @@ export const translations = {
     // Content update policy (Dutch)
     contentUpdatePolicyTitle: "Content Updates",
     contentUpdatePolicyDescription:
-      "Omdat de websites worden gebouwd met statische systemen, kunnen latere content-updates (zoals tekst-, afbeelding-, video-vervanging of het toevoegen van nieuwe secties aan bestaande content) niet automatisch door de klant worden bewerkt.",
-    contentUpdateRate: "Tarief voor content-updates: €50 / uur (ex. BTW)",
+      "Als je gekozen pakket geen CMS-integratie bevat, zal de website volledig statisch zijn. Dit betekent dat latere content-updates (zoals tekst-, afbeelding-, video-vervanging of het toevoegen van nieuwe secties) niet automatisch door de klant kunnen worden bewerkt, maar moeten alle contentwijzigingen via mij als ontwikkelaar worden uitgevoerd.",
+    contentUpdateRate: "Tarief voor content-updates: €49 / uur (ex. BTW)",
     contentUpdateIncludes:
-      "De prijs omvat analyse, implementatie, testen en heruitgave.",
+      "De prijs omvat analyse, implementatie, testen en heruitgave. In 1 uur kan ik gemiddeld 10–15 content-elementen aanpassen of bijwerken (tekst, afbeeldingen, video's, links, knoppen, secties) over meerdere blokken of paginasecties.",
 
     // Package features
     budgetFeatures: [
@@ -999,10 +1015,10 @@ export const translations = {
       "Mobiel geoptimaliseerd, responsief ontwerp",
       "Basis SEO-instellingen",
       "Basis animaties",
-      "Contactformulier",
+      "Contactformulier (FormSubmit integratie)",
       "Favicon + basis site-structuur",
-      "1 jaar domein + hosting (daarna op klantkosten)",
-      "1 jaar zakelijke e-mail (daarna op klantkosten)",
+      "1 jaar Hostinger domein + hosting (daarna op klantkosten)",
+      "1 jaar Hostinger zakelijke e-mail (daarna op klantkosten)",
       "3 maanden technische ondersteuning",
     ],
     standardFeatures: [
@@ -1015,11 +1031,11 @@ export const translations = {
       "Afbeelding carousel",
       "FAQ sectie",
       "Social media integratie (iconen, OpenGraph)",
-      "Cookie en privacy pagina",
+      "Juridische pagina's (Algemene Voorwaarden, Privacybeleid, Cookie-instellingen)",
       "QR-code met jouw website URL (scannen opent website)",
       "PageSpeed optimalisatie",
-      "2 jaar domein + hosting (daarna op klantkosten)",
-      "2 jaar zakelijke e-mail (daarna op klantkosten)",
+      "2 jaar Hostinger domein + hosting (daarna op klantkosten)",
+      "2 jaar Hostinger zakelijke e-mail (daarna op klantkosten)",
       "6 maanden technische ondersteuning",
     ],
     proFeatures: [
@@ -1033,6 +1049,14 @@ export const translations = {
       "Google Analytics",
       "Zeer gedetailleerde UI/UX elementen, animatie-effecten",
       "12 maanden technische ondersteuning",
+      "OPTIONEEL: Sanity CMS Integratie (+€349 ex. BTW)",
+      "Als je zelf de content wilt bijwerken",
+      "Domein blijft bij Hostinger",
+      "DNS record instelling → omleiding naar Vercel",
+      "Website op Next.js met CI/CD hosting op Vercel",
+      "Content (tekst, afbeeldingen, blog, prijzen, enz.) bewerkbaar via Sanity interface",
+      "Website wordt automatisch bijgewerkt na wijzigingen (build + deploy gebeurt automatisch)",
+      "Klant training inbegrepen in de prijs",
     ],
     customFeatures: [
       "Op basis van gedetailleerde consultatie",
@@ -1078,7 +1102,7 @@ export const translations = {
     termsQuotesText: [
       "Alle prijzen zijn in euro's, exclusief BTW, tenzij anders vermeld.",
       "Offertes zijn vrijblijvend en geldig voor 30 dagen.",
-      "Wijzigingen of uitbreidingen buiten het overeengekomen project worden beschouwd als meerwerk en gefactureerd tegen het uurtarief van €50 per uur.",
+      "Wijzigingen of uitbreidingen buiten het overeengekomen project worden beschouwd als meerwerk en gefactureerd tegen het uurtarief van €49 per uur.",
     ],
 
     // Payment
