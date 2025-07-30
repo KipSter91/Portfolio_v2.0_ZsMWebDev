@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
-import { Header, Footer } from "../components";
+import { Header, Footer, BackToTop } from "../components";
 import { LocaleProvider } from "../contexts/LocaleContext";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import { CookieConsent } from "../components/CookieConsent";
@@ -135,6 +135,7 @@ export default function RootLayout({
           </div>
           <main className="pt-14 flex-grow overflow-x-hidden">{children}</main>
           <Footer />
+          <BackToTop />
           <CookieConsent />
         </LocaleProvider>
       </body>
