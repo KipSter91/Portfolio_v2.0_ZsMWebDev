@@ -30,6 +30,7 @@ function ContactPageContent() {
       { value: "budget", label: t.budgetPackage },
       { value: "standard", label: t.standardPackage },
       { value: "pro", label: t.proPackage },
+      { value: "webApp", label: t.webAppPackage },
       { value: "custom", label: t.customPackage },
     ];
   };
@@ -55,7 +56,7 @@ function ContactPageContent() {
     const packageParam = searchParams.get("package");
     if (
       packageParam &&
-      ["budget", "standard", "pro", "custom"].includes(packageParam)
+      ["budget", "standard", "pro", "webApp", "custom"].includes(packageParam)
     ) {
       setFormState((prev) => ({
         ...prev,

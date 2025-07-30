@@ -19,12 +19,18 @@ import {
   FaJs,
   FaReact,
   FaGoogle,
+  FaDatabase,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiTailwindcss,
   SiTypescript,
   SiHostinger,
+  SiVercel,
+  SiClerk,
+  SiStripe,
+  SiSupabase,
+  SiSanity,
 } from "react-icons/si";
 
 export default function ServicesPage() {
@@ -159,7 +165,7 @@ export default function ServicesPage() {
 
                 {/* Services Grid */}
                 <motion.div
-                  className="grid md:grid-cols-2 gap-6 mb-12"
+                  className="grid md:grid-cols-3 gap-6 mb-12"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
@@ -183,7 +189,7 @@ export default function ServicesPage() {
 
                   <motion.div
                     className="bg-[#2C313A] p-6 rounded-xl border border-[#3C4147] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true, margin: "-50px" }}>
@@ -200,7 +206,7 @@ export default function ServicesPage() {
 
                   <motion.div
                     className="bg-[#2C313A] p-6 rounded-xl border border-[#3C4147] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     viewport={{ once: true, margin: "-50px" }}>
@@ -216,10 +222,27 @@ export default function ServicesPage() {
                   </motion.div>
 
                   <motion.div
+                    className="bg-[#2C313A] p-6 rounded-xl border border-[#3C4147] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 md:col-span-2"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    viewport={{ once: true, margin: "-50px" }}>
+                    <div className="flex items-center mb-4">
+                      <FaDatabase className="text-2xl text-[var(--neon-green)] mr-3" />
+                      <h3 className="text-xl font-semibold text-white">
+                        {t.webAppServicesTitle}
+                      </h3>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed">
+                      {t.webAppServicesDescription}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
                     className="bg-[#2C313A] p-6 rounded-xl border border-[#3C4147] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
                     viewport={{ once: true, margin: "-50px" }}>
                     <div className="flex items-center mb-4">
                       <FaTachometerAlt className="text-2xl text-[var(--neon-pink)] mr-3" />
@@ -248,7 +271,8 @@ export default function ServicesPage() {
                     viewport={{ once: true, margin: "-50px" }}>
                     {t.technologiesTitle}
                   </motion.h2>
-                  <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                    {/* Frontend Technologies */}
                     <motion.div
                       className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -319,21 +343,77 @@ export default function ServicesPage() {
                       <span className="text-white text-sm">Tailwind</span>
                     </motion.div>
 
+                    {/* Backend & Database */}
                     <motion.div
                       className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: 0.45 }}
                       viewport={{ once: true, margin: "-50px" }}>
-                      <SiHostinger className="text-2xl text-purple-500 mx-auto mb-2" />
-                      <span className="text-white text-sm">Hostinger</span>
+                      <SiSupabase className="text-2xl text-green-500 mx-auto mb-2" />
+                      <span className="text-white text-sm">Supabase</span>
+                    </motion.div>
+
+                    {/* Authentication */}
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.5 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <SiClerk className="text-2xl text-purple-400 mx-auto mb-2" />
+                      <span className="text-white text-sm">Clerk</span>
+                    </motion.div>
+
+                    {/* Payment */}
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.55 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <SiStripe className="text-2xl text-indigo-500 mx-auto mb-2" />
+                      <span className="text-white text-sm">Stripe</span>
+                    </motion.div>
+
+                    {/* Deployment */}
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.6 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <SiVercel className="text-2xl text-white mx-auto mb-2" />
+                      <span className="text-white text-sm">Vercel</span>
                     </motion.div>
 
                     <motion.div
                       className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 0.5 }}
+                      transition={{ duration: 0.4, delay: 0.65 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <SiHostinger className="text-2xl text-purple-500 mx-auto mb-2" />
+                      <span className="text-white text-sm">Hostinger</span>
+                    </motion.div>
+
+                    {/* CMS */}
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.7 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <SiSanity className="text-2xl text-red-500 mx-auto mb-2" />
+                      <span className="text-white text-sm">Sanity</span>
+                    </motion.div>
+
+                    {/* SEO & Tools */}
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 text-center hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.75 }}
                       viewport={{ once: true, margin: "-50px" }}>
                       <FaGoogle className="text-2xl text-red-500 mx-auto mb-2" />
                       <span className="text-white text-sm">SEO Tools</span>
@@ -402,6 +482,15 @@ export default function ServicesPage() {
                       viewport={{ once: true, margin: "-50px" }}>
                       <p className="text-gray-300">• {t.targetAudience5}</p>
                     </motion.div>
+
+                    <motion.div
+                      className="bg-[#2C313A] p-4 rounded-xl border border-[#3C4147] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/10 hover:-translate-y-1 md:col-span-2"
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.6 }}
+                      viewport={{ once: true, margin: "-50px" }}>
+                      <p className="text-gray-300">• {t.targetAudience6}</p>
+                    </motion.div>
                   </div>
                 </motion.div>
 
@@ -413,12 +502,20 @@ export default function ServicesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}>
                   <motion.h2
-                    className="text-2xl font-semibold text-[#fd19fc] mb-8 md:mb-16 text-center"
+                    className="text-2xl font-semibold text-[#fd19fc] mb-4 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}>
                     {t.timelineTitle}
                   </motion.h2>
+
+                  <motion.p
+                    className="text-gray-400 text-center mb-8 md:mb-16 text-sm italic"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}>
+                    {t.timelineSubtitle}
+                  </motion.p>
 
                   <div className="relative">
                     {/* Background Line */}

@@ -22,6 +22,11 @@ import {
   SiTypescript,
   SiGithubcopilot,
   SiOpenai,
+  SiSupabase,
+  SiClerk,
+  SiVercel,
+  SiStripe,
+  SiSanity,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 
@@ -122,12 +127,18 @@ export default function SkillsPage() {
   const backendSkills = [
     { name: "Node.js", icon: <FaNodeJs style={{ color: "#339933" }} /> },
     { name: "MongoDB", icon: <SiMongodb style={{ color: "#47A248" }} /> },
+    { name: "Supabase", icon: <SiSupabase style={{ color: "#3ECF8E" }} /> },
+    { name: "Clerk", icon: <SiClerk style={{ color: "#6C47FF" }} /> },
     { name: "Python", icon: <FaPython style={{ color: "#3776AB" }} /> },
   ];
   const tools = [
     { name: "VS Code", icon: <VscCode style={{ color: "#007ACC" }} /> },
     { name: "Git", icon: <FaGitAlt style={{ color: "#F05032" }} /> },
     { name: "GitHub", icon: <FaGithub style={{ color: "#ffffff" }} /> },
+    { name: "Vercel", icon: <SiVercel style={{ color: "#ffffff" }} /> },
+    { name: "Hostinger", icon: <span style={{ color: "#673DE6" }}>🌐</span> },
+    { name: "Sanity", icon: <SiSanity style={{ color: "#F03E2F" }} /> },
+    { name: "Stripe", icon: <SiStripe style={{ color: "#008CDD" }} /> },
     {
       name: "GitHub Copilot",
       icon: <SiGithubcopilot style={{ color: "#00D8FF" }} />,
@@ -178,20 +189,21 @@ export default function SkillsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}>
-              <motion.h1
-                className="text-3xl md:text-4xl font-bold mb-6 text-[#00ffff] text-center"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 15,
-                  delay: 0.1,
-                }}
-                viewport={{ once: true, margin: "-50px" }}>
-                {t.skillsTitle}
-              </motion.h1>
               <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
+                <motion.h1
+                  className="text-3xl md:text-4xl font-bold mb-6 text-[#00ffff] text-center"
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
+                    delay: 0.1,
+                  }}
+                  viewport={{ once: true, margin: "-50px" }}>
+                  {t.skillsTitle}
+                </motion.h1>
+
                 {/* Personal Skills Section */}
                 <motion.div
                   className="mb-12"

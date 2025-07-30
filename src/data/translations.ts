@@ -9,9 +9,9 @@ export const translations = {
     contact: "Contact",
 
     // Services page
-    servicesTitle: "Custom, Modern Websites",
+    servicesTitle: "Custom, Modern Websites & Web Applications",
     servicesHero:
-      "At ZsMWebDev, I build every website from scratch, completely from the ground up. I don't use templates, WordPress themes, or pre-made design elements, every project is uniquely designed and fully tailored to the specific client's needs, with modern technologies.",
+      "At ZsMWebDev, I build every website and web application from scratch, completely from the ground up. I don't use templates, WordPress themes, or pre-made design elements, every project is uniquely designed and fully tailored to the specific client's needs, with modern technologies.",
 
     // Service categories
     landingPageTitle: "Landing Page Design",
@@ -28,7 +28,11 @@ export const translations = {
 
     technicalTitle: "Technical Setup",
     technicalDescription:
-      "Domain + hosting setup, business email creation, FormSubmit integration, multi-language support, dark/light mode, cookie management, PageSpeed optimization.",
+      "Domain + hosting setup, business email creation, FormSubmit integration, multi-language support, dark/light mode, cookie management, PageSpeed optimization, Serenity CMS integration on demand.",
+
+    webAppServicesTitle: "Web Applications",
+    webAppServicesDescription:
+      "Development of modern web applications with authentication systems, admin interfaces, databases and payment integration – built on Supabase, Clerk, Stripe, Vercel. Fully customized solutions for business purposes, can also be connected to landing pages.",
 
     // Technologies section
     technologiesTitle: "Technologies I Use",
@@ -45,9 +49,13 @@ export const translations = {
       "Startups who want to validate their ideas with a landing page",
     targetAudience5:
       "Businesses with outdated websites who want to renew and refresh their online presence",
+    targetAudience6:
+      "Companies with serious business goals who need custom web applications with authentication, databases, and payment systems",
 
     // Timeline section
     timelineTitle: "How Quickly Is Your Website Ready?",
+    timelineSubtitle:
+      "This timeline applies to landing pages and websites. Web applications are completed according to individual client requirements.",
     timelineDay1Title: "Day 1 – Lightning-fast Quote",
     timelineDay1Description:
       "Once you send your inquiry, you'll receive a personalized quote within 24 hours. It includes package details, timeline, and pricing – everything transparent, no hidden costs. If you accept, we can start immediately.",
@@ -82,15 +90,21 @@ export const translations = {
     standardPackage: "Standard",
     proPackage: "Pro",
     customPackage: "Custom",
+    webAppPackage: "Web Applications",
     customPrice: "Quote on request",
+    webAppPrice: "From €1799",
     recommended: "Recommended",
     budgetSubtitle: "Clean, cost-effective solution for unique web presence",
     standardSubtitle: "Extended functionality for serious business purposes",
     proSubtitle:
       "Professional, multi-page solution for brands and scalable projects",
     customSubtitle: "Flexible package composition according to your needs",
+    webAppSubtitle:
+      "Tailored, database-driven solutions for real business needs",
     customDescription:
       "Didn't find exactly what you're looking for? No problem – flexibility is my foundation!\nFeel free to combine features from individual packages or request a completely custom solution. You'll receive a personalized quote based on your requirements.",
+    webAppDescription:
+      "I can build fully dynamic web applications or complex websites, beyond static landing pages. Let's discuss your idea, I'll provide a custom quote based on your project needs.",
     choosePackage: "Let’s Build This",
     requestQuote: "Request Quote",
     questionsTitle: "Questions? Custom needs?",
@@ -169,6 +183,20 @@ export const translations = {
       "Special integrations or architecture",
       "Ideal for more complex projects",
     ],
+    webAppFeatures: [
+      "Authentication systems (Clerk, NextAuth)",
+      "Admin dashboards with protected routes",
+      "Payment integration (Stripe)",
+      "Supabase database & API integration",
+      "User accounts, forms, order systems",
+      "Webshop with product management",
+      "SaaS-style web applications",
+      "Landing page + app combinations",
+      "Hosted on Vercel with CI/CD",
+      "Optional CMS, analytics, and advanced features",
+      "Real-time functionality and custom API integrations",
+      "Scalable architecture for growing businesses",
+    ],
 
     // Terms of Service
     termsOfService: "Terms of Service",
@@ -194,11 +222,15 @@ export const translations = {
     termsServicesText:
       "ZsMWebDev provides services in the field of web development, including:",
     termsServicesList: [
-      "Design and construction of static (single and multi-page) websites",
+      "Design and development of static and dynamic websites (single and multi-page)",
+      "Landing page design optimized for conversion",
+      "Web application development with authentication systems, databases, and payment integration",
       "Hosting advice and domain registration",
-      "Email configuration",
-      "Search engine optimization (SEO)",
-      "Integration of analytics tools and forms",
+      "Business email configuration",
+      "Search engine optimization (SEO) and technical SEO",
+      "Integration of analytics tools, forms, and third-party services",
+      "Content management system (CMS) integration",
+      "Multi-language website support",
     ],
 
     // Quotes and rates
@@ -282,7 +314,7 @@ export const translations = {
     journeyPara4:
       "The idea of becoming independent and truly focusing on what's close to my heart had been on my mind for a long time. After more than 10 years of industrial, production, and logistics experience, I reached the point where I decided to change careers and finally pursue what I truly love. Since early 2023, I have continuously educated myself in the latest web development technologies alongside my work. As a result, I created my own business under the name ZsMWebDev in August 2025.",
     journeyPara5:
-      "Through ZsMWebDev, I create clean, static websites and landing pages for individuals, sole proprietors, and small businesses. The sites are fast-loading, with SEO-optimized structure and thoughtful UX/UI design to support my clients' online presence. My goal is to create personalized, technically stable, and visually appealing websites that generate real business value.",
+      "Through ZsMWebDev, I create clean, static and dynamic websites, landing pages for individuals, sole proprietors, and small businesses. I also develop web applications as needed. The sites are fast-loading, with SEO-optimized structure and thoughtful UX/UI design to support my clients' online presence. My goal is to create personalized, technically stable, and visually appealing websites and web applications that generate real business value.",
     experienceTitle: "Professional Experience",
     experienceDescription:
       "10+ years of industrial and logistics leadership experience (AMPCO Metal, Arvato), followed by founding ZsMWebDev web development company in 2025. Combining team leadership, strategic planning, and modern web technology expertise.",
@@ -455,9 +487,9 @@ export const translations = {
     contact: "Kapcsolat",
 
     // Services page
-    servicesTitle: "Egyedi, modern weboldalak",
+    servicesTitle: "Egyedi, modern weboldalak és webalkalmazások",
     servicesHero:
-      "A ZsMWebDev-nél minden weboldalt az alapoktól, teljesen scratchből építek fel. Nem használok sablonokat, WordPress-témákat vagy kész dizájnelemeket, minden projekt egyedi tervezésű és teljes mértékben az adott ügyfél igényei szerint készül el, modern technológiákkal.",
+      "A ZsMWebDev-nél minden weboldalt és webalkalmazást az alapoktól, teljesen scratchből építek fel. Nem használok sablonokat, WordPress-témákat vagy kész dizájnelemeket, minden projekt egyedi tervezésű és teljes mértékben az adott ügyfél igényei szerint készül el, modern technológiákkal.",
 
     // Service categories
     landingPageTitle: "Landing Page Design",
@@ -474,7 +506,11 @@ export const translations = {
 
     technicalTitle: "Technikai beállítások",
     technicalDescription:
-      "Domain + hosting setup, céges email létrehozás, FormSubmit integráció, többnyelvűség, dark/light mode, cookie kezelés, PageSpeed optimalizálás.",
+      "Domain + hosting setup, céges email létrehozás, FormSubmit integráció, többnyelvűség, dark/light mode, cookie kezelés, PageSpeed optimalizálás, igény szerint Serenity CMS integráció.",
+
+    webAppServicesTitle: "Webalkalmazások",
+    webAppServicesDescription:
+      "Bejelentkezési rendszerrel, admin felülettel, adatbázissal és fizetési integrációval rendelkező modern webalkalmazások fejlesztése – Supabase, Clerk, Stripe, Vercel alapon. Teljesen testreszabott megoldások üzleti célokra, akár landing page-hez kapcsolva is.",
 
     // Technologies section
     technologiesTitle: "Használt technológiák",
@@ -491,9 +527,13 @@ export const translations = {
       "Startupok, akik landing oldallal szeretnék validálni az ötletüket",
     targetAudience5:
       "Vállalkozások elavult weboldalakkal, akik szeretnék megújítani és felfrissíteni online jelenlétüket",
+    targetAudience6:
+      "Komoly üzleti célokkal rendelkező cégek, akiknek egyedi webalkalmazásra van szükségük bejelentkezési rendszerrel, adatbázissal és fizetési integrációval",
 
     // Timeline section
     timelineTitle: "Milyen gyorsan készül el a weboldalad?",
+    timelineSubtitle:
+      "Ez az időkeret a landing page-ekre és weboldalakra vonatkozik. A webalkalmazások az egyedi ügyfél igényekhez igazított időkeretben készülnek el.",
     timelineDay1Title: "1. nap – Villámgyors ajánlat",
     timelineDay1Description:
       "Amint elküldöd az érdeklődést, 24 órán belül személyre szabott ajánlatot kapsz. Tartalmazza a csomag részleteit, az idővonalat és az árat, minden átláthatóan, rejtett költségek nélkül. Ha elfogadod, kezdhetjük is.",
@@ -528,7 +568,9 @@ export const translations = {
     standardPackage: "Standard",
     proPackage: "Pro",
     customPackage: "Egyedi",
+    webAppPackage: "Webalkalmazások",
     customPrice: "Konzultáció alapján",
+    webAppPrice: "699 000 Ft-tól",
     recommended: "Ajánlott",
     budgetSubtitle:
       "Letisztult, költséghatékony megoldás egyedi webes jelenléthez",
@@ -536,8 +578,12 @@ export const translations = {
     proSubtitle:
       "Professzionális, több aloldalas megoldás márkáknak és bővíthető projektekhez",
     customSubtitle: "Rugalmas csomag-összeállítás az igényeid szerint",
+    webAppSubtitle:
+      "Személyre szabott, adatbázis-alapú megoldások valós üzleti igényekhez",
     customDescription:
       "Nem találtad meg pontosan, amit keresel? Semmi gond – nálam a rugalmasság az alap!\nKombináld bátran az egyes csomagok funkcióit vagy kérj teljesen egyedi megoldást. Az igényeid alapján személyre szabott árajánlatot kapsz.",
+    webAppDescription:
+      "Teljesen dinamikus webalkalmazásokat vagy komplex weboldalakat tudok készíteni, az egyszerű landing page-eken túl. Beszéljük meg az ötleted, az igényeid alapján személyre szabott árajánlatot adok.",
     choosePackage: "Ezt választom",
     requestQuote: "Ajánlat kérés",
     questionsTitle: "Kérdések? Egyedi igények?",
@@ -616,6 +662,20 @@ export const translations = {
       "Speciális integrációk vagy architektúra",
       "Komplexebb projektekhez is ideális",
     ],
+    webAppFeatures: [
+      "Bejelentkezési rendszerek (Clerk, NextAuth)",
+      "Admin dashboard-ok védett útvonalakkal",
+      "Fizetési integráció (Stripe)",
+      "Supabase adatbázis és API integráció",
+      "Felhasználói fiókok, űrlapok, rendelési rendszerek",
+      "Webshop termékkezeléssel",
+      "SaaS-stílusú webalkalmazások",
+      "Landing page + alkalmazás kombinációk",
+      "Vercel hostolás CI/CD-vel",
+      "Opcionális CMS, analytics és fejlett funkciók",
+      "Valós idejű funkciók és egyedi API integrációk",
+      "Skálázható architektúra növekvő vállalkozásokhoz",
+    ],
 
     // Terms of Service (Hungarian)
     termsOfService: "Általános Szerződési Feltételek",
@@ -641,11 +701,15 @@ export const translations = {
     termsServicesText:
       "A ZsMWebDev webfejlesztési területen nyújt szolgáltatásokat, beleértve:",
     termsServicesList: [
-      "Statikus (egy- és többoldalas) weboldalak tervezése és építése",
+      "Statikus és dinamikus weboldalak tervezése és fejlesztése (egy- és többoldalas)",
+      "Konverzióra optimalizált landing page tervezés",
+      "Webalkalmazások fejlesztése bejelentkezési rendszerrel, adatbázissal és fizetési integrációval",
       "Hosting tanácsadás és domain regisztráció",
-      "Email konfigurálás",
-      "Keresőoptimalizálás (SEO)",
-      "Analitikai eszközök és űrlapok integrálása",
+      "Céges email konfigurálás",
+      "Keresőoptimalizálás (SEO) és technikai SEO",
+      "Analitikai eszközök, űrlapok és harmadik fél szolgáltatásainak integrálása",
+      "Tartalomkezelő rendszer (CMS) integráció",
+      "Többnyelvű weboldal támogatás",
     ],
 
     // Quotes and rates
@@ -730,7 +794,7 @@ export const translations = {
     journeyPara4:
       "Már régóta motoszkált a fejemben a gondolat, hogy szeretnék függetlenedni, és tényleg azzal foglalkozni, ami igazán közel áll hozzám. Több mint 10 év ipari, produkciós és logisztikai tapasztalat után elérkeztem arra a pontra, hogy karriert váltsak, és végre azzal foglalkozzak, amit igazán szeretek. 2023 elejétől munka mellett folyamatosan képeztem magam a legmodernebb webfejlesztési technológiák területén. Ennek eredményeként 2025 augusztusában hoztam létre saját vállalkozásomat, ZsMWebDev néven.",
     journeyPara5:
-      "A ZsMWebDev keretében magánszemélyek, egyéni vállalkozók és kisvállalatok számára készítek letisztult, statikus weboldalakat, landing page-eket. Az oldalak gyors betöltésűek, keresőoptimalizált felépítéssel és átgondolt UX/UI dizájnnal támogatják ügyfeleim online jelenlétét. A célom, hogy személyre szabott, technikailag stabil és vizuálisan megnyerő weboldalakat készítsek, amelyek valódi üzleti értéket teremtenek.",
+      "A ZsMWebDev keretében magánszemélyek, egyéni vállalkozók és kisvállalatok számára készítek letisztult, statikus és dinamikus weboldalakat, landing page-eket. Igény szerint webalkalmazásokat is fejlesztek. Az oldalak gyors betöltésűek, keresőoptimalizált felépítéssel és átgondolt UX/UI dizájnnal támogatják ügyfeleim online jelenlétét. A célom, hogy személyre szabott, technikailag stabil és vizuálisan megnyerő weboldalakat és webalkalmazásokat készítsek, amelyek valódi üzleti értéket teremtenek.",
     experienceTitle: "Szakmai tapasztalat",
     experienceDescription:
       "10+ év ipari és logisztikai vezetői tapasztalat (AMPCO Metal, Arvato), majd 2025-ben a ZsMWebDev webfejlesztő vállalkozás alapítása. Csapatvezetés, stratégiai tervezés és modern webtechnológiai szakértelem kombinációja.",
@@ -903,9 +967,9 @@ export const translations = {
     contact: "Contact",
 
     // Services page
-    servicesTitle: " Moderne, op maat gemaakte websites",
+    servicesTitle: "Moderne, op maat gemaakte websites & webapplicaties",
     servicesHero:
-      "Bij ZsMWebDev bouw ik elke website vanaf nul, volledig vanaf de basis. Ik gebruik geen templates, WordPress-thema's of kant-en-klare design-elementen, elk project is uniek ontworpen en volledig op maat gemaakt voor de specifieke behoeften van de klant, met moderne technologieën.",
+      "Bij ZsMWebDev bouw ik elke website en webapplicatie vanaf nul, volledig vanaf de basis. Ik gebruik geen templates, WordPress-thema's of kant-en-klare design-elementen, elk project is uniek ontworpen en volledig op maat gemaakt voor de specifieke behoeften van de klant, met moderne technologieën.",
 
     // Service categories
     landingPageTitle: "Landing Page Design",
@@ -922,7 +986,11 @@ export const translations = {
 
     technicalTitle: "Technische setup",
     technicalDescription:
-      "Domein + hosting setup, zakelijke e-mail creatie, FormSubmit integratie, meertalige ondersteuning, dark/light mode, cookie beheer, PageSpeed optimalisatie.",
+      "Domein + hosting setup, zakelijke e-mail creatie, FormSubmit integratie, meertalige ondersteuning, dark/light mode, cookie beheer, PageSpeed optimalisatie, Serenity CMS integratie op aanvraag.",
+
+    webAppServicesTitle: "Webapplicaties",
+    webAppServicesDescription:
+      "Ontwikkeling van moderne webapplicaties met authenticatiesystemen, admin interfaces, databases en betaalintegratie – gebouwd op Supabase, Clerk, Stripe, Vercel. Volledig aangepaste oplossingen voor zakelijke doeleinden, ook te koppelen aan landing pages.",
 
     // Technologies section
     technologiesTitle: "Technologieën die ik gebruik",
@@ -939,9 +1007,13 @@ export const translations = {
       "Start-ups die hun ideeën willen valideren met een landingspagina",
     targetAudience5:
       "Bedrijven met verouderde websites die hun online aanwezigheid willen vernieuwen en opfrissen",
+    targetAudience6:
+      "Bedrijven met serieuze zakelijke doelen die aangepaste webapplicaties nodig hebben met authenticatiesystemen, databases en betalingssystemen",
 
     // Timeline section
     timelineTitle: "Hoe snel is jouw website klaar?",
+    timelineSubtitle:
+      "Deze tijdlijn geldt voor landingspagina's en websites. Webapplicaties worden voltooid volgens individuele klantbehoeften.",
     timelineDay1Title: "Dag 1 – Bliksemsnelle offerte",
     timelineDay1Description:
       "Zodra je je interesse verzendt, ontvang je binnen 24 uur een gepersonaliseerde offerte. Het bevat pakketdetails, tijdlijn en prijs – alles transparant, geen verborgen kosten. Als je akkoord gaat, kunnen we meteen beginnen.",
@@ -976,7 +1048,9 @@ export const translations = {
     standardPackage: "Standard",
     proPackage: "Pro",
     customPackage: "Custom",
+    webAppPackage: "Webapplicaties",
     customPrice: "Op aanvraag",
+    webAppPrice: "Vanaf €1799",
     recommended: "Aanbevolen",
     budgetSubtitle:
       "Schone, kosteneffectieve oplossing voor unieke webpresentatie",
@@ -985,8 +1059,12 @@ export const translations = {
     proSubtitle:
       "Professionele, multi-page oplossing voor merken en schaalbare projecten",
     customSubtitle: "Flexibele pakketsamenstelling volgens jouw behoeften",
+    webAppSubtitle:
+      "Op maat gemaakte, database-gedreven oplossingen voor echte zakelijke behoeften",
     customDescription:
       "Vond je niet precies wat je zocht? Geen probleem – flexibiliteit is mijn basis!\nCombineer gerust functies uit individuele pakketten of vraag een volledig aangepaste oplossing. Je ontvangt een gepersonaliseerde offerte op basis van jouw vereisten.",
+    webAppDescription:
+      "Ik kan volledig dynamische webapplicaties of complexe websites bouwen, voorbij statische landingspagina's. Laten we jouw idee bespreken, ik geef een aangepaste offerte op basis van jouw projectbehoeften.",
     choosePackage: "Ja, dit wil ik",
     requestQuote: "Offerte aanvragen",
     questionsTitle: "Vragen? Aangepaste behoeften?",
@@ -1065,6 +1143,20 @@ export const translations = {
       "Speciale integraties of architectuur",
       "Ideaal voor complexere projecten",
     ],
+    webAppFeatures: [
+      "Authenticatiesystemen (Clerk, NextAuth)",
+      "Admin dashboards met beveiligde routes",
+      "Betalingsintegratie (Stripe)",
+      "Supabase database & API integratie",
+      "Gebruikersaccounts, formulieren, bestelsystemen",
+      "Webshop met productbeheer",
+      "SaaS-stijl webapplicaties",
+      "Landingspagina + app combinaties",
+      "Gehost op Vercel met CI/CD",
+      "Optionele CMS, analytics en geavanceerde functies",
+      "Real-time functionaliteit en aangepaste API integraties",
+      "Schaalbare architectuur voor groeiende bedrijven",
+    ],
 
     // Terms of Service (Dutch)
     termsOfService: "Algemene Voorwaarden",
@@ -1090,11 +1182,15 @@ export const translations = {
     termsServicesText:
       "ZsMWebDev biedt diensten op het gebied van webdevelopment, waaronder:",
     termsServicesList: [
-      "Ontwerp en bouw van statische (één- en meerpagina) websites",
+      "Ontwerp en ontwikkeling van statische en dynamische websites (één- en meerpagina)",
+      "Landing page ontwerp geoptimaliseerd voor conversie",
+      "Webapplicatie ontwikkeling met authenticatiesystemen, databases en betaalintegratie",
       "Hosting advies en domeinregistratie",
-      "E-mail configuratie",
-      "Zoekmachine optimalisatie (SEO)",
-      "Integratie van analytics tools en formulieren",
+      "Zakelijke e-mail configuratie",
+      "Zoekmachine optimalisatie (SEO) en technische SEO",
+      "Integratie van analytics tools, formulieren en third-party services",
+      "Content management systeem (CMS) integratie",
+      "Meertalige website ondersteuning",
     ],
 
     // Quotes and rates
@@ -1178,7 +1274,7 @@ export const translations = {
     journeyPara4:
       "Het idee om onafhankelijk te worden en me echt te richten op wat dicht bij mijn hart ligt, speelde al lang door mijn hoofd. Na meer dan 10 jaar ervaring in de industrie, productie en logistiek, bereikte ik het punt waarop ik besloot van carrière te veranderen en eindelijk te doen wat ik echt liefheb. Sinds begin 2023 heb ik mezelf voortdurend geschoold in de nieuwste webontwikkelingstechnologieën naast mijn werk. Als resultaat daarvan heb ik in augustus 2025 mijn eigen bedrijf opgericht onder de naam ZsMWebDev.",
     journeyPara5:
-      "Via ZsMWebDev maak ik strakke, statische websites en landingspagina's voor particulieren, eenmanszaken en kleine bedrijven. De sites zijn snel ladend, met SEO-geoptimaliseerde structuur en doordachte UX/UI-ontwerp om de online aanwezigheid van mijn klanten te ondersteunen. Mijn doel is om gepersonaliseerde, technisch stabiele en visueel aantrekkelijke websites te maken die echte bedrijfswaarde genereren.",
+      "Via ZsMWebDev maak ik strakke, statische en dynamische websites, landingspagina's voor particulieren, eenmanszaken en kleine bedrijven. Ik ontwikkel ook webapplicaties indien nodig. De sites zijn snel ladend, met SEO-geoptimaliseerde structuur en doordachte UX/UI-ontwerp om de online aanwezigheid van mijn klanten te ondersteunen. Mijn doel is om gepersonaliseerde, technisch stabiele en visueel aantrekkelijke websites en webapplicaties te maken die echte bedrijfswaarde genereren.",
     experienceTitle: "Professionele Ervaring",
     experienceDescription:
       "10+ jaar industriële en logistieke leiderschapservaring (AMPCO Metal, Arvato), gevolgd door het oprichten van webontwikkelingsbedrijf ZsMWebDev in 2025. Combinatie van teamleiderschap, strategische planning en moderne webtechnologie-expertise.",
