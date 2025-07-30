@@ -1437,4 +1437,485 @@ export const translations = {
     saveSettings: "Instellingen opslaan",
     manageCookieSettings: "Cookie-instellingen beheren",
   },
+  de: {
+    services: "Dienstleistungen",
+    pricing: "Preise",
+    // Navigation
+    about: "Über mich",
+    skills: "Fähigkeiten",
+    projects: "Projekte",
+    contact: "Kontakt",
+
+    // Services page
+    servicesTitle: "Maßgeschneiderte, moderne Websites & Webanwendungen",
+    servicesHero:
+      "Bei ZsMWebDev erstelle ich jede Website und Webanwendung von Grund auf, komplett neu entwickelt. Ich verwende keine Vorlagen, WordPress-Themes oder vorgefertigte Design-Elemente – jedes Projekt wird einzigartig gestaltet und vollständig auf die spezifischen Kundenbedürfnisse zugeschnitten, mit modernen Technologien.",
+
+    // Service categories
+    landingPageTitle: "Landing Page Design",
+    landingPageDescription:
+      "Einseitige Websites, die für Conversion optimiert sind, mit sauberem UX/UI-Design und kraftvollen Call-to-Action-Bereichen.",
+
+    onePageTitle: "One-Page-Websites",
+    onePageDescription:
+      "Eine moderne einseitige Lösung mit einem sauberen, abschnittsbasierten Layout und intuitiver Scroll-Navigation. Entwickelt, um Ihre Dienstleistungen zu präsentieren und Ihre Marke klar und ansprechend vorzustellen.",
+
+    conversionTitle: "Conversion-optimierte Lösungen",
+    conversionDescription:
+      "Modernes Design mit Animationen und Mikro-Interaktionen. Google Analytics-Integration, SEO-Optimierung.",
+
+    technicalTitle: "Technische Einrichtung",
+    technicalDescription:
+      "Domain + Hosting-Setup, Geschäfts-E-Mail-Erstellung, FormSubmit-Integration, mehrsprachige Unterstützung, Dark/Light-Modus, Cookie-Management, PageSpeed-Optimierung, Serenity CMS-Integration auf Anfrage.",
+
+    webAppServicesTitle: "Webanwendungen",
+    webAppServicesDescription:
+      "Entwicklung moderner Webanwendungen mit Authentifizierungssystemen, Admin-Interfaces, Datenbanken und Zahlungsintegration – basierend auf Supabase, Clerk, Stripe, Vercel. Vollständig angepasste Lösungen für Geschäftszwecke, können auch mit Landing Pages verbunden werden.",
+
+    // Technologies section
+    technologiesTitle: "Technologien, die ich verwende",
+
+    // Target audience
+    targetAudienceTitle: "Für wen ist das gedacht?",
+    targetAudience1:
+      "Einzelunternehmer, die eine professionelle Online-Präsenz wünschen",
+    targetAudience2:
+      "Kleine und mittlere Unternehmen, die eine moderne Markenidentität wünschen",
+    targetAudience3:
+      "Dienstleister (Trainer, Coaches, Kosmetikerinnen, Friseure, etc.), die ihren Kundenstamm erweitern möchten",
+    targetAudience4:
+      "Startups, die ihre Ideen mit einer Landing Page validieren möchten",
+    targetAudience5:
+      "Unternehmen mit veralteten Websites, die ihre Online-Präsenz erneuern und auffrischen möchten",
+    targetAudience6:
+      "Unternehmen mit ernsthaften Geschäftszielen, die maßgeschneiderte Webanwendungen mit Authentifizierung, Datenbanken und Zahlungssystemen benötigen",
+
+    // Timeline section
+    timelineTitle: "Wie schnell ist Ihre Website fertig?",
+    timelineSubtitle:
+      "Diese Zeitlinie gilt für Landing Pages und Websites. Webanwendungen werden nach individuellen Kundenanforderungen fertiggestellt.",
+    timelineDay1Title: "Tag 1 – Blitzschnelles Angebot",
+    timelineDay1Description:
+      "Sobald Sie Ihre Anfrage senden, erhalten Sie innerhalb von 24 Stunden ein personalisiertes Angebot. Es enthält Paket-Details, Zeitplan und Preise – alles transparent, keine versteckten Kosten. Bei Annahme können wir sofort beginnen.",
+
+    timelineDay2Title: "Tag 2 – Online-Beratung",
+    timelineDay2Description:
+      "Wir besprechen per Videoanruf oder E-Mail (bei Bedarf auch persönlich): was Sie möchten, Ihre Website-Ziele und Erwartungen. Wir gehen Stil, Farben, Inhaltsbereiche und Funktionalität durch. Basierend darauf erstellen wir die Site-Struktur.",
+
+    timelineDay35Title: "Tag 3-5 – Design & Entwicklung",
+    timelineDay35Description:
+      "Die echte Entwicklung beginnt von Grund auf. Erst UX/UI-Design, dann responsive Entwicklung mit Next.js (React) und Tailwind. Kontinuierliche Beratung mit Feedback-Möglichkeiten. Bevor Sie es merken, ist das Fundament fertig!",
+
+    timelineDay67Title: "Tag 6-7 – Testing & Feinabstimmung",
+    timelineDay67Description:
+      "Wir überprüfen die Site gemeinsam auf allen Geräten. Mobil, Tablet, Laptop – basierend auf Ihrem Feedback optimiere, verfeinere und passe ich Animationen, CTAs und jedes Detail an. Es geht nicht live, bis es perfekt ist!",
+
+    timelineDay8Title: "Tag 8 – Launch & Übergabe",
+    timelineDay8Description:
+      "Ihre Website wird auf Ihrer eigenen Domain veröffentlicht, für SEO und Ladegeschwindigkeit optimiert. Geschäfts-E-Mail funktioniert auch. Ich sende Wartungstipps, und auf Wunsch bin ich für langfristige Unterstützung verfügbar (über die in Ihrem gewählten Paket enthaltene Dauer hinaus).",
+
+    // Call to action
+    ctaTitle: "Lassen Sie uns etwas Großartiges aufbauen!",
+    pricingCtaDescription:
+      "Möchten Sie Preise erkunden oder Ihre maßgeschneiderte Site starten?",
+    ctaContact: "Kontakt aufnehmen",
+    ctaPricing: "Preise anzeigen",
+
+    // Pricing page
+    pricingTitle: "ZsMWebDev – Pakete & Preise",
+    pricingSubtitle: "Preise zzgl. niederländischer MwSt (21%)",
+    budgetPackage: "Budget",
+    standardPackage: "Standard",
+    proPackage: "Pro",
+    customPackage: "Maßgeschneidert",
+    webAppPackage: "Webanwendungen",
+    customPrice: "Angebot auf Anfrage",
+    webAppPrice: "Ab €1799",
+    recommended: "Empfohlen",
+    budgetSubtitle:
+      "Saubere, kostengünstige Lösung für einzigartige Web-Präsenz",
+    standardSubtitle:
+      "Erweiterte Funktionalität für ernsthafte Geschäftszwecke",
+    proSubtitle:
+      "Professionelle, mehrseitige Lösung für Marken und skalierbare Projekte",
+    customSubtitle: "Flexible Paket-Zusammenstellung nach Ihren Bedürfnissen",
+    webAppSubtitle:
+      "Maßgeschneiderte, datenbankgestützte Lösungen für echte Geschäftsbedürfnisse",
+    customDescription:
+      "Haben Sie nicht genau das gefunden, was Sie suchen? Kein Problem – Flexibilität ist mein Fundament!\nKombinieren Sie gerne Features aus einzelnen Paketen oder bitten Sie um eine völlig maßgeschneiderte Lösung. Sie erhalten ein personalisiertes Angebot basierend auf Ihren Anforderungen.",
+    webAppDescription:
+      "Ich kann vollständig dynamische Webanwendungen oder komplexe Websites entwickeln, die über statische Landing Pages hinausgehen. Lassen Sie uns Ihre Idee besprechen, ich erstelle ein maßgeschneidertes Angebot basierend auf Ihren Projektanforderungen.",
+    choosePackage: "Lassen Sie uns das erstellen",
+    requestQuote: "Angebot anfordern",
+    questionsTitle: "Fragen? Individuelle Bedürfnisse?",
+    questionsDescription:
+      "Kontaktieren Sie mich, und lassen Sie uns besprechen, wie ich bei der Entwicklung Ihrer Web-Präsenz helfen kann!",
+    contactCta: "Kontakt",
+
+    // VAT Information (German)
+    vatInfoTitle: "MwSt-Informationen",
+    vatInfoDescription:
+      "Alle Preise sind in EUR zzgl. niederländischer MwSt (21%) angegeben. Für EU-Unternehmen mit gültigen MwSt-Nummern gilt das Reverse-Charge-Verfahren gemäß Artikel 44 und 196 der EU-MwSt-Richtlinie 2006/112/EG.",
+
+    // Content update policy (German)
+    contentUpdatePolicyTitle: "Content-Updates",
+    contentUpdatePolicyDescription:
+      "Wenn Ihr gewähltes Paket keine CMS-Integration beinhaltet, wird die Website vollständig statisch sein. Das bedeutet, dass nachträgliche Content-Updates (wie Text-, Bild-, Video-Austausch oder Hinzufügung neuer Abschnitte) nicht automatisch vom Kunden bearbeitet werden können, und alle Content-Änderungen über mich als Entwickler erfolgen müssen.",
+    contentUpdateRate: "Content-Update-Rate: €49 / Stunde (zzgl. MwSt)",
+    contentUpdateIncludes:
+      "Der Preis beinhaltet Analyse, Umsetzung, Testing und Neuveröffentlichung. In 1 Stunde kann ich typischerweise 10–15 Content-Elemente (Texte, Bilder, Videos, Links, Buttons, Abschnitte) über mehrere Blöcke oder Seitenbereiche hinweg modifizieren oder aktualisieren.",
+
+    // Package features (German)
+    budgetFeatures: [
+      "Maßgeschneiderte statische 1-Seiten Landing Page",
+      "Maximal 4 Abschnitte",
+      "1 CTA-Block",
+      "Mobil optimiert, responsive Design",
+      "Grundlegende SEO-Einstellungen",
+      "Grundlegende Animationen",
+      "Kontaktformular (FormSubmit-Integration)",
+      "Favicon + grundlegende Site-Struktur",
+      "1 Jahr Hostinger Domain + Hosting (danach auf Kosten des Kunden)",
+      "1 Jahr Hostinger Geschäfts-E-Mail (danach auf Kosten des Kunden)",
+      "3 Monate technischer Support",
+    ],
+    standardFeatures: [
+      "Alles aus dem Budget-Paket",
+      "Maximal 9 Abschnitte",
+      "Mehrere CTA-Blöcke",
+      "Erweiterte SEO-Einstellungen",
+      "Scroll-Navigation",
+      "Komplexe Animationen, interaktive Elemente",
+      "Bild-Karussell",
+      "FAQ-Bereich",
+      "Social Media Integration (Icons, OpenGraph)",
+      "Rechtliche Seiten (AGB, Datenschutz, Cookie-Einstellungen)",
+      "QR-Code mit Ihrer Website-URL (scannen zum Öffnen der Website)",
+      "PageSpeed-Optimierung",
+      "2 Jahre Hostinger Domain + Hosting (danach auf Kosten des Kunden)",
+      "2 Jahre Hostinger Geschäfts-E-Mail (danach auf Kosten des Kunden)",
+      "6 Monate technischer Support",
+    ],
+    proFeatures: [
+      "Alles aus dem Standard-Paket",
+      "Mehrere Seiten (nicht nur One-Page)",
+      'Separate "Services & Preise" Seite (nach detaillierter Beratung)',
+      "Mehrsprachig",
+      "Video-Integration, sogar im Karussell-Format",
+      "Testimonial-Bereich (statisches Feedback)",
+      "Technische SEO (strukturierte Daten, robots.txt, sitemap.xml)",
+      "Google Analytics",
+      "Sehr detaillierte UI/UX-Elemente, Animationseffekte",
+      "12 Monate technischer Support",
+      "OPTIONAL: Sanity CMS Integration (+€349 zzgl. MwSt)",
+      "Wenn Sie Content selbst aktualisieren möchten",
+      "Domain bleibt bei Hostinger",
+      "DNS-Record-Setup → Weiterleitung zu Vercel",
+      "Website auf Next.js mit CI/CD-Hosting auf Vercel",
+      "Content (Texte, Bilder, Blog, Preise, etc.) bearbeitbar über Sanity-Interface",
+      "Website aktualisiert sich automatisch nach Änderungen (Build + Deploy passiert automatisch)",
+      "Kunden-Schulung im Preis inbegriffen",
+    ],
+    customFeatures: [
+      "Basierend auf detaillierter Beratung",
+      "Maßgeschneiderte Funktionalität und Design",
+      "Preisgestaltung nach individuellen Bedürfnissen",
+      "Spezielle Integrationen oder Architektur",
+      "Ideal für komplexere Projekte",
+    ],
+    webAppFeatures: [
+      "Authentifizierungssysteme (Clerk, NextAuth)",
+      "Admin-Dashboards mit geschützten Routen",
+      "Zahlungsintegration (Stripe)",
+      "Supabase-Datenbank & API-Integration",
+      "Benutzerkonten, Formulare, Bestellsysteme",
+      "Webshop mit Produktverwaltung",
+      "SaaS-Style Webanwendungen",
+      "Landing Page + App-Kombinationen",
+      "Gehostet auf Vercel mit CI/CD",
+      "Optionales CMS, Analytics und erweiterte Features",
+      "Echtzeit-Funktionalität und maßgeschneiderte API-Integrationen",
+      "Skalierbare Architektur für wachsende Unternehmen",
+    ],
+
+    // Terms of Service
+    termsOfService: "Nutzungsbedingungen",
+    termsTitle: "Nutzungsbedingungen – ZsMWebDev",
+    termsLastUpdate: "Letzte Aktualisierung: 28. Juli 2025",
+
+    // Definitions
+    termsDefinitions: "1. Definitionen",
+    termsZsmwebdev:
+      "ZsMWebDev: der Auftragnehmer mit Sitz in [Standort], eingetragen bei der Handelskammer unter Nummer [KvK-Nummer], MwSt-Nummer [MwSt-Nummer].",
+    termsClient:
+      "Kunde: jede natürliche oder juristische Person, die eine Vereinbarung mit ZsMWebDev eingeht.",
+    termsAgreement:
+      "Vereinbarung: die Abmachung zwischen ZsMWebDev und dem Kunden zur Erbringung von Dienstleistungen.",
+
+    // Applicability
+    termsApplicability: "2. Anwendbarkeit",
+    termsApplicabilityText:
+      "Diese Bedingungen gelten für alle Kostenvoranschläge, Arbeiten, Vereinbarungen und Lieferungen von Dienstleistungen oder Produkten durch oder im Namen von ZsMWebDev.",
+
+    // Services
+    termsServices: "3. Dienstleistungen",
+    termsServicesText:
+      "ZsMWebDev erbringt Dienstleistungen im Bereich der Webentwicklung, einschließlich:",
+    termsServicesList: [
+      "Design und Entwicklung von statischen und dynamischen Websites (einseitig und mehrseitig)",
+      "Landing Page Design optimiert für Conversion",
+      "Webanwendungsentwicklung mit Authentifizierungssystemen, Datenbanken und Zahlungsintegration",
+      "Hosting-Beratung und Domain-Registrierung",
+      "Geschäfts-E-Mail-Konfiguration",
+      "Suchmaschinenoptimierung (SEO) und technische SEO",
+      "Integration von Analytics-Tools, Formularen und Drittanbieter-Services",
+      "Content-Management-System (CMS) Integration",
+      "Mehrsprachige Website-Unterstützung",
+    ],
+
+    // Quotes and rates
+    termsQuotes: "4. Kostenvoranschläge und Tarife",
+    termsQuotesText: [
+      "Alle Preise sind in Euro, ohne MwSt, sofern nicht anders angegeben.",
+      "Kostenvoranschläge sind unverbindlich und 30 Tage gültig.",
+      "Änderungen oder Erweiterungen außerhalb des vereinbarten Projekts fallen unter Zusatzarbeit und werden zum Stundensatz von €49 pro Stunde berechnet.",
+    ],
+
+    // Payment
+    termsPayment: "5. Zahlung",
+    termsPaymentText: [
+      "Rechnungen müssen innerhalb von 14 Tagen nach Rechnungsdatum bezahlt werden.",
+      "Bei Nichtzahlung behält sich ZsMWebDev das Recht vor, das Projekt vorübergehend auszusetzen.",
+    ],
+
+    // Cancellation
+    termsCancellation: "6. Stornierung und Kündigung",
+    termsCancellationText: [
+      "Bei Stornierung durch den Kunden nach schriftlicher Auftragsbestätigung werden die bereits geleisteten Stunden mit mindestens 25% des vereinbarten Gesamtbetrags berechnet.",
+      "Bei Stornierung innerhalb von 7 Tagen vor dem geplanten Starttermin werden 50% des Gesamtbetrags in Rechnung gestellt.",
+      "ZsMWebDev behält sich das Recht vor, die Vereinbarung bei Nichtzahlung, unzumutbaren Forderungen oder Kooperation, die das Projektziel schädigt, zu kündigen.",
+    ],
+
+    // Intellectual property
+    termsIntellectual: "7. Geistiges Eigentum",
+    termsIntellectualText: [
+      "Alle von ZsMWebDev entwickelten Designs und Codes bleiben geistiges Eigentum von ZsMWebDev, bis die vollständige Zahlung erfolgt ist.",
+      "Nach der Zahlung erhält der Kunde das Recht zur Nutzung der gelieferten Website.",
+    ],
+
+    // Maintenance
+    termsMaintenance: "8. Wartung und Support",
+    termsMaintenanceText: [
+      "Support nach Lieferung ist gemäß der Dauer des gewählten Pakets (z.B. 3, 6 oder 12 Monate) inbegriffen.",
+      "Anpassungen oder Content-Updates nach Lieferung fallen nicht unter den Standardservice und werden stundenweise berechnet.",
+    ],
+
+    // Liability
+    termsLiability: "9. Haftung",
+    termsLiabilityText: [
+      "ZsMWebDev haftet nicht für indirekte Schäden wie Datenverlust, entgangene Gewinne oder Folgeschäden.",
+      "ZsMWebDev bemüht sich nach besten Kräften, sichere, schnelle und funktionale Websites zu liefern, bietet jedoch keine Garantien für dauerhaft fehlerfreien Betrieb oder Uptime.",
+    ],
+
+    // Applicable law
+    termsLaw: "10. Anwendbares Recht",
+    termsLawText: [
+      "Niederländisches Recht gilt für alle Vereinbarungen mit ZsMWebDev. Streitigkeiten werden dem zuständigen Gericht in Rotterdam vorgelegt.",
+      "Bei Fragen zu diesen Bedingungen können Sie mich über portfolio@zsoltmarku.com oder das Kontaktformular auf der Website kontaktieren.",
+    ],
+
+    // Common actions
+    clickMe: "Klick mich!",
+    back: "Zurück",
+    close: "Schließen",
+
+    // LogoModal strings
+    imZsolt: "Ich bin Zsolt Márku",
+    frontendDeveloper: "Frontend-Entwickler",
+    landingPage: "Landing Page Spezialist",
+    creativeCoder: "Kreativer Programmierer",
+    husbandTo: "Ehemann von Barbara",
+    proudDadOfCats: "Stolzer Papa von 2 Katzen",
+    traveller: "Reisender",
+    videoGameFanatic: "Videospiel-Fanatiker",
+    creativityQuote: "Kreativität ist Intelligenz, die Spaß hat.",
+    einsteinCredit: "— Albert Einstein",
+
+    // About page
+    aboutTitle: "Über mich",
+    itsMe: "Das bin ich!",
+    journeyTitle: "Meine Reise und Berufserfahrung",
+    journeyPara1:
+      "In Ungarn studierte ich zwei Jahre an der Informatik-Fakultät der Universität Miskolc, wo ich mein Fundament in der Informatik gelegt habe. Während meines Studiums entdeckte ich meine Leidenschaft für Webentwicklung und Programmierung, die bis heute meine beruflichen Interessen definiert.",
+    journeyPara2:
+      "Meine Reise führte mich in die Niederlande, wo ich meine Karriere bei AMPCO Metal als Sägemaschinenbediener begann. Während der fast 10 Jahre, die ich dort verbrachte, wurde ich in Führungspositionen befördert, zuerst als Teamleiter und dann als Supervisor. In diesen Rollen lernte ich, Teams zu führen, Prozesse zu optimieren und Effizienz in einer schnelllebigen industriellen Umgebung zu gewährleisten.",
+    journeyPara3:
+      "Anschließend arbeitete ich fast ein Jahr bei Arvato als Lagerleiter, wo ich ein größeres Team leitete und komplexe logistische Operationen überwachte. Diese Rolle bot mir Gelegenheiten, meine strategischen Denk- und Führungsfähigkeiten weiter zu entwickeln.",
+    journeyPara4:
+      "Der Gedanke, selbstständig zu werden und mich wirklich auf das zu konzentrieren, was mir am Herzen liegt, beschäftigte mich schon lange. Nach mehr als 10 Jahren Erfahrung in Industrie, Produktion und Logistik erreichte ich den Punkt, an dem ich beschloss, den Beruf zu wechseln und endlich das zu verfolgen, was ich wirklich liebe. Seit Anfang 2023 bilde ich mich neben meiner Arbeit kontinuierlich in den neuesten Webentwicklungstechnologien weiter. Als Ergebnis gründete ich im August 2025 mein eigenes Unternehmen unter dem Namen ZsMWebDev.",
+    journeyPara5:
+      "Durch ZsMWebDev erstelle ich saubere, statische und dynamische Websites, Landing Pages für Einzelpersonen, Einzelunternehmer und kleine Unternehmen. Ich entwickle auch Webanwendungen nach Bedarf. Die Sites sind schnell ladend, mit SEO-optimierter Struktur und durchdachtem UX/UI-Design, um die Online-Präsenz meiner Kunden zu unterstützen. Mein Ziel ist es, personalisierte, technisch stabile und visuell ansprechende Websites und Webanwendungen zu erstellen, die echten Geschäftswert generieren.",
+    experienceTitle: "Berufserfahrung",
+    experienceDescription:
+      "10+ Jahre industrielle und logistische Führungserfahrung (AMPCO Metal, Arvato), gefolgt von der Gründung des Webentwicklungsunternehmens ZsMWebDev im Jahr 2025. Kombination von Teamführung, strategischer Planung und moderner Webtechnologie-Expertise.",
+    educationTitle: "Bildung & Entwicklung",
+    educationDescription:
+      "Informatikstudium an der Universität Miskolc. Kontinuierliche Selbstbildung in React, Next.js, TypeScript und Webentwicklungstechnologien seit 2023. Aktive Verfolgung der neuesten Branchentrends und ständige Erweiterung meines Wissens, um aktuell zu bleiben. Entwicklung unternehmerischer und Geschäftsfähigkeiten für den erfolgreichen Betrieb von ZsMWebDev.",
+
+    // Skills page
+    skillsTitle: "Fähigkeiten & Technologien",
+    personalSkills: "Persönliche Fähigkeiten",
+    codingSkills: "Programmierfähigkeiten",
+    frontendSkills: "Frontend",
+    backendSkills: "Backend",
+    toolsTechnologies: "Tools & Technologien",
+    alwaysLearning: "Immer am Lernen",
+    alwaysLearningText:
+      "Ich erweitere ständig mein Skillset und halte mich über die neuesten Technologien und Best Practices in der Webentwicklung auf dem Laufenden. Derzeit konzentriere ich mich auf die Erkundung neuer Frameworks und Tools, um meine Entwicklungsfähigkeiten zu verbessern.",
+
+    // Personal skills list
+    teamwork: "Teamarbeit",
+    leadership: "Führung",
+    problemSolving: "Problemlösung",
+    communication: "Kommunikation",
+    creativity: "Kreativität",
+    adaptability: "Anpassungsfähigkeit",
+    timeManagement: "Zeitmanagement",
+    criticalThinking: "Kritisches Denken",
+    responsibility: "Verantwortung",
+    motivation: "Motivation",
+    conflictManagement: "Konfliktmanagement",
+    attentionToDetail: "Aufmerksamkeit für Details",
+
+    // Projects page
+    projectsTitle: "Meine Projekte",
+    projectsContent:
+      "Eine Sammlung meiner vergangenen Projekte, die meine Fähigkeiten in der Webentwicklung zeigen.",
+
+    // Project cube
+    projectCubeTitle: "Interaktiver 3D-Projektwürfel",
+    projectCubeDescription:
+      "Klicken Sie auf eine beliebige Seite, um das Projekt zu erkunden",
+    dragToRotate: "Klicken & ziehen zum Rotieren",
+    swipeToRotate: "Wischen zum Rotieren",
+    resetView: "Ansicht zurücksetzen",
+
+    // Project modal
+    projectPreview: "Projekt-Vorschau",
+    technologiesUsed: "Verwendete Technologien",
+    aboutProject: "Über dieses Projekt",
+    exploreProject: "Projekt erkunden",
+    viewLive: "Live ansehen",
+    source: "Quelle",
+
+    // Project titles and descriptions
+    oldPortfolioTitle: "Altes Portfolio",
+    oldPortfolioDescription:
+      "Mein vorheriges Portfolio zeigt meine früheren Projekte und Entwicklungsreise. Dieses Portfolio demonstriert mein Wachstum als Entwickler. Es verfügt über responsives Design, sanfte Übergänge und zeigt meine Lernkurve durch verschiedene Projekte.",
+
+    istOneFlexWorkTitle: "IstOneFlexWork",
+    istOneFlexWorkDescription:
+      "Responsive, SEO-optimierte Landing Page für IstOneFlexWork (István Máté), einen Solaranlagen-Reinigungsservice. Gebaut mit Next.js für schnelle Performance, mit modernem Design und klaren Call-to-Action-Bereichen für maximale Benutzerinteraktion.",
+
+    stepIOTitle: "StepIO",
+    stepIODescription:
+      "Umfassende Aktivitätsverfolgungslösung mit einer responsiven Landing Page und einer nativen Android-App. StepIO ist ein datenschutzorientierter Schrittzähler und GPS-Tracker, gebaut mit React Native (Expo Bare Workflow) und benutzerdefinierten Kotlin-Services. Es bietet Onboarding, Echtzeit-Schrittverfolgung, Routenprotokollierung, visuelle Statistiken, Zielsetzung und vollständigen On-Device-Datenschutz – keine externen Server oder Datensammlung.",
+
+    gucCoachingTitle: "G.U.C. Coaching",
+    gucCoachingDescription:
+      "Mehrsprachige, animierte Landing Page für G.U.C. Coaching (Dávid Vágusz), gebaut mit HTML, Tailwind CSS und GSAP. Die Site hebt Dienstleistungen und Erfolge hervor und bietet Kontaktoptionen in drei Sprachen (EN, HU, NL). Features umfassen sanfte Abschnittsübergänge, animiertes Logo mit Delaunay-Triangulation, responsives Design und FormSubmit-Integration.",
+
+    dishcoveryTitle: "Dishcovery",
+    dishcoveryDescription:
+      "Dishcovery ist eine responsive JavaScript-Webanwendung zum Durchsuchen und Bookmarken von Rezepten. Gebaut mit einer benutzerdefinierten MVC-Architektur, bietet es Echtzeit-Zutatenmengen-Anpassung, interaktive UI, persistente Bookmarks und animierte Benutzererfahrung. Rezepte werden von der Forkify-API abgerufen, und das Projekt ist mit Parcel für optimierte Performance gebündelt.",
+
+    ampcoCalculatorTitle: "AMPCO® Rechner",
+    ampcoCalculatorDescription:
+      "Schnittzeit-Schätzungstool entwickelt für AMPCO METAL. Die Anwendung berechnet die Dauer von industriellen Plattenschneidoperationen basierend auf X-, Y- und Z-Werten, die aus Act/Cube® PDF-Zeichnungen extrahiert oder manuell eingegeben werden. Gebaut mit Python, Flask und Vanilla JavaScript, bietet es eine saubere Benutzeroberfläche und eine für den industriellen Einsatz optimierte Berechnungslogik.",
+
+    // PDF section
+    downloadablePDFs: "Herunterladbare PDFs",
+    selectTestPDF: "Wählen Sie eine Test-PDF...",
+    download: "Herunterladen",
+
+    // Contact page
+    contactTitle: "Starten Sie Ihr Projekt",
+    contactSubtitle: "Lassen Sie uns zusammenarbeiten",
+    contactContent:
+      "Bereit, Ihr Unternehmen online zu bringen? Kontaktieren Sie mich für eine personalisierte Beratung und ein Angebot. Ich bespreche Ihre spezifischen Bedürfnisse und erstelle die perfekte Web-Lösung für Ihr Unternehmen.",
+    yourName: "Ihr Name",
+    yourEmail: "Ihre E-Mail",
+    interestedPackage: "Interessiertes Paket",
+    selectPackage: "Paket auswählen...",
+    yourMessage: "Ihre Nachricht",
+    sendMessage: "Nachricht senden",
+    namePlaceholder: "Geben Sie Ihren vollständigen Namen ein",
+    emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
+    messagePlaceholder:
+      "Erzählen Sie mir von Ihrem Unternehmen, Ihren Zielen und spezifischen Anforderungen...",
+    letsConnect: "Lassen Sie uns vernetzen",
+    letsCollaborate: "Bereit, Ihr Unternehmen zu erweitern?",
+    collaborationText:
+      "Ich spezialisiere mich auf die Erstellung maßgeschneiderter Websites, die Unternehmen dabei helfen, eine starke Online-Präsenz aufzubauen und Wachstum zu fördern. Von der Konzeption bis zum Launch handle ich jeden Aspekt Ihrer Webentwicklungsreise.",
+
+    // Contact info
+    email: "E-Mail",
+    name: "Name",
+
+    // Footer
+    allRightsReserved: "Alle Rechte vorbehalten",
+    myName: "Zsolt Márku | ZsMWebDev",
+
+    // Thank you modal
+    thankYouTitle: "Vielen Dank!",
+    thankYouMessage:
+      "Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei Ihnen!",
+
+    // Splash screen
+    splashWelcome: "Willkommen!",
+    welcome: "Bitte warten Sie, während die Website geladen wird...",
+
+    // Cookie Consent
+    cookieConsentTitle: "Ich verwende Cookies",
+    cookieConsentText:
+      "Ich verwende Cookies und Analytics, um Ihre Browser-Erfahrung zu verbessern und Site-Traffic zu analysieren. Ihre Privatsphäre ist mir wichtig.",
+    acceptCookies: "Alle akzeptieren",
+    declineCookies: "Ablehnen",
+    privacyPolicy: "Datenschutzrichtlinie",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Datenschutzrichtlinie",
+    privacyPolicyContent:
+      "Diese Datenschutzrichtlinie erklärt, wie ich Ihre persönlichen Informationen sammle, verwende und schütze, wenn Sie diese Website besuchen oder mich über die bereitgestellten Formulare kontaktieren. Ich verpflichte mich, Ihre Privatsphäre zu schützen und Ihre Daten verantwortungsvoll zu behandeln. Diese Website entspricht der Datenschutz-Grundverordnung der Europäischen Union (DSGVO – EU 2016/679). Wenn Sie Fragen zu dieser Richtlinie haben, kontaktieren Sie mich bitte mit den unten angegebenen Informationen.",
+    lastUpdated: "Zuletzt aktualisiert:",
+    dataCollection: "Datensammlung",
+    dataCollectionText:
+      "Ich sammle persönliche Daten (Name, E-Mail-Adresse, Telefonnummer) nur, wenn Sie diese freiwillig über das Kontaktformular auf dieser Website übermitteln. Diese Informationen werden ausschließlich zur Beantwortung Ihrer Anfragen und zur Aufrechterhaltung der Kommunikation mit Ihnen verwendet. Ich teile Ihre Daten nicht mit Dritten, verwende sie nicht für Marketingzwecke oder speichere sie länger als für unsere Korrespondenz notwendig. Ich kann auch anonyme Nutzungsstatistiken über Google Analytics sammeln, um zu verstehen, wie Besucher mit meiner Website interagieren – diese Daten können nicht zur persönlichen Identifizierung verwendet werden.",
+    cookies: "Cookies",
+    cookiesText:
+      "Ich verwende Cookies, um Ihre Browser-Erfahrung zu verbessern und Website-Traffic zu analysieren. Wesentliche Cookies sind für das ordnungsgemäße Funktionieren der Site erforderlich und können nicht deaktiviert werden. Mit Ihrer Zustimmung kann ich auch Analytics-Cookies (wie Google Analytics) verwenden, um zu verstehen, wie Besucher auf dieser Site navigieren und sie nutzen. Diese Analytics-Tools sammeln nur anonymisierte Informationen wie besuchte Seiten, verbrachte Zeit, Gerätetyp und ungefähre Standort basierend auf IP-Adresse. Sie können Ihre Cookie-Präferenzen jederzeit über die Cookie-Einstellungen verwalten.",
+    yourRights: "Ihre Rechte",
+    yourRightsText:
+      "Sie haben das Recht, auf Ihre persönlichen Daten, die ich gesammelt habe, zuzugreifen, sie zu ändern oder zu löschen. Sie haben auch das Recht, Ihre Zustimmung zur Datenverarbeitung und Analytics-Cookies jederzeit zu widerrufen. Sie können Cookie-Einstellungen direkt in Ihrem Browser oder über die Cookie-Einstellungen auf dieser Website verwalten. Für datenbezogene Anfragen oder Fragen zu Ihren Datenschutzrechten kontaktieren Sie mich bitte mit den unten angegebenen Informationen.",
+    contactPrivacy: "Kontaktinformationen",
+    contactPrivacyText:
+      "Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben oder Ihre Datenschutzrechte ausüben möchten, kontaktieren Sie mich bitte mit den folgenden Informationen:",
+    contactPrivacyEmail: "E-Mail: portfolio@zsoltmarku.com",
+    contactPrivacyBusiness: "Geschäftsregistrierung:",
+    contactPrivacyKvK: "KvK-Nummer: [KvK-Nummer hier hinzufügen]",
+    contactPrivacyBTW: "BTW-Nummer: [BTW-Nummer hier hinzufügen]",
+
+    // Cookie Settings Modal
+    cookieSettings: "Cookie-Einstellungen",
+    cookieSettingsDescription:
+      "Ich verwende Cookies, um Ihre Browser-Erfahrung zu verbessern und Website-Traffic zu analysieren. Sie können wählen, welche Arten von Cookies Sie zulassen möchten.",
+    essentialCookies: "Wesentliche Cookies",
+    essentialCookiesDescription:
+      "Diese Cookies sind für das ordnungsgemäße Funktionieren der Website erforderlich und können nicht deaktiviert werden.",
+    analyticsCookies: "Analytics-Cookies",
+    analyticsCookiesDescription:
+      "Diese Cookies helfen mir zu verstehen, wie Besucher mit dieser Website interagieren, indem sie anonyme Informationen sammeln.",
+    saveSettings: "Einstellungen speichern",
+    manageCookieSettings: "Cookie-Einstellungen verwalten",
+  },
 };

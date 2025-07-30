@@ -8,9 +8,10 @@ import { MdMiscellaneousServices } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 
 const languages = [
-  { code: "en" as Locale, label: "EN", name: "English" },
-  { code: "hu" as Locale, label: "HU", name: "Magyar" },
   { code: "nl" as Locale, label: "NL", name: "Nederlands" },
+  { code: "en" as Locale, label: "EN", name: "English" },
+  { code: "de" as Locale, label: "DE", name: "Deutsch" },
+  { code: "hu" as Locale, label: "HU", name: "Magyar" },
 ];
 
 const Header: React.FC = () => {
@@ -323,10 +324,10 @@ const Header: React.FC = () => {
               duration: 2.5,
               ease: "easeInOut",
             }}
-            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl">
+            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl h-[42px]">
             <Link
               href="/services"
-              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300 h-[42px]">
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300 h-[39px]">
               <MdMiscellaneousServices className="text-lg" />
               {t.services || "Services"}
             </Link>
@@ -345,10 +346,10 @@ const Header: React.FC = () => {
               ease: "easeInOut",
               delay: 0.3,
             }}
-            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl">
+            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl h-[42px]">
             <Link
               href="/pricing"
-              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300 h-[42px]">
+              className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300 h-[39px]">
               <FaDollarSign className="text-lg" />
               {t.pricing || "Pricing"}
             </Link>
@@ -455,7 +456,7 @@ const Header: React.FC = () => {
             <AnimatePresence>
               {isLangMenuOpen && (
                 <motion.div
-                  className="absolute right-0 mt-2 w-44 bg-[color:var(--dark-gray)] border-2 border-[color:var(--medium-gray)] rounded-xl shadow-lg overflow-hidden"
+                  className="absolute top-full right-0 mt-2 w-44 bg-[color:var(--dark-gray)] border-2 border-[color:var(--medium-gray)] rounded-xl shadow-lg overflow-hidden z-50"
                   initial={{ opacity: 0, y: -15, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -15, scale: 0.95 }}

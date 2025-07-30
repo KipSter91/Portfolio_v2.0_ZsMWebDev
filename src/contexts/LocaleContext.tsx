@@ -28,11 +28,11 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({
     // Initialize locale from localStorage or browser language
     const stored =
       typeof window !== "undefined" ? localStorage.getItem("locale") : null;
-    if (stored && ["en", "hu", "nl"].includes(stored)) {
+    if (stored && ["en", "hu", "nl", "de"].includes(stored)) {
       setLocaleState(stored as Locale);
     } else if (typeof navigator !== "undefined") {
       const lang = navigator.language.slice(0, 2);
-      if (["en", "hu", "nl"].includes(lang)) {
+      if (["en", "hu", "nl", "de"].includes(lang)) {
         setLocaleState(lang as Locale);
       }
     }
