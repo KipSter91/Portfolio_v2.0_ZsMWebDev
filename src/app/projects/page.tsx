@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 import {
   FiRefreshCw,
   FiExternalLink,
@@ -438,6 +439,9 @@ export default function ProjectsPage() {
   const [selectedPdf, setSelectedPdf] = useState<string>("");
   const router = useRouter();
   const { t } = useLocaleContext();
+
+  // Handle browser/Android back button
+  useCustomBackButton('projects', () => setIsExiting(true));
 
   // Modal scroll lock effect (must be inside ProjectsPage)
   useEffect(() => {

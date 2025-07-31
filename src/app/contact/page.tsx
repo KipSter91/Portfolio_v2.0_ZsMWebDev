@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 import { ThankYouModal } from "../../components";
 import { MdEmail } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
@@ -23,6 +24,9 @@ function ContactPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t, locale } = useLocaleContext();
+
+  // Handle browser/Android back button
+  useCustomBackButton('contact', () => setIsExiting(true));
 
   // Package options based on translations
   const getPackageOptions = () => {

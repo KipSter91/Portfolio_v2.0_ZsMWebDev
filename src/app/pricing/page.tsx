@@ -4,12 +4,16 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 
 export default function PricingPage() {
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t, locale } = useLocaleContext();
+
+  // Handle browser/Android back button
+  useCustomBackButton('pricing', () => setIsExiting(true));
 
   useEffect(() => {
     // Scroll to top when page loads (from any CTA button)

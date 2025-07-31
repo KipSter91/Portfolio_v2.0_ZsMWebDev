@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 import {
   FaGlobe,
   FaChartLine,
@@ -38,6 +39,9 @@ export default function ServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t } = useLocaleContext();
+
+  // Handle browser/Android back button
+  useCustomBackButton('services', () => setIsExiting(true));
 
   // Timeline progress animation
   const timelineRef = useRef<HTMLDivElement>(null);

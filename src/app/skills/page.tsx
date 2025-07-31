@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -80,6 +81,9 @@ export default function SkillsPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t } = useLocaleContext();
+
+  // Handle browser/Android back button
+  useCustomBackButton('skills', () => setIsExiting(true));
 
   useEffect(() => {
     // Add a small delay before showing content to ensure smooth animations

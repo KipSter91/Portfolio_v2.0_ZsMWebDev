@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useLocaleContext } from "../../contexts/LocaleContext";
+import { useCustomBackButton } from "../../hooks/useCustomBackButton";
 
 // Helper function to highlight ZsMWebDev in text
 const highlightZsMWebDev = (text: string) => {
@@ -31,6 +32,10 @@ export default function AboutPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t } = useLocaleContext();
+  
+  // Handle browser/Android back button
+  useCustomBackButton('about', () => setIsExiting(true));
+  
   useEffect(() => {
     // Add a small delay before showing content to ensure smooth animations
     const timer = setTimeout(() => {
