@@ -43,6 +43,7 @@ export default function Home() {
   const [fromPageInitialized, setFromPageInitialized] = useState(false);
   const [fromPage, setFromPage] = useState<string | null>(null);
   const [currentModal, setCurrentModal] = useState<string | null>(null);
+  const [splashShown, setSplashShown] = useState(false); // Track if splash was already shown
 
   // Console easter egg
   useEffect(() => {
@@ -50,22 +51,28 @@ export default function Home() {
       "%c👋 Hey there, explorer! Welcome to my portfolio!",
       consoleStyles
     );
+
+    // Check if splash screen was already shown in this session
+    const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
+    if (hasSeenSplash === "true") {
+      setSplashShown(true);
+    }
   }, []);
 
   // Handle fromPage detection and navigation logic
   useEffect(() => {
     if (!fromPageInitialized) return;
 
-    if (fromPage) {
-      // If fromPage is set, we show the content directly
+    if (fromPage || splashShown) {
+      // If fromPage is set OR splash was already shown, show content directly
       setShowSplash(false);
       setShowContent(true);
     } else {
-      // If no fromPage, show splash screen
+      // If no fromPage AND splash wasn't shown yet, show splash screen
       setShowSplash(true);
       setShowContent(false);
     }
-  }, [fromPage, fromPageInitialized]);
+  }, [fromPage, fromPageInitialized, splashShown]);
 
   // Handle fromPage change callback
   const handleFromPageChange = (newFromPage: string | null) => {
@@ -76,6 +83,9 @@ export default function Home() {
   const handleSplashComplete = () => {
     setShowSplash(false);
     setShowContent(true);
+    // Mark splash as shown in session storage
+    sessionStorage.setItem("hasSeenSplash", "true");
+    setSplashShown(true);
   };
 
   // Modal handlers
@@ -105,7 +115,7 @@ export default function Home() {
       </Suspense>
 
       <AnimatePresence mode="wait">
-        {showSplash && !fromPage && fromPageInitialized && (
+        {showSplash && !fromPage && !splashShown && fromPageInitialized && (
           <SplashScreen
             key="splash"
             onComplete={handleSplashComplete}
