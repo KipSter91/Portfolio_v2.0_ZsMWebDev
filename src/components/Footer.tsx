@@ -165,7 +165,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex items-center">
             <span className="text-sm text-[color:var(--white)]">
-              © 2023 - {currentYear} {t.myName}
+              © {currentYear} {t.myName}
             </span>
           </motion.div>
 

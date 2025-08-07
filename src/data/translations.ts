@@ -206,7 +206,7 @@ export const translations = {
     // Definitions
     termsDefinitions: "1. Definitions",
     termsZsmwebdev:
-      "ZsMWebDev: the contractor, based at [location], registered with the Chamber of Commerce under number [KvK number], VAT number [VAT number].",
+      "ZsMWebDev: the contractor, based at Rotterdam, registered with the Chamber of Commerce under number 97991058, VAT number pending at the Dutch Tax Office.",
     termsClient:
       "Client: any natural or legal person who enters into an agreement with ZsMWebDev.",
     termsAgreement:
@@ -266,8 +266,9 @@ export const translations = {
     // Maintenance
     termsMaintenance: "8. Maintenance and support",
     termsMaintenanceText: [
-      "Support after delivery is included according to the duration of the chosen package (e.g. 3, 6 or 12 months).",
-      "Adjustments or content updates after delivery do not fall under the standard service and are charged per hour.",
+      "Support is included for the duration of your chosen package (3, 6, or 12 months). This includes bug fixes, minor content updates (max. once monthly, 15 min), and basic consulting (CMS, SEO questions).",
+      "Support excludes new features, structural changes, or design modifications - these require separate agreements.",
+      "Additional adjustments or content updates after delivery are charged per hour.",
     ],
 
     // Liability
@@ -461,8 +462,9 @@ export const translations = {
       "If you have questions about this privacy policy or want to exercise your data protection rights, please contact me using the information below:",
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Business Registration:",
-    contactPrivacyKvK: "KvK number: [Add KvK number here]",
-    contactPrivacyBTW: "BTW number: [Add BTW number here]",
+    contactPrivacyKvK: "KvK number: 97991058",
+    contactPrivacyBTW:
+      "BTW number: VAT number pending at the Dutch Tax Office.",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie Settings",
@@ -685,7 +687,7 @@ export const translations = {
     // Definitions
     termsDefinitions: "1. Fogalmak meghatározása",
     termsZsmwebdev:
-      "ZsMWebDev: a vállalkozó, székhely: [helyszín], bejegyezve a Kereskedelmi és Iparkamara alatt [KvK szám], ÁFA szám [ÁFA szám].",
+      "ZsMWebDev: a vállalkozó, székhely: Rotterdam, bejegyezve a Kereskedelmi és Iparkamaránál a 97991058 szám alatt, ÁFA szám folyamatban a holland adóhatóságnál.",
     termsClient:
       "Megbízó: minden természetes vagy jogi személy, aki szerződést köt a ZsMWebDev-vel.",
     termsAgreement:
@@ -745,8 +747,9 @@ export const translations = {
     // Maintenance
     termsMaintenance: "8. Karbantartás és támogatás",
     termsMaintenanceText: [
-      "A szállítás utáni támogatás a választott csomag időtartama szerint van megadva (pl. 3, 6 vagy 12 hónap).",
-      "A szállítás utáni módosítások vagy tartalomfrissítések nem tartoznak a standard szolgáltatás alá és óránként kerülnek elszámolásra.",
+      "A támogatás a választott csomag időtartamára vonatkozik (3, 6 vagy 12 hónap). Tartalmazza a hibák javítását, kisebb tartalmi frissítéseket (max. havonta 1x, 15 perc), és alapvető tanácsadást (CMS, SEO kérdések).",
+      "A támogatás nem tartalmazza az új funkciókat, szerkezeti változtatásokat vagy design módosításokat - ezekhez külön megállapodás szükséges.",
+      "További módosítások vagy tartalomfrissítések óradíj ellenében vehetők igénybe.",
     ],
 
     // Liability
@@ -941,8 +944,9 @@ export const translations = {
       "Ha kérdései vannak ezzel az adatvédelmi szabályzattal kapcsolatban, vagy szeretné gyakorolni adatvédelmi jogait, kérem, vegye fel velem a kapcsolatot az alábbi elérhetőségeken:",
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Céges regisztráció:",
-    contactPrivacyKvK: "KvK szám: [KvK számot ide]",
-    contactPrivacyBTW: "BTW szám: [BTW számot ide]",
+    contactPrivacyKvK: "KvK szám: 97991058",
+    contactPrivacyBTW:
+      "BTW szám: ÁFA szám folyamatban a holland adóhatóságnál.",
 
     // Cookie Settings Modal
     cookieSettings: "Süti beállítások",
@@ -1166,7 +1170,7 @@ export const translations = {
     // Definitions
     termsDefinitions: "1. Begripsbepalingen",
     termsZsmwebdev:
-      "ZsMWebDev: de ondernemer, gevestigd te [locatie], ingeschreven bij de Kamer van Koophandel onder [KvK-nummer], BTW-nummer [BTW-nummer].",
+      "ZsMWebDev: de ondernemer, gevestigd te Rotterdam, ingeschreven bij de Kamer van Koophandel onder 97991058, BTW-nummer in aanvraag bij Belastingdienst.",
     termsClient:
       "Opdrachtgever: iedere natuurlijke of rechtspersoon die een overeenkomst aangaat met ZsMWebDev.",
     termsAgreement:
@@ -1226,8 +1230,9 @@ export const translations = {
     // Maintenance
     termsMaintenance: "8. Onderhoud en support",
     termsMaintenanceText: [
-      "Support na oplevering wordt gegeven voor de duur volgens het gekozen pakket (bijv. 3, 6 of 12 maanden).",
-      "Wijzigingen of content updates na oplevering vallen niet onder standaard service en worden per uur berekend.",
+      "Support is inbegrepen voor de duur van je gekozen pakket (3, 6 of 12 maanden). Dit omvat bugfixes, kleine content updates (max. 1x per maand, 15 min), en basisadvies (CMS, SEO vragen).",
+      "Support omvat geen nieuwe functies, structurele wijzigingen of designaanpassingen - hiervoor zijn aparte afspraken nodig.",
+      "Extra aanpassingen of content updates worden per uur berekend.",
     ],
 
     // Liability
@@ -1421,8 +1426,9 @@ export const translations = {
       "Als u vragen heeft over dit privacybeleid of uw gegevensbeschermingsrechten wilt uitoefenen, neem dan contact met mij op via de onderstaande informatie:",
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Bedrijfsregistratie:",
-    contactPrivacyKvK: "KvK nummer: [KvK nummer hier toevoegen]",
-    contactPrivacyBTW: "BTW nummer: [BTW nummer hier toevoegen]",
+    contactPrivacyKvK: "KvK nummer: 97991058",
+    contactPrivacyBTW:
+      "BTW nummer: BTW-nummer in aanvraag bij Belastingdienst.",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie-instellingen",
@@ -1646,7 +1652,7 @@ export const translations = {
     // Definitions
     termsDefinitions: "1. Definitionen",
     termsZsmwebdev:
-      "ZsMWebDev: der Auftragnehmer mit Sitz in [Standort], eingetragen bei der Handelskammer unter Nummer [KvK-Nummer], MwSt-Nummer [MwSt-Nummer].",
+      "ZsMWebDev: der Auftragnehmer mit Sitz in Rotterdam, eingetragen bei der Handelskammer unter Nummer 97991058, Umsatzsteuernummer beantragt beim niederländischen Finanzamt.",
     termsClient:
       "Kunde: jede natürliche oder juristische Person, die eine Vereinbarung mit ZsMWebDev eingeht.",
     termsAgreement:
@@ -1706,8 +1712,9 @@ export const translations = {
     // Maintenance
     termsMaintenance: "8. Wartung und Support",
     termsMaintenanceText: [
-      "Support nach Lieferung ist gemäß der Dauer des gewählten Pakets (z.B. 3, 6 oder 12 Monate) inbegriffen.",
-      "Anpassungen oder Content-Updates nach Lieferung fallen nicht unter den Standardservice und werden stundenweise berechnet.",
+      "Support ist für die Dauer Ihres gewählten Pakets enthalten (3, 6 oder 12 Monate). Dies umfasst Bugfixes, kleinere Content-Updates (max. 1x monatlich, 15 Min.) und Basisberatung (CMS, SEO-Fragen).",
+      "Support umfasst keine neuen Funktionen, strukturelle Änderungen oder Design-Modifikationen - hierfür sind separate Vereinbarungen erforderlich.",
+      "Zusätzliche Anpassungen oder Content-Updates werden stundenweise berechnet.",
     ],
 
     // Liability
@@ -1902,8 +1909,9 @@ export const translations = {
       "Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben oder Ihre Datenschutzrechte ausüben möchten, kontaktieren Sie mich bitte mit den folgenden Informationen:",
     contactPrivacyEmail: "E-Mail: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Geschäftsregistrierung:",
-    contactPrivacyKvK: "KvK-Nummer: [KvK-Nummer hier hinzufügen]",
-    contactPrivacyBTW: "BTW-Nummer: [BTW-Nummer hier hinzufügen]",
+    contactPrivacyKvK: "KvK-Nummer: 97991058",
+    contactPrivacyBTW:
+      "BTW-Nummer: Umsatzsteuernummer beantragt beim niederländischen Finanzamt.",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie-Einstellungen",
