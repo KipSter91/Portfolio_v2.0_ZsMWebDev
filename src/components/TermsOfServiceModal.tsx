@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../contexts/LocaleContext";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 
 interface TermsOfServiceModalProps {
   isOpen: boolean;

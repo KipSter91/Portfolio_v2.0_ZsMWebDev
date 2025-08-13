@@ -77,7 +77,7 @@ export function PrivacyPolicyModal({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}>
-                {t.lastUpdated} {new Date().toLocaleDateString()}
+                {t.lastUpdated}
               </motion.div>
 
               <motion.div

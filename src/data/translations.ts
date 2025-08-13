@@ -367,11 +367,29 @@ export const translations = {
     exploreProject: "Explore Project",
     viewLive: "View Live",
     source: "Source",
+    clickToEnlarge: "Click to enlarge",
 
     // Project titles and descriptions
     oldPortfolioTitle: "Old Portfolio",
     oldPortfolioDescription:
       "My previous portfolio showcasing my earlier projects and development journey. This portfolio demonstrates my growth as a developer. It features responsive design, smooth transitions, and showcases my learning curve through different projects.",
+
+    // Featured project (Fashion Foundry)
+    featuredProjectLabel: "Featured Project",
+    fashionFoundryTitle: "Fashion Foundry",
+    fashionFoundrySubtitle: "Full‑Stack E‑Commerce Platform Demo",
+    fashionFoundryShort:
+      "End‑to‑end modern e‑commerce demo: landing page, webshop, Sanity CMS admin, Clerk auth, Stripe payments, and real-time content + inventory management.",
+    fashionFoundryMoreInfo: "Full detailed stack & capabilities: see the",
+    fashionFoundryAboutLink: "About page",
+    fashionFoundryDescription:
+      "Fashion Foundry is a complete full‑stack e‑commerce product demo that showcases production‑grade architecture and execution. It combines a refined public landing + webshop experience with a Sanity Studio powered admin surface for real‑time product, inventory and content management. Users can authenticate (Clerk), browse a filterable product catalog, manage a real‑time cart, and complete a secure test checkout via Stripe (webhooks ready). The build uses Next.js App Router (server components, streaming, edge middleware), React 19 patterns, TypeScript for type safety, Tailwind for design system consistency, Framer Motion for polished transitions, Zustand for state slices, and a deployment flow optimized for Vercel edge. The goal: demonstrate how I approach scalable, maintainable, production‑ready full‑stack delivery – from UX and DX quality to infrastructure alignment.",
+    fashionFoundryStackTitle: "Technology Stack",
+    fashionFoundryKeyCapabilities: "Key Capabilities",
+    fashionFoundryTestPayment: "Test Payment (Demo)",
+    fashionFoundryTestCard: "Card: 4242 4242 4242 4242 • Exp: 03/33 • CVC: 333",
+    fashionFoundryPrimaryCta: "View Live (Demo)",
+    fashionFoundrySecondaryCta: "Source Code",
 
     istOneFlexWorkTitle: "IstOneFlexWork",
     istOneFlexWorkDescription:
@@ -447,7 +465,7 @@ export const translations = {
     privacyPolicyTitle: "Privacy Policy",
     privacyPolicyContent:
       "This privacy policy explains how I collect, use, and protect your personal information when you visit this website or contact me through the provided forms. I am committed to protecting your privacy and handling your data responsibly. This website complies with the European Union's General Data Protection Regulation (GDPR – EU 2016/679). If you have any questions about this policy, please contact me using the information provided below.",
-    lastUpdated: "Last updated:",
+    lastUpdated: "Last updated: July 28, 2025",
     dataCollection: "Data Collection",
     dataCollectionText:
       "I collect personal data (name, email address, phone number) only when you voluntarily submit it through the contact form on this website. This information is used solely for responding to your inquiries and maintaining communication with you. I do not share your data with third parties, use it for marketing purposes, or store it longer than necessary for our correspondence. I may also collect anonymous usage statistics through Google Analytics to understand how visitors interact with my website - this data cannot be used to identify you personally.",
@@ -850,11 +868,31 @@ export const translations = {
     exploreProject: "Fedezd fel a projektet",
     viewLive: "Megtekintés élőben",
     source: "Forráskód",
+    clickToEnlarge: "Kattints a nagyításhoz",
 
     // Project titles and descriptions
     oldPortfolioTitle: "Korábbi portfólióm",
     oldPortfolioDescription:
       "Korábbi portfólióm, amely bemutatja a korábbi projektjeimet és fejlesztői utamat. Ez a portfólió szemlélteti a fejlődésemet fejlesztőként. Reszponzív dizájnt, gördülékeny átmeneteket tartalmaz, és bemutatja a tanulási görbémet különböző projekteken keresztül.",
+
+    // Featured project (Fashion Foundry)
+    featuredProjectLabel: "Kiemelt projekt",
+    fashionFoundryTitle: "Fashion Foundry",
+    fashionFoundrySubtitle: "Full‑stack e‑commerce platform demó",
+    fashionFoundryShort:
+      "Végponttól végpontig modern e‑commerce demó: landing oldal, webshop, Sanity CMS admin felület, Clerk autentikáció, Stripe fizetések, valós idejű tartalom + készlet kezelés.",
+    fashionFoundryMoreInfo:
+      "A részletes technológiai stack és funkciólista megtalálható az",
+    fashionFoundryAboutLink: "About oldalon",
+    fashionFoundryDescription:
+      "A Fashion Foundry egy teljes körű full‑stack e‑commerce termékdemó, amely produkciós minőségű architektúrát és megvalósítást mutat be. Ötvözi a kifinomult publikus landing + webshop élményt a Sanity Studio által támogatott admin felülettel, ahol valós időben kezelhetőek a termékek, készletek és tartalmak. A felhasználók bejelentkezhetnek (Clerk), böngészhetik a szűrhető termékkatalógust, valós idejű kosarat kezelhetnek és biztonságos teszt fizetést végezhetnek Stripe-on keresztül (webhook‑kész). A megoldás Next.js App Routerre épül (szerver komponensek, streaming, edge middleware), modern React 19 mintákkal, TypeScript típusbiztonsággal, Tailwind dizájn rendszerrel, Framer Motion animációkkal, Zustand állapot szeletekkel és Vercelre optimalizált deploy folyamattal. Célja bemutatni, hogyan közelítem meg a skálázható, karbantartható, produkcióra kész full‑stack fejlesztést – a UX és DX minőségétől az infrastruktúráig.",
+    fashionFoundryStackTitle: "Technológiai stack",
+    fashionFoundryKeyCapabilities: "Fő képességek",
+    fashionFoundryTestPayment: "Teszt fizetés (demó)",
+    fashionFoundryTestCard:
+      "Kártya: 4242 4242 4242 4242 • Lejárat: 03/33 • CVC: 333",
+    fashionFoundryPrimaryCta: "Élő demó megnyitása",
+    fashionFoundrySecondaryCta: "Forráskód",
 
     istOneFlexWorkTitle: "IstOneFlexWork",
     istOneFlexWorkDescription:
@@ -929,7 +967,7 @@ export const translations = {
     privacyPolicyTitle: "Adatvédelmi szabályzat",
     privacyPolicyContent:
       "Ez az adatvédelmi szabályzat elmagyarázza, hogyan gyűjtöm, használom és védem személyes adatait, amikor meglátogatja ezt a weboldalt vagy kapcsolatba lép velem az elérhető űrlapokon keresztül. Elkötelezett vagyok az Ön adatvédelmének biztosítása és adatainak felelős kezelése iránt. Ez a weboldal megfelel az Európai Unió Általános Adatvédelmi Rendeletének (GDPR – EU 2016/679). Ha bármilyen kérdése van ezzel a szabályzattal kapcsolatban, kérem, vegye fel velem a kapcsolatot az alább megadott elérhetőségeken.",
-    lastUpdated: "Utoljára frissítve:",
+    lastUpdated: "Utoljára frissítve: 2025. július 28.",
     dataCollection: "Adatgyűjtés",
     dataCollectionText:
       "Személyes adatokat (név, e-mail cím) csak akkor gyűjtök, amikor Ön önkéntesen megadja azokat a weboldalon található kapcsolati űrlapon keresztül. Ezeket az információkat kizárólag megkeresésére való válaszadásra és Önnel való kommunikáció fenntartására használom. Nem osztom meg adatait harmadik felekkel, nem használom marketing célokra, és nem tárolom tovább a szükségesnél levelezésünkhöz. Google Analytics segítségével anonim használati statisztikákat is gyűjthetek annak megértésére, hogy a látogatók hogyan használják a weboldalamat - ezek az adatok nem használhatók fel az Ön személyes azonosítására.",
@@ -1331,11 +1369,30 @@ export const translations = {
     exploreProject: "Verken project",
     viewLive: "Bekijk live",
     source: "Broncode",
+    clickToEnlarge: "Klik om te vergroten",
 
     // Project titles and descriptions
     oldPortfolioTitle: "Oude portfolio",
     oldPortfolioDescription:
       "Mijn vorige portfolio met mijn eerdere projecten en ontwikkelingsreis. Dit portfolio toont mijn groei als ontwikkelaar. Het heeft een responsief ontwerp, soepele overgangen en laat mijn leercurve zien door verschillende projecten.",
+
+    // Featured project (Fashion Foundry)
+    featuredProjectLabel: "Uitgelicht project",
+    fashionFoundryTitle: "Fashion Foundry",
+    fashionFoundrySubtitle: "Full‑stack e‑commerce platform demo",
+    fashionFoundryShort:
+      "End‑to‑end moderne e‑commerce demo: landing page, webshop, Sanity CMS admin, Clerk authenticatie, Stripe betalingen en real‑time content + voorraadbeheer.",
+    fashionFoundryMoreInfo: "Volledige gedetailleerde stack & functies: zie de",
+    fashionFoundryAboutLink: "About pagina",
+    fashionFoundryDescription:
+      "Fashion Foundry is een volledige full‑stack e‑commerce product demo die productie‑waardige architectuur en uitvoering laat zien. Het combineert een verfijnde publieke landing + webshop ervaring met een door Sanity Studio aangedreven admin omgeving voor real‑time product-, voorraad- en contentbeheer. Gebruikers kunnen inloggen (Clerk), een filterbare productcatalogus bekijken, een real‑time winkelwagen beheren en een veilige test checkout afronden via Stripe (webhook‑klaar). Gebouwd met Next.js App Router (server componenten, streaming, edge middleware), React 19, TypeScript, Tailwind, Framer Motion, Zustand en geoptimaliseerd voor Vercel edge.",
+    fashionFoundryStackTitle: "Technologie Stack",
+    fashionFoundryKeyCapabilities: "Belangrijkste mogelijkheden",
+    fashionFoundryTestPayment: "Test betaling (demo)",
+    fashionFoundryTestCard:
+      "Kaart: 4242 4242 4242 4242 • Verloop: 03/33 • CVC: 333",
+    fashionFoundryPrimaryCta: "Live demo bekijken",
+    fashionFoundrySecondaryCta: "Broncode",
 
     istOneFlexWorkTitle: "IstOneFlexWork",
     istOneFlexWorkDescription:
@@ -1411,7 +1468,7 @@ export const translations = {
     privacyPolicyTitle: "Privacybeleid",
     privacyPolicyContent:
       "Dit privacybeleid legt uit hoe ik uw persoonlijke gegevens verzamel, gebruik en bescherm wanneer u deze website bezoekt of contact met mij opneemt via de beschikbare formulieren. Ik ben toegewijd aan het beschermen van uw privacy en het verantwoordelijk omgaan met uw gegevens. Deze website voldoet aan de Algemene Verordening Gegevensbescherming van de Europese Unie (AVG – EU 2016/679). Als u vragen heeft over dit beleid, neem dan contact met mij op via de onderstaande informatie.",
-    lastUpdated: "Laatst bijgewerkt:",
+    lastUpdated: "Laatst bijgewerkt: 28 juli 2025",
     dataCollection: "Gegevensverzameling",
     dataCollectionText:
       "Ik verzamel persoonlijke gegevens (naam, e-mailadres) alleen wanneer u deze vrijwillig verstrekt via het contactformulier op deze website. Deze informatie wordt uitsluitend gebruikt om te reageren op uw vragen en communicatie met u te onderhouden. Ik deel uw gegevens niet met derden, gebruik ze niet voor marketingdoeleinden en bewaar ze niet langer dan nodig voor onze correspondentie. Ik kan ook anonieme gebruiksstatistieken verzamelen via Google Analytics om te begrijpen hoe bezoekers omgaan met mijn website - deze gegevens kunnen niet worden gebruikt om u persoonlijk te identificeren.",
@@ -1814,11 +1871,31 @@ export const translations = {
     exploreProject: "Projekt erkunden",
     viewLive: "Live ansehen",
     source: "Quelle",
+    clickToEnlarge: "Zum Vergrößern klicken",
 
     // Project titles and descriptions
     oldPortfolioTitle: "Altes Portfolio",
     oldPortfolioDescription:
       "Mein vorheriges Portfolio zeigt meine früheren Projekte und Entwicklungsreise. Dieses Portfolio demonstriert mein Wachstum als Entwickler. Es verfügt über responsives Design, sanfte Übergänge und zeigt meine Lernkurve durch verschiedene Projekte.",
+
+    // Featured project (Fashion Foundry)
+    featuredProjectLabel: "Hervorgehobenes Projekt",
+    fashionFoundryTitle: "Fashion Foundry",
+    fashionFoundrySubtitle: "Full‑Stack E‑Commerce Plattform Demo",
+    fashionFoundryShort:
+      "End‑to‑End moderne E‑Commerce Demo: Landing Page, Webshop, Sanity CMS Admin, Clerk Authentifizierung, Stripe Zahlungen und Echtzeit Content + Bestandsverwaltung.",
+    fashionFoundryMoreInfo:
+      "Vollständiger Tech-Stack & Funktionsliste findest du auf der",
+    fashionFoundryAboutLink: "About Seite",
+    fashionFoundryDescription:
+      "Fashion Foundry ist eine vollständige Full‑Stack E‑Commerce Produktdemo, die produktionsreife Architektur und Umsetzung demonstriert. Sie kombiniert eine verfeinerte öffentliche Landing + Webshop Experience mit einer von Sanity Studio betriebenen Admin Oberfläche für Echtzeit Produkt-, Bestands- und Contentverwaltung. Benutzer können sich authentifizieren (Clerk), einen filterbaren Produktkatalog durchsuchen, einen Echtzeit Warenkorb verwalten und einen sicheren Test Checkout über Stripe abschließen (Webhook‑bereit). Gebaut mit Next.js App Router (Server Components, Streaming, Edge Middleware), React 19, TypeScript, Tailwind, Framer Motion, Zustand und für Vercel Edge optimiert.",
+    fashionFoundryStackTitle: "Technologie Stack",
+    fashionFoundryKeyCapabilities: "Hauptfunktionen",
+    fashionFoundryTestPayment: "Testzahlung (Demo)",
+    fashionFoundryTestCard:
+      "Karte: 4242 4242 4242 4242 • Ablauf: 03/33 • CVC: 333",
+    fashionFoundryPrimaryCta: "Live Demo öffnen",
+    fashionFoundrySecondaryCta: "Quellcode",
 
     istOneFlexWorkTitle: "IstOneFlexWork",
     istOneFlexWorkDescription:
@@ -1894,7 +1971,7 @@ export const translations = {
     privacyPolicyTitle: "Datenschutzrichtlinie",
     privacyPolicyContent:
       "Diese Datenschutzrichtlinie erklärt, wie ich Ihre persönlichen Informationen sammle, verwende und schütze, wenn Sie diese Website besuchen oder mich über die bereitgestellten Formulare kontaktieren. Ich verpflichte mich, Ihre Privatsphäre zu schützen und Ihre Daten verantwortungsvoll zu behandeln. Diese Website entspricht der Datenschutz-Grundverordnung der Europäischen Union (DSGVO – EU 2016/679). Wenn Sie Fragen zu dieser Richtlinie haben, kontaktieren Sie mich bitte mit den unten angegebenen Informationen.",
-    lastUpdated: "Zuletzt aktualisiert:",
+    lastUpdated: "Zuletzt aktualisiert: 28. Juli 2025",
     dataCollection: "Datensammlung",
     dataCollectionText:
       "Ich sammle persönliche Daten (Name, E-Mail-Adresse, Telefonnummer) nur, wenn Sie diese freiwillig über das Kontaktformular auf dieser Website übermitteln. Diese Informationen werden ausschließlich zur Beantwortung Ihrer Anfragen und zur Aufrechterhaltung der Kommunikation mit Ihnen verwendet. Ich teile Ihre Daten nicht mit Dritten, verwende sie nicht für Marketingzwecke oder speichere sie länger als für unsere Korrespondenz notwendig. Ich kann auch anonyme Nutzungsstatistiken über Google Analytics sammeln, um zu verstehen, wie Besucher mit meiner Website interagieren – diese Daten können nicht zur persönlichen Identifizierung verwendet werden.",

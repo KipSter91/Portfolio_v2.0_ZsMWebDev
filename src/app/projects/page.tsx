@@ -11,6 +11,7 @@ import {
   FiGithub,
   FiDownload,
   FiChevronDown,
+  FiX,
 } from "react-icons/fi";
 import { FaReact, FaAndroid, FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
 import {
@@ -437,11 +438,33 @@ export default function ProjectsPage() {
   const [isTouchDragging, setIsTouchDragging] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState<string>("");
+  // Featured video enlarge state
+  const [isFeaturedPreviewOpen, setIsFeaturedPreviewOpen] = useState(false);
+  const [isProjectVideoEnlarged, setIsProjectVideoEnlarged] = useState(false);
+  // Lock scroll when any overlay (featured or enlarged project video) is open
+  useEffect(() => {
+    if (isFeaturedPreviewOpen || isProjectVideoEnlarged) {
+      scrollLock.lock();
+      return () => {
+        scrollLock.unlock();
+      };
+    }
+  }, [isFeaturedPreviewOpen, isProjectVideoEnlarged]);
+  // Close featured preview with ESC
+  useEffect(() => {
+    if (!isFeaturedPreviewOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsFeaturedPreviewOpen(false);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [isFeaturedPreviewOpen]);
+
   const router = useRouter();
   const { t } = useLocaleContext();
 
   // Handle browser/Android back button
-  useCustomBackButton('projects', () => setIsExiting(true));
+  useCustomBackButton("projects", () => setIsExiting(true));
 
   // Modal scroll lock effect (must be inside ProjectsPage)
   useEffect(() => {
@@ -551,7 +574,8 @@ export default function ProjectsPage() {
         { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
       ],
       image: "/images/guccoaching.png",
-      liveDemo: "https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html",
+      liveDemo:
+        "https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html",
       sourceCode: "https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git",
     },
     {
@@ -565,7 +589,8 @@ export default function ProjectsPage() {
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
       ],
       image: "/images/dishcovery.webp",
-      liveDemo: "https://oldportfolio.zsoltmarku.com/projects/dishcovery/index.html",
+      liveDemo:
+        "https://oldportfolio.zsoltmarku.com/projects/dishcovery/index.html",
       sourceCode: "https://github.com/KipSter91/Dishcovery_ZsMWebDev.git",
     },
     {
@@ -666,6 +691,109 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}>
+              {/* Featured Project Section */}
+              <motion.div
+                className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl mb-10 relative"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}>
+                <div className="flex flex-col lg:flex-row gap-8 relative z-10">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-lg bg-[#fd19fc]/20 text-[#fd19fc] border border-[#fd19fc]/40">
+                        {t.featuredProjectLabel}
+                      </span>
+                      <motion.span
+                        className="h-px flex-1 bg-gradient-to-r from-[#fd19fc] via-[#00ffff] to-transparent"
+                        layout
+                      />
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                      {t.fashionFoundryTitle}
+                      <span className="block text-base md:text-lg font-medium text-[#00ffff]/80 mt-1">
+                        {t.fashionFoundrySubtitle}
+                      </span>
+                    </h2>
+                    <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-6 max-w-2xl">
+                      {t.fashionFoundryShort}
+                      {t.fashionFoundryMoreInfo && (
+                        <span className="block text-[11px] md:text-xs mt-3 text-[#00ffff]/70 tracking-wide">
+                          {t.fashionFoundryMoreInfo}{" "}
+                          <a
+                            href="https://fashion-foundry-zsmwebdev.vercel.app/about"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-dotted underline-offset-2 hover:text-[#fd19fc] transition-colors inline-flex items-center gap-1">
+                            {t.fashionFoundryAboutLink}
+                            <FiExternalLink className="w-3 h-3 opacity-80" />
+                          </a>
+                        </span>
+                      )}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <motion.a
+                        href="https://fashion-foundry-zsmwebdev.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{
+                          duration: 0.4,
+                          type: "spring",
+                          stiffness: 200,
+                        }}>
+                        <FiExternalLink className="w-5 h-5" />
+                        {t.viewLive}
+                      </motion.a>
+                      <motion.a
+                        href="https://github.com/KipSter91/Fashion_Foundry_ZsMWebDev.git"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14cc] text-white font-semibold py-3 px-6 rounded-xl hover:from-[#cc14cc] hover:to-[#fd19fc] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#fd19fc]/30 hover:-translate-y-1 border-2 border-[#fd19fc]/50"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{
+                          duration: 0.4,
+                          delay: 0.1,
+                          type: "spring",
+                          stiffness: 200,
+                        }}>
+                        <FiGithub className="w-5 h-5" />
+                        {t.source}
+                      </motion.a>
+                    </div>
+                  </div>
+                  {/* Visual / Mock display */}
+                  <div className="w-full lg:w-80 xl:w-96 flex items-center justify-center">
+                    <div
+                      className="relative w-full max-w-xs group cursor-pointer"
+                      onClick={() => setIsFeaturedPreviewOpen(true)}>
+                      <div className="monitor-frame cursor-pointer">
+                        <video
+                          src="/videos/fashionfoundry.webm"
+                          className="monitor-frame__screen object-cover"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          poster="/images/og-projects.webp"
+                          aria-label="Fashion Foundry demo preview video"
+                        />
+                        <div className="monitor-frame__bezel" />
+                        <div className="monitor-frame__stand" />
+                      </div>
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[10px] tracking-wide text-[#00ffff]/70 uppercase bg-[#2C313A]/80 px-2 py-1 rounded-lg border border-[#00ffff]/20 backdrop-blur-sm">
+                        {t.clickToEnlarge}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
               <div className="w-full bg-[#1E2228] p-6 md:p-8 rounded-xl shadow-xl border-t border-l border-gray-700 mb-8">
                 <motion.h1
                   className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#00ffff] text-center"
@@ -750,6 +878,50 @@ export default function ProjectsPage() {
             </motion.div>
           </div>
           {/* Project Details Modal */}
+          {/* Featured Preview Overlay */}
+          <AnimatePresence>
+            {isFeaturedPreviewOpen && (
+              <motion.div
+                className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-[#0b0e13]/90 backdrop-blur-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsFeaturedPreviewOpen(false)}>
+                <motion.div
+                  className="relative w-full max-w-5xl focus:outline-none"
+                  initial={{ scale: 0.85, opacity: 0, y: 30 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.85, opacity: 0, y: 30 }}
+                  transition={{ type: "spring", stiffness: 240, damping: 22 }}
+                  onClick={(e) => e.stopPropagation()}
+                  tabIndex={-1}>
+                  <motion.button
+                    aria-label={t.close || "Close"}
+                    className="text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] w-8 h-8 flex items-center justify-center rounded-xl transition-colors absolute -top-12 right-0"
+                    onClick={() => setIsFeaturedPreviewOpen(false)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}>
+                    ×
+                  </motion.button>
+                  <div className="relative mx-auto overflow-hidden rounded-2xl shadow-2xl bg-[#0f1216] border border-[#00ffff]/25">
+                    {/* Outer glow frame */}
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#00ffff]/40" />
+                    <video
+                      src="/videos/fashionfoundry.webm"
+                      className="w-full h-full object-cover relative"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster="/images/og-projects.webp"
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {/* /Featured Preview Overlay */}
+
           <AnimatePresence>
             {selectedProject && (
               <motion.div
@@ -790,73 +962,85 @@ export default function ProjectsPage() {
                         </h3>
                         <div className="flex justify-center">
                           <div
-                            className="monitor-frame"
-                            style={{ width: "100%", maxWidth: "400px" }}>
-                            {selectedProject.title === t.oldPortfolioTitle ||
-                            selectedProject.title === "Old Portfolio" ? (
-                              <video
-                                src="/videos/oldportfolio.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : selectedProject.title === t.dishcoveryTitle ||
-                              selectedProject.title === "Dishcovery" ? (
-                              <video
-                                src="/videos/dishcovery.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : selectedProject.title ===
-                                t.ampcoCalculatorTitle ||
-                              selectedProject.title === "AMPCO® Calculator" ? (
-                              <video
-                                src="/videos/ampcoplatecutting.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : selectedProject.title === t.gucCoachingTitle ||
-                              selectedProject.title === "G.U.C. Coaching" ? (
-                              <video
-                                src="/videos/guccoaching.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : selectedProject.title ===
-                                t.istOneFlexWorkTitle ||
-                              selectedProject.title === "IstOneFlexWork" ? (
-                              <video
-                                src="/videos/istoneflexwork.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : selectedProject.title === t.stepIOTitle ||
-                              selectedProject.title === "StepIO" ? (
-                              <video
-                                src="/videos/stepio.webm"
-                                className="monitor-frame__screen"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                              />
-                            ) : null}
-                            <div className="monitor-frame__bezel" />
-                            <div className="monitor-frame__stand" />
+                            className="relative w-full"
+                            style={{ maxWidth: "400px" }}>
+                            <div
+                              className="monitor-frame cursor-pointer group"
+                              style={{ width: "100%" }}
+                              onClick={() => setIsProjectVideoEnlarged(true)}
+                              aria-label={t.clickToEnlarge}
+                              role="button">
+                              {selectedProject.title === t.oldPortfolioTitle ||
+                              selectedProject.title === "Old Portfolio" ? (
+                                <video
+                                  src="/videos/oldportfolio.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : selectedProject.title === t.dishcoveryTitle ||
+                                selectedProject.title === "Dishcovery" ? (
+                                <video
+                                  src="/videos/dishcovery.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : selectedProject.title ===
+                                  t.ampcoCalculatorTitle ||
+                                selectedProject.title ===
+                                  "AMPCO® Calculator" ? (
+                                <video
+                                  src="/videos/ampcoplatecutting.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : selectedProject.title ===
+                                  t.gucCoachingTitle ||
+                                selectedProject.title === "G.U.C. Coaching" ? (
+                                <video
+                                  src="/videos/guccoaching.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : selectedProject.title ===
+                                  t.istOneFlexWorkTitle ||
+                                selectedProject.title === "IstOneFlexWork" ? (
+                                <video
+                                  src="/videos/istoneflexwork.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : selectedProject.title === t.stepIOTitle ||
+                                selectedProject.title === "StepIO" ? (
+                                <video
+                                  src="/videos/stepio.webm"
+                                  className="monitor-frame__screen"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                />
+                              ) : null}
+                              <div className="monitor-frame__bezel" />
+                              <div className="monitor-frame__stand" />
+                            </div>
+                            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[10px] tracking-wide text-[#00ffff]/70 uppercase bg-[#2C313A]/80 px-2 py-1 rounded-lg border border-[#00ffff]/20 backdrop-blur-sm whitespace-nowrap flex items-center justify-center">
+                              {t.clickToEnlarge}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1036,6 +1220,66 @@ export default function ProjectsPage() {
                           )}
                       </div>
                     </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {/* Enlarged project video overlay */}
+          <AnimatePresence>
+            {isProjectVideoEnlarged && selectedProject && (
+              <motion.div
+                className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[#0b0e13]/90 backdrop-blur-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsProjectVideoEnlarged(false)}>
+                <motion.div
+                  className="relative w-full max-w-5xl"
+                  initial={{ scale: 0.85, opacity: 0, y: 30 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.85, opacity: 0, y: 30 }}
+                  transition={{ type: "spring", stiffness: 240, damping: 22 }}
+                  onClick={(e) => e.stopPropagation()}>
+                  <motion.button
+                    aria-label={t.close || "Close"}
+                    className="text-gray-400 hover:text-white text-3xl p-2 hover:bg-[#2C313A] w-8 h-8 flex items-center justify-center rounded-xl transition-colors absolute -top-12 right-0"
+                    onClick={() => setIsProjectVideoEnlarged(false)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}>
+                    ×
+                  </motion.button>
+                  <div className="relative mx-auto overflow-hidden rounded-2xl shadow-2xl bg-[#0f1216] border border-[#00ffff]/25">
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#00ffff]/40" />
+                    {(() => {
+                      const title = selectedProject.title;
+                      const mapping: Record<string, string> = {
+                        [t.oldPortfolioTitle]: "/videos/oldportfolio.webm",
+                        "Old Portfolio": "/videos/oldportfolio.webm",
+                        [t.dishcoveryTitle]: "/videos/dishcovery.webm",
+                        Dishcovery: "/videos/dishcovery.webm",
+                        [t.ampcoCalculatorTitle]:
+                          "/videos/ampcoplatecutting.webm",
+                        "AMPCO® Calculator": "/videos/ampcoplatecutting.webm",
+                        [t.gucCoachingTitle]: "/videos/guccoaching.webm",
+                        "G.U.C. Coaching": "/videos/guccoaching.webm",
+                        [t.istOneFlexWorkTitle]: "/videos/istoneflexwork.webm",
+                        IstOneFlexWork: "/videos/istoneflexwork.webm",
+                        [t.stepIOTitle]: "/videos/stepio.webm",
+                        StepIO: "/videos/stepio.webm",
+                      };
+                      const src = mapping[title] || "";
+                      return src ? (
+                        <video
+                          src={src}
+                          className="w-full h-full object-cover relative"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : null;
+                    })()}
                   </div>
                 </motion.div>
               </motion.div>
