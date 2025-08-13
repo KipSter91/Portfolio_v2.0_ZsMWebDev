@@ -96,6 +96,7 @@ const ProjectCube = React.memo(
       const cubeInnerRef = useRef<HTMLDivElement>(null);
       const lastMouse = useRef({ x: 0, y: 0 });
       const lastTouch = useRef({ x: 0, y: 0 });
+      const touchStart = useRef({ x: 0, y: 0, t: 0 });
       const rot = useRef({ x: -20, y: -45 });
       const frame = useRef(false);
       const resetting = useRef(false);
@@ -188,25 +189,39 @@ const ProjectCube = React.memo(
       const onTouchStart = (e: React.TouchEvent) => {
         if (resetting.current) return;
         if (e.touches.length !== 1) return;
-        setIsTouchDragging(true);
         setIsDragging(false);
         const t = e.touches[0];
         lastTouch.current = { x: t.clientX, y: t.clientY };
-        if (!selectedProject) scrollLock.lock();
+        touchStart.current = { x: t.clientX, y: t.clientY, t: Date.now() };
+        // Note: don't set isTouchDragging yet; wait for threshold in move
       };
       const onTouchMove = (e: React.TouchEvent) => {
         if (e.touches.length !== 1) return;
         const t = e.touches[0];
         const dx = t.clientX - lastTouch.current.x;
         const dy = t.clientY - lastTouch.current.y;
-        if (Math.abs(dx) > 4 || Math.abs(dy) > 4) setIsDragging(true);
-        apply(dx, dy, 0.55);
+        const totalDx = t.clientX - touchStart.current.x;
+        const totalDy = t.clientY - touchStart.current.y;
+        const threshold = 8; // px
+        if (
+          !isTouchDragging &&
+          (Math.abs(totalDx) > threshold || Math.abs(totalDy) > threshold)
+        ) {
+          setIsTouchDragging(true);
+          setIsDragging(true);
+          if (!selectedProject) scrollLock.lock();
+        }
+        if (isTouchDragging) {
+          apply(dx, dy, 0.55);
+        }
         lastTouch.current = { x: t.clientX, y: t.clientY };
       };
       const onTouchEnd = () => {
-        setIsTouchDragging(false);
-        setTimeout(() => setIsDragging(false), 80);
-        if (!selectedProject) scrollLock.unlock();
+        if (isTouchDragging) {
+          setIsTouchDragging(false);
+          if (!selectedProject) scrollLock.unlock();
+        }
+        setTimeout(() => setIsDragging(false), 60);
       };
 
       return (
@@ -278,7 +293,13 @@ const ProjectCube = React.memo(
                   marginTop: -cubeSize / 2,
                   willChange: "transform",
                 }}
-                onClick={() => faceClick(face.i)}>
+                onClick={() => faceClick(face.i)}
+                onTouchEnd={(e) => {
+                  if (!isTouchDragging && !isDragging) {
+                    e.stopPropagation();
+                    faceClick(face.i);
+                  }
+                }}>
                 <div className="monitor-frame">
                   <img
                     src={face.img}
@@ -448,7 +469,7 @@ export default function ProjectsPage() {
         { name: "JavaScript", icon: <FaJs style={{ color: "#F7DF1E" }} /> },
         { name: "GSAP", icon: <SiGreensock style={{ color: "#88CE02" }} /> },
       ],
-      image: "/images/guccoaching.png",
+      image: "/images/guccoaching.webp",
       liveDemo:
         "https://oldportfolio.zsoltmarku.com/projects/guccoaching/index.html",
       sourceCode: "https://github.com/KipSter91/G.U.C._Coaching_ZsMWebDev.git",
