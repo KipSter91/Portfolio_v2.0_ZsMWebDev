@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useImperativeHandle } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleContext } from "../../contexts/LocaleContext";
@@ -66,372 +66,247 @@ const scrollLock = {
   },
 };
 
-// --- ProjectCube (stateless, receives all state as props) ---
-function ProjectCube({
-  projects,
-  onProjectSelect,
-  selectedProject,
-  isTouchDragging,
-  setIsTouchDragging,
-  rotationX,
-  rotationY,
-  setRotationX,
-  setRotationY,
-}: {
-  projects: Project[];
-  onProjectSelect: (project: Project) => void;
-  selectedProject: Project | null;
-  isTouchDragging: boolean;
-  setIsTouchDragging: React.Dispatch<React.SetStateAction<boolean>>;
-  rotationX: number;
-  rotationY: number;
-  setRotationX: React.Dispatch<React.SetStateAction<number>>;
-  setRotationY: React.Dispatch<React.SetStateAction<number>>;
-  isRotating: boolean;
-  setIsRotating: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  const [isDragging, setIsDragging] = useState(false);
-  const cubeContainerRef = useRef<HTMLDivElement>(null);
-  const lastMousePos = useRef({ x: 0, y: 0 });
-  const lastTouchPos = useRef({ x: 0, y: 0 });
-
-  // Prevent page scroll during cube rotation on mobile (touch only)
-  useEffect(() => {
-    const preventScroll = (e: TouchEvent) => {
-      if (isTouchDragging) {
-        e.preventDefault();
-      }
-    };
-    const preventGlobalScroll = (e: TouchEvent) => {
-      if (isTouchDragging) {
-        e.preventDefault();
-      }
-    };
-    document.addEventListener("touchmove", preventScroll, { passive: false });
-    document.addEventListener("touchstart", preventGlobalScroll, {
-      passive: false,
-    });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    return () => {
-      document.removeEventListener("touchmove", preventScroll);
-      document.removeEventListener("touchstart", preventGlobalScroll);
-      window.removeEventListener("touchmove", preventScroll);
-    };
-  }, [isTouchDragging]);
-
-  const handleFaceClick = (index: number) => {
-    if (projects[index] && !isDragging) {
-      onProjectSelect(projects[index]);
-    }
-  };
-  // Responsive cube size
-  const [cubeSize, setCubeSize] = useState(300);
-  useEffect(() => {
-    const updateCubeSize = () => {
-      if (window.innerWidth < 640) {
-        setCubeSize(220); // mobile - increased from 180
-      } else if (window.innerWidth < 1024) {
-        setCubeSize(260); // tablet - increased from 220
-      } else {
-        setCubeSize(300); // desktop
-      }
-    };
-    updateCubeSize();
-    window.addEventListener("resize", updateCubeSize);
-    return () => window.removeEventListener("resize", updateCubeSize);
-  }, []);
-
-  // Mouse drag handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(false);
-    lastMousePos.current = { x: e.clientX, y: e.clientY };
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-    e.preventDefault();
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    const deltaX = e.clientX - lastMousePos.current.x;
-    const deltaY = e.clientY - lastMousePos.current.y;
-
-    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
-      setIsDragging(true);
-    }
-
-    setRotationY((prev) => prev + deltaX * 0.8);
-    setRotationX((prev) => prev - deltaY * 0.8);
-
-    lastMousePos.current = { x: e.clientX, y: e.clientY };
-  };
-
-  const handleMouseUp = () => {
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-    setTimeout(() => setIsDragging(false), 100);
-  };
-
-  // Touch drag handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      setIsTouchDragging(true);
-      setIsDragging(false);
-      const touch = e.touches[0];
-      lastTouchPos.current = { x: touch.clientX, y: touch.clientY };
-      // Lock scroll for drag only if modal is not open
-      if (!selectedProject) scrollLock.lock();
-    }
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      const touch = e.touches[0];
-      const deltaX = touch.clientX - lastTouchPos.current.x;
-      const deltaY = touch.clientY - lastTouchPos.current.y;
-
-      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
-        setIsDragging(true);
-      }
-
-      setRotationY((prev) => prev + deltaX * 0.6);
-      setRotationX((prev) => prev - deltaY * 0.6);
-
-      lastTouchPos.current = { x: touch.clientX, y: touch.clientY };
-    }
-  };
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    setIsTouchDragging(false);
-    setTimeout(() => setIsDragging(false), 100);
-    // Unlock scroll for drag only if modal is not open
-    if (!selectedProject) scrollLock.unlock();
-  };
-  return (
-    // Instead of flex-col, use a fragment and let parent handle stacking
-    <div
-      ref={cubeContainerRef}
-      className="relative select-none cursor-grab active:cursor-grabbing touch-none overscroll-none flex items-center justify-center"
-      style={{
-        perspective: "1200px",
-        width: cubeSize * 2.2,
-        height: cubeSize * 2.2,
-        touchAction: "none",
-        WebkitOverflowScrolling: "touch",
-        overscrollBehavior: "none",
-      }}
-      onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}>
-      {/* Only the cube here! */}
-      <motion.div
-        className="relative w-full h-full flex items-center justify-center"
-        style={{
-          transformStyle: "preserve-3d",
-        }}
-        animate={{
-          rotateX: rotationX,
-          rotateY: rotationY,
-        }}
-        transition={{
-          type: isDragging ? "tween" : "spring",
-          damping: isDragging ? 0 : 25,
-          stiffness: isDragging ? 0 : 200,
-          duration: isDragging ? 0 : 0.8,
-        }}>
-        {/* Front Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(0)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/oldportfolio.webp"
-              alt="Previous portfolio website showcasing early web development projects and design skills"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[0]?.title || "Old Portfolio"}
-          </div>
-        </motion.div>
-
-        {/* Back Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `rotateY(180deg) translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(1)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/istoneflexwork.webp"
-              alt="IstOneFlexWork solar panel cleaning service website with modern responsive design"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[1]?.title || "IstOneFlexWork"}
-          </div>
-        </motion.div>
-
-        {/* Right Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(2)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/stepio.webp"
-              alt="StepIO fitness tracking app with React Native Android application and landing page"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[2]?.title || "StepIO"}
-          </div>
-        </motion.div>
-
-        {/* Left Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(3)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/guccoaching.webp"
-              alt="G.U.C. Coaching multilingual website with animated design and GSAP animations"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[3]?.title || "G.U.C. Coaching"}
-          </div>
-        </motion.div>
-
-        {/* Top Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(4)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/dishcovery.webp"
-              alt="Dishcovery recipe browsing web application with JavaScript MVC architecture"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[4]?.title || "Dishcovery"}
-          </div>
-        </motion.div>
-
-        {/* Bottom Face */}
-        <motion.div
-          className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-all duration-300 hover:shadow-lg hover:shadow-[#fd19fc]/20"
-          style={{
-            width: cubeSize,
-            height: cubeSize,
-            transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
-            left: "50%",
-            top: "50%",
-            marginLeft: -cubeSize / 2,
-            marginTop: -cubeSize / 2,
-          }}
-          onClick={() => handleFaceClick(5)}
-          whileHover={{
-            borderColor: "#fd19fc",
-            boxShadow: "0 0 20px rgba(253, 25, 252, 0.3)",
-          }}>
-          <div className="monitor-frame">
-            <img
-              src="/images/ampcoplatecutting.webp"
-              alt="AMPCO Metal plate cutting calculator tool for industrial manufacturing processes"
-              className="monitor-frame__screen"
-            />
-            <div className="monitor-frame__bezel" />
-            <div className="monitor-frame__stand" />
-          </div>
-          <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
-            {projects[5]?.title || "Ampco Plate Calculator"}
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
+// Cube public handle
+interface ProjectCubeHandle {
+  reset: () => void;
 }
 
+const ProjectCube = React.memo(
+  React.forwardRef<
+    ProjectCubeHandle,
+    {
+      projects: Project[];
+      onProjectSelect: (project: Project) => void;
+      selectedProject: Project | null;
+      isTouchDragging: boolean;
+      setIsTouchDragging: React.Dispatch<React.SetStateAction<boolean>>;
+    }
+  >(
+    (
+      {
+        projects,
+        onProjectSelect,
+        selectedProject,
+        isTouchDragging,
+        setIsTouchDragging,
+      },
+      ref
+    ) => {
+      const [isDragging, setIsDragging] = useState(false);
+      const cubeInnerRef = useRef<HTMLDivElement>(null);
+      const lastMouse = useRef({ x: 0, y: 0 });
+      const lastTouch = useRef({ x: 0, y: 0 });
+      const rot = useRef({ x: -20, y: -45 });
+      const frame = useRef(false);
+      const resetting = useRef(false);
+
+      useImperativeHandle(
+        ref,
+        () => ({
+          reset: () => {
+            if (resetting.current) return;
+            resetting.current = true;
+            const start = { ...rot.current };
+            const end = { x: -20, y: -45 };
+            const dur = 500;
+            const t0 = performance.now();
+            const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+            const step = (now: number) => {
+              const p = Math.min(1, (now - t0) / dur);
+              const e = ease(p);
+              rot.current.x = start.x + (end.x - start.x) * e;
+              rot.current.y = start.y + (end.y - start.y) * e;
+              if (cubeInnerRef.current)
+                cubeInnerRef.current.style.transform = `rotateX(${rot.current.x}deg) rotateY(${rot.current.y}deg)`;
+              if (p < 1) requestAnimationFrame(step);
+              else resetting.current = false;
+            };
+            requestAnimationFrame(step);
+          },
+        }),
+        []
+      );
+
+      // Resize handling
+      const [cubeSize, setCubeSize] = useState(300);
+      useEffect(() => {
+        const update = () => {
+          if (window.innerWidth < 640) setCubeSize(200);
+          else if (window.innerWidth < 1024) setCubeSize(250);
+          else setCubeSize(300);
+        };
+        update();
+        window.addEventListener("resize", update, { passive: true });
+        return () => window.removeEventListener("resize", update);
+      }, []);
+
+      useEffect(() => {
+        const prevent = (e: TouchEvent) => {
+          if (isTouchDragging) e.preventDefault();
+        };
+        document.addEventListener("touchmove", prevent, { passive: false });
+        return () => document.removeEventListener("touchmove", prevent);
+      }, [isTouchDragging]);
+
+      const schedule = () => {
+        if (frame.current) return;
+        frame.current = true;
+        requestAnimationFrame(() => {
+          if (cubeInnerRef.current)
+            cubeInnerRef.current.style.transform = `rotateX(${rot.current.x}deg) rotateY(${rot.current.y}deg)`;
+          frame.current = false;
+        });
+      };
+      const apply = (dx: number, dy: number, f: number) => {
+        rot.current.y += dx * f;
+        rot.current.x -= dy * f;
+        schedule();
+      };
+      const faceClick = (i: number) => {
+        if (!isDragging && projects[i]) onProjectSelect(projects[i]);
+      };
+
+      const onMouseDown = (e: React.MouseEvent) => {
+        if (resetting.current) return;
+        setIsDragging(false);
+        lastMouse.current = { x: e.clientX, y: e.clientY };
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mouseup", onMouseUp, { once: true });
+      };
+      const onMouseMove = (e: MouseEvent) => {
+        const dx = e.clientX - lastMouse.current.x;
+        const dy = e.clientY - lastMouse.current.y;
+        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) setIsDragging(true);
+        apply(dx, dy, 0.75);
+        lastMouse.current = { x: e.clientX, y: e.clientY };
+      };
+      const onMouseUp = () => {
+        window.removeEventListener("mousemove", onMouseMove);
+        setTimeout(() => setIsDragging(false), 80);
+      };
+
+      const onTouchStart = (e: React.TouchEvent) => {
+        if (resetting.current) return;
+        if (e.touches.length !== 1) return;
+        setIsTouchDragging(true);
+        setIsDragging(false);
+        const t = e.touches[0];
+        lastTouch.current = { x: t.clientX, y: t.clientY };
+        if (!selectedProject) scrollLock.lock();
+      };
+      const onTouchMove = (e: React.TouchEvent) => {
+        if (e.touches.length !== 1) return;
+        const t = e.touches[0];
+        const dx = t.clientX - lastTouch.current.x;
+        const dy = t.clientY - lastTouch.current.y;
+        if (Math.abs(dx) > 4 || Math.abs(dy) > 4) setIsDragging(true);
+        apply(dx, dy, 0.55);
+        lastTouch.current = { x: t.clientX, y: t.clientY };
+      };
+      const onTouchEnd = () => {
+        setIsTouchDragging(false);
+        setTimeout(() => setIsDragging(false), 80);
+        if (!selectedProject) scrollLock.unlock();
+      };
+
+      return (
+        <div
+          className="relative select-none cursor-grab active:cursor-grabbing flex items-center justify-center"
+          style={{
+            perspective: "1200px",
+            width: cubeSize * 2.1,
+            height: cubeSize * 2.1,
+            touchAction: "none",
+            willChange: "transform",
+            userSelect: "none",
+            WebkitUserSelect: "none" as any,
+          }}
+          onMouseDown={onMouseDown}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}>
+          <div
+            ref={cubeInnerRef}
+            className="relative w-full h-full flex items-center justify-center"
+            style={{
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+              transform: `rotateX(${rot.current.x}deg) rotateY(${rot.current.y}deg)`,
+            }}>
+            {[
+              {
+                i: 0,
+                tr: `translateZ(${cubeSize / 2}px)`,
+                img: "/images/oldportfolio.webp",
+              },
+              {
+                i: 1,
+                tr: `rotateY(180deg) translateZ(${cubeSize / 2}px)`,
+                img: "/images/istoneflexwork.webp",
+              },
+              {
+                i: 2,
+                tr: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
+                img: "/images/stepio.webp",
+              },
+              {
+                i: 3,
+                tr: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
+                img: "/images/guccoaching.webp",
+              },
+              {
+                i: 4,
+                tr: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
+                img: "/images/dishcovery.webp",
+              },
+              {
+                i: 5,
+                tr: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
+                img: "/images/ampcoplatecutting.webp",
+              },
+            ].map((face) => (
+              <div
+                key={face.i}
+                className="absolute bg-gradient-to-br from-[#2C313A] to-[#1E2228] border-2 border-[#00ffff]/30 rounded-lg cursor-pointer flex flex-col items-center justify-center p-4 text-center hover:border-[#fd19fc] transition-colors duration-200"
+                style={{
+                  width: cubeSize,
+                  height: cubeSize,
+                  transform: face.tr,
+                  left: "50%",
+                  top: "50%",
+                  marginLeft: -cubeSize / 2,
+                  marginTop: -cubeSize / 2,
+                  willChange: "transform",
+                }}
+                onClick={() => faceClick(face.i)}>
+                <div className="monitor-frame">
+                  <img
+                    src={face.img}
+                    alt={projects[face.i]?.title || "Project"}
+                    className="monitor-frame__screen select-none pointer-events-none"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+                  <div className="monitor-frame__bezel" />
+                  <div className="monitor-frame__stand" />
+                </div>
+                <div className="mt-3 text-xs sm:text-sm md:text-base font-semibold text-white text-center">
+                  {projects[face.i]?.title || "Project"}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+  )
+);
+
 export default function ProjectsPage() {
-  // --- LIFTED STATE FOR CUBE ---
-  const [rotationX, setRotationX] = useState(-20);
-  const [rotationY, setRotationY] = useState(-45);
-  const [isRotating, setIsRotating] = useState(false);
+  const cubeRef = useRef<ProjectCubeHandle | null>(null);
+  const [isRotating, setIsRotating] = useState(false); // only for reset btn disabled state
   const [isExiting, setIsExiting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -844,9 +719,8 @@ export default function ProjectsPage() {
                     onClick={() => {
                       if (isRotating) return;
                       setIsRotating(true);
-                      setRotationX(-20);
-                      setRotationY(-45);
-                      setTimeout(() => setIsRotating(false), 600);
+                      cubeRef.current?.reset();
+                      setTimeout(() => setIsRotating(false), 650);
                     }}
                     disabled={isRotating}
                     whileHover={{ scale: 1.1 }}
@@ -861,17 +735,12 @@ export default function ProjectsPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}>
                   <ProjectCube
+                    ref={cubeRef}
                     projects={projects}
                     onProjectSelect={handleProjectSelect}
                     selectedProject={selectedProject}
                     isTouchDragging={isTouchDragging}
                     setIsTouchDragging={setIsTouchDragging}
-                    rotationX={rotationX}
-                    rotationY={rotationY}
-                    setRotationX={setRotationX}
-                    setRotationY={setRotationY}
-                    isRotating={isRotating}
-                    setIsRotating={setIsRotating}
                   />
                 </motion.div>
               </div>
@@ -1087,12 +956,12 @@ export default function ProjectsPage() {
                         <h3 className="text-xl font-semibold text-white mb-4">
                           {t.exploreProject || "Explore Project"}
                         </h3>
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-wrap gap-3 md:gap-4">
                           <motion.a
                             href={selectedProject.liveDemo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-3 px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50"
+                            className="w-full md:flex-1 bg-gradient-to-r from-[#00ffff] to-[#00cccc] text-[#161A20] font-semibold py-2 px-4 lg:py-3 lg:px-6 rounded-xl hover:from-[#00cccc] hover:to-[#00ffff] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00ffff]/30 hover:-translate-y-1 border-2 border-[#00ffff]/50 text-sm md:text-[15px]"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             whileHover={{ scale: 1.05 }}
@@ -1102,14 +971,14 @@ export default function ProjectsPage() {
                               type: "spring",
                               stiffness: 200,
                             }}>
-                            <FiExternalLink className="w-5 h-5" />
+                            <FiExternalLink className="w-4 h-4 md:w-5 md:h-5" />
                             {t.viewLive || "View Live"}
                           </motion.a>
                           <motion.a
                             href={selectedProject.sourceCode}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14cc] text-white font-semibold py-3 px-6 rounded-xl hover:from-[#cc14cc] hover:to-[#fd19fc] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#fd19fc]/30 hover:-translate-y-1 border-2 border-[#fd19fc]/50"
+                            className="w-full md:flex-1 bg-gradient-to-r from-[#fd19fc] to-[#cc14cc] text-white font-semibold py-2 px-4 lg:py-3 lg:px-6 rounded-xl hover:from-[#cc14cc] hover:to-[#fd19fc] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#fd19fc]/30 hover:-translate-y-1 border-2 border-[#fd19fc]/50 text-sm md:text-[15px]"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             whileHover={{ scale: 1.05 }}
@@ -1120,7 +989,7 @@ export default function ProjectsPage() {
                               type: "spring",
                               stiffness: 200,
                             }}>
-                            <FiGithub className="w-5 h-5" />
+                            <FiGithub className="w-4 h-4 md:w-5 md:h-5" />
                             {t.source || "Source"}
                           </motion.a>
                         </div>
