@@ -1,11 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronUp } from "react-icons/fa";
 
 const BackToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+
+  // Hide BackToTop button on projects page - multiple checks
+  const isProjectsPage =
+    pathname === "/projects" ||
+    pathname?.includes("/projects") ||
+    pathname?.startsWith("/projects");
 
   // Show button when user scrolls down 400px
   useEffect(() => {
@@ -34,7 +42,7 @@ const BackToTop: React.FC = () => {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isProjectsPage && (
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
