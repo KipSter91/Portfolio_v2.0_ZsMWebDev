@@ -201,12 +201,12 @@ export const translations = {
     // Terms of Service
     termsOfService: "Terms of Service",
     termsTitle: "Terms of Service – ZsMWebDev",
-    termsLastUpdate: "Last update: July 28, 2025",
+    termsLastUpdate: "Last update: August 15, 2025",
 
     // Definitions
     termsDefinitions: "1. Definitions",
     termsZsmwebdev:
-      "ZsMWebDev: the contractor, based at Rotterdam, registered with the Chamber of Commerce under number 97991058, VAT number pending at the Dutch Tax Office.",
+      "ZsMWebDev: the contractor, based at Rotterdam, registered with the Chamber of Commerce under number 97991058, VAT number: NL005301320B68",
     termsClient:
       "Client: any natural or legal person who enters into an agreement with ZsMWebDev.",
     termsAgreement:
@@ -465,7 +465,7 @@ export const translations = {
     privacyPolicyTitle: "Privacy Policy",
     privacyPolicyContent:
       "This privacy policy explains how I collect, use, and protect your personal information when you visit this website or contact me through the provided forms. I am committed to protecting your privacy and handling your data responsibly. This website complies with the European Union's General Data Protection Regulation (GDPR – EU 2016/679). If you have any questions about this policy, please contact me using the information provided below.",
-    lastUpdated: "Last updated: July 28, 2025",
+    lastUpdated: "Last updated: August 15, 2025",
     dataCollection: "Data Collection",
     dataCollectionText:
       "I collect personal data (name, email address, phone number) only when you voluntarily submit it through the contact form on this website. This information is used solely for responding to your inquiries and maintaining communication with you. I do not share your data with third parties, use it for marketing purposes, or store it longer than necessary for our correspondence. I may also collect anonymous usage statistics through Google Analytics to understand how visitors interact with my website - this data cannot be used to identify you personally.",
@@ -481,8 +481,7 @@ export const translations = {
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Business Registration:",
     contactPrivacyKvK: "KvK number: 97991058",
-    contactPrivacyBTW:
-      "BTW number: VAT number pending at the Dutch Tax Office.",
+    contactPrivacyBTW: "BTW number: NL005301320B68",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie Settings",
@@ -700,12 +699,12 @@ export const translations = {
     // Terms of Service (Hungarian)
     termsOfService: "Általános Szerződési Feltételek",
     termsTitle: "Általános Szerződési Feltételek – ZsMWebDev",
-    termsLastUpdate: "Utolsó frissítés: 2025. július 28.",
+    termsLastUpdate: "Utolsó frissítés: 2025. augusztus 15.",
 
     // Definitions
     termsDefinitions: "1. Fogalmak meghatározása",
     termsZsmwebdev:
-      "ZsMWebDev: a vállalkozó, székhely: Rotterdam, bejegyezve a Kereskedelmi és Iparkamaránál a 97991058 szám alatt, ÁFA szám folyamatban a holland adóhatóságnál.",
+      "ZsMWebDev: a vállalkozó, székhely: Rotterdam, bejegyezve a Kereskedelmi és Iparkamaránál a 97991058 szám alatt, ÁFA szám: NL005301320B68.",
     termsClient:
       "Megbízó: minden természetes vagy jogi személy, aki szerződést köt a ZsMWebDev-vel.",
     termsAgreement:
@@ -967,7 +966,7 @@ export const translations = {
     privacyPolicyTitle: "Adatvédelmi szabályzat",
     privacyPolicyContent:
       "Ez az adatvédelmi szabályzat elmagyarázza, hogyan gyűjtöm, használom és védem személyes adatait, amikor meglátogatja ezt a weboldalt vagy kapcsolatba lép velem az elérhető űrlapokon keresztül. Elkötelezett vagyok az Ön adatvédelmének biztosítása és adatainak felelős kezelése iránt. Ez a weboldal megfelel az Európai Unió Általános Adatvédelmi Rendeletének (GDPR – EU 2016/679). Ha bármilyen kérdése van ezzel a szabályzattal kapcsolatban, kérem, vegye fel velem a kapcsolatot az alább megadott elérhetőségeken.",
-    lastUpdated: "Utoljára frissítve: 2025. július 28.",
+    lastUpdated: "Utoljára frissítve: 2025. augusztus 15.",
     dataCollection: "Adatgyűjtés",
     dataCollectionText:
       "Személyes adatokat (név, e-mail cím) csak akkor gyűjtök, amikor Ön önkéntesen megadja azokat a weboldalon található kapcsolati űrlapon keresztül. Ezeket az információkat kizárólag megkeresésére való válaszadásra és Önnel való kommunikáció fenntartására használom. Nem osztom meg adatait harmadik felekkel, nem használom marketing célokra, és nem tárolom tovább a szükségesnél levelezésünkhöz. Google Analytics segítségével anonim használati statisztikákat is gyűjthetek annak megértésére, hogy a látogatók hogyan használják a weboldalamat - ezek az adatok nem használhatók fel az Ön személyes azonosítására.",
@@ -983,8 +982,7 @@ export const translations = {
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Céges regisztráció:",
     contactPrivacyKvK: "KvK szám: 97991058",
-    contactPrivacyBTW:
-      "BTW szám: ÁFA szám folyamatban a holland adóhatóságnál.",
+    contactPrivacyBTW: "ÁFA szám: NL005301320B68",
 
     // Cookie Settings Modal
     cookieSettings: "Süti beállítások",
@@ -1203,12 +1201,12 @@ export const translations = {
     // Terms of Service (Dutch)
     termsOfService: "Algemene Voorwaarden",
     termsTitle: "Algemene Voorwaarden – ZsMWebDev",
-    termsLastUpdate: "Laatst bijgewerkt: 28 juli 2025",
+    termsLastUpdate: "Laatst bijgewerkt: 15 augustus 2025",
 
     // Definitions
     termsDefinitions: "1. Begripsbepalingen",
     termsZsmwebdev:
-      "ZsMWebDev: de ondernemer, gevestigd te Rotterdam, ingeschreven bij de Kamer van Koophandel onder 97991058, BTW-nummer in aanvraag bij Belastingdienst.",
+      "ZsMWebDev: de ondernemer, gevestigd te Rotterdam, ingeschreven bij de Kamer van Koophandel onder 97991058, BTW-nummer: NL005301320B68.",
     termsClient:
       "Opdrachtgever: iedere natuurlijke of rechtspersoon die een overeenkomst aangaat met ZsMWebDev.",
     termsAgreement:
@@ -1468,7 +1466,7 @@ export const translations = {
     privacyPolicyTitle: "Privacybeleid",
     privacyPolicyContent:
       "Dit privacybeleid legt uit hoe ik uw persoonlijke gegevens verzamel, gebruik en bescherm wanneer u deze website bezoekt of contact met mij opneemt via de beschikbare formulieren. Ik ben toegewijd aan het beschermen van uw privacy en het verantwoordelijk omgaan met uw gegevens. Deze website voldoet aan de Algemene Verordening Gegevensbescherming van de Europese Unie (AVG – EU 2016/679). Als u vragen heeft over dit beleid, neem dan contact met mij op via de onderstaande informatie.",
-    lastUpdated: "Laatst bijgewerkt: 28 juli 2025",
+    lastUpdated: "Laatst bijgewerkt: 15 augustus 2025",
     dataCollection: "Gegevensverzameling",
     dataCollectionText:
       "Ik verzamel persoonlijke gegevens (naam, e-mailadres) alleen wanneer u deze vrijwillig verstrekt via het contactformulier op deze website. Deze informatie wordt uitsluitend gebruikt om te reageren op uw vragen en communicatie met u te onderhouden. Ik deel uw gegevens niet met derden, gebruik ze niet voor marketingdoeleinden en bewaar ze niet langer dan nodig voor onze correspondentie. Ik kan ook anonieme gebruiksstatistieken verzamelen via Google Analytics om te begrijpen hoe bezoekers omgaan met mijn website - deze gegevens kunnen niet worden gebruikt om u persoonlijk te identificeren.",
@@ -1484,8 +1482,7 @@ export const translations = {
     contactPrivacyEmail: "Email: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Bedrijfsregistratie:",
     contactPrivacyKvK: "KvK nummer: 97991058",
-    contactPrivacyBTW:
-      "BTW nummer: BTW-nummer in aanvraag bij Belastingdienst.",
+    contactPrivacyBTW: "BTW nummer: NL005301320B68",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie-instellingen",
@@ -1704,12 +1701,12 @@ export const translations = {
     // Terms of Service
     termsOfService: "Nutzungsbedingungen",
     termsTitle: "Nutzungsbedingungen – ZsMWebDev",
-    termsLastUpdate: "Letzte Aktualisierung: 28. Juli 2025",
+    termsLastUpdate: "Letzte Aktualisierung: 15. August 2025",
 
     // Definitions
     termsDefinitions: "1. Definitionen",
     termsZsmwebdev:
-      "ZsMWebDev: der Auftragnehmer mit Sitz in Rotterdam, eingetragen bei der Handelskammer unter Nummer 97991058, Umsatzsteuernummer beantragt beim niederländischen Finanzamt.",
+      "ZsMWebDev: der Auftragnehmer mit Sitz in Rotterdam, eingetragen bei der Handelskammer unter Nummer 97991058, Umsatzsteuernummer: NL005301320B68.",
     termsClient:
       "Kunde: jede natürliche oder juristische Person, die eine Vereinbarung mit ZsMWebDev eingeht.",
     termsAgreement:
@@ -1971,7 +1968,7 @@ export const translations = {
     privacyPolicyTitle: "Datenschutzrichtlinie",
     privacyPolicyContent:
       "Diese Datenschutzrichtlinie erklärt, wie ich Ihre persönlichen Informationen sammle, verwende und schütze, wenn Sie diese Website besuchen oder mich über die bereitgestellten Formulare kontaktieren. Ich verpflichte mich, Ihre Privatsphäre zu schützen und Ihre Daten verantwortungsvoll zu behandeln. Diese Website entspricht der Datenschutz-Grundverordnung der Europäischen Union (DSGVO – EU 2016/679). Wenn Sie Fragen zu dieser Richtlinie haben, kontaktieren Sie mich bitte mit den unten angegebenen Informationen.",
-    lastUpdated: "Zuletzt aktualisiert: 28. Juli 2025",
+    lastUpdated: "Zuletzt aktualisiert: 15. August 2025",
     dataCollection: "Datensammlung",
     dataCollectionText:
       "Ich sammle persönliche Daten (Name, E-Mail-Adresse, Telefonnummer) nur, wenn Sie diese freiwillig über das Kontaktformular auf dieser Website übermitteln. Diese Informationen werden ausschließlich zur Beantwortung Ihrer Anfragen und zur Aufrechterhaltung der Kommunikation mit Ihnen verwendet. Ich teile Ihre Daten nicht mit Dritten, verwende sie nicht für Marketingzwecke oder speichere sie länger als für unsere Korrespondenz notwendig. Ich kann auch anonyme Nutzungsstatistiken über Google Analytics sammeln, um zu verstehen, wie Besucher mit meiner Website interagieren – diese Daten können nicht zur persönlichen Identifizierung verwendet werden.",
@@ -1987,8 +1984,7 @@ export const translations = {
     contactPrivacyEmail: "E-Mail: portfolio@zsoltmarku.com",
     contactPrivacyBusiness: "Geschäftsregistrierung:",
     contactPrivacyKvK: "KvK-Nummer: 97991058",
-    contactPrivacyBTW:
-      "BTW-Nummer: Umsatzsteuernummer beantragt beim niederländischen Finanzamt.",
+    contactPrivacyBTW: "BTW-Nummer: NL005301320B68",
 
     // Cookie Settings Modal
     cookieSettings: "Cookie-Einstellungen",
