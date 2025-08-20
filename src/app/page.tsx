@@ -52,11 +52,13 @@ export default function Home() {
       consoleStyles
     );
 
-    // Check if splash screen was already shown in this session
-    const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
-    if (hasSeenSplash === "true") {
-      setSplashShown(true);
-    }
+    // Check if splash screen was already shown in this session (Safari private mód hibakezelés)
+    try {
+      const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
+      if (hasSeenSplash === "true") {
+        setSplashShown(true);
+      }
+    } catch (_) {}
   }, []);
 
   // Handle fromPage detection and navigation logic
@@ -83,8 +85,10 @@ export default function Home() {
   const handleSplashComplete = () => {
     setShowSplash(false);
     setShowContent(true);
-    // Mark splash as shown in session storage
-    sessionStorage.setItem("hasSeenSplash", "true");
+    // Mark splash as shown in session storage (hibakezelés)
+    try {
+      sessionStorage.setItem("hasSeenSplash", "true");
+    } catch (_) {}
     setSplashShown(true);
   };
 

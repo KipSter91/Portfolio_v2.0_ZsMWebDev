@@ -311,49 +311,22 @@ const Header: React.FC = () => {
             ease: "easeOut",
             delay: splashComplete ? 0.6 : 0,
           }}>
-          <motion.div
-            animate={{
-              borderColor: [
-                "rgba(0, 255, 255, 0.2)",
-                "rgba(0, 255, 255, 0.9)",
-                "rgba(0, 255, 255, 0.2)",
-              ],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.5,
-              ease: "easeInOut",
-            }}
-            className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl h-[42px]">
+          <div className="border-2 border-[color:var(--neon-cyan)]/40 rounded-xl h-[42px] header-btn-pulse-cyan">
             <Link
               href="/services"
               className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-cyan)] font-medium px-4 rounded-xl bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-cyan)]/10 transition-all duration-300 h-[39px]">
               <MdMiscellaneousServices className="text-lg" />
               {t.services || "Services"}
             </Link>
-          </motion.div>
-          <motion.div
-            animate={{
-              borderColor: [
-                "rgba(253, 25, 252, 0.2)",
-                "rgba(253, 25, 252, 0.9)",
-                "rgba(253, 25, 252, 0.2)",
-              ],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.5,
-              ease: "easeInOut",
-              delay: 0.3,
-            }}
-            className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl h-[42px]">
+          </div>
+          <div className="border-2 border-[color:var(--neon-pink)]/40 rounded-xl h-[42px] header-btn-pulse-pink">
             <Link
               href="/pricing"
               className="flex items-center justify-center gap-2 text-white hover:text-[color:var(--neon-pink)] font-medium rounded-xl px-4 bg-[color:var(--dark-gray)] hover:bg-[color:var(--neon-pink)]/10 transition-all duration-300 h-[39px]">
               <FaDollarSign className="text-lg" />
               {t.pricing || "Pricing"}
             </Link>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Right side container - mobile icons + language menu */}

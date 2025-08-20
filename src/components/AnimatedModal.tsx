@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AnimatedModalProps {
@@ -32,20 +32,33 @@ export default function AnimatedModal({
     }
   }, [isOpen]);
 
+  const isReduced = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  const baseVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.96 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: 18, scale: 0.96 },
+  } as const;
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 bg-black/65 backdrop-blur-sm perf-overlay flex items-center justify-center p-4 z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}>
           <motion.div
-            className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl relative"
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="modal-content-perf bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl relative"
+            variants={baseVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: isReduced ? 0.15 : 0.32, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}>
             {/* Close Button - Same style as projects modal */}
             <motion.button

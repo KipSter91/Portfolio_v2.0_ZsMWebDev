@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import { Header, Footer, BackToTop } from "../components";
+import PerformanceOptimizations from "../components/PerformanceOptimizations";
 import { LocaleProvider } from "../contexts/LocaleContext";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import { CookieConsent } from "../components/CookieConsent";
@@ -129,6 +130,7 @@ export default function RootLayout({
         <CookieConsentHandler />
         <LocaleProvider>
           <DynamicMetadata />
+          <PerformanceOptimizations />
           <CustomCursor />
           <div className="fixed top-0 left-0 right-0 z-50 header-blur">
             <Header />

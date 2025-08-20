@@ -337,6 +337,13 @@ export default function ProjectsPage() {
   // Featured video enlarge state
   const [isFeaturedPreviewOpen, setIsFeaturedPreviewOpen] = useState(false);
   const [isProjectVideoEnlarged, setIsProjectVideoEnlarged] = useState(false);
+  // Enlarge gating to prevent immediate accidental open
+  const [canEnlargeVideo, setCanEnlargeVideo] = useState(false);
+  const enlargeGateTimer = useRef<number | null>(null);
+  const isMobile =
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 820px)").matches
+      : false;
   // Lock scroll when any overlay (featured or enlarged project video) is open
   useEffect(() => {
     if (isFeaturedPreviewOpen || isProjectVideoEnlarged) {
@@ -525,6 +532,23 @@ export default function ProjectsPage() {
   const handleProjectSelect = (project: Project) => {
     setSelectedProject(project);
   };
+  // When a project modal opens, delay enabling enlarge
+  useEffect(() => {
+    if (selectedProject) {
+      setCanEnlargeVideo(false);
+      if (enlargeGateTimer.current)
+        window.clearTimeout(enlargeGateTimer.current);
+      enlargeGateTimer.current = window.setTimeout(() => {
+        setCanEnlargeVideo(true);
+      }, 420); // ~0.4s gate
+    }
+    return () => {
+      if (!selectedProject && enlargeGateTimer.current) {
+        window.clearTimeout(enlargeGateTimer.current);
+        enlargeGateTimer.current = null;
+      }
+    };
+  }, [selectedProject]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isDropdownOpen) {
@@ -772,17 +796,17 @@ export default function ProjectsPage() {
           <AnimatePresence>
             {isFeaturedPreviewOpen && (
               <motion.div
-                className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-[#0b0e13]/90 backdrop-blur-xl"
+                className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm perf-overlay"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsFeaturedPreviewOpen(false)}>
                 <motion.div
-                  className="relative w-full max-w-5xl focus:outline-none"
-                  initial={{ scale: 0.85, opacity: 0, y: 30 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0.85, opacity: 0, y: 30 }}
-                  transition={{ type: "spring", stiffness: 240, damping: 22 }}
+                  className="relative w-full max-w-5xl modal-content-perf focus:outline-none"
+                  initial={{ opacity: 0, y: 32 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 32 }}
+                  transition={{ duration: 0.32, ease: "easeOut" }}
                   onClick={(e) => e.stopPropagation()}
                   tabIndex={-1}>
                   <motion.button
@@ -815,16 +839,17 @@ export default function ProjectsPage() {
           <AnimatePresence>
             {selectedProject && (
               <motion.div
-                className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                className="fixed inset-0 bg-black/65 backdrop-blur-sm perf-overlay flex items-center justify-center p-4 z-50"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={closeProjectModal}>
                 <motion.div
-                  className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl"
-                  initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                  className="modal-content-perf bg-[#1E2228] rounded-xl p-5 md:p-7 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl"
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 28 }}
+                  transition={{ duration: 0.32, ease: "easeOut" }}
                   onClick={(e) => e.stopPropagation()}>
                   {/* Header */}
                   <div className="flex justify-between items-start mb-6">
@@ -857,7 +882,10 @@ export default function ProjectsPage() {
                             <div
                               className="monitor-frame cursor-pointer group"
                               style={{ width: "100%" }}
-                              onClick={() => setIsProjectVideoEnlarged(true)}
+                              onClick={() => {
+                                if (!canEnlargeVideo) return; // require second tap/time delay
+                                setIsProjectVideoEnlarged(true);
+                              }}
                               aria-label={t.clickToEnlarge}
                               role="button">
                               {selectedProject.title === t.oldPortfolioTitle ||
@@ -941,21 +969,30 @@ export default function ProjectsPage() {
                             {t.technologiesUsed}
                           </h3>
                           <div className="grid grid-cols-2 gap-4">
-                            {selectedProject.technologies.map((tech, index) => (
-                              <motion.div
-                                key={tech.name}
-                                className="flex items-center gap-3 p-3 bg-[#1E2228] rounded-lg border border-gray-700 hover:border-[#fd19fc]/50 transition-colors"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}>
-                                <div className="text-xl md:text-2xl">
-                                  {tech.icon}
+                            {selectedProject.technologies.map((tech, index) => {
+                              const item = (
+                                <div
+                                  key={tech.name}
+                                  className="flex items-center gap-3 p-3 bg-[#1E2228] rounded-lg border border-gray-700 hover:border-[#fd19fc]/50 transition-colors">
+                                  <div className="text-xl md:text-2xl">
+                                    {tech.icon}
+                                  </div>
+                                  <span className="text-xs md:text-sm lg:text-base text-white font-medium">
+                                    {tech.name}
+                                  </span>
                                 </div>
-                                <span className="text-xs md:text-sm lg:text-base text-white font-medium">
-                                  {tech.name}
-                                </span>
-                              </motion.div>
-                            ))}
+                              );
+                              if (isMobile) return item; // no per-item motion on mobile
+                              return (
+                                <motion.div
+                                  key={tech.name}
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: index * 0.05 }}>
+                                  {item}
+                                </motion.div>
+                              );
+                            })}
                           </div>
                         </div>
                       )}
@@ -1119,17 +1156,17 @@ export default function ProjectsPage() {
           <AnimatePresence>
             {isProjectVideoEnlarged && selectedProject && (
               <motion.div
-                className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[#0b0e13]/90 backdrop-blur-xl"
+                className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm perf-overlay"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsProjectVideoEnlarged(false)}>
                 <motion.div
-                  className="relative w-full max-w-5xl"
-                  initial={{ scale: 0.85, opacity: 0, y: 30 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0.85, opacity: 0, y: 30 }}
-                  transition={{ type: "spring", stiffness: 240, damping: 22 }}
+                  className="relative w-full max-w-5xl modal-content-perf"
+                  initial={{ opacity: 0, y: 32 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 32 }}
+                  transition={{ duration: 0.32, ease: "easeOut" }}
                   onClick={(e) => e.stopPropagation()}>
                   <motion.button
                     aria-label={t.close || "Close"}

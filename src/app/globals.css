@@ -45,6 +45,7 @@ body {
   }
 }
 
+/* Safari teljesítmény optimalizálás: fallback animációk */
 @property --gradient-angle {
   syntax: "<angle>";
   initial-value: 0deg;
@@ -57,6 +58,18 @@ body {
   }
   100% {
     --gradient-angle: 360deg;
+  }
+}
+
+@keyframes gradient-move-fallback {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -77,8 +90,135 @@ body {
   );
   background-size: 300% 300%;
   background-position: center;
-  filter: blur(40px);
+  filter: blur(32px);
+  will-change: background, filter;
   animation: gradient-rotation 20s linear infinite;
+}
+
+body.is-safari .animated-gradient {
+  animation: gradient-move-fallback 14s ease-in-out infinite;
+  background: linear-gradient(120deg, #161a20, #232946, #161a20, #232946);
+  background-size: 250% 250%;
+  filter: blur(24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-gradient,
+  body.is-safari .animated-gradient {
+    animation: none;
+    background-position: 50% 50% !important;
+    filter: blur(16px);
+  }
+}
+
+/* Progress bar fallback (Safari) */
+@keyframes progress-fill-steps {
+  0% {
+    width: 0%;
+  }
+  15% {
+    width: 12%;
+  }
+  30% {
+    width: 28%;
+  }
+  50% {
+    width: 45%;
+  }
+  70% {
+    width: 67%;
+  }
+  85% {
+    width: 89%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.progress-bar-fallback .progress-track {
+  position: relative;
+  width: 20rem;
+  height: 0.5rem;
+  background: #2c313a;
+  overflow: hidden;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 0.75rem;
+}
+.progress-bar-fallback .progress-fill,
+.progress-bar-fallback .progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  animation: progress-fill-steps 3.2s 1.5s ease-in-out forwards;
+}
+.progress-bar-fallback .progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan),
+    var(--neon-cyan) 60%,
+    var(--neon-pink)
+  );
+}
+.progress-bar-fallback .progress-glow {
+  filter: blur(6px);
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan),
+    var(--neon-cyan) 60%,
+    var(--neon-pink)
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* GridSection cell dimming – finom blur az inner tartalomra (4 elemnél még oké teljesítményben) */
+.grid-cell-dim {
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.grid-cell-inner {
+  transition: filter 0.28s ease, opacity 0.28s ease;
+}
+.grid-cell-dim .grid-cell-inner {
+  filter: blur(2px);
+  opacity: 0.9;
+}
+body.is-safari .grid-cell-dim .grid-cell-inner {
+  filter: blur(1.2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid-cell-dim .grid-cell-inner {
+    filter: none;
+  }
+}
+
+/* Modal overlay performance optimalizáció mobilon / Safari-n */
+.perf-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+@media (max-width: 820px) {
+  .perf-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.82) !important;
+  }
+}
+body.is-safari .perf-overlay {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(0, 0, 0, 0.82) !important;
+}
+.modal-content-perf {
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-content-perf {
+    transition: none !important;
+  }
 }
 
 /* Mobile touch feedback */
@@ -287,4 +427,73 @@ body {
 
 .zsmwebdev-animated {
   animation: gradientMove 4s ease-in-out infinite;
+}
+
+/* Desktop header button enhanced pulse (avoids layout shift) */
+@keyframes headerPulseCyan {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+    border-color: rgba(0, 255, 255, 0.35);
+  }
+  40% {
+    box-shadow: 0 0 8px 2px rgba(0, 255, 255, 0.35),
+      0 0 18px 6px rgba(0, 255, 255, 0.15);
+    border-color: rgba(0, 255, 255, 0.85);
+  }
+  60% {
+    box-shadow: 0 0 10px 3px rgba(0, 255, 255, 0.45),
+      0 0 22px 10px rgba(0, 255, 255, 0.18);
+  }
+}
+@keyframes headerPulsePink {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(253, 25, 252, 0);
+    border-color: rgba(253, 25, 252, 0.35);
+  }
+  40% {
+    box-shadow: 0 0 8px 2px rgba(253, 25, 252, 0.35),
+      0 0 18px 6px rgba(253, 25, 252, 0.15);
+    border-color: rgba(253, 25, 252, 0.85);
+  }
+  60% {
+    box-shadow: 0 0 10px 3px rgba(253, 25, 252, 0.45),
+      0 0 22px 10px rgba(253, 25, 252, 0.18);
+  }
+}
+.header-btn-pulse-cyan,
+.header-btn-pulse-pink {
+  position: relative;
+}
+.header-btn-pulse-cyan::after,
+.header-btn-pulse-pink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem; /* matches rounded-xl */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.header-btn-pulse-cyan {
+  animation: headerPulseCyan 3.6s ease-in-out infinite;
+}
+.header-btn-pulse-pink {
+  animation: headerPulsePink 3.6s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.header-btn-pulse-cyan:hover,
+.header-btn-pulse-pink:hover,
+.header-btn-pulse-cyan:focus-visible,
+.header-btn-pulse-pink:focus-visible {
+  animation-play-state: paused;
+}
+@media (max-width: 767px) {
+  /* Disable desktop pulse on mobile for performance */
+  .header-btn-pulse-cyan,
+  .header-btn-pulse-pink {
+    animation: none;
+    box-shadow: none !important;
+  }
 }

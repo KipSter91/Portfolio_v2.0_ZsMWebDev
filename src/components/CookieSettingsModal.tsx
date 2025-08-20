@@ -69,16 +69,17 @@ export function CookieSettingsModal({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[10000]"
+          className="fixed inset-0 bg-black/65 backdrop-blur-sm perf-overlay flex items-center justify-center p-4 z-[10000]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}>
           <motion.div
-            className="bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl relative"
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="modal-content-perf bg-[#1E2228] rounded-xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#00ffff]/20 shadow-2xl relative"
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.96 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}>
             {/* Close Button - Ugyanaz mint az AnimatedModal-ban */}
             <motion.button

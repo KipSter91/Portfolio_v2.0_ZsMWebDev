@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLocaleContext } from "../contexts/LocaleContext";
 
 interface SplashScreenProps {
@@ -11,6 +11,11 @@ interface SplashScreenProps {
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const { t } = useLocaleContext();
   const [showContent, setShowContent] = useState(false);
+  const isSafari = useMemo(() => {
+    if (typeof navigator === "undefined") return false;
+    const ua = navigator.userAgent;
+    return /Safari\//.test(ua) && !/Chrome\//.test(ua);
+  }, []);
   useEffect(() => {
     // First animation starts with a slight delay
     const timer1 = setTimeout(() => {
@@ -101,66 +106,73 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             {t.welcome}
           </p>
         </motion.div>
-        {/* Progress bar with realistic loading animation */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={
-            showContent ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }
-          }
-          transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-          className="mt-8 w-80 h-2 bg-[#2c313a] overflow-hidden relative border rounded-xl border-[#00ffff]/20">
-          {/* Main progress bar */}
+        {/* Progress bar – Safari fallback CSS animációval */}
+        {isSafari ? (
+          <div
+            className="progress-bar-fallback mt-8"
+            aria-label="Loading progress">
+            <div className="progress-track">
+              <div className="progress-fill" />
+              <div className="progress-glow" />
+            </div>
+            <div className="mt-2 text-center text-xs tracking-wide text-[var(--neon-cyan)] font-mono">
+              Loading...
+            </div>
+          </div>
+        ) : (
           <motion.div
-            className="h-full bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] relative"
-            initial={{ width: "0%" }}
+            initial={{ opacity: 0, scaleX: 0 }}
             animate={
               showContent
-                ? {
-                    width: ["0%", "12%", "28%", "45%", "67%", "89%", "100%"],
-                  }
-                : { width: "0%" }
+                ? { opacity: 1, scaleX: 1 }
+                : { opacity: 0, scaleX: 0 }
             }
-            transition={{
-              duration: 3.2,
-              delay: 1.5,
-              ease: "easeInOut",
-              times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
-            }}
-          />
-
-          {/* Animated glow effect */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] rounded-xl blur-md opacity-60"
-            initial={{ width: "0%" }}
-            animate={
-              showContent
-                ? {
-                    width: ["0%", "12%", "28%", "45%", "67%", "89%", "100%"],
-                  }
-                : { width: "0%" }
-            }
-            transition={{
-              duration: 3.2,
-              delay: 1.5,
-              ease: "easeInOut",
-              times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
-            }}
-          />
-
-          {/* Progress percentage display */}
-          <motion.div
-            className="absolute -top-8 left-0 text-[#00ffff] text-sm font-mono"
-            initial={{ opacity: 0 }}
-            animate={showContent ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 1.8 }}>
-            <motion.span
+            transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
+            className="mt-8 w-80 h-2 bg-[#2c313a] overflow-hidden relative border rounded-xl border-[#00ffff]/20">
+            <motion.div
+              className="h-full bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] relative"
+              initial={{ width: "0%" }}
+              animate={
+                showContent
+                  ? { width: ["0%", "12%", "28%", "45%", "67%", "89%", "100%"] }
+                  : { width: "0%" }
+              }
+              transition={{
+                duration: 3.2,
+                delay: 1.5,
+                ease: "easeInOut",
+                times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-[#00ffff] via-[#00ffff] to-[#fd19fc] rounded-xl blur-md opacity-60"
+              initial={{ width: "0%" }}
+              animate={
+                showContent
+                  ? { width: ["0%", "12%", "28%", "45%", "67%", "89%", "100%"] }
+                  : { width: "0%" }
+              }
+              transition={{
+                duration: 3.2,
+                delay: 1.5,
+                ease: "easeInOut",
+                times: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
+              }}
+            />
+            <motion.div
+              className="absolute -top-8 left-0 text-[#00ffff] text-sm font-mono"
               initial={{ opacity: 0 }}
               animate={showContent ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}>
-              Loading...
-            </motion.span>
+              transition={{ duration: 0.5, delay: 1.8 }}>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={showContent ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, delay: 1.8 }}>
+                Loading...
+              </motion.span>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
       </div>
     </motion.div>
   );

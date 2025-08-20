@@ -44,6 +44,10 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [activeGridItem, setActiveGridItem] = useState<number | null>(null);
   const [logoHovered, setLogoHovered] = useState(false);
+  // Lock underline after desktop click to avoid flicker
+  const [lockedUnderlineIdx, setLockedUnderlineIdx] = useState<number | null>(
+    null
+  );
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const underlines = useRef<(SVGPathElement | null)[]>([
     null,
@@ -53,24 +57,41 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
   ]);
   const router = useRouter();
 
-  // Delayed hover effect for smooth transitions
+  // Prefetch route-ok a gyorsabb navigációért (különösen iOS Safari)
+  useEffect(() => {
+    try {
+      gridItems.forEach((g) => {
+        router.prefetch?.(`/${g.key}`);
+      });
+    } catch (_) {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Instant hover – Safari-n a késleltetés akadozott
   const handleMouseEnter = (idx: number) => {
+    if (isMobile) return; // mobile saját logika
+    if (lockedUnderlineIdx !== null) return; // már lockolva – ne változzon
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    const randomIdx = Math.floor(Math.random() * underlinePaths.length);
-    hoverTimeoutRef.current = setTimeout(() => {
+    // Ha ugyanaz az elem marad, ne randomizáljunk újra (layout reflow / re-enter miatt)
+    if (hovered === idx && currentUnderlineIdx !== null) {
       setHovered(idx);
       setVisualHovered(idx);
-      setCurrentUnderlineIdx(randomIdx);
-    }, 300);
+      return;
+    }
+    const randomIdx = Math.floor(Math.random() * underlinePaths.length);
+    setHovered(idx);
+    setVisualHovered(idx);
+    setCurrentUnderlineIdx(randomIdx);
   };
 
   const handleMouseLeave = () => {
+    if (lockedUnderlineIdx !== null) return; // click után ne tűnjön el a vonal
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
       setHovered(null);
       setVisualHovered(null);
       setCurrentUnderlineIdx(null);
-    }, 300);
+    }, 120);
   }; // Handle logo mouse events
   const handleLogoMouseEnter = () => {
     if (isMobile) return; // Skip for mobile/tablet
@@ -102,7 +123,8 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
         );
       }
     } else {
-      // Desktop - navigate with animation
+      // Desktop - lock underline, navigate with animation
+      setLockedUnderlineIdx(idx);
       onExit?.();
       setTimeout(() => {
         router.push(`/${gridItems[idx].key}`);
@@ -263,18 +285,19 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
           <button
             key={item.key}
             data-grid-item={true}
-            className={`relative flex items-center justify-center transition-all duration-300 text-2xl font-bold select-none group overflow-hidden focus:z-20 cursor-pointer
-              ${isHovered ? "z-20" : isOther ? " blur-[3px]" : ""}
+            className={`relative flex items-center justify-center transition-colors duration-300 text-2xl font-bold select-none group overflow-hidden focus:z-20 cursor-pointer
+              ${isHovered ? "z-20" : isOther ? " grid-cell-dim" : ""}
               ${isActive ? "active-grid-item" : ""}
             `}
             style={{
               gridArea: item.area,
               minWidth: 0,
               minHeight: 0,
-              border:
-                !isHovered && !isActive
-                  ? "1px solid var(--medium-gray)"
-                  : "2px solid var(--neon-cyan) ",
+              border: `1px solid ${
+                isHovered || isActive
+                  ? "var(--neon-cyan)"
+                  : "var(--medium-gray)"
+              }`,
               outline: 0,
               padding: 0,
               margin: 0,
@@ -282,6 +305,7 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
               width: "100%",
               height: "100%",
               backgroundColor: "var(--dark-gray)",
+              willChange: "opacity, border-color",
             }}
             onClick={() => handleGridItemClick(idx)}
             aria-label={item.label}
@@ -290,9 +314,11 @@ export default function GridSection({ onOpenModal, onExit }: GridSectionProps) {
             onFocus={!isMobile ? () => handleMouseEnter(idx) : undefined}
             onBlur={!isMobile ? handleMouseLeave : undefined}>
             {(isHovered || isActive) && (
-              <div className="animated-gradient"></div>
+              <div
+                className="animated-gradient"
+                style={{ opacity: 0.7, filter: "blur(26px)" }}></div>
             )}
-            <div className="z-10 drop-shadow-lg transition-transform duration-300 relative flex flex-col items-center">
+            <div className="grid-cell-inner z-10 drop-shadow-lg transition-transform duration-300 relative flex flex-col items-center">
               <span
                 className={`transition-colors ${
                   isVisualHovered || isActive ? "text-[#00ffff]" : ""
