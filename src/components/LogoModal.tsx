@@ -107,32 +107,25 @@ export default function LogoModal() {
           <FaLinkedinIn size={20} />
         </a>
         <a
-          href="https://github.com/kipster91"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
-          <FaGithub size={20} />
-        </a>
-        <a
-          href="https://www.facebook.com/marku.zsolt"
+          href="https://www.facebook.com/profile.php?id=61579632871233"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
           <FaFacebookF size={20} />
         </a>
         <a
-          href="https://www.instagram.com/markuzsolt/"
+          href="https://www.instagram.com/zsmwebdev/"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
           <FaInstagram size={20} />
         </a>
-        <a
-          href="https://x.com/MarkuZsolt"
+         <a
+          href="https://github.com/kipster91"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#2C313A] hover:bg-[#00ffff] hover:text-black p-2 rounded-full transition-colors">
-          <FaXTwitter size={20} />
+          <FaGithub size={20} />
         </a>
       </motion.div>
     </motion.div>

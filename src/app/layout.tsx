@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
-import { Header, Footer, BackToTop } from "../components";
+import { Header, Footer, BackToTop, ErrorBoundary } from "../components";
 import PerformanceOptimizations from "../components/PerformanceOptimizations";
 import { LocaleProvider } from "../contexts/LocaleContext";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
@@ -126,20 +126,24 @@ export default function RootLayout({
       <body
         className={`antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning>
-        <GoogleAnalytics />
-        <CookieConsentHandler />
-        <LocaleProvider>
-          <DynamicMetadata />
-          <PerformanceOptimizations />
-          <CustomCursor />
-          <div className="fixed top-0 left-0 right-0 z-50 header-blur">
-            <Header />
-          </div>
-          <main className="pt-14 flex-grow overflow-x-hidden">{children}</main>
-          <Footer />
-          <BackToTop />
-          <CookieConsent />
-        </LocaleProvider>
+        <CustomCursor />
+        <ErrorBoundary>
+          <GoogleAnalytics />
+          <CookieConsentHandler />
+          <LocaleProvider>
+            <DynamicMetadata />
+            <PerformanceOptimizations />
+            <div className="fixed top-0 left-0 right-0 z-50 header-blur">
+              <Header />
+            </div>
+            <main className="pt-14 flex-grow overflow-x-hidden">
+              {children}
+            </main>
+            <Footer />
+            <BackToTop />
+            <CookieConsent />
+          </LocaleProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

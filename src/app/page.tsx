@@ -44,9 +44,11 @@ export default function Home() {
   const [fromPage, setFromPage] = useState<string | null>(null);
   const [currentModal, setCurrentModal] = useState<string | null>(null);
   const [splashShown, setSplashShown] = useState(false); // Track if splash was already shown
+  const [isMounted, setIsMounted] = useState(false); // Prevent hydration mismatch
 
-  // Console easter egg
+  // Console easter egg + mount detection
   useEffect(() => {
+    setIsMounted(true);
     console.log(
       "%c👋 Hey there, explorer! Welcome to my portfolio!",
       consoleStyles
@@ -118,43 +120,48 @@ export default function Home() {
         <SearchParamsHandler onFromPageChange={handleFromPageChange} />
       </Suspense>
 
-      <AnimatePresence mode="wait">
-        {showSplash && !fromPage && !splashShown && fromPageInitialized && (
-          <SplashScreen
-            key="splash"
-            onComplete={handleSplashComplete}
-          />
-        )}
-        {showContent && fromPageInitialized && !isExiting && (
-          <div className="w-full text-white relative overflow-hidden">
-            <motion.div
-              key="content"
-              className="w-full h-full"
-              initial={{
-                opacity: 0,
-                x: fromPage ? -100 : 0,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              exit={{
-                opacity: 0,
-                x: -100,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              style={{
-                position: "relative",
-                zIndex: 1,
-              }}>
-              <GridSection
-                onExit={() => setIsExiting(true)}
-                onOpenModal={handleOpenModal}
+      {/* Prevent hydration mismatch on iOS Safari */}
+      {!isMounted ? null : (
+        <>
+          <AnimatePresence mode="wait">
+            {showSplash && !fromPage && !splashShown && fromPageInitialized && (
+              <SplashScreen
+                key="splash"
+                onComplete={handleSplashComplete}
               />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+            )}
+            {showContent && fromPageInitialized && !isExiting && (
+              <div className="w-full text-white relative overflow-hidden">
+                <motion.div
+                  key="content"
+                  className="w-full h-full"
+                  initial={{
+                    opacity: 0,
+                    x: fromPage ? -100 : 0,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -100,
+                  }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  style={{
+                    position: "relative",
+                    zIndex: 1,
+                  }}>
+                  <GridSection
+                    onExit={() => setIsExiting(true)}
+                    onOpenModal={handleOpenModal}
+                  />
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
+        </>
+      )}
 
       {/* Logo Modal */}
       <AnimatedModal

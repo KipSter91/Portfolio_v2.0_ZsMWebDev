@@ -14,3 +14,4 @@ export { PrivacyPolicyModal } from "./PrivacyPolicyModal";
 export { TermsOfServiceModal } from "./TermsOfServiceModal";
 export { CookieConsentHandler } from "./CookieConsentHandler";
 export { DynamicMetadata } from "./DynamicMetadata";
+export { ErrorBoundary } from "./ErrorBoundary";

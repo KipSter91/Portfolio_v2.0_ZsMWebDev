@@ -13,7 +13,6 @@ import {
   FaCookie,
   FaFileContract,
 } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
 import { TermsOfServiceModal } from "./TermsOfServiceModal";
 import { CookieSettingsModal } from "./CookieSettingsModal";
@@ -56,18 +55,17 @@ const Footer: React.FC = () => {
       url: "https://linkedin.com/in/zsolt-márku-931a49298",
       icon: "linkedin",
     },
-    { name: "GitHub", url: "https://github.com/kipster91", icon: "github" },
     {
       name: "Facebook",
-      url: "https://www.facebook.com/marku.zsolt",
+      url: "https://www.facebook.com/profile.php?id=61579632871233",
       icon: "facebook",
     },
     {
       name: "Instagram",
-      url: "https://www.instagram.com/markuzsolt/",
+      url: "https://www.instagram.com/zsmwebdev/",
       icon: "instagram",
     },
-    { name: "X", url: "https://x.com/MarkuZsolt", icon: "twitter" },
+    { name: "GitHub", url: "https://github.com/kipster91", icon: "github" },
   ];
   return (
     <footer className="w-full bg-[color:var(--dark-gray)] border-t border-[color:var(--medium-gray)] mt-auto h-14">
@@ -262,8 +260,6 @@ const renderIcon = (icon: string) => {
       return <FaFacebookF className={iconClass} />;
     case "instagram":
       return <FaInstagram className={iconClass} />;
-    case "twitter":
-      return <FaXTwitter className={iconClass} />;
     default:
       return null;
   }
